@@ -1,0 +1,35 @@
+[
+  {
+    "state_dir": "v57-live",
+    "experiments": 27,
+    "initial_requests": 10,
+    "correction_calls": 17,
+    "states": {
+      "approved": 1,
+      "interrupted": 1,
+      "proposed": 25
+    },
+    "status": "Stopped development pilot; excluded from final cohort. All records preserved."
+  },
+  {
+    "state_dir": "v57-measured",
+    "experiments": 27,
+    "initial_requests": 9,
+    "correction_calls": 18,
+    "states": {
+      "interrupted": 1,
+      "proposed": 26
+    },
+    "status": "Stopped development pilot; excluded from final cohort. All records preserved."
+  },
+  {
+    "state_dir": "v57-27b",
+    "experiments": 20,
+    "initial_requests": 20,
+    "correction_calls": 0,
+    "states": {
+      "generation_failed": 20
+    },
+    "status": "Stopped development pilot; excluded from final cohort. All records preserved."
+  }
+]

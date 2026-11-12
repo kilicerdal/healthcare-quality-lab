@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "backup": ".local/backup-before-v5.7",
+  "stores": {
+    "claims-v2.sqlite": {
+      "claims": {
+        "before": 0,
+        "after": 0,
+        "original_rows_preserved": true
+      },
+      "events": {
+        "before": 0,
+        "after": 0,
+        "original_rows_preserved": true
+      },
+      "payments": {
+        "before": 0,
+        "after": 0,
+        "original_rows_preserved": true
+      }
+    },
+    "ai-v3.sqlite": {
+      "ai_experiments": {
+        "before": 29,
+        "after": 52,
+        "original_rows_preserved": true
+      },
+      "studio_operations": {
+        "before": 0,
+        "after": 0,
+        "original_rows_preserved": true
+      }
+    },
+    "evaluation-v4.sqlite": {
+      "ai_experiments": {
+        "before": 3,
+        "after": 3,
+        "original_rows_preserved": true
+      },
+      "studio_operations": {
+        "before": 0,
+        "after": 0,
+        "original_rows_preserved": true
+      }
+    },
+    "coverage-v55.sqlite": {
+      "ai_experiments": {
+        "before": 8,
+        "after": 13,
+        "original_rows_preserved": true
+      },
+      "studio_operations": {
+        "before": 0,
+        "after": 0,
+        "original_rows_preserved": true
+      }
+    }
+  }
+}

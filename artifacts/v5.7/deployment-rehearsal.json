@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-11-12T22:01:29.149925+00:00",
+  "archive": "/Users/erdalkilic/Documents/Healthcare Quality Lab/.local/candidates/v57-final/v5.7.0-source.zip",
+  "active_release": "v5.7.0-26f86c8179f8",
+  "rollback_verified": true,
+  "phases": [
+    {
+      "phase": "baseline",
+      "version": "5.6.0",
+      "claim_id": "REL-ff8683f4d660",
+      "payout_cents": 90000,
+      "payment_cents": 90000,
+      "events": 3,
+      "revision": 3,
+      "checks": [
+        "health",
+        "payout",
+        "submit",
+        "duplicate_rejected",
+        "ownership_rejected",
+        "skip_approval_rejected",
+        "approve",
+        "pay",
+        "ledger_and_history",
+        "invalid_generation_rejected_without_inference"
+      ]
+    },
+    {
+      "phase": "new_release",
+      "version": "5.7.0",
+      "claim_id": "REL-1284e35afea1",
+      "payout_cents": 90000,
+      "payment_cents": 90000,
+      "events": 3,
+      "revision": 3,
+      "checks": [
+        "health",
+        "payout",
+        "submit",
+        "duplicate_rejected",
+        "ownership_rejected",
+        "skip_approval_rejected",
+        "approve",
+        "pay",
+        "ledger_and_history",
+        "invalid_generation_rejected_without_inference"
+      ]
+    },
+    {
+      "phase": "rollback",
+      "version": "5.6.0",
+      "previous_state_preserved": true,
+      "new_release_state_isolated": true
+    },
+    {
+      "phase": "reactivation",
+      "version": "5.7.0",
+      "new_release_state_preserved": true
+    }
+  ],
+  "live_model_calls": 0,
+  "scope": "Actual staged archives and loopback Waitress HTTP, with separate per-release synthetic state. Pointer changes take effect on next server start; no hot swap or database migration."
+}

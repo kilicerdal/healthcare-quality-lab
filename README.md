@@ -1,4 +1,4 @@
-# Healthcare Quality Lab — V5.6
+# Healthcare Quality Lab — V5.7
 
 A standalone quality engineering showcase built with **Python, pytest, Playwright and local Ollama**. Learn to define contracts, test stateful claims, review AI-created cases, measure test quality and release verified source packages.
 
@@ -30,6 +30,12 @@ The live demonstration generated two correct gap cases with three actual model r
 
 The reviewed primary suite improved from 2/12 to 12/12 known fault seeds, with ten new detections and zero regressions. Alternate development inputs also reach 12/12. Each final suite contains one AI-authored workflow and one reference-assisted evaluator; raw errors and corrections remain visible. The polished dashboard shows score/source context, plain-language metrics, survivor plans and a fair comparison matrix. Read the [detailed V5.6 report](docs/V5.6_REPORT.md) and [guided demo](docs/V5.6_DEMO.md).
 
+## V5.7 focused AI generation and complete defined gap map
+
+The installed local `qwen3.5:27b` generated 20/20 correct first-attempt evaluator assertions/calculations on the frozen development cohort, with zero AI corrections and zero reference-assisted replacements. One-request generation retrieves one plan and relevant rules; visible structured calculations are independently checked. Reviewed sources assemble into a fresh unapproved suite by copying exact input/expectation snapshots. The core AI-derived suite detects 12/12 known seeds without a reference-assisted evaluator. Zero-amount rejection and paid-payment replay with unchanged readback close the last two of eleven defined scenario gaps.
+
+The 27B runtime uses explicit prompt JSON with validation; smaller models use constrained output. Failed small-model pilots and runtime-compatibility attempts are preserved separately. This is a development demonstration, not blind-holdout performance or exhaustive defect coverage. Read the [detailed V5.7 report](docs/V5.7_REPORT.md) and [guided demo](docs/V5.7_DEMO.md).
+
 ## Start here
 
 ```sh
@@ -39,7 +45,7 @@ python3 -m tools.bootstrap --browser
 
 Open [the guided showcase](http://127.0.0.1:8895/#showcase). In VS Code select `.venv/bin/python` and **Run and Debug → V5: start Healthcare Quality Lab**. Bootstrap uses only this project's `.venv` and `.browsers`; it does not install Ollama or download models. On Windows use `.venv\Scripts\python.exe` instead of `.venv/bin/python`.
 
-Read the [V5.6 survivor-targeting report](docs/V5.6_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
+Read the [V5.7 focused-generation report](docs/V5.7_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
 
 ## What the five versions deliver
 
@@ -51,7 +57,7 @@ Read the [V5.6 survivor-targeting report](docs/V5.6_REPORT.md), [eight-minute de
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.6 local verification:** 587 tests passed (480 unit, 66 API, 41 Chromium), zero failures/skips. [GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43305569715); downloaded evidence matches the final local source fingerprint.
+**V5.7 local verification:** 622 tests passed (510 unit, 70 API, 42 Chromium), zero failures/skips. [GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43314919548); downloaded evidence matches the final local source fingerprint.
 
 ## Test the application
 
@@ -67,7 +73,7 @@ The deterministic suite uses clearly labeled offline provider doubles. Real V4 m
 
 ## Create and run local AI cases
 
-1. Start your existing Ollama service with an installed allowed model (`qwen2.5-coder:3b` or `qwen2.5:3b`). Check it explicitly in AI Test Studio.
+1. Start your existing Ollama service with an installed allowed model (`qwen3.5:27b`, `qwen2.5-coder:3b` or `qwen2.5:3b`). Check it explicitly in AI Test Studio.
 2. Provide a synthetic requirement, select 1–6 written contracts and request 1–4 cases. Generation creates new declarative case proposals, not a prerecorded catalog selection.
 3. Inspect inputs, expectations, source IDs, completeness and independent reference checks. Use explicit Ollama correction (at most two attempts per history), inspect and confirm reference replacements, or edit expectations with a reviewer label and note. Every correction remains unapproved until fresh review; wrong values stay blocked.
 4. Select valid cases, attest that you checked their expectations, and save the review. Editing clears approval; stale fingerprints and mismatched hashes block execution.

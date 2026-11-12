@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "run_id": 43314919548,
+  "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43314919548",
+  "source_hash": "a3b668195fed18d520026e8d39bc03b7caedd2a24ecf8d9323db7432bfd68478",
+  "tests_passed": 622,
+  "categories": {
+    "unit": 510,
+    "api": 70,
+    "e2e": 42
+  },
+  "ci_executed": true,
+  "runtime_rehearsal": "passed",
+  "head_sha": "9548fa15c6afb9bdc5d93078a561d2999134edcb"
+}

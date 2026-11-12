@@ -1,0 +1,113 @@
+{
+  "before_id": "852d180e128f431bb9e62aced2d96fca",
+  "after_id": "12639c206b804da8b08bb045ac969c59",
+  "before_detected": 2,
+  "after_detected": 12,
+  "applicable": 12,
+  "before_origins": {
+    "original_ai": 2
+  },
+  "after_origins": {
+    "assembled_ai": 1,
+    "original_ai": 3
+  },
+  "newly_detected": [
+    "eval-eligibility",
+    "eval-coverage",
+    "eval-network",
+    "eval-authorization",
+    "eval-formulary",
+    "eval-deductible",
+    "workflow-ownership",
+    "workflow-duplicate_replay",
+    "workflow-skip_approval",
+    "workflow-ledger_amount"
+  ],
+  "regressed": [],
+  "still_survived": [],
+  "profiles": [
+    {
+      "id": "eval-eligibility",
+      "rule_id": "HC-002",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "eval-coverage",
+      "rule_id": "HC-003",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "eval-network",
+      "rule_id": "HC-004",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "eval-authorization",
+      "rule_id": "HC-005",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "eval-formulary",
+      "rule_id": "HC-006",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "eval-deductible",
+      "rule_id": "HC-007",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "eval-limit",
+      "rule_id": "HC-007",
+      "before": "detected",
+      "after": "detected"
+    },
+    {
+      "id": "workflow-ownership",
+      "rule_id": "WF-001",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "workflow-duplicate_replay",
+      "rule_id": "WF-002",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "workflow-skip_approval",
+      "rule_id": "WF-003",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "workflow-ledger_amount",
+      "rule_id": "WF-004",
+      "before": "survived",
+      "after": "detected"
+    },
+    {
+      "id": "workflow-history_skip",
+      "rule_id": "WF-005",
+      "before": "detected",
+      "after": "detected"
+    }
+  ],
+  "scope": "Before/after on identical known fault profiles and implementation. Not a blind accuracy benchmark or exhaustive mutation score.",
+  "id": "c065efb65a2945adba844e70a4932591",
+  "created_at": "2026-11-12T21:59:46.659037+00:00",
+  "coverage_kind": "score_comparison",
+  "state": "compared",
+  "revision": 1,
+  "source_hash": "a3b668195fed18d520026e8d39bc03b7caedd2a24ecf8d9323db7432bfd68478",
+  "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+  "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+  "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+  "snapshots_current": true
+}

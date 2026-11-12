@@ -1,0 +1,217 @@
+{
+  "scope": "Frozen before V5.7 live inference. Fourteen prior development inputs plus six explicit boundaries; literal expectations are not supplied to the model. Not blind holdouts.",
+  "results": [
+    {
+      "scenario": "core-evaluator-1",
+      "root_id": "530671a4a3ad482e94dd6a91a900a644",
+      "final_id": "530671a4a3ad482e94dd6a91a900a644",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-2",
+      "root_id": "49a697fe2daa4641bbf05710f7f4d392",
+      "final_id": "49a697fe2daa4641bbf05710f7f4d392",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-3",
+      "root_id": "8a6e088272464ae4a5695f21f3ea8ba6",
+      "final_id": "8a6e088272464ae4a5695f21f3ea8ba6",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-4",
+      "root_id": "3c47d6e146d04b8aa76a320cf6ad50ce",
+      "final_id": "3c47d6e146d04b8aa76a320cf6ad50ce",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-5",
+      "root_id": "08be96809d2f42a3851156d071c17620",
+      "final_id": "08be96809d2f42a3851156d071c17620",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-6",
+      "root_id": "69f4080bfaab44db8028b9cc18557899",
+      "final_id": "69f4080bfaab44db8028b9cc18557899",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-7",
+      "root_id": "88b883b9fd2c4c3c8e2f5ccda32c55ff",
+      "final_id": "88b883b9fd2c4c3c8e2f5ccda32c55ff",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "variant-evaluator-1",
+      "root_id": "d020f86d2698443a99b661c9a4703e5e",
+      "final_id": "d020f86d2698443a99b661c9a4703e5e",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "variant-evaluator-2",
+      "root_id": "45d8087b1dd045679ba4ac5133c1df3e",
+      "final_id": "45d8087b1dd045679ba4ac5133c1df3e",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "variant-evaluator-3",
+      "root_id": "0ce3aaac6a834670ac1b1676af2c3d06",
+      "final_id": "0ce3aaac6a834670ac1b1676af2c3d06",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "variant-evaluator-4",
+      "root_id": "71039172d011427d894e9e01670671a5",
+      "final_id": "71039172d011427d894e9e01670671a5",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "variant-evaluator-5",
+      "root_id": "8b5ecc7bd3474ffdbd5fc1dd1a4286a6",
+      "final_id": "8b5ecc7bd3474ffdbd5fc1dd1a4286a6",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "variant-evaluator-6",
+      "root_id": "ad7a7784de5248938fcbd7e8a9563e60",
+      "final_id": "ad7a7784de5248938fcbd7e8a9563e60",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "variant-evaluator-7",
+      "root_id": "a0fffb4572e84102a1b8a3d120de65e8",
+      "final_id": "a0fffb4572e84102a1b8a3d120de65e8",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "boundary-0",
+      "root_id": "b1d475698d004a6c84034809fdeede87",
+      "final_id": "b1d475698d004a6c84034809fdeede87",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "boundary-10000",
+      "root_id": "6fbcf41592a247c8a07c7104ab52ba2d",
+      "final_id": "6fbcf41592a247c8a07c7104ab52ba2d",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "boundary-10001",
+      "root_id": "132ab2464e2f47408e53a8b25def7e08",
+      "final_id": "132ab2464e2f47408e53a8b25def7e08",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "boundary-7600",
+      "root_id": "80bea83b17794feb9397b1aeaa70aeb7",
+      "final_id": "80bea83b17794feb9397b1aeaa70aeb7",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "boundary-210000",
+      "root_id": "c7d6427bd0ec4c7baa57bc8b3fcb6303",
+      "final_id": "c7d6427bd0ec4c7baa57bc8b3fcb6303",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "boundary-286450",
+      "root_id": "aeee1b4f24ce47e899ac2cdeccdbd733",
+      "final_id": "aeee1b4f24ce47e899ac2cdeccdbd733",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "original_ai",
+      "run_status": null
+    }
+  ],
+  "metrics": {
+    "attempts_total": 20,
+    "current_attempts": 20,
+    "raw_correct": 0,
+    "raw_failed": 20,
+    "unfinished": 0,
+    "stale_attempts": 0,
+    "ai_correction_calls": 0,
+    "reference_assisted_cases": 0,
+    "reviewer_edited_records": 0,
+    "scope": "Raw responses rechecked independently, before edits or repairs; latest 100 Studio experiments. Stale protocols are counted separately. No application execution."
+  }
+}

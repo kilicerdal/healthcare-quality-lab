@@ -1,0 +1,107 @@
+{
+  "scope": "Frozen before V5.7 live inference. Fourteen prior development inputs plus six explicit boundaries; literal expectations are not supplied to the model. Not blind holdouts.",
+  "results": [
+    {
+      "scenario": "core-evaluator-1",
+      "root_id": "1228b8256f974f879222d83d64ea3880",
+      "final_id": "d47860c8e25c40248ffa9f24fa414d9c",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "reference_guided_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-2",
+      "root_id": "b545f257259a4eaba6767c5c8c09cc19",
+      "final_id": "9e2742f8b5864a74bb6304804349d3bb",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "reference_guided_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-3",
+      "root_id": "9c64fcb2543e4e7484f46ffa2b5a22d3",
+      "final_id": "85f5c7e512ed47a180670dcf9bed80ba",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "reference_guided_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-4",
+      "root_id": "7a5b73c43de347ae96d0392f8c8d5f93",
+      "final_id": "3472fbe6e51d4236989b744cd4d1a243",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "reference_guided_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-5",
+      "root_id": "30072adc7f1243879a095e43492c876a",
+      "final_id": "e9040c5a4f3c4c0096c8cbbef67c546d",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "reference_guided_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "core-evaluator-6",
+      "root_id": "5af434094a91497ca512da15e5a10a8f",
+      "final_id": "fe37db4a88cc42419a40abaa19d137e9",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": true,
+      "origin": "reference_guided_ai",
+      "run_status": "passed"
+    },
+    {
+      "scenario": "core-evaluator-7",
+      "root_id": "4f47ba82debb4fdd988449d2f6dc9d8e",
+      "final_id": "2052c5d79cd645ea84fcc5e8aa78df38",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "reference_guided_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "variant-evaluator-1",
+      "root_id": "ab4da2e1eb06431384236425973873c1",
+      "final_id": "fd1b19e4e3354f30bbfe4961ba4a22a5",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "reference_guided_ai",
+      "run_status": null
+    },
+    {
+      "scenario": "variant-evaluator-2",
+      "root_id": "7d9da2fb03a346c2b3e8fa6ff47c46af",
+      "final_id": "9b2cce7f98af47848d2096a953332ccb",
+      "raw_correct": false,
+      "raw_literal_match": false,
+      "final_ready": false,
+      "origin": "reference_guided_ai",
+      "run_status": null
+    }
+  ],
+  "metrics": {
+    "attempts_total": 9,
+    "current_attempts": 9,
+    "raw_correct": 0,
+    "raw_failed": 9,
+    "unfinished": 0,
+    "stale_attempts": 0,
+    "ai_correction_calls": 17,
+    "reference_assisted_cases": 0,
+    "reviewer_edited_records": 0,
+    "scope": "Raw responses rechecked independently, before edits or repairs; latest 100 Studio experiments. Stale protocols are counted separately. No application execution."
+  }
+}

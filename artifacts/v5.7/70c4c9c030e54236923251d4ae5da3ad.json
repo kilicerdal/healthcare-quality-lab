@@ -1,0 +1,3064 @@
+{
+  "id": "70c4c9c030e54236923251d4ae5da3ad",
+  "version": "5.7.0",
+  "created_at": "2026-11-12T21:49:54.572585+00:00",
+  "requirement": "Explicit assembly of reviewed focused evaluators",
+  "source_ids": [
+    "HC-002",
+    "HC-003",
+    "HC-004",
+    "HC-005",
+    "HC-006",
+    "HC-007"
+  ],
+  "source_rules": [
+    {
+      "id": "HC-002",
+      "name": "Active coverage",
+      "risk": "Payment for an inactive teaching policy.",
+      "contract": "An inactive policy returns decision denied and reason INACTIVE_POLICY, before any benefit or network check."
+    },
+    {
+      "id": "HC-003",
+      "name": "Service benefit",
+      "risk": "Payment for a service missing from the chosen contract.",
+      "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+    },
+    {
+      "id": "HC-004",
+      "name": "Network control",
+      "risk": "Bypassing a synthetic network restriction.",
+      "contract": "When network_required is true and in_network is false, return denied / OUT_OF_NETWORK. Other plans accept either network flag with identical simplified payout; real emergency exceptions and cost sharing are outside V1."
+    },
+    {
+      "id": "HC-005",
+      "name": "Prior authorization",
+      "risk": "Approving a claim without the required teaching authorization.",
+      "contract": "If service appears in authorization_services and authorized is false, return denied / AUTH_REQUIRED. Check this after service coverage and network."
+    },
+    {
+      "id": "HC-006",
+      "name": "Drug formulary",
+      "risk": "Accepting a prescription outside the synthetic formulary.",
+      "contract": "For a covered prescription service, formulary false returns denied / NON_FORMULARY. For other services, the flag has no effect. Check after network and authorization."
+    },
+    {
+      "id": "HC-007",
+      "name": "Payout calculation",
+      "risk": "Overpayment, negative payout, or policy-limit bypass.",
+      "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+    }
+  ],
+  "model": "qwen3.5:27b",
+  "strategy": "assertions-v2",
+  "requested_count": 1,
+  "prompt": "No model request. Frozen reviewed input and expectation snapshots copied verbatim.",
+  "prompt_hash": "8e0b163526cc8445a8e6077d4df07b731e5984ec7597e90775a2a9d7eb8e1a8d",
+  "settings": {
+    "temperature": 0,
+    "seed": 7,
+    "num_predict": 2600,
+    "num_ctx": 12288
+  },
+  "dsl_version": "1.0",
+  "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+  "generation_schema_version": "focused-assembly-v1",
+  "generation_schema_hash": null,
+  "generation_schema_issues": [],
+  "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+  "state": "approved",
+  "revision": 2,
+  "raw_generation": null,
+  "generation_error": null,
+  "proposals": [
+    {
+      "case": {
+        "id": "AI-ASSEMBLED-2b594311408b",
+        "title": "Assembled reviewed focused evaluator suite",
+        "rule_ids": [
+          "HC-002",
+          "HC-003",
+          "HC-004",
+          "HC-005",
+          "HC-006",
+          "HC-007"
+        ],
+        "rationale": "Exact input/expectation copies from individually reviewed focused model drafts; no recalculation or model request during assembly.",
+        "assumptions": [
+          "Source assumptions are retained verbatim in assembly_sources. Inspect every frozen source case before approving this assembled suite."
+        ],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "active": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "INACTIVE_POLICY",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_b",
+              "service": "dental",
+              "amount_cents": 112345
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "SERVICE_NOT_COVERED",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_hmo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "in_network": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "OUT_OF_NETWORK",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_advantage",
+              "service": "hospital",
+              "amount_cents": 112345,
+              "authorized": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "AUTH_REQUIRED",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_d",
+              "service": "prescription",
+              "amount_cents": 112345,
+              "formulary": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "NON_FORMULARY",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 102345
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 245678
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 200000
+            }
+          }
+        ]
+      },
+      "valid": true,
+      "issues": [],
+      "warnings": [
+        "Expected results require independent reviewer verification; source-ID validity does not establish correctness.",
+        "Proposed assumptions require explicit inspection."
+      ],
+      "hash": "21e5fd091a974a255c26b62d947e4bb738bfccf26c3838938fd39ead8e4a8f31",
+      "quality": {
+        "policy_version": "business-observations-v1",
+        "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "complete": true,
+        "issues": [],
+        "steps": [
+          {
+            "step": 1,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 2,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 3,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 4,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 5,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 6,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 7,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          }
+        ],
+        "rejected_mutation_guards": [],
+        "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+      },
+      "review_ready": true,
+      "reference": {
+        "status": "matched",
+        "reference_version": "independent-reference-v1",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "steps": [
+          {
+            "step": 1,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "INACTIVE_POLICY",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: INACTIVE_POLICY; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 2,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "SERVICE_NOT_COVERED",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: SERVICE_NOT_COVERED; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 3,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "OUT_OF_NETWORK",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: OUT_OF_NETWORK; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 4,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "AUTH_REQUIRED",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: AUTH_REQUIRED; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 5,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "NON_FORMULARY",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: NON_FORMULARY; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 6,
+            "expected": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 102345
+            },
+            "derivation": "112345 - deductible 10000 = 102345; below payout cap 200000",
+            "mismatches": []
+          },
+          {
+            "step": 7,
+            "expected": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 200000
+            },
+            "derivation": "245678 >= deductible 10000 + payout cap 200000; payout = 200000",
+            "mismatches": []
+          }
+        ],
+        "mismatches": [],
+        "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+      },
+      "assertions_complete": true
+    }
+  ],
+  "approved_ids": [
+    "AI-ASSEMBLED-2b594311408b"
+  ],
+  "approval": {
+    "revision": 2,
+    "at": "2026-11-12T21:49:54.585387+00:00",
+    "reviewer_label": "V5.7 scripted development operator",
+    "note": "All seven frozen evaluator observations and structured calculations match independent checks; source assumptions retained for inspection. Local automated attestation, not human identity.",
+    "expectations_checked": true,
+    "hashes": {
+      "AI-ASSEMBLED-2b594311408b": "21e5fd091a974a255c26b62d947e4bb738bfccf26c3838938fd39ead8e4a8f31"
+    },
+    "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+    "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+    "identity_mode": "Local attestation label, not authenticated human identity"
+  },
+  "history": [
+    {
+      "event": "focused_sources_assembled",
+      "at": "2026-11-12T21:49:54.572943+00:00",
+      "reviewer_label": "V5.7 scripted development operator",
+      "note": "Copy seven independently checked raw model cases; inspect all source assumptions. No model or reference replacement during assembly.",
+      "scope": "Assembly is not approval. Review this new suite before execution."
+    },
+    {
+      "event": "approved",
+      "revision": 2,
+      "at": "2026-11-12T21:49:54.585387+00:00",
+      "reviewer_label": "V5.7 scripted development operator",
+      "note": "All seven frozen evaluator observations and structured calculations match independent checks; source assumptions retained for inspection. Local automated attestation, not human identity.",
+      "expectations_checked": true,
+      "hashes": {
+        "AI-ASSEMBLED-2b594311408b": "21e5fd091a974a255c26b62d947e4bb738bfccf26c3838938fd39ead8e4a8f31"
+      },
+      "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+      "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+      "identity_mode": "Local attestation label, not authenticated human identity"
+    },
+    {
+      "event": "run_recorded",
+      "run_id": "50a7a2e706d443c9a4aaeb880b22fc02",
+      "at": "2026-11-12T21:49:54.607721+00:00",
+      "revision": 2,
+      "result": "passed"
+    }
+  ],
+  "runs": [
+    {
+      "id": "50a7a2e706d443c9a4aaeb880b22fc02",
+      "experiment_id": "70c4c9c030e54236923251d4ae5da3ad",
+      "at": "2026-11-12T21:49:54.592497+00:00",
+      "revision": 2,
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T21:49:54.585387+00:00",
+        "reviewer_label": "V5.7 scripted development operator",
+        "note": "All seven frozen evaluator observations and structured calculations match independent checks; source assumptions retained for inspection. Local automated attestation, not human identity.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-ASSEMBLED-2b594311408b": "21e5fd091a974a255c26b62d947e4bb738bfccf26c3838938fd39ead8e4a8f31"
+        },
+        "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "identity_mode": "Local attestation label, not authenticated human identity"
+      },
+      "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+      "approved_cases": [
+        {
+          "id": "AI-ASSEMBLED-2b594311408b",
+          "title": "Assembled reviewed focused evaluator suite",
+          "rule_ids": [
+            "HC-002",
+            "HC-003",
+            "HC-004",
+            "HC-005",
+            "HC-006",
+            "HC-007"
+          ],
+          "rationale": "Exact input/expectation copies from individually reviewed focused model drafts; no recalculation or model request during assembly.",
+          "assumptions": [
+            "Source assumptions are retained verbatim in assembly_sources. Inspect every frozen source case before approving this assembled suite."
+          ],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 112345,
+                "active": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "INACTIVE_POLICY",
+                "payout_cents": 0
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "dental",
+                "amount_cents": 112345
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "SERVICE_NOT_COVERED",
+                "payout_cents": 0
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_hmo",
+                "service": "medical",
+                "amount_cents": 112345,
+                "in_network": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "OUT_OF_NETWORK",
+                "payout_cents": 0
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_advantage",
+                "service": "hospital",
+                "amount_cents": 112345,
+                "authorized": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "AUTH_REQUIRED",
+                "payout_cents": 0
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_d",
+                "service": "prescription",
+                "amount_cents": 112345,
+                "formulary": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "NON_FORMULARY",
+                "payout_cents": 0
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 112345
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 102345
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 245678
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000
+              }
+            }
+          ]
+        }
+      ],
+      "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+      "model": "qwen3.5:27b",
+      "prompt_hash": "8e0b163526cc8445a8e6077d4df07b731e5984ec7597e90775a2a9d7eb8e1a8d",
+      "expectation_origin": "assembled_ai",
+      "correction_of": null,
+      "reference_assisted_of": null,
+      "focused_source": null,
+      "generation_assessment": null,
+      "assembly_sources": [
+        {
+          "id": "19387a76cd4c475997f8023fe403565e",
+          "revision": 2,
+          "case": {
+            "id": "AI-Test-Inactive-Policy",
+            "title": "Deny claim for inactive commercial PPO policy",
+            "rule_ids": [
+              "HC-002",
+              "HC-003",
+              "HC-007"
+            ],
+            "rationale": "The request specifies active: false. Per rule HC-002, an inactive policy triggers a denied decision with reason INACTIVE_POLICY before any service or benefit calculations occur.",
+            "assumptions": [
+              "Amount 112345 is valid integer",
+              "Service medical exists in plan",
+              "Network and auth defaults apply but are bypassed"
+            ],
+            "steps": [
+              {
+                "action": "evaluate",
+                "actor": "none",
+                "data": {
+                  "plan_id": "commercial_ppo",
+                  "service": "medical",
+                  "amount_cents": 112345,
+                  "active": false
+                },
+                "expect": {
+                  "status": 200,
+                  "decision": "denied",
+                  "reason": "INACTIVE_POLICY",
+                  "payout_cents": 0
+                }
+              }
+            ]
+          },
+          "approval": {
+            "revision": 2,
+            "at": "2026-11-12T21:44:35.711075+00:00",
+            "reviewer_label": "Automated test-fixture reviewer",
+            "note": "Fixture expectations independently checked against the synthetic contract.",
+            "expectations_checked": true,
+            "hashes": {
+              "AI-Test-Inactive-Policy": "4593dd6549a3ad7385e7e062193a2c5425a28929b2cc8a7490d173e024b31100"
+            },
+            "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "identity_mode": "Local attestation label, not authenticated human identity",
+            "focused_hash": "4165123aa1218c60a0d4f0a24c68ae47594e9c2df64ab8296a8797a57688f5f2"
+          },
+          "origin": "original_ai",
+          "focused_source": {
+            "version": "focused-evaluator-v3",
+            "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+            "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "active": false
+            },
+            "plan": {
+              "id": "commercial_ppo",
+              "name": "Commercial PPO",
+              "family": "Commercial",
+              "description": "Broad service coverage with a relaxed network fixture",
+              "services": [
+                "hospital",
+                "medical",
+                "outpatient",
+                "prescription",
+                "preventive",
+                "mental_health",
+                "maternity",
+                "rehabilitation",
+                "emergency",
+                "lab"
+              ],
+              "network_required": false,
+              "authorization_services": [
+                "hospital"
+              ],
+              "deductible_cents": 10000,
+              "limit_cents": 200000
+            },
+            "source_ids": [
+              "HC-002",
+              "HC-003",
+              "HC-007"
+            ],
+            "rules": [
+              {
+                "id": "HC-002",
+                "name": "Active coverage",
+                "risk": "Payment for an inactive teaching policy.",
+                "contract": "An inactive policy returns decision denied and reason INACTIVE_POLICY, before any benefit or network check."
+              },
+              {
+                "id": "HC-003",
+                "name": "Service benefit",
+                "risk": "Payment for a service missing from the chosen contract.",
+                "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+              },
+              {
+                "id": "HC-007",
+                "name": "Payout calculation",
+                "risk": "Overpayment, negative payout, or policy-limit bypass.",
+                "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+              }
+            ],
+            "defaults": {
+              "active": false,
+              "in_network": true,
+              "authorized": true,
+              "formulary": true
+            },
+            "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+          },
+          "assessment": {
+            "rule_id": "HC-002",
+            "decision": "denied",
+            "deductible_cents": 10000,
+            "after_deductible_cents": null,
+            "cap_cents": 200000,
+            "payout_cents": 0
+          },
+          "scenario_assertion": [
+            "dbeba5b7e8c89a6501ae8dc72b9d4fc6849c6de02306f425813b5c1d2f317f13",
+            "cebfda6bf0cbeb33885b629d0aab5cac3d27ee1e6db2f528de5e2f832be459e3"
+          ]
+        },
+        {
+          "id": "2ce94729bdb24d3fb317133eb30c4187",
+          "revision": 2,
+          "case": {
+            "id": "AI-DENTAL-MED-B-01",
+            "title": "Dental service denied under Medicare Part B as not covered",
+            "rule_ids": [
+              "HC-003",
+              "HC-007"
+            ],
+            "rationale": "The requested service 'dental' is not present in the 'medicare_b' plan services list. Per HC-003, this triggers a denial with reason SERVICE_NOT_COVERED before any financial calculation occurs.",
+            "assumptions": [
+              "Policy is active",
+              "Provider is in network",
+              "Authorization is not required for dental",
+              "Dental is not on formulary"
+            ],
+            "steps": [
+              {
+                "action": "evaluate",
+                "actor": "none",
+                "data": {
+                  "plan_id": "medicare_b",
+                  "service": "dental",
+                  "amount_cents": 112345
+                },
+                "expect": {
+                  "status": 200,
+                  "decision": "denied",
+                  "reason": "SERVICE_NOT_COVERED",
+                  "payout_cents": 0
+                }
+              }
+            ]
+          },
+          "approval": {
+            "revision": 2,
+            "at": "2026-11-12T21:45:15.988310+00:00",
+            "reviewer_label": "Automated test-fixture reviewer",
+            "note": "Fixture expectations independently checked against the synthetic contract.",
+            "expectations_checked": true,
+            "hashes": {
+              "AI-DENTAL-MED-B-01": "bac1c55b9193e6004f5ea413c11c87bb0a68cba347648f76f97b70e29ba9ded5"
+            },
+            "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "identity_mode": "Local attestation label, not authenticated human identity",
+            "focused_hash": "ffcc022dd162708db7f8dde580ff974cdded3cdf4caa56867410aa90f7ecb641"
+          },
+          "origin": "original_ai",
+          "focused_source": {
+            "version": "focused-evaluator-v3",
+            "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+            "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "data": {
+              "plan_id": "medicare_b",
+              "service": "dental",
+              "amount_cents": 112345
+            },
+            "plan": {
+              "id": "medicare_b",
+              "name": "Medicare Part B",
+              "family": "Medicare",
+              "description": "Medical and outpatient services",
+              "services": [
+                "medical",
+                "outpatient",
+                "preventive",
+                "dme",
+                "mental_health",
+                "lab",
+                "home_health"
+              ],
+              "network_required": false,
+              "authorization_services": [],
+              "deductible_cents": 10000,
+              "limit_cents": 200000
+            },
+            "source_ids": [
+              "HC-003",
+              "HC-007"
+            ],
+            "rules": [
+              {
+                "id": "HC-003",
+                "name": "Service benefit",
+                "risk": "Payment for a service missing from the chosen contract.",
+                "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+              },
+              {
+                "id": "HC-007",
+                "name": "Payout calculation",
+                "risk": "Overpayment, negative payout, or policy-limit bypass.",
+                "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+              }
+            ],
+            "defaults": {
+              "active": true,
+              "in_network": true,
+              "authorized": true,
+              "formulary": true
+            },
+            "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+          },
+          "assessment": {
+            "rule_id": "HC-003",
+            "decision": "denied",
+            "deductible_cents": 10000,
+            "after_deductible_cents": null,
+            "cap_cents": 200000,
+            "payout_cents": 0
+          },
+          "scenario_assertion": [
+            "6f306d8c087f8932e77008e113209ac0c21cbdde18378c1cac12089cbda75cbc",
+            "033e456587ee280d73971fa13bdb1319ba73aea656af980b49fafe2d95dece79"
+          ]
+        },
+        {
+          "id": "ed69012a87fe4a2e9d7a8e7157c6a277",
+          "revision": 2,
+          "case": {
+            "id": "AI-HMO-NET-01",
+            "title": "Commercial HMO Medical Service Denied for Out-of-Network Status",
+            "rule_ids": [
+              "HC-003",
+              "HC-004",
+              "HC-007"
+            ],
+            "rationale": "The request specifies a 'medical' service which is covered by the 'commercial_hmo' plan (HC-003). However, the plan requires network participation (network_required: true) and the input indicates the provider is out-of-network (in_network: false). Per rule HC-004, this triggers a denial with reason OUT_OF_NETWORK before any financial calculation occurs.",
+            "assumptions": [
+              "Policy is active",
+              "Authorization is not required for medical service",
+              "Service is in formulary",
+              "Amount 112345 is valid"
+            ],
+            "steps": [
+              {
+                "action": "evaluate",
+                "actor": "none",
+                "data": {
+                  "plan_id": "commercial_hmo",
+                  "service": "medical",
+                  "amount_cents": 112345,
+                  "in_network": false
+                },
+                "expect": {
+                  "status": 200,
+                  "decision": "denied",
+                  "reason": "OUT_OF_NETWORK",
+                  "payout_cents": 0
+                }
+              }
+            ]
+          },
+          "approval": {
+            "revision": 2,
+            "at": "2026-11-12T21:45:56.034558+00:00",
+            "reviewer_label": "Automated test-fixture reviewer",
+            "note": "Fixture expectations independently checked against the synthetic contract.",
+            "expectations_checked": true,
+            "hashes": {
+              "AI-HMO-NET-01": "c4f2dd95a5a27bd01a46dfa9cb1cf96e94849e04a939f7e846d8a6d1d97f0027"
+            },
+            "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "identity_mode": "Local attestation label, not authenticated human identity",
+            "focused_hash": "78430eaad74be83f8b40ba98a1b48f9d220647b03f8c4f4b40a9c94dd9102dba"
+          },
+          "origin": "original_ai",
+          "focused_source": {
+            "version": "focused-evaluator-v3",
+            "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+            "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "data": {
+              "plan_id": "commercial_hmo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "in_network": false
+            },
+            "plan": {
+              "id": "commercial_hmo",
+              "name": "Commercial HMO",
+              "family": "Commercial",
+              "description": "Broad service coverage with network controls",
+              "services": [
+                "hospital",
+                "medical",
+                "outpatient",
+                "prescription",
+                "preventive",
+                "mental_health",
+                "maternity",
+                "rehabilitation",
+                "emergency",
+                "lab"
+              ],
+              "network_required": true,
+              "authorization_services": [
+                "hospital"
+              ],
+              "deductible_cents": 10000,
+              "limit_cents": 200000
+            },
+            "source_ids": [
+              "HC-003",
+              "HC-004",
+              "HC-007"
+            ],
+            "rules": [
+              {
+                "id": "HC-003",
+                "name": "Service benefit",
+                "risk": "Payment for a service missing from the chosen contract.",
+                "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+              },
+              {
+                "id": "HC-004",
+                "name": "Network control",
+                "risk": "Bypassing a synthetic network restriction.",
+                "contract": "When network_required is true and in_network is false, return denied / OUT_OF_NETWORK. Other plans accept either network flag with identical simplified payout; real emergency exceptions and cost sharing are outside V1."
+              },
+              {
+                "id": "HC-007",
+                "name": "Payout calculation",
+                "risk": "Overpayment, negative payout, or policy-limit bypass.",
+                "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+              }
+            ],
+            "defaults": {
+              "active": true,
+              "in_network": false,
+              "authorized": true,
+              "formulary": true
+            },
+            "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+          },
+          "assessment": {
+            "rule_id": "HC-004",
+            "decision": "denied",
+            "deductible_cents": 10000,
+            "after_deductible_cents": null,
+            "cap_cents": 200000,
+            "payout_cents": 0
+          },
+          "scenario_assertion": [
+            "8890bdac67608ad63f49c447420bd9771c27fb6c61eda99a85c6601d50fd03d1",
+            "e805cc39e7b67bef0c6b6042b21f871798b3de2d45f6070fa50b3262fd1ac925"
+          ]
+        },
+        {
+          "id": "e22acaac30294f01ad5ae9db30fbdc26",
+          "revision": 2,
+          "case": {
+            "id": "AI-HC-005-Deny",
+            "title": "Hospital service denied due to missing prior authorization",
+            "rule_ids": [
+              "HC-003",
+              "HC-005",
+              "HC-007"
+            ],
+            "rationale": "The request for a hospital service under the medicare_advantage plan is valid in amount and covered by the plan services list. However, the plan requires prior authorization for hospital services, and the input explicitly sets authorized to false. Per rule HC-005, this triggers a denial with reason AUTH_REQUIRED before any financial calculation occurs.",
+            "assumptions": [
+              "Policy is active",
+              "Provider is in network",
+              "Service is covered by plan",
+              "Amount is valid integer"
+            ],
+            "steps": [
+              {
+                "action": "evaluate",
+                "actor": "none",
+                "data": {
+                  "plan_id": "medicare_advantage",
+                  "service": "hospital",
+                  "amount_cents": 112345,
+                  "authorized": false
+                },
+                "expect": {
+                  "status": 200,
+                  "decision": "denied",
+                  "reason": "AUTH_REQUIRED",
+                  "payout_cents": 0
+                }
+              }
+            ]
+          },
+          "approval": {
+            "revision": 2,
+            "at": "2026-11-12T21:46:35.132889+00:00",
+            "reviewer_label": "Automated test-fixture reviewer",
+            "note": "Fixture expectations independently checked against the synthetic contract.",
+            "expectations_checked": true,
+            "hashes": {
+              "AI-HC-005-Deny": "87906f619a7ff9486d71952e04c33fe26903b550681d1a1831958975f5d01851"
+            },
+            "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "identity_mode": "Local attestation label, not authenticated human identity",
+            "focused_hash": "085f6764b2d1bbf8d5998ec5613b5a025e493c6f1edd30c9ee2788548cce96f4"
+          },
+          "origin": "original_ai",
+          "focused_source": {
+            "version": "focused-evaluator-v3",
+            "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+            "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "data": {
+              "plan_id": "medicare_advantage",
+              "service": "hospital",
+              "amount_cents": 112345,
+              "authorized": false
+            },
+            "plan": {
+              "id": "medicare_advantage",
+              "name": "Medicare Advantage / Part C",
+              "family": "Medicare",
+              "description": "A synthetic bundled HMO with extra benefits",
+              "services": [
+                "hospital",
+                "medical",
+                "outpatient",
+                "preventive",
+                "dme",
+                "prescription",
+                "dental",
+                "vision",
+                "hearing",
+                "mental_health",
+                "lab"
+              ],
+              "network_required": true,
+              "authorization_services": [
+                "hospital",
+                "dme"
+              ],
+              "deductible_cents": 10000,
+              "limit_cents": 200000
+            },
+            "source_ids": [
+              "HC-003",
+              "HC-005",
+              "HC-007"
+            ],
+            "rules": [
+              {
+                "id": "HC-003",
+                "name": "Service benefit",
+                "risk": "Payment for a service missing from the chosen contract.",
+                "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+              },
+              {
+                "id": "HC-005",
+                "name": "Prior authorization",
+                "risk": "Approving a claim without the required teaching authorization.",
+                "contract": "If service appears in authorization_services and authorized is false, return denied / AUTH_REQUIRED. Check this after service coverage and network."
+              },
+              {
+                "id": "HC-007",
+                "name": "Payout calculation",
+                "risk": "Overpayment, negative payout, or policy-limit bypass.",
+                "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+              }
+            ],
+            "defaults": {
+              "active": true,
+              "in_network": true,
+              "authorized": false,
+              "formulary": true
+            },
+            "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+          },
+          "assessment": {
+            "rule_id": "HC-005",
+            "decision": "denied",
+            "deductible_cents": 10000,
+            "after_deductible_cents": null,
+            "cap_cents": 200000,
+            "payout_cents": 0
+          },
+          "scenario_assertion": [
+            "23cdc304d153235bf6c1130337cdc1044bd82a07af2914dd9ea6a6912dd6e0ba",
+            "1c49ab8d62f21a3ed4eec7e298919a991066321222860c12b5fb49b5b413938f"
+          ]
+        },
+        {
+          "id": "6dc475f3f1894a37a9acca83d3b3172f",
+          "revision": 2,
+          "case": {
+            "id": "AI-Presc-Form-01",
+            "title": "Prescription denied due to non-formulary status under Medicare Part D",
+            "rule_ids": [
+              "HC-003",
+              "HC-006",
+              "HC-007"
+            ],
+            "rationale": "The request specifies a valid amount (112345) for a covered service (prescription) within the plan. However, the formulary flag is explicitly false. Per rule HC-006, a prescription with formulary=false results in a denial with reason NON_FORMULARY. This check occurs after confirming the service is covered (HC-003) but before payout calculation (HC-007).",
+            "assumptions": [
+              "Policy is active by default.",
+              "Provider is in-network by default.",
+              "Authorization is not required for this service.",
+              "Amount 112345 is a valid integer within limits."
+            ],
+            "steps": [
+              {
+                "action": "evaluate",
+                "actor": "none",
+                "data": {
+                  "plan_id": "medicare_d",
+                  "service": "prescription",
+                  "amount_cents": 112345,
+                  "formulary": false
+                },
+                "expect": {
+                  "status": 200,
+                  "decision": "denied",
+                  "reason": "NON_FORMULARY",
+                  "payout_cents": 0
+                }
+              }
+            ]
+          },
+          "approval": {
+            "revision": 2,
+            "at": "2026-11-12T21:47:16.188995+00:00",
+            "reviewer_label": "Automated test-fixture reviewer",
+            "note": "Fixture expectations independently checked against the synthetic contract.",
+            "expectations_checked": true,
+            "hashes": {
+              "AI-Presc-Form-01": "f12f34e3f4e2617c04ba04ad023e63446d144e7e81f868b2864c1aa538faceec"
+            },
+            "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "identity_mode": "Local attestation label, not authenticated human identity",
+            "focused_hash": "5644d80510022bbd0a7bc9645c40021e0b449f8539f9944b72ec7d6db226f190"
+          },
+          "origin": "original_ai",
+          "focused_source": {
+            "version": "focused-evaluator-v3",
+            "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+            "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "data": {
+              "plan_id": "medicare_d",
+              "service": "prescription",
+              "amount_cents": 112345,
+              "formulary": false
+            },
+            "plan": {
+              "id": "medicare_d",
+              "name": "Medicare Part D",
+              "family": "Medicare",
+              "description": "A synthetic prescription drug plan",
+              "services": [
+                "prescription"
+              ],
+              "network_required": true,
+              "authorization_services": [],
+              "deductible_cents": 10000,
+              "limit_cents": 200000
+            },
+            "source_ids": [
+              "HC-003",
+              "HC-006",
+              "HC-007"
+            ],
+            "rules": [
+              {
+                "id": "HC-003",
+                "name": "Service benefit",
+                "risk": "Payment for a service missing from the chosen contract.",
+                "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+              },
+              {
+                "id": "HC-006",
+                "name": "Drug formulary",
+                "risk": "Accepting a prescription outside the synthetic formulary.",
+                "contract": "For a covered prescription service, formulary false returns denied / NON_FORMULARY. For other services, the flag has no effect. Check after network and authorization."
+              },
+              {
+                "id": "HC-007",
+                "name": "Payout calculation",
+                "risk": "Overpayment, negative payout, or policy-limit bypass.",
+                "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+              }
+            ],
+            "defaults": {
+              "active": true,
+              "in_network": true,
+              "authorized": true,
+              "formulary": false
+            },
+            "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+          },
+          "assessment": {
+            "rule_id": "HC-006",
+            "decision": "denied",
+            "deductible_cents": 10000,
+            "after_deductible_cents": null,
+            "cap_cents": 200000,
+            "payout_cents": 0
+          },
+          "scenario_assertion": [
+            "0921c738af5c585ff16755b9dc03ab3a8a417249b55dcfba1be402302d40c045",
+            "d34dba8dda01925594edbc21b8c24ec6b04398c974bec42b78dfe80827a5d840"
+          ]
+        },
+        {
+          "id": "1a19873f4c57407eb9e61cf48212afb0",
+          "revision": 2,
+          "case": {
+            "id": "AI-medical-claim-01",
+            "title": "Medical service claim within deductible and cap limits",
+            "rule_ids": [
+              "HC-003",
+              "HC-007"
+            ],
+            "rationale": "The medical service is listed in the commercial_ppo plan services. The amount 112345 exceeds the 10000 deductible but remains below the 200000 cap, resulting in an approved status with payout equal to the amount minus the deductible.",
+            "assumptions": [
+              "Policy is active",
+              "Provider is in network",
+              "Authorization not required for medical",
+              "Service is covered"
+            ],
+            "steps": [
+              {
+                "action": "evaluate",
+                "actor": "none",
+                "data": {
+                  "plan_id": "commercial_ppo",
+                  "service": "medical",
+                  "amount_cents": 112345
+                },
+                "expect": {
+                  "status": 200,
+                  "decision": "approved",
+                  "reason": "COVERED",
+                  "payout_cents": 102345
+                }
+              }
+            ]
+          },
+          "approval": {
+            "revision": 2,
+            "at": "2026-11-12T21:47:53.323578+00:00",
+            "reviewer_label": "Automated test-fixture reviewer",
+            "note": "Fixture expectations independently checked against the synthetic contract.",
+            "expectations_checked": true,
+            "hashes": {
+              "AI-medical-claim-01": "fb9c4b2533cc271558813727a811fce48bad63e8cee0388b541879e064a46440"
+            },
+            "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "identity_mode": "Local attestation label, not authenticated human identity",
+            "focused_hash": "1e96a82c674774e50f3324c7cc671fa73ecec16ba62d24e3909691981d3a3ce1"
+          },
+          "origin": "original_ai",
+          "focused_source": {
+            "version": "focused-evaluator-v3",
+            "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+            "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345
+            },
+            "plan": {
+              "id": "commercial_ppo",
+              "name": "Commercial PPO",
+              "family": "Commercial",
+              "description": "Broad service coverage with a relaxed network fixture",
+              "services": [
+                "hospital",
+                "medical",
+                "outpatient",
+                "prescription",
+                "preventive",
+                "mental_health",
+                "maternity",
+                "rehabilitation",
+                "emergency",
+                "lab"
+              ],
+              "network_required": false,
+              "authorization_services": [
+                "hospital"
+              ],
+              "deductible_cents": 10000,
+              "limit_cents": 200000
+            },
+            "source_ids": [
+              "HC-003",
+              "HC-007"
+            ],
+            "rules": [
+              {
+                "id": "HC-003",
+                "name": "Service benefit",
+                "risk": "Payment for a service missing from the chosen contract.",
+                "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+              },
+              {
+                "id": "HC-007",
+                "name": "Payout calculation",
+                "risk": "Overpayment, negative payout, or policy-limit bypass.",
+                "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+              }
+            ],
+            "defaults": {
+              "active": true,
+              "in_network": true,
+              "authorized": true,
+              "formulary": true
+            },
+            "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+          },
+          "assessment": {
+            "rule_id": "HC-007",
+            "decision": "approved",
+            "deductible_cents": 10000,
+            "after_deductible_cents": 102345,
+            "cap_cents": 200000,
+            "payout_cents": 102345
+          },
+          "scenario_assertion": [
+            "bc6d7d1d5eb34568f5f8b6e289d1ece41a93c6284510f661aa00ef2f98c36b15",
+            "b624b1feea2ba66f47f7cf7181431d2cd7672623374ca0904b26b88a66eacce3"
+          ]
+        },
+        {
+          "id": "0d1bc87aa54147eab6b27a9c305e837b",
+          "revision": 2,
+          "case": {
+            "id": "AI-PPo-Med-01",
+            "title": "Commercial PPO Medical Service Approved with Cap Applied",
+            "rule_ids": [
+              "HC-003",
+              "HC-007"
+            ],
+            "rationale": "Service 'medical' is covered under plan 'commercial_ppo'. Amount 245678 exceeds deductible 10000, resulting in 235678 after deduction. This exceeds the 200000 cap, so payout is capped at 200000.",
+            "assumptions": [
+              "Policy is active",
+              "Provider is in-network",
+              "Authorization not required for medical",
+              "Service is on formulary"
+            ],
+            "steps": [
+              {
+                "action": "evaluate",
+                "actor": "none",
+                "data": {
+                  "plan_id": "commercial_ppo",
+                  "service": "medical",
+                  "amount_cents": 245678
+                },
+                "expect": {
+                  "status": 200,
+                  "decision": "approved",
+                  "reason": "COVERED",
+                  "payout_cents": 200000
+                }
+              }
+            ]
+          },
+          "approval": {
+            "revision": 2,
+            "at": "2026-11-12T21:48:30.810005+00:00",
+            "reviewer_label": "Automated test-fixture reviewer",
+            "note": "Fixture expectations independently checked against the synthetic contract.",
+            "expectations_checked": true,
+            "hashes": {
+              "AI-PPo-Med-01": "f22fed82519a8575885ce05d564d75be392b06187754be074406699e86115c60"
+            },
+            "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "identity_mode": "Local attestation label, not authenticated human identity",
+            "focused_hash": "eccd9e7526ed51ffc01b1e77aa0ae422cc3908acc16e9f2f5826e7413d50398a"
+          },
+          "origin": "original_ai",
+          "focused_source": {
+            "version": "focused-evaluator-v3",
+            "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+            "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+            "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 245678
+            },
+            "plan": {
+              "id": "commercial_ppo",
+              "name": "Commercial PPO",
+              "family": "Commercial",
+              "description": "Broad service coverage with a relaxed network fixture",
+              "services": [
+                "hospital",
+                "medical",
+                "outpatient",
+                "prescription",
+                "preventive",
+                "mental_health",
+                "maternity",
+                "rehabilitation",
+                "emergency",
+                "lab"
+              ],
+              "network_required": false,
+              "authorization_services": [
+                "hospital"
+              ],
+              "deductible_cents": 10000,
+              "limit_cents": 200000
+            },
+            "source_ids": [
+              "HC-003",
+              "HC-007"
+            ],
+            "rules": [
+              {
+                "id": "HC-003",
+                "name": "Service benefit",
+                "risk": "Payment for a service missing from the chosen contract.",
+                "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+              },
+              {
+                "id": "HC-007",
+                "name": "Payout calculation",
+                "risk": "Overpayment, negative payout, or policy-limit bypass.",
+                "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+              }
+            ],
+            "defaults": {
+              "active": true,
+              "in_network": true,
+              "authorized": true,
+              "formulary": true
+            },
+            "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+          },
+          "assessment": {
+            "rule_id": "HC-007",
+            "decision": "approved",
+            "deductible_cents": 10000,
+            "after_deductible_cents": 235678,
+            "cap_cents": 200000,
+            "payout_cents": 200000
+          },
+          "scenario_assertion": [
+            "a98ed2ea1dce0ede9202f3a145bc0c7f9d5de945bfdd4ea36cb496147e84ac0a",
+            "c91824ac5cf113cf95b87fe9a5283d1b63b50cb61293a03ecd50d0da3c7093da"
+          ]
+        }
+      ],
+      "source_hash": "15d52f3a0334da4eaa64e878cc313014dca2d56c89b777601328a62e6d18c270",
+      "results": [
+        {
+          "case_id": "AI-ASSEMBLED-2b594311408b",
+          "title": "Assembled reviewed focused evaluator suite",
+          "rule_ids": [
+            "HC-002",
+            "HC-003",
+            "HC-004",
+            "HC-005",
+            "HC-006",
+            "HC-007"
+          ],
+          "steps": [
+            {
+              "number": 1,
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 112345,
+                "active": false
+              },
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "INACTIVE_POLICY",
+                "payout_cents": 0
+              },
+              "observed": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "INACTIVE_POLICY",
+                "payout_cents": 0
+              },
+              "assertions": [
+                {
+                  "field": "status",
+                  "expected": 200,
+                  "observed": 200,
+                  "passed": true
+                },
+                {
+                  "field": "decision",
+                  "expected": "denied",
+                  "observed": "denied",
+                  "passed": true
+                },
+                {
+                  "field": "reason",
+                  "expected": "INACTIVE_POLICY",
+                  "observed": "INACTIVE_POLICY",
+                  "passed": true
+                },
+                {
+                  "field": "payout_cents",
+                  "expected": 0,
+                  "observed": 0,
+                  "passed": true
+                }
+              ],
+              "evidence": {
+                "version": "5.7.0",
+                "synthetic": true,
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "request": {
+                  "plan_id": "commercial_ppo",
+                  "service": "medical",
+                  "amount_cents": 112345,
+                  "active": false,
+                  "authorized": true,
+                  "in_network": true,
+                  "formulary": true
+                },
+                "plan_name": "Commercial PPO",
+                "decision": "denied",
+                "reason": "INACTIVE_POLICY",
+                "payout_cents": 0,
+                "trace": [
+                  {
+                    "rule_id": "HC-001",
+                    "outcome": "passed",
+                    "detail": "Request satisfies the input contract"
+                  },
+                  {
+                    "rule_id": "HC-002",
+                    "outcome": "denied",
+                    "detail": "INACTIVE_POLICY"
+                  }
+                ]
+              },
+              "passed": true
+            },
+            {
+              "number": 2,
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "dental",
+                "amount_cents": 112345
+              },
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "SERVICE_NOT_COVERED",
+                "payout_cents": 0
+              },
+              "observed": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "SERVICE_NOT_COVERED",
+                "payout_cents": 0
+              },
+              "assertions": [
+                {
+                  "field": "status",
+                  "expected": 200,
+                  "observed": 200,
+                  "passed": true
+                },
+                {
+                  "field": "decision",
+                  "expected": "denied",
+                  "observed": "denied",
+                  "passed": true
+                },
+                {
+                  "field": "reason",
+                  "expected": "SERVICE_NOT_COVERED",
+                  "observed": "SERVICE_NOT_COVERED",
+                  "passed": true
+                },
+                {
+                  "field": "payout_cents",
+                  "expected": 0,
+                  "observed": 0,
+                  "passed": true
+                }
+              ],
+              "evidence": {
+                "version": "5.7.0",
+                "synthetic": true,
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "request": {
+                  "plan_id": "medicare_b",
+                  "service": "dental",
+                  "amount_cents": 112345,
+                  "authorized": true,
+                  "in_network": true,
+                  "formulary": true,
+                  "active": true
+                },
+                "plan_name": "Medicare Part B",
+                "decision": "denied",
+                "reason": "SERVICE_NOT_COVERED",
+                "payout_cents": 0,
+                "trace": [
+                  {
+                    "rule_id": "HC-001",
+                    "outcome": "passed",
+                    "detail": "Request satisfies the input contract"
+                  },
+                  {
+                    "rule_id": "HC-002",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-003",
+                    "outcome": "denied",
+                    "detail": "SERVICE_NOT_COVERED"
+                  }
+                ]
+              },
+              "passed": true
+            },
+            {
+              "number": 3,
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_hmo",
+                "service": "medical",
+                "amount_cents": 112345,
+                "in_network": false
+              },
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "OUT_OF_NETWORK",
+                "payout_cents": 0
+              },
+              "observed": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "OUT_OF_NETWORK",
+                "payout_cents": 0
+              },
+              "assertions": [
+                {
+                  "field": "status",
+                  "expected": 200,
+                  "observed": 200,
+                  "passed": true
+                },
+                {
+                  "field": "decision",
+                  "expected": "denied",
+                  "observed": "denied",
+                  "passed": true
+                },
+                {
+                  "field": "reason",
+                  "expected": "OUT_OF_NETWORK",
+                  "observed": "OUT_OF_NETWORK",
+                  "passed": true
+                },
+                {
+                  "field": "payout_cents",
+                  "expected": 0,
+                  "observed": 0,
+                  "passed": true
+                }
+              ],
+              "evidence": {
+                "version": "5.7.0",
+                "synthetic": true,
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "request": {
+                  "plan_id": "commercial_hmo",
+                  "service": "medical",
+                  "amount_cents": 112345,
+                  "in_network": false,
+                  "authorized": true,
+                  "formulary": true,
+                  "active": true
+                },
+                "plan_name": "Commercial HMO",
+                "decision": "denied",
+                "reason": "OUT_OF_NETWORK",
+                "payout_cents": 0,
+                "trace": [
+                  {
+                    "rule_id": "HC-001",
+                    "outcome": "passed",
+                    "detail": "Request satisfies the input contract"
+                  },
+                  {
+                    "rule_id": "HC-002",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-003",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-004",
+                    "outcome": "denied",
+                    "detail": "OUT_OF_NETWORK"
+                  }
+                ]
+              },
+              "passed": true
+            },
+            {
+              "number": 4,
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_advantage",
+                "service": "hospital",
+                "amount_cents": 112345,
+                "authorized": false
+              },
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "AUTH_REQUIRED",
+                "payout_cents": 0
+              },
+              "observed": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "AUTH_REQUIRED",
+                "payout_cents": 0
+              },
+              "assertions": [
+                {
+                  "field": "status",
+                  "expected": 200,
+                  "observed": 200,
+                  "passed": true
+                },
+                {
+                  "field": "decision",
+                  "expected": "denied",
+                  "observed": "denied",
+                  "passed": true
+                },
+                {
+                  "field": "reason",
+                  "expected": "AUTH_REQUIRED",
+                  "observed": "AUTH_REQUIRED",
+                  "passed": true
+                },
+                {
+                  "field": "payout_cents",
+                  "expected": 0,
+                  "observed": 0,
+                  "passed": true
+                }
+              ],
+              "evidence": {
+                "version": "5.7.0",
+                "synthetic": true,
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "request": {
+                  "plan_id": "medicare_advantage",
+                  "service": "hospital",
+                  "amount_cents": 112345,
+                  "authorized": false,
+                  "in_network": true,
+                  "formulary": true,
+                  "active": true
+                },
+                "plan_name": "Medicare Advantage / Part C",
+                "decision": "denied",
+                "reason": "AUTH_REQUIRED",
+                "payout_cents": 0,
+                "trace": [
+                  {
+                    "rule_id": "HC-001",
+                    "outcome": "passed",
+                    "detail": "Request satisfies the input contract"
+                  },
+                  {
+                    "rule_id": "HC-002",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-003",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-004",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-005",
+                    "outcome": "denied",
+                    "detail": "AUTH_REQUIRED"
+                  }
+                ]
+              },
+              "passed": true
+            },
+            {
+              "number": 5,
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_d",
+                "service": "prescription",
+                "amount_cents": 112345,
+                "formulary": false
+              },
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "NON_FORMULARY",
+                "payout_cents": 0
+              },
+              "observed": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "NON_FORMULARY",
+                "payout_cents": 0
+              },
+              "assertions": [
+                {
+                  "field": "status",
+                  "expected": 200,
+                  "observed": 200,
+                  "passed": true
+                },
+                {
+                  "field": "decision",
+                  "expected": "denied",
+                  "observed": "denied",
+                  "passed": true
+                },
+                {
+                  "field": "reason",
+                  "expected": "NON_FORMULARY",
+                  "observed": "NON_FORMULARY",
+                  "passed": true
+                },
+                {
+                  "field": "payout_cents",
+                  "expected": 0,
+                  "observed": 0,
+                  "passed": true
+                }
+              ],
+              "evidence": {
+                "version": "5.7.0",
+                "synthetic": true,
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "request": {
+                  "plan_id": "medicare_d",
+                  "service": "prescription",
+                  "amount_cents": 112345,
+                  "formulary": false,
+                  "authorized": true,
+                  "in_network": true,
+                  "active": true
+                },
+                "plan_name": "Medicare Part D",
+                "decision": "denied",
+                "reason": "NON_FORMULARY",
+                "payout_cents": 0,
+                "trace": [
+                  {
+                    "rule_id": "HC-001",
+                    "outcome": "passed",
+                    "detail": "Request satisfies the input contract"
+                  },
+                  {
+                    "rule_id": "HC-002",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-003",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-004",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-005",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-006",
+                    "outcome": "denied",
+                    "detail": "NON_FORMULARY"
+                  }
+                ]
+              },
+              "passed": true
+            },
+            {
+              "number": 6,
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 112345
+              },
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 102345
+              },
+              "observed": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 102345
+              },
+              "assertions": [
+                {
+                  "field": "status",
+                  "expected": 200,
+                  "observed": 200,
+                  "passed": true
+                },
+                {
+                  "field": "decision",
+                  "expected": "approved",
+                  "observed": "approved",
+                  "passed": true
+                },
+                {
+                  "field": "reason",
+                  "expected": "COVERED",
+                  "observed": "COVERED",
+                  "passed": true
+                },
+                {
+                  "field": "payout_cents",
+                  "expected": 102345,
+                  "observed": 102345,
+                  "passed": true
+                }
+              ],
+              "evidence": {
+                "version": "5.7.0",
+                "synthetic": true,
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "request": {
+                  "plan_id": "commercial_ppo",
+                  "service": "medical",
+                  "amount_cents": 112345,
+                  "authorized": true,
+                  "in_network": true,
+                  "formulary": true,
+                  "active": true
+                },
+                "plan_name": "Commercial PPO",
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 102345,
+                "trace": [
+                  {
+                    "rule_id": "HC-001",
+                    "outcome": "passed",
+                    "detail": "Request satisfies the input contract"
+                  },
+                  {
+                    "rule_id": "HC-002",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-003",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-004",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-005",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-006",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-007",
+                    "outcome": "passed",
+                    "detail": "Claim 112345 cents; deductible 10000; cap 200000; payout 102345"
+                  }
+                ]
+              },
+              "passed": true
+            },
+            {
+              "number": 7,
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 245678
+              },
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000
+              },
+              "observed": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000
+              },
+              "assertions": [
+                {
+                  "field": "status",
+                  "expected": 200,
+                  "observed": 200,
+                  "passed": true
+                },
+                {
+                  "field": "decision",
+                  "expected": "approved",
+                  "observed": "approved",
+                  "passed": true
+                },
+                {
+                  "field": "reason",
+                  "expected": "COVERED",
+                  "observed": "COVERED",
+                  "passed": true
+                },
+                {
+                  "field": "payout_cents",
+                  "expected": 200000,
+                  "observed": 200000,
+                  "passed": true
+                }
+              ],
+              "evidence": {
+                "version": "5.7.0",
+                "synthetic": true,
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "request": {
+                  "plan_id": "commercial_ppo",
+                  "service": "medical",
+                  "amount_cents": 245678,
+                  "authorized": true,
+                  "in_network": true,
+                  "formulary": true,
+                  "active": true
+                },
+                "plan_name": "Commercial PPO",
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000,
+                "trace": [
+                  {
+                    "rule_id": "HC-001",
+                    "outcome": "passed",
+                    "detail": "Request satisfies the input contract"
+                  },
+                  {
+                    "rule_id": "HC-002",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-003",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-004",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-005",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-006",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-007",
+                    "outcome": "passed",
+                    "detail": "Claim 245678 cents; deductible 10000; cap 200000; payout 200000"
+                  }
+                ]
+              },
+              "passed": true
+            }
+          ],
+          "execution_error": null,
+          "passed": true
+        }
+      ],
+      "passed": 1,
+      "failed": 0,
+      "actions_executed": 7,
+      "action_budget": 32,
+      "duration_ms": 1.34,
+      "isolation": "Fresh SQLite file per case; all execution files removed after the run. Interactive claims are never used.",
+      "scope": "Generated declarative cases against Python services, not generated browser automation or an independent proof of oracle correctness.",
+      "status": "passed"
+    }
+  ],
+  "expectation_origin": "assembled_ai",
+  "assembly_sources": [
+    {
+      "id": "19387a76cd4c475997f8023fe403565e",
+      "revision": 2,
+      "case": {
+        "id": "AI-Test-Inactive-Policy",
+        "title": "Deny claim for inactive commercial PPO policy",
+        "rule_ids": [
+          "HC-002",
+          "HC-003",
+          "HC-007"
+        ],
+        "rationale": "The request specifies active: false. Per rule HC-002, an inactive policy triggers a denied decision with reason INACTIVE_POLICY before any service or benefit calculations occur.",
+        "assumptions": [
+          "Amount 112345 is valid integer",
+          "Service medical exists in plan",
+          "Network and auth defaults apply but are bypassed"
+        ],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "active": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "INACTIVE_POLICY",
+              "payout_cents": 0
+            }
+          }
+        ]
+      },
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T21:44:35.711075+00:00",
+        "reviewer_label": "Automated test-fixture reviewer",
+        "note": "Fixture expectations independently checked against the synthetic contract.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-Test-Inactive-Policy": "4593dd6549a3ad7385e7e062193a2c5425a28929b2cc8a7490d173e024b31100"
+        },
+        "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "identity_mode": "Local attestation label, not authenticated human identity",
+        "focused_hash": "4165123aa1218c60a0d4f0a24c68ae47594e9c2df64ab8296a8797a57688f5f2"
+      },
+      "origin": "original_ai",
+      "focused_source": {
+        "version": "focused-evaluator-v3",
+        "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+        "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "data": {
+          "plan_id": "commercial_ppo",
+          "service": "medical",
+          "amount_cents": 112345,
+          "active": false
+        },
+        "plan": {
+          "id": "commercial_ppo",
+          "name": "Commercial PPO",
+          "family": "Commercial",
+          "description": "Broad service coverage with a relaxed network fixture",
+          "services": [
+            "hospital",
+            "medical",
+            "outpatient",
+            "prescription",
+            "preventive",
+            "mental_health",
+            "maternity",
+            "rehabilitation",
+            "emergency",
+            "lab"
+          ],
+          "network_required": false,
+          "authorization_services": [
+            "hospital"
+          ],
+          "deductible_cents": 10000,
+          "limit_cents": 200000
+        },
+        "source_ids": [
+          "HC-002",
+          "HC-003",
+          "HC-007"
+        ],
+        "rules": [
+          {
+            "id": "HC-002",
+            "name": "Active coverage",
+            "risk": "Payment for an inactive teaching policy.",
+            "contract": "An inactive policy returns decision denied and reason INACTIVE_POLICY, before any benefit or network check."
+          },
+          {
+            "id": "HC-003",
+            "name": "Service benefit",
+            "risk": "Payment for a service missing from the chosen contract.",
+            "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+          },
+          {
+            "id": "HC-007",
+            "name": "Payout calculation",
+            "risk": "Overpayment, negative payout, or policy-limit bypass.",
+            "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+          }
+        ],
+        "defaults": {
+          "active": false,
+          "in_network": true,
+          "authorized": true,
+          "formulary": true
+        },
+        "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+      },
+      "assessment": {
+        "rule_id": "HC-002",
+        "decision": "denied",
+        "deductible_cents": 10000,
+        "after_deductible_cents": null,
+        "cap_cents": 200000,
+        "payout_cents": 0
+      },
+      "scenario_assertion": [
+        "dbeba5b7e8c89a6501ae8dc72b9d4fc6849c6de02306f425813b5c1d2f317f13",
+        "cebfda6bf0cbeb33885b629d0aab5cac3d27ee1e6db2f528de5e2f832be459e3"
+      ]
+    },
+    {
+      "id": "2ce94729bdb24d3fb317133eb30c4187",
+      "revision": 2,
+      "case": {
+        "id": "AI-DENTAL-MED-B-01",
+        "title": "Dental service denied under Medicare Part B as not covered",
+        "rule_ids": [
+          "HC-003",
+          "HC-007"
+        ],
+        "rationale": "The requested service 'dental' is not present in the 'medicare_b' plan services list. Per HC-003, this triggers a denial with reason SERVICE_NOT_COVERED before any financial calculation occurs.",
+        "assumptions": [
+          "Policy is active",
+          "Provider is in network",
+          "Authorization is not required for dental",
+          "Dental is not on formulary"
+        ],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_b",
+              "service": "dental",
+              "amount_cents": 112345
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "SERVICE_NOT_COVERED",
+              "payout_cents": 0
+            }
+          }
+        ]
+      },
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T21:45:15.988310+00:00",
+        "reviewer_label": "Automated test-fixture reviewer",
+        "note": "Fixture expectations independently checked against the synthetic contract.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-DENTAL-MED-B-01": "bac1c55b9193e6004f5ea413c11c87bb0a68cba347648f76f97b70e29ba9ded5"
+        },
+        "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "identity_mode": "Local attestation label, not authenticated human identity",
+        "focused_hash": "ffcc022dd162708db7f8dde580ff974cdded3cdf4caa56867410aa90f7ecb641"
+      },
+      "origin": "original_ai",
+      "focused_source": {
+        "version": "focused-evaluator-v3",
+        "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+        "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "data": {
+          "plan_id": "medicare_b",
+          "service": "dental",
+          "amount_cents": 112345
+        },
+        "plan": {
+          "id": "medicare_b",
+          "name": "Medicare Part B",
+          "family": "Medicare",
+          "description": "Medical and outpatient services",
+          "services": [
+            "medical",
+            "outpatient",
+            "preventive",
+            "dme",
+            "mental_health",
+            "lab",
+            "home_health"
+          ],
+          "network_required": false,
+          "authorization_services": [],
+          "deductible_cents": 10000,
+          "limit_cents": 200000
+        },
+        "source_ids": [
+          "HC-003",
+          "HC-007"
+        ],
+        "rules": [
+          {
+            "id": "HC-003",
+            "name": "Service benefit",
+            "risk": "Payment for a service missing from the chosen contract.",
+            "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+          },
+          {
+            "id": "HC-007",
+            "name": "Payout calculation",
+            "risk": "Overpayment, negative payout, or policy-limit bypass.",
+            "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+          }
+        ],
+        "defaults": {
+          "active": true,
+          "in_network": true,
+          "authorized": true,
+          "formulary": true
+        },
+        "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+      },
+      "assessment": {
+        "rule_id": "HC-003",
+        "decision": "denied",
+        "deductible_cents": 10000,
+        "after_deductible_cents": null,
+        "cap_cents": 200000,
+        "payout_cents": 0
+      },
+      "scenario_assertion": [
+        "6f306d8c087f8932e77008e113209ac0c21cbdde18378c1cac12089cbda75cbc",
+        "033e456587ee280d73971fa13bdb1319ba73aea656af980b49fafe2d95dece79"
+      ]
+    },
+    {
+      "id": "ed69012a87fe4a2e9d7a8e7157c6a277",
+      "revision": 2,
+      "case": {
+        "id": "AI-HMO-NET-01",
+        "title": "Commercial HMO Medical Service Denied for Out-of-Network Status",
+        "rule_ids": [
+          "HC-003",
+          "HC-004",
+          "HC-007"
+        ],
+        "rationale": "The request specifies a 'medical' service which is covered by the 'commercial_hmo' plan (HC-003). However, the plan requires network participation (network_required: true) and the input indicates the provider is out-of-network (in_network: false). Per rule HC-004, this triggers a denial with reason OUT_OF_NETWORK before any financial calculation occurs.",
+        "assumptions": [
+          "Policy is active",
+          "Authorization is not required for medical service",
+          "Service is in formulary",
+          "Amount 112345 is valid"
+        ],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_hmo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "in_network": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "OUT_OF_NETWORK",
+              "payout_cents": 0
+            }
+          }
+        ]
+      },
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T21:45:56.034558+00:00",
+        "reviewer_label": "Automated test-fixture reviewer",
+        "note": "Fixture expectations independently checked against the synthetic contract.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-HMO-NET-01": "c4f2dd95a5a27bd01a46dfa9cb1cf96e94849e04a939f7e846d8a6d1d97f0027"
+        },
+        "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "identity_mode": "Local attestation label, not authenticated human identity",
+        "focused_hash": "78430eaad74be83f8b40ba98a1b48f9d220647b03f8c4f4b40a9c94dd9102dba"
+      },
+      "origin": "original_ai",
+      "focused_source": {
+        "version": "focused-evaluator-v3",
+        "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+        "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "data": {
+          "plan_id": "commercial_hmo",
+          "service": "medical",
+          "amount_cents": 112345,
+          "in_network": false
+        },
+        "plan": {
+          "id": "commercial_hmo",
+          "name": "Commercial HMO",
+          "family": "Commercial",
+          "description": "Broad service coverage with network controls",
+          "services": [
+            "hospital",
+            "medical",
+            "outpatient",
+            "prescription",
+            "preventive",
+            "mental_health",
+            "maternity",
+            "rehabilitation",
+            "emergency",
+            "lab"
+          ],
+          "network_required": true,
+          "authorization_services": [
+            "hospital"
+          ],
+          "deductible_cents": 10000,
+          "limit_cents": 200000
+        },
+        "source_ids": [
+          "HC-003",
+          "HC-004",
+          "HC-007"
+        ],
+        "rules": [
+          {
+            "id": "HC-003",
+            "name": "Service benefit",
+            "risk": "Payment for a service missing from the chosen contract.",
+            "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+          },
+          {
+            "id": "HC-004",
+            "name": "Network control",
+            "risk": "Bypassing a synthetic network restriction.",
+            "contract": "When network_required is true and in_network is false, return denied / OUT_OF_NETWORK. Other plans accept either network flag with identical simplified payout; real emergency exceptions and cost sharing are outside V1."
+          },
+          {
+            "id": "HC-007",
+            "name": "Payout calculation",
+            "risk": "Overpayment, negative payout, or policy-limit bypass.",
+            "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+          }
+        ],
+        "defaults": {
+          "active": true,
+          "in_network": false,
+          "authorized": true,
+          "formulary": true
+        },
+        "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+      },
+      "assessment": {
+        "rule_id": "HC-004",
+        "decision": "denied",
+        "deductible_cents": 10000,
+        "after_deductible_cents": null,
+        "cap_cents": 200000,
+        "payout_cents": 0
+      },
+      "scenario_assertion": [
+        "8890bdac67608ad63f49c447420bd9771c27fb6c61eda99a85c6601d50fd03d1",
+        "e805cc39e7b67bef0c6b6042b21f871798b3de2d45f6070fa50b3262fd1ac925"
+      ]
+    },
+    {
+      "id": "e22acaac30294f01ad5ae9db30fbdc26",
+      "revision": 2,
+      "case": {
+        "id": "AI-HC-005-Deny",
+        "title": "Hospital service denied due to missing prior authorization",
+        "rule_ids": [
+          "HC-003",
+          "HC-005",
+          "HC-007"
+        ],
+        "rationale": "The request for a hospital service under the medicare_advantage plan is valid in amount and covered by the plan services list. However, the plan requires prior authorization for hospital services, and the input explicitly sets authorized to false. Per rule HC-005, this triggers a denial with reason AUTH_REQUIRED before any financial calculation occurs.",
+        "assumptions": [
+          "Policy is active",
+          "Provider is in network",
+          "Service is covered by plan",
+          "Amount is valid integer"
+        ],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_advantage",
+              "service": "hospital",
+              "amount_cents": 112345,
+              "authorized": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "AUTH_REQUIRED",
+              "payout_cents": 0
+            }
+          }
+        ]
+      },
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T21:46:35.132889+00:00",
+        "reviewer_label": "Automated test-fixture reviewer",
+        "note": "Fixture expectations independently checked against the synthetic contract.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-HC-005-Deny": "87906f619a7ff9486d71952e04c33fe26903b550681d1a1831958975f5d01851"
+        },
+        "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "identity_mode": "Local attestation label, not authenticated human identity",
+        "focused_hash": "085f6764b2d1bbf8d5998ec5613b5a025e493c6f1edd30c9ee2788548cce96f4"
+      },
+      "origin": "original_ai",
+      "focused_source": {
+        "version": "focused-evaluator-v3",
+        "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+        "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "data": {
+          "plan_id": "medicare_advantage",
+          "service": "hospital",
+          "amount_cents": 112345,
+          "authorized": false
+        },
+        "plan": {
+          "id": "medicare_advantage",
+          "name": "Medicare Advantage / Part C",
+          "family": "Medicare",
+          "description": "A synthetic bundled HMO with extra benefits",
+          "services": [
+            "hospital",
+            "medical",
+            "outpatient",
+            "preventive",
+            "dme",
+            "prescription",
+            "dental",
+            "vision",
+            "hearing",
+            "mental_health",
+            "lab"
+          ],
+          "network_required": true,
+          "authorization_services": [
+            "hospital",
+            "dme"
+          ],
+          "deductible_cents": 10000,
+          "limit_cents": 200000
+        },
+        "source_ids": [
+          "HC-003",
+          "HC-005",
+          "HC-007"
+        ],
+        "rules": [
+          {
+            "id": "HC-003",
+            "name": "Service benefit",
+            "risk": "Payment for a service missing from the chosen contract.",
+            "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+          },
+          {
+            "id": "HC-005",
+            "name": "Prior authorization",
+            "risk": "Approving a claim without the required teaching authorization.",
+            "contract": "If service appears in authorization_services and authorized is false, return denied / AUTH_REQUIRED. Check this after service coverage and network."
+          },
+          {
+            "id": "HC-007",
+            "name": "Payout calculation",
+            "risk": "Overpayment, negative payout, or policy-limit bypass.",
+            "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+          }
+        ],
+        "defaults": {
+          "active": true,
+          "in_network": true,
+          "authorized": false,
+          "formulary": true
+        },
+        "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+      },
+      "assessment": {
+        "rule_id": "HC-005",
+        "decision": "denied",
+        "deductible_cents": 10000,
+        "after_deductible_cents": null,
+        "cap_cents": 200000,
+        "payout_cents": 0
+      },
+      "scenario_assertion": [
+        "23cdc304d153235bf6c1130337cdc1044bd82a07af2914dd9ea6a6912dd6e0ba",
+        "1c49ab8d62f21a3ed4eec7e298919a991066321222860c12b5fb49b5b413938f"
+      ]
+    },
+    {
+      "id": "6dc475f3f1894a37a9acca83d3b3172f",
+      "revision": 2,
+      "case": {
+        "id": "AI-Presc-Form-01",
+        "title": "Prescription denied due to non-formulary status under Medicare Part D",
+        "rule_ids": [
+          "HC-003",
+          "HC-006",
+          "HC-007"
+        ],
+        "rationale": "The request specifies a valid amount (112345) for a covered service (prescription) within the plan. However, the formulary flag is explicitly false. Per rule HC-006, a prescription with formulary=false results in a denial with reason NON_FORMULARY. This check occurs after confirming the service is covered (HC-003) but before payout calculation (HC-007).",
+        "assumptions": [
+          "Policy is active by default.",
+          "Provider is in-network by default.",
+          "Authorization is not required for this service.",
+          "Amount 112345 is a valid integer within limits."
+        ],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_d",
+              "service": "prescription",
+              "amount_cents": 112345,
+              "formulary": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "NON_FORMULARY",
+              "payout_cents": 0
+            }
+          }
+        ]
+      },
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T21:47:16.188995+00:00",
+        "reviewer_label": "Automated test-fixture reviewer",
+        "note": "Fixture expectations independently checked against the synthetic contract.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-Presc-Form-01": "f12f34e3f4e2617c04ba04ad023e63446d144e7e81f868b2864c1aa538faceec"
+        },
+        "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "identity_mode": "Local attestation label, not authenticated human identity",
+        "focused_hash": "5644d80510022bbd0a7bc9645c40021e0b449f8539f9944b72ec7d6db226f190"
+      },
+      "origin": "original_ai",
+      "focused_source": {
+        "version": "focused-evaluator-v3",
+        "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+        "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "data": {
+          "plan_id": "medicare_d",
+          "service": "prescription",
+          "amount_cents": 112345,
+          "formulary": false
+        },
+        "plan": {
+          "id": "medicare_d",
+          "name": "Medicare Part D",
+          "family": "Medicare",
+          "description": "A synthetic prescription drug plan",
+          "services": [
+            "prescription"
+          ],
+          "network_required": true,
+          "authorization_services": [],
+          "deductible_cents": 10000,
+          "limit_cents": 200000
+        },
+        "source_ids": [
+          "HC-003",
+          "HC-006",
+          "HC-007"
+        ],
+        "rules": [
+          {
+            "id": "HC-003",
+            "name": "Service benefit",
+            "risk": "Payment for a service missing from the chosen contract.",
+            "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+          },
+          {
+            "id": "HC-006",
+            "name": "Drug formulary",
+            "risk": "Accepting a prescription outside the synthetic formulary.",
+            "contract": "For a covered prescription service, formulary false returns denied / NON_FORMULARY. For other services, the flag has no effect. Check after network and authorization."
+          },
+          {
+            "id": "HC-007",
+            "name": "Payout calculation",
+            "risk": "Overpayment, negative payout, or policy-limit bypass.",
+            "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+          }
+        ],
+        "defaults": {
+          "active": true,
+          "in_network": true,
+          "authorized": true,
+          "formulary": false
+        },
+        "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+      },
+      "assessment": {
+        "rule_id": "HC-006",
+        "decision": "denied",
+        "deductible_cents": 10000,
+        "after_deductible_cents": null,
+        "cap_cents": 200000,
+        "payout_cents": 0
+      },
+      "scenario_assertion": [
+        "0921c738af5c585ff16755b9dc03ab3a8a417249b55dcfba1be402302d40c045",
+        "d34dba8dda01925594edbc21b8c24ec6b04398c974bec42b78dfe80827a5d840"
+      ]
+    },
+    {
+      "id": "1a19873f4c57407eb9e61cf48212afb0",
+      "revision": 2,
+      "case": {
+        "id": "AI-medical-claim-01",
+        "title": "Medical service claim within deductible and cap limits",
+        "rule_ids": [
+          "HC-003",
+          "HC-007"
+        ],
+        "rationale": "The medical service is listed in the commercial_ppo plan services. The amount 112345 exceeds the 10000 deductible but remains below the 200000 cap, resulting in an approved status with payout equal to the amount minus the deductible.",
+        "assumptions": [
+          "Policy is active",
+          "Provider is in network",
+          "Authorization not required for medical",
+          "Service is covered"
+        ],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 102345
+            }
+          }
+        ]
+      },
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T21:47:53.323578+00:00",
+        "reviewer_label": "Automated test-fixture reviewer",
+        "note": "Fixture expectations independently checked against the synthetic contract.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-medical-claim-01": "fb9c4b2533cc271558813727a811fce48bad63e8cee0388b541879e064a46440"
+        },
+        "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "identity_mode": "Local attestation label, not authenticated human identity",
+        "focused_hash": "1e96a82c674774e50f3324c7cc671fa73ecec16ba62d24e3909691981d3a3ce1"
+      },
+      "origin": "original_ai",
+      "focused_source": {
+        "version": "focused-evaluator-v3",
+        "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+        "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "data": {
+          "plan_id": "commercial_ppo",
+          "service": "medical",
+          "amount_cents": 112345
+        },
+        "plan": {
+          "id": "commercial_ppo",
+          "name": "Commercial PPO",
+          "family": "Commercial",
+          "description": "Broad service coverage with a relaxed network fixture",
+          "services": [
+            "hospital",
+            "medical",
+            "outpatient",
+            "prescription",
+            "preventive",
+            "mental_health",
+            "maternity",
+            "rehabilitation",
+            "emergency",
+            "lab"
+          ],
+          "network_required": false,
+          "authorization_services": [
+            "hospital"
+          ],
+          "deductible_cents": 10000,
+          "limit_cents": 200000
+        },
+        "source_ids": [
+          "HC-003",
+          "HC-007"
+        ],
+        "rules": [
+          {
+            "id": "HC-003",
+            "name": "Service benefit",
+            "risk": "Payment for a service missing from the chosen contract.",
+            "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+          },
+          {
+            "id": "HC-007",
+            "name": "Payout calculation",
+            "risk": "Overpayment, negative payout, or policy-limit bypass.",
+            "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+          }
+        ],
+        "defaults": {
+          "active": true,
+          "in_network": true,
+          "authorized": true,
+          "formulary": true
+        },
+        "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+      },
+      "assessment": {
+        "rule_id": "HC-007",
+        "decision": "approved",
+        "deductible_cents": 10000,
+        "after_deductible_cents": 102345,
+        "cap_cents": 200000,
+        "payout_cents": 102345
+      },
+      "scenario_assertion": [
+        "bc6d7d1d5eb34568f5f8b6e289d1ece41a93c6284510f661aa00ef2f98c36b15",
+        "b624b1feea2ba66f47f7cf7181431d2cd7672623374ca0904b26b88a66eacce3"
+      ]
+    },
+    {
+      "id": "0d1bc87aa54147eab6b27a9c305e837b",
+      "revision": 2,
+      "case": {
+        "id": "AI-PPo-Med-01",
+        "title": "Commercial PPO Medical Service Approved with Cap Applied",
+        "rule_ids": [
+          "HC-003",
+          "HC-007"
+        ],
+        "rationale": "Service 'medical' is covered under plan 'commercial_ppo'. Amount 245678 exceeds deductible 10000, resulting in 235678 after deduction. This exceeds the 200000 cap, so payout is capped at 200000.",
+        "assumptions": [
+          "Policy is active",
+          "Provider is in-network",
+          "Authorization not required for medical",
+          "Service is on formulary"
+        ],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 245678
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 200000
+            }
+          }
+        ]
+      },
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T21:48:30.810005+00:00",
+        "reviewer_label": "Automated test-fixture reviewer",
+        "note": "Fixture expectations independently checked against the synthetic contract.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-PPo-Med-01": "f22fed82519a8575885ce05d564d75be392b06187754be074406699e86115c60"
+        },
+        "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "identity_mode": "Local attestation label, not authenticated human identity",
+        "focused_hash": "eccd9e7526ed51ffc01b1e77aa0ae422cc3908acc16e9f2f5826e7413d50398a"
+      },
+      "origin": "original_ai",
+      "focused_source": {
+        "version": "focused-evaluator-v3",
+        "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+        "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "data": {
+          "plan_id": "commercial_ppo",
+          "service": "medical",
+          "amount_cents": 245678
+        },
+        "plan": {
+          "id": "commercial_ppo",
+          "name": "Commercial PPO",
+          "family": "Commercial",
+          "description": "Broad service coverage with a relaxed network fixture",
+          "services": [
+            "hospital",
+            "medical",
+            "outpatient",
+            "prescription",
+            "preventive",
+            "mental_health",
+            "maternity",
+            "rehabilitation",
+            "emergency",
+            "lab"
+          ],
+          "network_required": false,
+          "authorization_services": [
+            "hospital"
+          ],
+          "deductible_cents": 10000,
+          "limit_cents": 200000
+        },
+        "source_ids": [
+          "HC-003",
+          "HC-007"
+        ],
+        "rules": [
+          {
+            "id": "HC-003",
+            "name": "Service benefit",
+            "risk": "Payment for a service missing from the chosen contract.",
+            "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+          },
+          {
+            "id": "HC-007",
+            "name": "Payout calculation",
+            "risk": "Overpayment, negative payout, or policy-limit bypass.",
+            "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+          }
+        ],
+        "defaults": {
+          "active": true,
+          "in_network": true,
+          "authorized": true,
+          "formulary": true
+        },
+        "scope": "One stateless evaluator request, one authored plan and input-relevant rules. No reference answer, member/actor catalog or other plan is supplied to the model."
+      },
+      "assessment": {
+        "rule_id": "HC-007",
+        "decision": "approved",
+        "deductible_cents": 10000,
+        "after_deductible_cents": 235678,
+        "cap_cents": 200000,
+        "payout_cents": 200000
+      },
+      "scenario_assertion": [
+        "a98ed2ea1dce0ede9202f3a145bc0c7f9d5de945bfdd4ea36cb496147e84ac0a",
+        "c91824ac5cf113cf95b87fe9a5283d1b63b50cb61293a03ecd50d0da3c7093da"
+      ]
+    }
+  ]
+}
