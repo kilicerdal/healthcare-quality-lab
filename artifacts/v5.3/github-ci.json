@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "run_id": 43233442177,
+  "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43233442177",
+  "commit": "9a564f7b5523c54c114cd109d0e9305a8a4d415f",
+  "downloaded_evidence_verified": true,
+  "source_hash": "5c664ba2bd2da31ea737bd49584e62791ae8a98594d6c975199080a5149963e3",
+  "verification": {
+    "status": "passed",
+    "version": "5.3.0",
+    "recorded_at": "2026-11-12T09:06:14.503265-05:00",
+    "recorded_date": "2026-11-12",
+    "source_hash": "5c664ba2bd2da31ea737bd49584e62791ae8a98594d6c975199080a5149963e3",
+    "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+    "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
+    "tests_total": 441,
+    "tests_passed": 441,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "categories": {
+      "unit": 349,
+      "api": 58,
+      "e2e": 34
+    },
+    "e2e_tests": 34,
+    "seeded_defects_detected": 7,
+    "seeded_defects_total": 7,
+    "workflow_seeded_defects_detected": 5,
+    "workflow_seeded_defects_total": 5,
+    "ai_case_language": "declarative DSL 1.0",
+    "live_model_in_core_tests": false,
+    "reference_examples": 28,
+    "duration_seconds": 53.27,
+    "environment": {
+      "python": "3.13.18",
+      "platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+      "pytest": "8.4.2",
+      "playwright": "1.56.0",
+      "flask": "3.1.2",
+      "waitress": "3.0.2",
+      "browser": "Chromium only"
+    },
+    "command": "python -m tools.verify",
+    "subprocess_returncode": 0,
+    "ci_executed": true,
+    "scope": "Local V5.3 regression: release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."
+  },
+  "runtime_rehearsal": {
+    "status": "passed",
+    "recorded_at": "2026-11-12T14:06:15.993212+00:00",
+    "archive": "/home/runner/work/healthcare-quality-lab/healthcare-quality-lab/releases/ci/v5.3.0-source.zip",
+    "active_release": "v5.3.0-016e33c19836",
+    "rollback_verified": false,
+    "phases": [
+      {
+        "phase": "new_release",
+        "version": "5.3.0",
+        "claim_id": "REL-ff9fbe0fc1e4",
+        "payout_cents": 90000,
+        "payment_cents": 90000,
+        "events": 3,
+        "revision": 3,
+        "checks": [
+          "health",
+          "payout",
+          "submit",
+          "duplicate_rejected",
+          "ownership_rejected",
+          "skip_approval_rejected",
+          "approve",
+          "pay",
+          "ledger_and_history",
+          "invalid_generation_rejected_without_inference"
+        ]
+      }
+    ],
+    "live_model_calls": 0,
+    "scope": "Actual staged archives and loopback Waitress HTTP, with separate per-release synthetic state. Pointer changes take effect on next server start; no hot swap or database migration."
+  },
+  "runner_annotation": "Existing checkout/setup-python/upload-artifact action versions emit a Node 20 deprecation annotation while GitHub runs them on Node 24; all steps succeeded. Action-version migration is outside this expected-value correction patch."
+}

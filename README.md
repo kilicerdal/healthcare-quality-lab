@@ -37,7 +37,7 @@ Read the [V5.3 independent-reference report](docs/V5.3_REPORT.md), [eight-minute
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.3 local verification:** 441 tests passed (349 unit, 58 API, 34 Chromium); all 12 authored fault seeds detected. CI evidence is recorded in the V5.3 report.
+**V5.3 local verification:** 441 tests passed (349 unit, 58 API, 34 Chromium); all 12 authored fault seeds detected. [GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43233442177); downloaded evidence matches the local source fingerprint.
 
 ## Test the application
 
@@ -67,8 +67,8 @@ After a fresh successful verification:
 
 ```sh
 .venv/bin/python -m tools.release build
-.venv/bin/python -m tools.release inspect releases/v5.2.0-source.zip
-.venv/bin/python -m tools.release stage releases/v5.2.0-source.zip
+.venv/bin/python -m tools.release inspect releases/v5.3.0-source.zip
+.venv/bin/python -m tools.release stage releases/v5.3.0-source.zip
 .venv/bin/python -m tools.release activate RELEASE_ID_FROM_STAGE
 .venv/bin/python -m tools.release serve --port 8896
 ```
@@ -81,7 +81,7 @@ Source packages exclude local databases, environments, browser binaries and cach
 
 The project has its own new private repository: [kilicerdal/healthcare-quality-lab](https://github.com/kilicerdal/healthcare-quality-lab). Existing projects and repositories are independent.
 
-GitHub Actions installs dependencies and Chromium, runs regression and known-fault checks, builds and inspects a checksummed source archive, starts its staged Waitress runtime for an actual HTTP journey, and uploads evidence. Remote execution results are recorded in the V5.1 report and `artifacts/v5.1/github-ci.json` when available. The hosted runtime target for this delivery is local loopback; the GitHub repository is private and is not a public website.
+GitHub Actions installs dependencies and Chromium, runs regression and known-fault checks, builds and inspects a checksummed source archive, starts its staged Waitress runtime for an actual HTTP journey, and uploads evidence. Current remote execution results are recorded in the V5.3 report and `artifacts/v5.3/github-ci.json`. Earlier version evidence remains preserved. The hosted runtime target for this delivery is local loopback; the GitHub repository is private and is not a public website.
 
 ## AI tools and learning
 
