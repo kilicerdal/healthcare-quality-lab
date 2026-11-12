@@ -33,7 +33,7 @@ Read the [V5.2 assertion-quality report](docs/V5.2_REPORT.md), [eight-minute dem
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.2 local verification:** 400 tests passed (310 unit, 57 API, 33 Chromium). Remote V5.2 results are recorded in its detailed report after observation.
+**V5.2 local and GitHub verification:** 400 tests passed (310 unit, 57 API, 33 Chromium). [Observed CI run](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43174974271), with downloaded evidence matching the local source fingerprint.
 
 ## Test the application
 
