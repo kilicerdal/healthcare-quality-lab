@@ -4,4 +4,4 @@
 ........................................................................ [ 88%]
 .....................................                                    [100%]
 - generated xml file: /Users/erdalkilic/Documents/Healthcare Quality Lab/artifacts/pytest-results.xml -
-325 passed in 32.98s
+325 passed in 33.24s

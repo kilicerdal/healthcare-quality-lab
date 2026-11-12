@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "version": "5.0.0",
+  "javascript_errors": [],
+  "milestones": 5,
+  "verified_tests_displayed": 325,
+  "runtime_storage": "ready",
+  "report_sections": 17,
+  "mobile_overflow": false,
+  "scope": "Read-only inspection of actual V5 app/evidence; no inference or claim writes"
+}

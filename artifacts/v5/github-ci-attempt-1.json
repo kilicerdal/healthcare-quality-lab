@@ -1,0 +1,10 @@
+{
+  "run_id": 43159041831,
+  "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43159041831",
+  "commit": "6f8354400107289edd299ab45669ffc5988a9e46",
+  "conclusion": "failure",
+  "stage": "Install Chromium and Linux dependencies",
+  "tests_executed": false,
+  "observed_error": "Pinned Playwright cannot install chromium dependencies for ubuntu26.04-x64 selected by ubuntu-latest",
+  "correction": "Pin GitHub runner to ubuntu-24.04; preserve Playwright dependency version and rerun all checks"
+}

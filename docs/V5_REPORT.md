@@ -118,11 +118,11 @@ The complete suite retains regression, smoke, sanity, unit, API, AI and E2E clas
 
 You authorized a brand-new private repository. The connected GitHub profile identified kilicerdal; repository creation was performed through your working GitHub CLI login because the connector did not expose repository creation. The new repository was independently verified private. Existing repositories were left unchanged.
 
-The workflow uses read-only repository contents permission. On push, pull request or manual dispatch it checks out the code, installs Python 3.13 dependencies and Chromium, runs the full verifier and known-fault experiments, builds and inspects a source release, starts its staged Waitress runtime for an actual HTTP journey, then uploads release and test evidence. Concurrent runs on the same ref can supersede older runs.
+The workflow uses read-only repository contents permission. On push, pull request or manual dispatch it checks out the code, uses pinned Ubuntu 24.04, installs Python 3.13 dependencies and Chromium, runs the full verifier and known-fault experiments, builds and inspects a source release, starts its staged Waitress runtime for an actual HTTP journey, then uploads release and test evidence. Concurrent runs on the same ref can supersede older runs.
 
 The CI rehearsal uses the current package only. It does not claim the historical V4 rollback check, because historical ZIPs remain locally preserved rather than tracked as Git source. Local rehearsal separately proves that finite rollback path. Uploaded artifacts are retained for fourteen days under the workflow configuration; a private release asset is a separate delivery mechanism if published.
 
-The final remote result and run URL are recorded below after observation. Provider doubles keep CI independent of a developer's Ollama installation. CI does not install a model, publish a public application or connect to an unspecified hosting account.
+The first actual remote run, 43159041831, failed before tests because ubuntu-latest selected Ubuntu 26.04, unsupported by the pinned Playwright release. The workflow now explicitly selects ubuntu-24.04. That infrastructure failure is preserved in github-ci-attempt-1.json; it was not relabeled as a test pass. The final successful remote result and run URL are recorded below after observation. Provider doubles keep CI independent of a developer's Ollama installation. CI does not install a model, publish a public application or connect to an unspecified hosting account.
 
 ## 13. What we learned about AI and test quality
 
