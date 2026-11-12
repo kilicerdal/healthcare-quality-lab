@@ -1,0 +1,270 @@
+{
+  "id": "df033cd366704b729c9de532d7accae2",
+  "version": "4.0.0",
+  "created_at": "2026-11-12T04:36:59.028771+00:00",
+  "requirement": "Authored failure fixture: intentionally wrong payout 91000 for amount 100000. Not AI-generated.",
+  "source_ids": [
+    "HC-007"
+  ],
+  "source_rules": [],
+  "model": "authored-fixture; no model generation",
+  "strategy": "engineering-fixture",
+  "requested_count": 1,
+  "prompt": "No generation: authored engineering evidence fixture",
+  "prompt_hash": "5e69d250e350b652bf85c22322c5b7d5433ad9d7ee8047c5dd8e6252e549c368",
+  "settings": {},
+  "dsl_version": "1.0",
+  "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+  "state": "approved",
+  "revision": 2,
+  "raw_generation": null,
+  "generation_error": null,
+  "proposals": [
+    {
+      "case": {
+        "id": "AI-AUTHORED-WRONG-ORACLE",
+        "title": "Authored wrong-oracle investigation fixture",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Authored reference from the written synthetic contracts, not model output.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 100000
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 91000
+            }
+          }
+        ]
+      },
+      "valid": true,
+      "issues": [],
+      "warnings": [
+        "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+      ],
+      "hash": "cca869f0d9e8327839565ec5532727d27c644de5301638144b791e8059e9f389"
+    }
+  ],
+  "approved_ids": [
+    "AI-AUTHORED-WRONG-ORACLE"
+  ],
+  "approval": {
+    "revision": 2,
+    "at": "2026-11-12T04:36:59.031177+00:00",
+    "reviewer_label": "Codex authored fault-fixture review",
+    "note": "Intentionally wrong oracle, approved only to demonstrate an actual failed assertion. Not learner approval.",
+    "expectations_checked": true,
+    "hashes": {
+      "AI-AUTHORED-WRONG-ORACLE": "cca869f0d9e8327839565ec5532727d27c644de5301638144b791e8059e9f389"
+    },
+    "identity_mode": "Local attestation label, not authenticated human identity"
+  },
+  "history": [
+    {
+      "event": "approved",
+      "revision": 2,
+      "at": "2026-11-12T04:36:59.031177+00:00",
+      "reviewer_label": "Codex authored fault-fixture review",
+      "note": "Intentionally wrong oracle, approved only to demonstrate an actual failed assertion. Not learner approval.",
+      "expectations_checked": true,
+      "hashes": {
+        "AI-AUTHORED-WRONG-ORACLE": "cca869f0d9e8327839565ec5532727d27c644de5301638144b791e8059e9f389"
+      },
+      "identity_mode": "Local attestation label, not authenticated human identity"
+    },
+    {
+      "event": "run_recorded",
+      "run_id": "49ffe9e5e5ef479c93f0bf120d203924",
+      "at": "2026-11-12T04:36:59.039594+00:00",
+      "revision": 2,
+      "result": "failed"
+    }
+  ],
+  "runs": [
+    {
+      "id": "49ffe9e5e5ef479c93f0bf120d203924",
+      "experiment_id": "df033cd366704b729c9de532d7accae2",
+      "at": "2026-11-12T04:36:59.033040+00:00",
+      "revision": 2,
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T04:36:59.031177+00:00",
+        "reviewer_label": "Codex authored fault-fixture review",
+        "note": "Intentionally wrong oracle, approved only to demonstrate an actual failed assertion. Not learner approval.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-AUTHORED-WRONG-ORACLE": "cca869f0d9e8327839565ec5532727d27c644de5301638144b791e8059e9f389"
+        },
+        "identity_mode": "Local attestation label, not authenticated human identity"
+      },
+      "approved_cases": [
+        {
+          "id": "AI-AUTHORED-WRONG-ORACLE",
+          "title": "Authored wrong-oracle investigation fixture",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Authored reference from the written synthetic contracts, not model output.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 91000
+              }
+            }
+          ]
+        }
+      ],
+      "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+      "model": "authored-fixture; no model generation",
+      "prompt_hash": "5e69d250e350b652bf85c22322c5b7d5433ad9d7ee8047c5dd8e6252e549c368",
+      "source_hash": "744b5a0e44b99f60768055735d28609ab261801ccd7b56b84f35bfc4686e01c8",
+      "results": [
+        {
+          "case_id": "AI-AUTHORED-WRONG-ORACLE",
+          "title": "Authored wrong-oracle investigation fixture",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "steps": [
+            {
+              "number": 1,
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 91000
+              },
+              "observed": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "assertions": [
+                {
+                  "field": "status",
+                  "expected": 200,
+                  "observed": 200,
+                  "passed": true
+                },
+                {
+                  "field": "decision",
+                  "expected": "approved",
+                  "observed": "approved",
+                  "passed": true
+                },
+                {
+                  "field": "reason",
+                  "expected": "COVERED",
+                  "observed": "COVERED",
+                  "passed": true
+                },
+                {
+                  "field": "payout_cents",
+                  "expected": 91000,
+                  "observed": 90000,
+                  "passed": false
+                }
+              ],
+              "evidence": {
+                "version": "4.0.0",
+                "synthetic": true,
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "request": {
+                  "plan_id": "commercial_ppo",
+                  "service": "medical",
+                  "amount_cents": 100000,
+                  "active": true,
+                  "formulary": true,
+                  "authorized": true,
+                  "in_network": true
+                },
+                "plan_name": "Commercial PPO",
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000,
+                "trace": [
+                  {
+                    "rule_id": "HC-001",
+                    "outcome": "passed",
+                    "detail": "Request satisfies the input contract"
+                  },
+                  {
+                    "rule_id": "HC-002",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-003",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-004",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-005",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-006",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-007",
+                    "outcome": "passed",
+                    "detail": "Claim 100000 cents; deductible 10000; cap 200000; payout 90000"
+                  }
+                ]
+              },
+              "passed": false
+            }
+          ],
+          "execution_error": null,
+          "passed": false
+        }
+      ],
+      "passed": 0,
+      "failed": 1,
+      "actions_executed": 1,
+      "action_budget": 32,
+      "duration_ms": 1.76,
+      "isolation": "Fresh SQLite file per case; all execution files removed after the run. Interactive claims are never used.",
+      "scope": "Generated declarative cases against Python services, not generated browser automation or an independent proof of oracle correctness.",
+      "status": "failed"
+    }
+  ],
+  "origin": "Authored by Codex for failure investigation; not learner approval or Ollama test generation"
+}

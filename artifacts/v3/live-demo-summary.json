@@ -1,0 +1,29 @@
+{
+  "model": "qwen2.5-coder:3b",
+  "experiment_id": "12758a0998ed475dbdae3d79fd7ff506",
+  "original_raw_cases": 2,
+  "raw_assertions_run": {
+    "passed": 2,
+    "failed": 0,
+    "actions": 7
+  },
+  "reviewer_corrections": "Added explicit payout, payment and ordered-history assertions; did not rewrite generated workflow actions.",
+  "strengthened_run": {
+    "passed": 2,
+    "failed": 0,
+    "actions": 7
+  },
+  "gate_demonstrations": [
+    {
+      "stage": "before review",
+      "blocked": "REVIEW_REQUIRED"
+    },
+    {
+      "stage": "after correction invalidated approval",
+      "blocked": "REVIEW_REQUIRED"
+    }
+  ],
+  "interactive_original_remains_unapproved": true,
+  "reviewer": "Codex engineering demo \u2014 not learner approval",
+  "scope": "Small live demonstration, not a held-out model-quality benchmark or completed learner review."
+}

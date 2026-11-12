@@ -1,0 +1,35 @@
+{
+  "reviewer": "Codex engineering review against HC-007 and deterministic test results",
+  "user_review_status": "Not yet reviewed by the learner",
+  "model": "qwen2.5:3b",
+  "reference": "artifacts/ai-review.json",
+  "conclusions": [
+    {
+      "suggestion": 1,
+      "assessment": "Mixed and misleading",
+      "reason": "Below-deductible payout zero is correct but already specified and tested by G16. The suggested above-limit denial contradicts HC-007: the payout is capped and the request remains approved.",
+      "evidence": [
+        "G16",
+        "G18"
+      ]
+    },
+    {
+      "suggestion": 2,
+      "assessment": "Correct expected payout, false gap claim",
+      "reason": "At-deductible zero payout is already explicit in HC-007 and covered by G15. The model did not inspect the suite.",
+      "evidence": [
+        "G15"
+      ]
+    },
+    {
+      "suggestion": 3,
+      "assessment": "Incorrect expected decision",
+      "reason": "A claim amount equal to the synthetic payout cap is approved. 200000 minus 10000 equals 190000, below the 200000 payout cap.",
+      "evidence": [
+        "test_claim_equal_to_cap_is_approved_after_deductible"
+      ]
+    }
+  ],
+  "actions": "No suggested business-rule change was applied. One targeted assertion was added to preserve the written contract.",
+  "lesson": "Valid JSON, a real local model, and a cited rule do not make a proposed expected result correct."
+}

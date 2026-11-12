@@ -1,0 +1,141 @@
+{
+  "scope": "Observed engineering edits to one saved V3 experiment, not learner activity, time savings or productivity estimates. V4 comparison drafts remain unedited and unapproved.",
+  "source": "artifacts/v3/live-demo-experiment.json",
+  "source_sha256": "ed198345aa2c763e7399fbdb69749eb30ee898b8dec1998b20d899086669a0fc",
+  "case_edit_events": 2,
+  "changed_paths": 20,
+  "edits": [
+    {
+      "case_id": "AI-001",
+      "revision": 3,
+      "reviewer_label": "Codex engineering demo \u2014 not learner approval",
+      "changes": [
+        {
+          "path": "/rule_ids",
+          "change": "changed",
+          "before": [
+            "WF-002"
+          ],
+          "after": [
+            "WF-002",
+            "HC-007",
+            "WF-005"
+          ]
+        },
+        {
+          "path": "/steps/0/expect/event_count",
+          "change": "added",
+          "after": 1
+        },
+        {
+          "path": "/steps/0/expect/payment_cents",
+          "change": "added",
+          "after": null
+        },
+        {
+          "path": "/steps/0/expect/payout_cents",
+          "change": "added",
+          "after": 90000
+        },
+        {
+          "path": "/steps/2/expect/event_count",
+          "change": "added",
+          "after": 1
+        },
+        {
+          "path": "/steps/2/expect/payment_cents",
+          "change": "added",
+          "after": null
+        },
+        {
+          "path": "/steps/2/expect/payout_cents",
+          "change": "added",
+          "after": 90000
+        }
+      ]
+    },
+    {
+      "case_id": "AI-002",
+      "revision": 4,
+      "reviewer_label": "Codex engineering demo \u2014 not learner approval",
+      "changes": [
+        {
+          "path": "/rule_ids",
+          "change": "changed",
+          "before": [
+            "WF-002",
+            "WF-003",
+            "WF-004"
+          ],
+          "after": [
+            "WF-002",
+            "WF-003",
+            "WF-004",
+            "HC-007",
+            "WF-005"
+          ]
+        },
+        {
+          "path": "/steps/0/expect/event_count",
+          "change": "added",
+          "after": 1
+        },
+        {
+          "path": "/steps/0/expect/payment_cents",
+          "change": "added",
+          "after": null
+        },
+        {
+          "path": "/steps/0/expect/payout_cents",
+          "change": "added",
+          "after": 90000
+        },
+        {
+          "path": "/steps/1/expect/event_count",
+          "change": "added",
+          "after": 2
+        },
+        {
+          "path": "/steps/1/expect/payment_cents",
+          "change": "added",
+          "after": null
+        },
+        {
+          "path": "/steps/1/expect/payout_cents",
+          "change": "added",
+          "after": 90000
+        },
+        {
+          "path": "/steps/2/expect/event_count",
+          "change": "added",
+          "after": 3
+        },
+        {
+          "path": "/steps/2/expect/payment_cents",
+          "change": "added",
+          "after": 90000
+        },
+        {
+          "path": "/steps/2/expect/payout_cents",
+          "change": "added",
+          "after": 90000
+        },
+        {
+          "path": "/steps/3/expect/event_count",
+          "change": "added",
+          "after": 3
+        },
+        {
+          "path": "/steps/3/expect/payment_cents",
+          "change": "added",
+          "after": 90000
+        },
+        {
+          "path": "/steps/3/expect/payout_cents",
+          "change": "added",
+          "after": 90000
+        }
+      ]
+    }
+  ]
+}

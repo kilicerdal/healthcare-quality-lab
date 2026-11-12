@@ -1,0 +1,7 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {"name":"V5: start Healthcare Quality Lab","type":"debugpy","request":"launch","module":"tools.serve","args":["--port","8895"],"cwd":"${workspaceFolder}","console":"integratedTerminal","justMyCode":true},
+    {"name":"V5: debug first deductible test","type":"debugpy","request":"launch","module":"pytest","args":["tests/unit/test_claims.py::test_deductible_is_subtracted","-v"],"cwd":"${workspaceFolder}","console":"integratedTerminal","justMyCode":true}
+  ]
+}

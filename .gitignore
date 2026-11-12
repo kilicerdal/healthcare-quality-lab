@@ -1,0 +1,11 @@
+.venv/
+.browsers/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+.env.*
+test-results/
+.DS_Store
+releases/*.zip
+.local/

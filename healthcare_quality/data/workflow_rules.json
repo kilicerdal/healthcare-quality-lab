@@ -1,0 +1,38 @@
+[
+  {
+    "id": "WF-001",
+    "name": "Demo identity and ownership",
+    "risk": "Unauthorized creation, reading or status change",
+    "contract": "Known X-Demo-Actor identifies a synthetic actor; it is a simulation, not authentication. Only customers may submit and only for their fixture member. Customers may read their own claims; adjuster, finance and auditor may read all. Only adjusters approve; only finance actors pay. Unknown actors and forbidden operations return HTTP 403 without state changes."
+  },
+  {
+    "id": "WF-002",
+    "name": "Submission and duplicate identity",
+    "risk": "Duplicate claims or invalid stored records",
+    "contract": "Require claim_id, member_id, service, amount_cents; optionally in_network, authorized, formulary. IDs are case-sensitive ASCII letters/digits/hyphen/underscore, 3\u201348 characters, beginning with a letter or digit. Policy and active status come from member fixtures. Validate HC rules before saving. A coverage denial is HTTP 422 and stores nothing. A successful evaluation creates submitted revision 1, HTTP 201. An existing claim ID conflicts globally with HTTP 409 DUPLICATE_CLAIM. A rejected ID can be corrected and reused."
+  },
+  {
+    "id": "WF-003",
+    "name": "Ordered claim lifecycle",
+    "risk": "Skipping approval, repeating an action, or invalid transitions",
+    "contract": "Allowed transitions are submitted to approved by an adjuster, then approved to paid by finance. All other state transitions return HTTP 409 INVALID_TRANSITION. Only approved and paid are valid target names; malformed targets return HTTP 400. Wrong-role actions return 403 before checking the current status. Successful actions increment revision once; failed actions preserve status and revision."
+  },
+  {
+    "id": "WF-004",
+    "name": "Simulated payment exactly once",
+    "risk": "Duplicate or incorrect ledger entries",
+    "contract": "Entering paid creates one simulated ledger row whose amount equals the stored evaluation payout, including zero payout. A unique claim_id in the ledger prevents a second entry. No real money moves. Replaying paid returns 409 and leaves the original ledger entry unchanged. Status, ledger and event changes commit atomically."
+  },
+  {
+    "id": "WF-005",
+    "name": "Event and provenance evidence",
+    "risk": "Unexplained state changes or losing the evaluated contract",
+    "contract": "Each successful submission or transition appends one ordered event with actor, timestamp, from/to status, rule and revision. Failed actions append no success event. The stored evaluation and normalized request remain unchanged after approval/payment. Evidence exports include the claim, ordered events, ledger row and workflow contract hash. Local history is not tamper-proof."
+  },
+  {
+    "id": "WF-006",
+    "name": "Persistence and isolation",
+    "risk": "Partial writes, concurrent duplicates, or test contamination",
+    "contract": "SQLite transactions cover each state mutation. Concurrent same-ID submissions yield one creation and one conflict; concurrent payment attempts yield one transition and one conflict. A storage error rolls back status, event and ledger changes. Committed claims survive reopening the database. Automated tests use temporary databases distinct from the interactive database."
+  }
+]

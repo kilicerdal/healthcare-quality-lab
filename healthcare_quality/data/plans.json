@@ -1,0 +1,152 @@
+[
+  {
+    "id": "medicare_a",
+    "name": "Medicare Part A",
+    "family": "Medicare",
+    "description": "Hospital and facility services",
+    "services": [
+      "hospital",
+      "skilled_nursing",
+      "hospice",
+      "home_health"
+    ],
+    "network_required": false,
+    "authorization_services": [
+      "skilled_nursing"
+    ],
+    "deductible_cents": 10000,
+    "limit_cents": 200000
+  },
+  {
+    "id": "medicare_b",
+    "name": "Medicare Part B",
+    "family": "Medicare",
+    "description": "Medical and outpatient services",
+    "services": [
+      "medical",
+      "outpatient",
+      "preventive",
+      "dme",
+      "mental_health",
+      "lab",
+      "home_health"
+    ],
+    "network_required": false,
+    "authorization_services": [],
+    "deductible_cents": 10000,
+    "limit_cents": 200000
+  },
+  {
+    "id": "medicare_advantage",
+    "name": "Medicare Advantage / Part C",
+    "family": "Medicare",
+    "description": "A synthetic bundled HMO with extra benefits",
+    "services": [
+      "hospital",
+      "medical",
+      "outpatient",
+      "preventive",
+      "dme",
+      "prescription",
+      "dental",
+      "vision",
+      "hearing",
+      "mental_health",
+      "lab"
+    ],
+    "network_required": true,
+    "authorization_services": [
+      "hospital",
+      "dme"
+    ],
+    "deductible_cents": 10000,
+    "limit_cents": 200000
+  },
+  {
+    "id": "medicare_d",
+    "name": "Medicare Part D",
+    "family": "Medicare",
+    "description": "A synthetic prescription drug plan",
+    "services": [
+      "prescription"
+    ],
+    "network_required": true,
+    "authorization_services": [],
+    "deductible_cents": 10000,
+    "limit_cents": 200000
+  },
+  {
+    "id": "commercial_ppo",
+    "name": "Commercial PPO",
+    "family": "Commercial",
+    "description": "Broad service coverage with a relaxed network fixture",
+    "services": [
+      "hospital",
+      "medical",
+      "outpatient",
+      "prescription",
+      "preventive",
+      "mental_health",
+      "maternity",
+      "rehabilitation",
+      "emergency",
+      "lab"
+    ],
+    "network_required": false,
+    "authorization_services": [
+      "hospital"
+    ],
+    "deductible_cents": 10000,
+    "limit_cents": 200000
+  },
+  {
+    "id": "commercial_hmo",
+    "name": "Commercial HMO",
+    "family": "Commercial",
+    "description": "Broad service coverage with network controls",
+    "services": [
+      "hospital",
+      "medical",
+      "outpatient",
+      "prescription",
+      "preventive",
+      "mental_health",
+      "maternity",
+      "rehabilitation",
+      "emergency",
+      "lab"
+    ],
+    "network_required": true,
+    "authorization_services": [
+      "hospital"
+    ],
+    "deductible_cents": 10000,
+    "limit_cents": 200000
+  },
+  {
+    "id": "dental",
+    "name": "Standalone dental",
+    "family": "Supplemental",
+    "description": "Routine dental service fixture",
+    "services": [
+      "dental"
+    ],
+    "network_required": true,
+    "authorization_services": [],
+    "deductible_cents": 10000,
+    "limit_cents": 200000
+  },
+  {
+    "id": "vision",
+    "name": "Standalone vision",
+    "family": "Supplemental",
+    "description": "Routine vision service fixture",
+    "services": [
+      "vision"
+    ],
+    "network_required": true,
+    "authorization_services": [],
+    "deductible_cents": 10000,
+    "limit_cents": 200000
+  }
+]

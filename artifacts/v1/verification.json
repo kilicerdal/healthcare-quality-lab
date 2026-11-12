@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "version": "1.0.0",
+  "recorded_at": "2026-11-11T21:06:59.253907-05:00",
+  "recorded_date": "2026-11-11",
+  "source_hash": "59b2814c5beedb08e988f204492e4685845b8b06c6a1b36246a19ce09ec815ac",
+  "tests_total": 101,
+  "tests_passed": 101,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "categories": {
+    "unit": 77,
+    "api": 16,
+    "e2e": 8
+  },
+  "e2e_tests": 8,
+  "seeded_defects_detected": 7,
+  "seeded_defects_total": 7,
+  "reference_examples": 28,
+  "duration_seconds": 4.35,
+  "environment": {
+    "python": "3.13.18",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "pytest": "8.4.2",
+    "playwright": "1.56.0",
+    "flask": "3.1.2",
+    "browser": "Chromium only"
+  },
+  "command": "python -m tools.verify",
+  "ci_executed": false,
+  "scope": "Local V1 deterministic tests, AI adapter mocks, seven authored defect seeds. Not production or Medicare compliance certification."
+}

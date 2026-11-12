@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "candidate": "a427cd6c23e93d5072e9b4b99a1f1af884937210c3a10f7cec1a7afbf5569a65",
+  "scope": "Initial actual V4/V5 archived runtime rehearsal",
+  "failure": "HTTP header spelling normalized by Waitress: X-Request-Id versus rehearsal dictionary key X-Request-ID",
+  "correction": "Normalize HTTP header names to lowercase and add regression coverage. Application returned the trace ID; the smoke client lookup was wrong.",
+  "previous_release_state": "Preserved; no reset or cleanup of databases"
+}

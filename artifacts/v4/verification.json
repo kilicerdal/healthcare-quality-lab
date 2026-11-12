@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "version": "4.0.0",
+  "recorded_at": "2026-11-11T23:37:55.981761-05:00",
+  "recorded_date": "2026-11-11",
+  "source_hash": "744b5a0e44b99f60768055735d28609ab261801ccd7b56b84f35bfc4686e01c8",
+  "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+  "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
+  "tests_total": 297,
+  "tests_passed": 297,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "categories": {
+    "unit": 222,
+    "api": 48,
+    "e2e": 27
+  },
+  "e2e_tests": 27,
+  "seeded_defects_detected": 7,
+  "seeded_defects_total": 7,
+  "workflow_seeded_defects_detected": 5,
+  "workflow_seeded_defects_total": 5,
+  "ai_case_language": "declarative DSL 1.0",
+  "live_model_in_core_tests": false,
+  "reference_examples": 28,
+  "duration_seconds": 30.37,
+  "environment": {
+    "python": "3.13.18",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "pytest": "8.4.2",
+    "playwright": "1.56.0",
+    "flask": "3.1.2",
+    "browser": "Chromium only"
+  },
+  "command": "python -m tools.verify",
+  "subprocess_returncode": 0,
+  "ci_executed": false,
+  "scope": "Local V4 regression: evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."
+}

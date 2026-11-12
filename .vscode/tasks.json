@@ -1,0 +1,132 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "V5: all tests",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "pytest",
+        "-v",
+        "--tracing",
+        "retain-on-failure",
+        "--screenshot",
+        "only-on-failure"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "V5: smoke tests",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "pytest",
+        "-m",
+        "smoke",
+        "-v"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "V5: sanity tests",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "pytest",
+        "-m",
+        "sanity",
+        "-v"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "V5: watch browser tests",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "pytest",
+        "-m",
+        "e2e",
+        "--headed",
+        "--slowmo",
+        "350",
+        "-v"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "V5: defect benchmark",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "tools.benchmark"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "V5: local AI review",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "tools.ai_review",
+        "--model",
+        "qwen2.5-coder:3b"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "V5: workflow fault benchmark",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "tools.workflow_benchmark"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "V5: AI Studio tests",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "pytest",
+        "-m",
+        "ai",
+        "-v"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "V5: verify and record evidence",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "tools.verify"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "V5: inspect release status",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "-m",
+        "tools.release",
+        "status"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

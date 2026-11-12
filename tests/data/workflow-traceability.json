@@ -1,0 +1,8 @@
+{
+  "WF-001": ["test_customer_cannot_read_or_submit_another_member", "test_forbidden_actions_preserve_status_revision_history_and_ledger", "test_browser_other_customer_sees_no_claim_and_no_old_details"],
+  "WF-002": ["test_duplicate_and_replayed_payment_preserve_full_evidence", "test_denied_submission_does_not_reserve_id", "test_browser_duplicate_error_preserves_original_record"],
+  "WF-003": ["test_finance_cannot_skip_adjuster_approval", "test_api_payment_cannot_skip_approval_or_be_replayed", "test_browser_customer_adjuster_finance_complete_workflow"],
+  "WF-004": ["test_concurrent_payments_record_exactly_one_ledger_entry", "test_zero_payout_is_a_valid_single_simulated_ledger_entry", "test_complete_lifecycle_records_expected_payment_and_events"],
+  "WF-005": ["test_export_endpoint_contains_snapshot_and_timeline", "test_workflow_export_contains_stored_provenance_and_ordered_history", "test_complete_lifecycle_records_expected_payment_and_events"],
+  "WF-006": ["test_storage_failure_rolls_back_transition_ledger_and_event", "test_reopen_database_preserves_committed_claim_and_history", "test_concurrent_duplicate_submissions_create_exactly_one_claim", "test_different_database_has_no_shared_records"]
+}

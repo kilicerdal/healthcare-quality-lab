@@ -1,0 +1,61 @@
+{
+  "provider": "Real local Ollama from the browser generation form",
+  "model": "qwen2.5-coder:3b",
+  "original_case_valid": true,
+  "engineering_correction_needed": true,
+  "original_case": {
+    "assumptions": [],
+    "id": "AI-001",
+    "rationale": "Test the payout calculation for a commercial PPO medical claim with an amount of 45000 cents.",
+    "rule_ids": [
+      "HC-007"
+    ],
+    "steps": [
+      {
+        "action": "evaluate",
+        "actor": "none",
+        "data": {
+          "amount_cents": 45000,
+          "plan_id": "commercial_ppo",
+          "service": "medical"
+        },
+        "expect": {
+          "decision": "approved",
+          "reason": "COVERED",
+          "status": 200
+        }
+      }
+    ],
+    "title": "Evaluate Commercial PPO Medical Claim Amount 45000"
+  },
+  "reviewed_case": {
+    "assumptions": [],
+    "id": "AI-001",
+    "rationale": "Test the payout calculation for a commercial PPO medical claim with an amount of 45000 cents.",
+    "rule_ids": [
+      "HC-007"
+    ],
+    "steps": [
+      {
+        "action": "evaluate",
+        "actor": "none",
+        "data": {
+          "amount_cents": 45000,
+          "plan_id": "commercial_ppo",
+          "service": "medical"
+        },
+        "expect": {
+          "decision": "approved",
+          "reason": "COVERED",
+          "status": 200,
+          "payout_cents": 35000
+        }
+      }
+    ],
+    "title": "Evaluate Commercial PPO Medical Claim Amount 45000"
+  },
+  "run_status": "passed",
+  "passed_cases": 1,
+  "interactive_claims_unchanged": true,
+  "scope": "Explicit-value integration brief, not a model-quality benchmark; engineering attestation in a disposable experiment store."
+}

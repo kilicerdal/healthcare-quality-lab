@@ -1,0 +1,74 @@
+[
+  {
+    "id": "customer-m100",
+    "label": "Customer / M100",
+    "role": "customer",
+    "member_id": "M100"
+  },
+  {
+    "id": "customer-m200",
+    "label": "Customer / M200",
+    "role": "customer",
+    "member_id": "M200"
+  },
+  {
+    "id": "customer-m300",
+    "label": "Customer / M300",
+    "role": "customer",
+    "member_id": "M300"
+  },
+  {
+    "id": "customer-m400",
+    "label": "Customer / M400",
+    "role": "customer",
+    "member_id": "M400"
+  },
+  {
+    "id": "customer-m500",
+    "label": "Customer / M500",
+    "role": "customer",
+    "member_id": "M500"
+  },
+  {
+    "id": "customer-m600",
+    "label": "Customer / M600",
+    "role": "customer",
+    "member_id": "M600"
+  },
+  {
+    "id": "customer-m700",
+    "label": "Customer / M700",
+    "role": "customer",
+    "member_id": "M700"
+  },
+  {
+    "id": "customer-m800",
+    "label": "Customer / M800",
+    "role": "customer",
+    "member_id": "M800"
+  },
+  {
+    "id": "customer-m900",
+    "label": "Customer / M900",
+    "role": "customer",
+    "member_id": "M900"
+  },
+  {
+    "id": "adjuster-demo",
+    "label": "Adjuster / demo",
+    "role": "adjuster",
+    "member_id": null
+  },
+  {
+    "id": "finance-demo",
+    "label": "Finance / demo",
+    "role": "finance",
+    "member_id": null
+  },
+  {
+    "id": "auditor-demo",
+    "label": "Auditor / read only",
+    "role": "auditor",
+    "member_id": null
+  }
+]

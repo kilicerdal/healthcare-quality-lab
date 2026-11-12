@@ -1,0 +1,56 @@
+[
+  {
+    "id": "M100",
+    "label": "Synthetic PPO member",
+    "plan_id": "commercial_ppo",
+    "active": true
+  },
+  {
+    "id": "M200",
+    "label": "Synthetic Advantage member",
+    "plan_id": "medicare_advantage",
+    "active": true
+  },
+  {
+    "id": "M300",
+    "label": "Synthetic Inactive Part B member",
+    "plan_id": "medicare_b",
+    "active": false
+  },
+  {
+    "id": "M400",
+    "label": "Synthetic Dental member",
+    "plan_id": "dental",
+    "active": true
+  },
+  {
+    "id": "M500",
+    "label": "Synthetic Vision member",
+    "plan_id": "vision",
+    "active": true
+  },
+  {
+    "id": "M600",
+    "label": "Synthetic Part A member",
+    "plan_id": "medicare_a",
+    "active": true
+  },
+  {
+    "id": "M700",
+    "label": "Synthetic Part D member",
+    "plan_id": "medicare_d",
+    "active": true
+  },
+  {
+    "id": "M800",
+    "label": "Synthetic HMO member",
+    "plan_id": "commercial_hmo",
+    "active": true
+  },
+  {
+    "id": "M900",
+    "label": "Synthetic active Part B member",
+    "plan_id": "medicare_b",
+    "active": true
+  }
+]

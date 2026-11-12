@@ -1,0 +1,123 @@
+{
+  "experiment": "Seven authored defect seeds against reviewed synthetic examples",
+  "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+  "reference_cases": 28,
+  "reference_failures": [],
+  "detected": 7,
+  "total": 7,
+  "experiments": [
+    {
+      "defect": "eligibility",
+      "case_id": "G09",
+      "rule_id": "HC-002",
+      "expected": {
+        "decision": "denied",
+        "reason": "INACTIVE_POLICY",
+        "payout_cents": 0
+      },
+      "observed": {
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 90000
+      },
+      "detected": true
+    },
+    {
+      "defect": "coverage",
+      "case_id": "G10",
+      "rule_id": "HC-003",
+      "expected": {
+        "decision": "denied",
+        "reason": "SERVICE_NOT_COVERED",
+        "payout_cents": 0
+      },
+      "observed": {
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 90000
+      },
+      "detected": true
+    },
+    {
+      "defect": "network",
+      "case_id": "G11",
+      "rule_id": "HC-004",
+      "expected": {
+        "decision": "denied",
+        "reason": "OUT_OF_NETWORK",
+        "payout_cents": 0
+      },
+      "observed": {
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 90000
+      },
+      "detected": true
+    },
+    {
+      "defect": "authorization",
+      "case_id": "G12",
+      "rule_id": "HC-005",
+      "expected": {
+        "decision": "denied",
+        "reason": "AUTH_REQUIRED",
+        "payout_cents": 0
+      },
+      "observed": {
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 90000
+      },
+      "detected": true
+    },
+    {
+      "defect": "formulary",
+      "case_id": "G13",
+      "rule_id": "HC-006",
+      "expected": {
+        "decision": "denied",
+        "reason": "NON_FORMULARY",
+        "payout_cents": 0
+      },
+      "observed": {
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 90000
+      },
+      "detected": true
+    },
+    {
+      "defect": "deductible",
+      "case_id": "G14",
+      "rule_id": "HC-007",
+      "expected": {
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 90000
+      },
+      "observed": {
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 100000
+      },
+      "detected": true
+    },
+    {
+      "defect": "limit",
+      "case_id": "G18",
+      "rule_id": "HC-007",
+      "expected": {
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 200000
+      },
+      "observed": {
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 290000
+      },
+      "detected": true
+    }
+  ],
+  "limitation": "Authored seeds and examples are known to the implementation. This is not exhaustive mutation testing, held-out AI evaluation, or evidence of real insurance correctness."
+}

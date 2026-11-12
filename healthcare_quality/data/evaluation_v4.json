@@ -1,0 +1,563 @@
+{
+  "version": "4.0.0-dataset-1",
+  "rubric_version": "exact-brief-v1",
+  "review_status": "Authored and engineering-checked; not learner-certified",
+  "holdout_policy": "Reserved from prompt tuning. Not unknown to its author. First scored use exposes references; reruns are labeled reused.",
+  "tasks": [
+    {
+      "id": "D01",
+      "split": "development",
+      "title": "Ordinary payout",
+      "brief": "Create one one-step evaluate case for commercial_ppo medical amount_cents 48500. Assert the decision and exact payout after the synthetic deductible.",
+      "source_ids": [
+        "HC-007"
+      ],
+      "reference_case": {
+        "id": "AI-REF-D01",
+        "title": "Ordinary payout",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Authored reference from the written synthetic contracts, not model output.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 48500
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 38500
+            }
+          }
+        ]
+      },
+      "required_assertions": [
+        [
+          "status",
+          "decision",
+          "payout_cents"
+        ]
+      ],
+      "reference_review": {
+        "status": "Authored and engineering-checked; learner review pending",
+        "derivation": "48500 - 10000 = 38500; the cap is not reached."
+      }
+    },
+    {
+      "id": "D02",
+      "split": "development",
+      "title": "Below deductible",
+      "brief": "Create one one-step evaluate case for commercial_ppo medical amount_cents 7600. Assert the decision and exact payout; do not deny an accepted below-deductible claim.",
+      "source_ids": [
+        "HC-007"
+      ],
+      "reference_case": {
+        "id": "AI-REF-D02",
+        "title": "Below deductible",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Authored reference from the written synthetic contracts, not model output.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 7600
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 0
+            }
+          }
+        ]
+      },
+      "required_assertions": [
+        [
+          "status",
+          "decision",
+          "payout_cents"
+        ]
+      ],
+      "reference_review": {
+        "status": "Authored and engineering-checked; learner review pending",
+        "derivation": "7600 - 10000 is below zero; approved payout floors at zero."
+      }
+    },
+    {
+      "id": "D03",
+      "split": "development",
+      "title": "Duplicate keeps one event",
+      "brief": "Create one case: customer-m100 submits medical amount_cents 100000 for M100 using a new claim ID, repeats that identical submission, then reads the same claim. Assert the duplicate error and that the final submitted record has revision 1, one event and no payment.",
+      "source_ids": [
+        "WF-002",
+        "WF-005"
+      ],
+      "reference_case": {
+        "id": "AI-REF-D03",
+        "title": "Duplicate keeps one event",
+        "rule_ids": [
+          "WF-002",
+          "WF-005"
+        ],
+        "rationale": "Authored reference from the written synthetic contracts, not model output.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "REF-1",
+              "member_id": "M100",
+              "service": "medical",
+              "amount_cents": 100000
+            },
+            "expect": {
+              "status": 201,
+              "claim_status": "submitted",
+              "revision": 1,
+              "event_count": 1,
+              "payout_cents": 90000,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "REF-1",
+              "member_id": "M100",
+              "service": "medical",
+              "amount_cents": 100000
+            },
+            "expect": {
+              "status": 409,
+              "error": "DUPLICATE_CLAIM"
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "REF-1"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "submitted",
+              "revision": 1,
+              "event_count": 1,
+              "payout_cents": 90000,
+              "payment_cents": null
+            }
+          }
+        ]
+      },
+      "required_assertions": [
+        [
+          "status",
+          "claim_status",
+          "revision"
+        ],
+        [
+          "status",
+          "error"
+        ],
+        [
+          "status",
+          "claim_status",
+          "revision",
+          "event_count",
+          "payment_cents"
+        ]
+      ],
+      "reference_review": {
+        "status": "Authored and engineering-checked; learner review pending",
+        "derivation": "Duplicate submission changes no state, successful event or ledger entry."
+      }
+    },
+    {
+      "id": "D04",
+      "split": "development",
+      "title": "Other member cannot read",
+      "brief": "Create one case: customer-m100 submits a medical amount_cents 100000 claim for M100, then customer-m200 attempts to read that same claim. Assert forbidden access.",
+      "source_ids": [
+        "WF-001",
+        "WF-002"
+      ],
+      "reference_case": {
+        "id": "AI-REF-D04",
+        "title": "Other member cannot read",
+        "rule_ids": [
+          "WF-001",
+          "WF-002"
+        ],
+        "rationale": "Authored reference from the written synthetic contracts, not model output.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "REF-1",
+              "member_id": "M100",
+              "service": "medical",
+              "amount_cents": 100000
+            },
+            "expect": {
+              "status": 201,
+              "claim_status": "submitted",
+              "revision": 1,
+              "event_count": 1,
+              "payout_cents": 90000,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "REF-1"
+            },
+            "expect": {
+              "status": 403,
+              "error": "FORBIDDEN"
+            }
+          }
+        ]
+      },
+      "required_assertions": [
+        [
+          "status",
+          "claim_status"
+        ],
+        [
+          "status",
+          "error"
+        ]
+      ],
+      "reference_review": {
+        "status": "Authored and engineering-checked; learner review pending",
+        "derivation": "M200 customer does not own M100 claim; read returns 403 FORBIDDEN."
+      }
+    },
+    {
+      "id": "H01",
+      "split": "held_out",
+      "title": "Payout cap",
+      "brief": "Create one one-step evaluate case for commercial_ppo medical amount_cents 278900. Assert approved decision and the exact capped payout.",
+      "source_ids": [
+        "HC-007"
+      ],
+      "reference_case": {
+        "id": "AI-REF-H01",
+        "title": "Payout cap",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Authored reference from the written synthetic contracts, not model output.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 278900
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 200000
+            }
+          }
+        ]
+      },
+      "required_assertions": [
+        [
+          "status",
+          "decision",
+          "payout_cents"
+        ]
+      ],
+      "reference_review": {
+        "status": "Authored and engineering-checked; learner review pending",
+        "derivation": "278900 - 10000 = 268900; payout is capped at 200000, not denied."
+      }
+    },
+    {
+      "id": "H02",
+      "split": "held_out",
+      "title": "Claim amount equals cap",
+      "brief": "Create one one-step evaluate case for commercial_ppo medical amount_cents 200000. Assert the decision and exact payout after deductible; distinguish claim amount from payout cap.",
+      "source_ids": [
+        "HC-007"
+      ],
+      "reference_case": {
+        "id": "AI-REF-H02",
+        "title": "Claim amount equals cap",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Authored reference from the written synthetic contracts, not model output.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 200000
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 190000
+            }
+          }
+        ]
+      },
+      "required_assertions": [
+        [
+          "status",
+          "decision",
+          "payout_cents"
+        ]
+      ],
+      "reference_review": {
+        "status": "Authored and engineering-checked; learner review pending",
+        "derivation": "200000 - 10000 = 190000, below the payout cap."
+      }
+    },
+    {
+      "id": "H03",
+      "split": "held_out",
+      "title": "Paid ledger and full history",
+      "brief": "Create one case: customer-m100 submits a medical amount_cents 100000 claim for M100; adjuster-demo approves; finance-demo pays; customer-m100 reads the same claim. Assert ordered status/revision changes and final payout, simulated payment amount and three successful events.",
+      "source_ids": [
+        "WF-002",
+        "WF-003",
+        "WF-004",
+        "WF-005",
+        "HC-007"
+      ],
+      "reference_case": {
+        "id": "AI-REF-H03",
+        "title": "Paid ledger and full history",
+        "rule_ids": [
+          "WF-002",
+          "WF-003",
+          "WF-004",
+          "WF-005",
+          "HC-007"
+        ],
+        "rationale": "Authored reference from the written synthetic contracts, not model output.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "REF-1",
+              "member_id": "M100",
+              "service": "medical",
+              "amount_cents": 100000
+            },
+            "expect": {
+              "status": 201,
+              "claim_status": "submitted",
+              "revision": 1,
+              "event_count": 1,
+              "payout_cents": 90000,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "adjuster-demo",
+            "data": {
+              "claim_id": "REF-1",
+              "target": "approved"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "approved",
+              "revision": 2,
+              "event_count": 2,
+              "payout_cents": 90000,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "REF-1",
+              "target": "paid"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "paid",
+              "revision": 3,
+              "event_count": 3,
+              "payout_cents": 90000,
+              "payment_cents": 90000
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "REF-1"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "paid",
+              "revision": 3,
+              "event_count": 3,
+              "payout_cents": 90000,
+              "payment_cents": 90000
+            }
+          }
+        ]
+      },
+      "required_assertions": [
+        [
+          "status",
+          "claim_status",
+          "revision"
+        ],
+        [
+          "status",
+          "claim_status",
+          "revision"
+        ],
+        [
+          "status",
+          "claim_status",
+          "revision",
+          "payment_cents"
+        ],
+        [
+          "status",
+          "claim_status",
+          "revision",
+          "event_count",
+          "payout_cents",
+          "payment_cents"
+        ]
+      ],
+      "reference_review": {
+        "status": "Authored and engineering-checked; learner review pending",
+        "derivation": "Three successful actions produce revisions/events 1,2,3. 100000-10000=90000; ledger equals that payout."
+      }
+    },
+    {
+      "id": "H04",
+      "split": "held_out",
+      "title": "Cannot skip approval",
+      "brief": "Create one case: customer-m100 submits a medical amount_cents 100000 claim for M100, finance-demo attempts paid before adjuster approval, then the owning customer reads the same claim. Assert invalid transition and unchanged submitted revision, event count and absent payment.",
+      "source_ids": [
+        "WF-002",
+        "WF-003",
+        "WF-004",
+        "WF-005"
+      ],
+      "reference_case": {
+        "id": "AI-REF-H04",
+        "title": "Cannot skip approval",
+        "rule_ids": [
+          "WF-002",
+          "WF-003",
+          "WF-004",
+          "WF-005"
+        ],
+        "rationale": "Authored reference from the written synthetic contracts, not model output.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "REF-1",
+              "member_id": "M100",
+              "service": "medical",
+              "amount_cents": 100000
+            },
+            "expect": {
+              "status": 201,
+              "claim_status": "submitted",
+              "revision": 1,
+              "event_count": 1,
+              "payout_cents": 90000,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "REF-1",
+              "target": "paid"
+            },
+            "expect": {
+              "status": 409,
+              "error": "INVALID_TRANSITION"
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "REF-1"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "submitted",
+              "revision": 1,
+              "event_count": 1,
+              "payout_cents": 90000,
+              "payment_cents": null
+            }
+          }
+        ]
+      },
+      "required_assertions": [
+        [
+          "status",
+          "claim_status"
+        ],
+        [
+          "status",
+          "error"
+        ],
+        [
+          "status",
+          "claim_status",
+          "revision",
+          "event_count",
+          "payment_cents"
+        ]
+      ],
+      "reference_review": {
+        "status": "Authored and engineering-checked; learner review pending",
+        "derivation": "Unsuccessful payment attempt creates no event or ledger row and preserves revision 1."
+      }
+    }
+  ]
+}

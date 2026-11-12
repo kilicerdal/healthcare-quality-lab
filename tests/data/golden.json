@@ -1,0 +1,433 @@
+[
+  {
+    "id": "G01",
+    "title": "medicare_a accepts hospital",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "medicare_a",
+      "service": "hospital",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G02",
+    "title": "medicare_b accepts medical",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "medicare_b",
+      "service": "medical",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G03",
+    "title": "medicare_advantage accepts hospital",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "medicare_advantage",
+      "service": "hospital",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G04",
+    "title": "medicare_d accepts prescription",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "medicare_d",
+      "service": "prescription",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G05",
+    "title": "commercial_ppo accepts outpatient",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "outpatient",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G06",
+    "title": "commercial_hmo accepts medical",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "commercial_hmo",
+      "service": "medical",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G07",
+    "title": "dental accepts dental",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "dental",
+      "service": "dental",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G08",
+    "title": "vision accepts vision",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "vision",
+      "service": "vision",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G09",
+    "title": "Inactive contract denies before benefit check",
+    "rule_id": "HC-002",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 100000,
+      "active": false
+    },
+    "expected": {
+      "decision": "denied",
+      "reason": "INACTIVE_POLICY",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G10",
+    "title": "Part A does not include routine dental in this fixture",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "medicare_a",
+      "service": "dental",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "denied",
+      "reason": "SERVICE_NOT_COVERED",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G11",
+    "title": "HMO enforces network",
+    "rule_id": "HC-004",
+    "request": {
+      "plan_id": "commercial_hmo",
+      "service": "medical",
+      "amount_cents": 100000,
+      "in_network": false
+    },
+    "expected": {
+      "decision": "denied",
+      "reason": "OUT_OF_NETWORK",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G12",
+    "title": "Advantage hospital requires authorization",
+    "rule_id": "HC-005",
+    "request": {
+      "plan_id": "medicare_advantage",
+      "service": "hospital",
+      "amount_cents": 100000,
+      "authorized": false
+    },
+    "expected": {
+      "decision": "denied",
+      "reason": "AUTH_REQUIRED",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G13",
+    "title": "Part D enforces formulary",
+    "rule_id": "HC-006",
+    "request": {
+      "plan_id": "medicare_d",
+      "service": "prescription",
+      "amount_cents": 100000,
+      "formulary": false
+    },
+    "expected": {
+      "decision": "denied",
+      "reason": "NON_FORMULARY",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G14",
+    "title": "Deductible is subtracted",
+    "rule_id": "HC-007",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G15",
+    "title": "At deductible payout is zero",
+    "rule_id": "HC-007",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 10000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G16",
+    "title": "Below deductible never produces negative payout",
+    "rule_id": "HC-007",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 9999
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G17",
+    "title": "One cent above deductible",
+    "rule_id": "HC-007",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 10001
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 1
+    }
+  },
+  {
+    "id": "G18",
+    "title": "Payout cap is enforced",
+    "rule_id": "HC-007",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 300000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 200000
+    }
+  },
+  {
+    "id": "G19",
+    "title": "Payout exactly reaches cap",
+    "rule_id": "HC-007",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 210000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 200000
+    }
+  },
+  {
+    "id": "G20",
+    "title": "PPO permits out-of-network in this fixture",
+    "rule_id": "HC-004",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 100000,
+      "in_network": false
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G21",
+    "title": "Covered hospital authorization received",
+    "rule_id": "HC-005",
+    "request": {
+      "plan_id": "commercial_hmo",
+      "service": "hospital",
+      "amount_cents": 100000,
+      "authorized": true
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G22",
+    "title": "Formulary flag irrelevant to medical service",
+    "rule_id": "HC-006",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 100000,
+      "formulary": false
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  },
+  {
+    "id": "G23",
+    "title": "Benefit denial precedes network denial",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "medicare_d",
+      "service": "hospital",
+      "amount_cents": 100000,
+      "in_network": false
+    },
+    "expected": {
+      "decision": "denied",
+      "reason": "SERVICE_NOT_COVERED",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G24",
+    "title": "Network denial precedes authorization",
+    "rule_id": "HC-004",
+    "request": {
+      "plan_id": "medicare_advantage",
+      "service": "hospital",
+      "amount_cents": 100000,
+      "in_network": false,
+      "authorized": false
+    },
+    "expected": {
+      "decision": "denied",
+      "reason": "OUT_OF_NETWORK",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G25",
+    "title": "Inactive denial precedes benefit",
+    "rule_id": "HC-002",
+    "request": {
+      "plan_id": "medicare_a",
+      "service": "dental",
+      "amount_cents": 100000,
+      "active": false
+    },
+    "expected": {
+      "decision": "denied",
+      "reason": "INACTIVE_POLICY",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G26",
+    "title": "Lowest valid amount is accepted",
+    "rule_id": "HC-007",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 1
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 0
+    }
+  },
+  {
+    "id": "G27",
+    "title": "Maximum valid amount is capped",
+    "rule_id": "HC-007",
+    "request": {
+      "plan_id": "commercial_ppo",
+      "service": "medical",
+      "amount_cents": 100000000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 200000
+    }
+  },
+  {
+    "id": "G28",
+    "title": "Part B outpatient fixture",
+    "rule_id": "HC-003",
+    "request": {
+      "plan_id": "medicare_b",
+      "service": "outpatient",
+      "amount_cents": 100000
+    },
+    "expected": {
+      "decision": "approved",
+      "reason": "COVERED",
+      "payout_cents": 90000
+    }
+  }
+]

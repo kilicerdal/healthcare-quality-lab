@@ -1,0 +1,35 @@
+{
+  "reviewer": "Codex engineering assessment against supplied contracts and executed tests",
+  "user_review_status": "Pending learner review",
+  "model": "qwen2.5-coder:3b",
+  "findings": [
+    {
+      "suggestion": 1,
+      "disposition": "Correct expected HTTP result; false requirement-gap claim",
+      "reason": "WF-001 explicitly defines unknown actors and 403. Existing unit/API tests already exercise this.",
+      "evidence": [
+        "test_only_known_customer_can_submit",
+        "test_missing_unknown_or_other_customer_cannot_read"
+      ]
+    },
+    {
+      "suggestion": 2,
+      "disposition": "Useful risk, already specified and tested",
+      "reason": "WF-002 explicitly requires DUPLICATE_CLAIM / 409. Both duplicate and cross-member ID cases already exist.",
+      "evidence": [
+        "test_duplicate_and_replayed_payment_preserve_full_evidence",
+        "test_duplicate_ids_are_global_even_across_members"
+      ]
+    },
+    {
+      "suggestion": 3,
+      "disposition": "Correct assertion, already covered",
+      "reason": "WF-003 explicitly rejects repeated approval. The regression test was already added before the model review completed.",
+      "evidence": [
+        "test_repeat_approval_conflicts_without_an_extra_event"
+      ]
+    }
+  ],
+  "changes_from_model": "No implementation or test changes were accepted as novel contributions. Suggestions were checked rather than automatically executed.",
+  "lesson": "All three ideas have reasonable expected responses, but all three falsely describe an explicit rule as unspecified. The model saw contracts, not the test suite."
+}
