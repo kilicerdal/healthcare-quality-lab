@@ -25,6 +25,8 @@ Read the [V5 engineering report](docs/V5_REPORT.md), [eight-minute demo](docs/V5
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
+**Verified locally and on GitHub Actions:** 325 tests passed (244 unit, 52 API, 29 Chromium), with 12/12 known faults detected. [Observed CI run](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43159279499). Actual local archive activation, rollback and state preservation also passed.
+
 ## Test the application
 
 ```sh

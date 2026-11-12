@@ -10,7 +10,7 @@ The deterministic local suite passes **325 tests: 244 unit, 52 API and 29 Chromi
 
 Local release rehearsal status: **passed** — actual V4 and V5 archive startup, two full claim journeys, rollback with earlier state preserved, and V5 reactivation with its own state preserved. Candidate release ID: `v5.0.0-77c5120c7965`..
 
-GitHub CI status: **PENDING_CI**. The new private repository is [kilicerdal/healthcare-quality-lab](https://github.com/kilicerdal/healthcare-quality-lab). This report records remote execution only after an actual Actions result is available; a workflow file alone is not evidence that CI ran.
+GitHub CI status: **passed** — [run 43159279499](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43159279499), commit `521cfa2b6fcafc1b8a0c3cce9464eb074812dbd3`. Downloaded runner evidence confirms 325/325 tests, zero failures/skips, successful package validation and staged HTTP rehearsal. The runner source fingerprint matches the verified local implementation.. The new private repository is [kilicerdal/healthcare-quality-lab](https://github.com/kilicerdal/healthcare-quality-lab). This report records remote execution only after an actual Actions result is available; a workflow file alone is not evidence that CI ran.
 
 ## 2. Where the work belongs
 
@@ -122,7 +122,7 @@ The workflow uses read-only repository contents permission. On push, pull reques
 
 The CI rehearsal uses the current package only. It does not claim the historical V4 rollback check, because historical ZIPs remain locally preserved rather than tracked as Git source. Local rehearsal separately proves that finite rollback path. Uploaded artifacts are retained for fourteen days under the workflow configuration; a private release asset is a separate delivery mechanism if published.
 
-The first actual remote run, 43159041831, failed before tests because ubuntu-latest selected Ubuntu 26.04, unsupported by the pinned Playwright release. The workflow now explicitly selects ubuntu-24.04. That infrastructure failure is preserved in github-ci-attempt-1.json; it was not relabeled as a test pass. The final successful remote result and run URL are recorded below after observation. Provider doubles keep CI independent of a developer's Ollama installation. CI does not install a model, publish a public application or connect to an unspecified hosting account.
+The first actual remote run, 43159041831, failed before tests because ubuntu-latest selected Ubuntu 26.04, unsupported by the pinned Playwright release. The workflow now explicitly selects ubuntu-24.04. That infrastructure failure is preserved in github-ci-attempt-1.json; it was not relabeled as a test pass. The corrected run 43159279499 completed successfully on Ubuntu 24.04. Its downloaded verification reports 244 unit, 52 API and 29 Chromium checks, plus 7/7 evaluator and 5/5 workflow fault detections. The packaged source and actual HTTP rehearsal also passed. The evidence was inspected rather than inferred from a green job label. A final documentation/release commit may have its own later CI run; the recorded run above establishes this exact implementation fingerprint. Provider doubles keep CI independent of a developer's Ollama installation. CI does not install a model, publish a public application or connect to an unspecified hosting account.
 
 ## 13. What we learned about AI and test quality
 
