@@ -197,7 +197,8 @@ class CoverageLab:
                 for assumption in case['assumptions']:
                     if assumption not in assumptions:assumptions.append(assumption)
                 snapshots.append({'id':r['id'],'revision':r['revision'],'case':deepcopy(case),'approval':deepcopy(r['approval']),'origin':origins[-1],'focused_source':deepcopy(r['focused_source']),'assessment':deepcopy(r['generation_assessment']),'scenario_assertion':list(fingerprint)})
-            if len(rules)>6 or len(assumptions)>4:raise StudioError('ASSEMBLY_BUDGET','An assembled DSL case supports at most six source rules and four distinct assumptions; split this selection',409)
+            if len(rules)>6:raise StudioError('ASSEMBLY_BUDGET','An assembled DSL case supports at most six source rules; split this selection',409)
+            if len(assumptions)>4:assumptions=['Source assumptions are retained verbatim in assembly_sources. Inspect every frozen source case before approving this assembled suite.']
             case={'id':'AI-ASSEMBLED-'+uuid4().hex[:12],'title':'Assembled reviewed focused evaluator suite','rule_ids':sorted(rules),'rationale':'Exact input/expectation copies from individually reviewed focused model drafts; no recalculation or model request during assembly.','assumptions':assumptions,'steps':steps}
             checked=checked_cases([case],sorted(rules))
             if not checked[0]['review_ready']:raise StudioError('INVALID_ASSEMBLY','Copied assembly does not satisfy current case/reference checks',409)

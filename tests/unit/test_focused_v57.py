@@ -121,3 +121,14 @@ def test_ai_correction_receives_calculation_mismatch_and_can_fix_it(tmp_path):
     assert 'Assessment mismatch feedback' in lab.studio.provider.calls[0]['prompt']
     assert child['focused_validation']['status']=='matched' and child['approval'] is None
     assert lab.focused_metrics()['ai_correction_calls']==1
+
+
+def test_assembly_retains_more_than_four_source_assumptions_without_losing_snapshots(tmp_path):
+    lab=make(tmp_path);records=[]
+    for i,amount in enumerate((112345,127654)):
+        o=output(amount);o['cases'][0]['assumptions']=[f'Source {i} assumption {j}' for j in range(4)];lab.studio.provider=FixtureProvider(o)
+        r=lab.studio.generate_focused({'data':o['cases'][0]['steps'][0]['data'],'model':'qwen2.5-coder:3b'});records.append(lab.studio.review(r['id'],review_request(r)))
+    a=lab.assemble_evaluators(dict(sources=[dict(id=r['id'],expected_revision=r['revision']) for r in records],reviewer_label='Fixture reviewer',review_note='Inspect all source assumptions before new suite approval.'))
+    assert len(a['proposals'][0]['case']['assumptions'])==1
+    assert [s['case']['assumptions'] for s in a['assembly_sources']]==[r['proposals'][0]['case']['assumptions'] for r in records]
+    assert a['approval'] is None
