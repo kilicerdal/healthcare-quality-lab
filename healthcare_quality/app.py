@@ -1,4 +1,4 @@
-from healthcare_quality import reference
+from healthcare_quality import reference, focused
 """V5 local healthcare quality showcase, AI review controls and transactional API."""
 import json
 import logging
@@ -151,6 +151,18 @@ def create_app(config=None):
     @app.errorhandler(StudioError)
     def studio_error(error):return jsonify(error=error.code,message=str(error)),error.status
 
+    @app.get("/api/ai/focused-evaluator/config")
+    def focused_config():return jsonify(version=focused.VERSION,plans=sorted(reference.PLANS),services=sorted(reference.SERVICES),models=list(MODELS))
+
+    @app.post("/api/ai/focused-evaluator")
+    def focused_generate():return jsonify(studio.generate_focused(body())),201
+
+    @app.post("/api/coverage/gaps/<id>/generate")
+    def coverage_gap_generate(id):return jsonify(coverage.close_gap(id,body())),201
+
+    @app.post("/api/coverage/assemble-evaluators")
+    def coverage_assemble():return jsonify(coverage.assemble_evaluators(body())),201
+
     @app.get("/api/coverage/scores/<id>/survivor-plan")
     def coverage_survivor_plan(id):
         value=request.args.get('variant','false')
@@ -211,8 +223,8 @@ def create_app(config=None):
 
     @app.get("/report")
     @app.get("/reports/<version>")
-    def report(version="v5.6"):
-        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6"):return jsonify(error="Report not found"),404
+    def report(version="v5.7"):
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)

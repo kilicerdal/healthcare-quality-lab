@@ -29,7 +29,13 @@ class OllamaProvider:
 
     def generate(self,model,prompt,schema):
         if model not in MODELS:raise ProviderError("Model is outside the local allowlist")
-        body={"model":model,"prompt":prompt,"format":schema,"stream":False,"options":SETTINGS}
+        # The installed 27B runtime rejects constrained format with HTTP 501.
+        # Select this mode explicitly by model; never retry silently or swap models.
+        mode="prompt-json-validated" if model=="qwen3.5:27b" else "schema-constrained"
+        body={"model":model,"prompt":prompt,"stream":False,"options":SETTINGS}
+        if mode=="prompt-json-validated":
+            body.update(think=False,prompt=prompt+"\nOUTPUT JSON SCHEMA (return exactly one matching JSON object, no markdown): "+json.dumps(schema))
+        else:body["format"]=schema
         request=urllib.request.Request(ENDPOINT+"/api/generate",data=json.dumps(body).encode(),headers={"Content-Type":"application/json"})
         started=time.monotonic()
         try:
@@ -43,6 +49,6 @@ class OllamaProvider:
             raise ProviderError("Model output incomplete or token budget exhausted",envelope)
         text=envelope.get("response")
         if not isinstance(text,str):raise ProviderError("Model envelope has no response text",envelope)
-        return {"text":text,"raw_envelope":envelope,"model":envelope.get("model",model),
+        return {"text":text,"output_mode":mode,"raw_envelope":envelope,"model":envelope.get("model",model),
                 "latency_ms":round((time.monotonic()-started)*1000,2),"input_tokens":envelope.get("prompt_eval_count"),
                 "output_tokens":envelope.get("eval_count"),"settings":dict(SETTINGS),"endpoint":ENDPOINT+"/api/generate"}

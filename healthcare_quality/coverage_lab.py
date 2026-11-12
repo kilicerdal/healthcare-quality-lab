@@ -13,7 +13,7 @@ from healthcare_quality.ai_studio import ExperimentStore,StudioError,checked_cas
 from healthcare_quality.ai_runner import run_cases
 from healthcare_quality.evaluation import signature
 from healthcare_quality.assertion_quality import policy_fingerprint
-from healthcare_quality import reference,operations
+from healthcare_quality import reference,operations,focused
 from tools.fingerprints import source_hash
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -105,7 +105,7 @@ class CoverageLab:
             except StudioError:approved=set()
             for checked in checked_cases([p['case'] for p in record['proposals']],record['source_ids']):
                 c=checked['case'];id=c.get('id') if isinstance(c,dict) and isinstance(c.get('id'),str) else 'malformed'
-                items.append({**checked,'key':record['id']+':'+id,'origin':record.get('expectation_origin','original_ai'),'eligible':checked['valid'] and checked['hash'] in approved,'experiment_id':record['id'],'revision':record['revision']})
+                items.append({**checked,'key':record['id']+':'+id,'origin':record.get('expectation_origin','original_ai'),'eligible':checked['valid'] and checked['hash'] in approved,'experiment_id':record['id'],'revision':record['revision'],'focused':bool(record.get('focused_source'))})
         return items
 
     def dashboard(self):
@@ -132,7 +132,7 @@ class CoverageLab:
         attempt=next((r for r in self.records() if r['coverage_kind']=='defect_score'),None)
         result={'recorded_at':now(),**fingerprints(),'scope':SCOPE,'inventory_window':'All 32 explicit authored cases plus the latest 100 Studio experiments; older records are not scanned.',
                 'counts':{'cases':len(items),'authored':sum(i['origin']=='authored' for i in items),'eligible':len(eligible),'unique_scenario_assertions':len(unique),'proposals_or_stale':sum(not i['eligible'] for i in items),'missing_gaps':sum(g['status']=='missing' for g in gaps)},
-                'latest_attempt':{'id':attempt['id'],'state':attempt['state']} if attempt else None,'latest_score':observed,'rules':rules,'gaps':gaps,'duplicates':duplicates(items),'cases':items,'profiles':PROFILES}
+                'focused_metrics':self.focused_metrics(),'latest_attempt':{'id':attempt['id'],'state':attempt['state']} if attempt else None,'latest_score':observed,'rules':rules,'gaps':gaps,'duplicates':duplicates(items),'cases':items,'profiles':PROFILES}
         result['snapshot_hash']=digest({k:v for k,v in result.items() if k not in ('recorded_at','snapshot_hash')})
         return result
 
@@ -155,6 +155,58 @@ class CoverageLab:
         if record.get('coverage_kind')=='score_comparison':
             record['approval_snapshots_current']=all(self.record(record[k]).get('approval_snapshots_current',False) for k in ('before_id','after_id'))
         return record
+
+    def focused_metrics(self):
+        with self.studio.store.transaction() as db:
+            operations.recover(db)
+            records=[json_loads(r['record_json']) for r in db.execute('SELECT record_json FROM ai_experiments ORDER BY created_at DESC LIMIT 100')]
+        return focused.metrics(records)
+
+    def close_gap(self,id,body):
+        if not isinstance(body,dict) or set(body)!={'model'} or body['model'] not in MODELS:raise StudioError('INVALID_REQUEST','Provide an allowed local model')
+        if id not in ('invalid-zero','payment-replay'):raise StudioError('INVALID_TARGET','Select the zero-amount or paid-replay scenario')
+        snapshot=self.dashboard();gap=next(g for g in snapshot['gaps'] if g['id']==id)
+        if gap['status']!='missing':raise StudioError('GAP_REPRESENTED','This scenario is already represented by eligible cases',409)
+        provenance={'gap_source':{'gap_id':id,'dashboard_snapshot_hash':snapshot['snapshot_hash'],'mode':'explicit_gap_target'}}
+        if id=='invalid-zero':return self.studio.generate_focused({'data':{'plan_id':'commercial_ppo','service':'medical','amount_cents':0},'model':body['model']},_provenance=provenance)
+        claim='REPLAY-571';steps=[{'action':'submit','actor':'customer-m100','data':{'claim_id':claim,'member_id':'M100','service':'medical','amount_cents':134567}},
+            {'action':'transition','actor':'adjuster-demo','data':{'claim_id':claim,'target':'approved'}},
+            {'action':'transition','actor':'finance-demo','data':{'claim_id':claim,'target':'paid'}},
+            {'action':'transition','actor':'finance-demo','data':{'claim_id':claim,'target':'paid'}},
+            {'action':'read','actor':'customer-m100','data':{'claim_id':claim}}]
+        rules=['HC-007','WF-002','WF-003','WF-004','WF-005']
+        provenance['input_plan']={'id':id,'steps':steps,'source_ids':rules}
+        brief='Create exactly one case with these exact ordered actions, actors and inputs: '+json.dumps(steps)+'. Cite exactly all selected rules. Step 1 returns 201 submitted, revision/events 1, payment null. Step 2 approves with revision/events 2 and null payment. Step 3 pays with revision/events 3 and payment equal to stored payout. Step 4 is a PAID replay: 409 INVALID_TRANSITION; no state or money fields on its error response. Step 5 owner reads unchanged paid revision/events 3 and the original payment. Assert all six success fields on steps 1,2,3,5. Calculate integer payout from written deductible and cap; no repeated payment, extra event or revision.'
+        r=self.studio.generate({'requirement':brief,'source_ids':rules,'model':body['model'],'strategy':'assertions-v2','count':1},_provenance=provenance)
+        return self.studio.view(r['id'])
+
+    def assemble_evaluators(self,body):
+        from healthcare_quality.ai_schema import validate_cases
+        from healthcare_quality import __version__
+        if not isinstance(body,dict) or set(body)!={'sources','reviewer_label','review_note'} or not isinstance(body['sources'],list) or not 1<=len(body['sources'])<=8:raise StudioError('INVALID_REQUEST','Select 1–8 reviewed focused sources and provide reviewer label/note')
+        self.studio._reviewer(body);snapshots=[];steps=[];rules=set();assumptions=[];seen=set();origins=[];base=None
+        with self.studio.store.transaction() as db:
+            operations.recover(db)
+            for selection in body['sources']:
+                if not isinstance(selection,dict) or set(selection)!={'id','expected_revision'} or not isinstance(selection['id'],str) or selection['id'] in seen:raise StudioError('INVALID_REQUEST','Select unique focused experiment IDs with revisions')
+                seen.add(selection['id']);r=self.studio.store.load(db,selection['id']);self.studio._revision(r,selection);cases=self.studio._approved_cases(r)
+                if not r.get('focused_source') or len(cases)!=1 or len(cases[0]['steps'])!=1:raise StudioError('INVALID_ASSEMBLY','Assembly accepts reviewed single-request focused evaluators only',409)
+                case=cases[0];fingerprint=(scenario_hash(case),assertion_hash(case))
+                if any(s['scenario_assertion']==list(fingerprint) for s in snapshots):raise StudioError('DUPLICATE_ASSEMBLY','Equivalent input/assertion sources cannot inflate an assembly',409)
+                steps.extend(deepcopy(case['steps']));rules.update(case['rule_ids']);origins.append(r.get('expectation_origin','original_ai'));base=base or deepcopy(r)
+                for assumption in case['assumptions']:
+                    if assumption not in assumptions:assumptions.append(assumption)
+                snapshots.append({'id':r['id'],'revision':r['revision'],'case':deepcopy(case),'approval':deepcopy(r['approval']),'origin':origins[-1],'focused_source':deepcopy(r['focused_source']),'assessment':deepcopy(r['generation_assessment']),'scenario_assertion':list(fingerprint)})
+            if len(rules)>6 or len(assumptions)>4:raise StudioError('ASSEMBLY_BUDGET','An assembled DSL case supports at most six source rules and four distinct assumptions; split this selection',409)
+            case={'id':'AI-ASSEMBLED-'+uuid4().hex[:12],'title':'Assembled reviewed focused evaluator suite','rule_ids':sorted(rules),'rationale':'Exact input/expectation copies from individually reviewed focused model drafts; no recalculation or model request during assembly.','assumptions':assumptions,'steps':steps}
+            checked=checked_cases([case],sorted(rules))
+            if not checked[0]['review_ready']:raise StudioError('INVALID_ASSEMBLY','Copied assembly does not satisfy current case/reference checks',409)
+            for key in ('focused_source','generation_assessment','focused_validation','survivor_source','gap_source','input_plan','correction_of','reference_assisted_of','retry_of','correction_snapshot','correction_attempt','correction_root_id','operation','interruption','pending_run','approval_matches_focus','survivor_sequence_matches','input_plan_matches','assembly_sources','assembled_from'):base.pop(key,None)
+            origin='assembled_ai' if all(o=='original_ai' for o in origins) else 'assembled_ai_corrected' if all(o in ('original_ai','reference_guided_ai') for o in origins) else 'assembled_assisted'
+            base.update(id=uuid4().hex,created_at=now(),version=__version__,requirement='Explicit assembly of reviewed focused evaluators',source_ids=sorted(rules),source_rules=[ALL_RULES[id] for id in sorted(rules)],requested_count=1,state='proposed',revision=1,proposals=checked,approved_ids=[],approval=None,runs=[],raw_generation=None,generation_error=None,generation_schema_issues=[],generation_schema_version='focused-assembly-v1',generation_schema_hash=None,expectation_origin=origin,assembly_sources=snapshots,
+                        prompt='No model request. Frozen reviewed input and expectation snapshots copied verbatim.',prompt_hash=digest(snapshots),history=[{'event':'focused_sources_assembled','at':now(),'reviewer_label':body['reviewer_label'],'note':body['review_note'],'scope':'Assembly is not approval. Review this new suite before execution.'}])
+            db.execute('INSERT INTO ai_experiments VALUES(?,?,?)',(base['id'],base['created_at'],json.dumps(base,allow_nan=False)))
+        return self.studio.view(base['id'])
 
     def survivor_plan(self,id,variant=False):
         from healthcare_quality.survivors import generation_groups,VERSION

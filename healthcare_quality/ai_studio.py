@@ -15,7 +15,7 @@ from healthcare_quality.ai_schema import ALL_RULES,MODELS,DSL_VERSION,SUITE_SCHE
 from healthcare_quality.ai_runner import run_cases
 from healthcare_quality.ollama_provider import OllamaProvider,ProviderError,SETTINGS
 from tools.fingerprints import source_hash
-from healthcare_quality import operations, reference
+from healthcare_quality import operations, reference, focused
 from healthcare_quality.assertion_quality import POLICY,policy_fingerprint
 
 PROMPTS={
@@ -151,13 +151,14 @@ class StudioService:
         self.generation_lock=threading.BoundedSemaphore(1)
         with self.store.transaction() as db:operations.recover(db)
 
-    def generate(self,request,*,_retry=None,_evaluation_profile=None,_correction=None,_provenance=None):
+    def generate(self,request,*,_retry=None,_evaluation_profile=None,_correction=None,_provenance=None,_focused=None):
         if not isinstance(request,dict) or set(request)!={"requirement","source_ids","model","strategy","count"}:
             raise StudioError("INVALID_REQUEST","Provide requirement, source_ids, model, strategy and count only")
         requirement,sources=request["requirement"],request["source_ids"]
         if not isinstance(requirement,str) or not 5<=len(requirement.strip())<=4000:raise StudioError("INVALID_REQUEST","Requirement must contain 5–4000 characters")
         if not isinstance(sources,list) or not 1<=len(sources)<=6 or any(type(s) is not str for s in sources) or len(set(sources))!=len(sources) or not set(sources)<=set(ALL_RULES):raise StudioError("INVALID_REQUEST","Select 1–6 unique known source rules")
         if not isinstance(request["model"],str) or not isinstance(request["strategy"],str) or request["model"] not in MODELS or request["strategy"] not in PROMPTS or type(request["count"]) is not int or not 1<=request["count"]<=4:raise StudioError("INVALID_REQUEST","Unsupported model, strategy or case count")
+        if _focused is not None and not focused.current(_focused):raise StudioError("STALE_FOCUS","Focused context changed; generate a fresh proposal",409)
         if not self.generation_lock.acquire(blocking=False):raise StudioError("MODEL_BUSY","Another generation is active; wait for it to finish",429)
         try:
             prompt=build_prompt(requirement,sources,request["strategy"],request["count"])
@@ -167,7 +168,7 @@ class StudioService:
                 if _evaluation_profile.get("kind")!="frozen-baseline-v51":raise ValueError("Unknown internal evaluation profile")
                 prompt=_evaluation_profile["prompt"];format_schema=_evaluation_profile["schema"];schema_version="historical-loose-format-v1"
 
-            target_group=(_provenance or {}).get("survivor_source",{}).get("group")
+            target_group=(_provenance or {}).get("input_plan") or (_provenance or {}).get("survivor_source",{}).get("group")
             if target_group and not _correction:
                 case_schema=format_schema["properties"]["cases"]["items"]
                 step_variants=case_schema["properties"]["steps"]["items"]["oneOf"]
@@ -179,7 +180,7 @@ class StudioService:
                 case_schema["properties"]["rule_ids"]={"const":target_group["source_ids"]}
                 case_schema["properties"]["steps"]={"type":"array","items":{"anyOf":planned},"minItems":len(planned),"maxItems":len(planned)}
                 Draft202012Validator.check_schema(format_schema)
-                schema_version="survivor-inputs-v2"
+                schema_version="planned-inputs-v1" if (_provenance or {}).get("input_plan") else "survivor-inputs-v2"
 
             if _correction:
                 # Freeze every non-expectation field in the provider grammar too.
@@ -202,12 +203,16 @@ class StudioService:
                 schema_version="frozen-expectations-correction-v1"
                 prompt=correction_prompt(_correction)
                 schema_version=CORRECTION_VERSION
+            if _focused is not None:
+                prompt,format_schema=focused.prepare(_focused,format_schema,_correction)
+                schema_version=focused.VERSION+("-correction" if _correction else "")
             record={"id":uuid4().hex,"version":__version__,"created_at":now(),"requirement":requirement,"source_ids":sources,
                     "source_rules":[ALL_RULES[id] for id in sources],"model":request["model"],"strategy":request["strategy"],"requested_count":request["count"],
                     "prompt":prompt,"prompt_hash":digest(prompt),"settings":dict(SETTINGS),"dsl_version":DSL_VERSION,"contract_fingerprint":contract_fingerprint(),
                     "generation_schema_version":schema_version,"generation_schema_hash":digest(format_schema),"generation_schema_issues":[],"assertion_policy_fingerprint":policy_fingerprint(),"state":"generating","revision":1,"raw_generation":None,"generation_error":None,"proposals":[],"approved_ids":[],"approval":None,"history":[],"runs":[]}
+            if _focused is not None:record.update(focused_source=deepcopy(_focused),generation_assessment=None,focused_validation=None)
             if _provenance is not None:
-                if not isinstance(_provenance,dict) or set(_provenance)-{"gap_source","survivor_source"}:raise ValueError("Unsupported internal generation provenance")
+                if not isinstance(_provenance,dict) or set(_provenance)-{"gap_source","survivor_source","input_plan"}:raise ValueError("Unsupported internal generation provenance")
                 record.update(deepcopy(_provenance))
             with self.store.transaction() as db:
                 operations.recover(db)
@@ -216,7 +221,7 @@ class StudioService:
                     if parent["state"]!="interrupted" or parent.get("interruption",{}).get("kind")!="generation":raise StudioError("INVALID_STATE","Only interrupted generation can be retried")
                     parent["revision"]+=1
                     parent["history"].append({"event":"generation_retry_requested","at":now(),"revision":parent["revision"],"child_experiment_id":record["id"],"reviewer_label":_retry["reviewer_label"],"note":_retry["review_note"]})
-                    for provenance_key in ("gap_source","survivor_source"):
+                    for provenance_key in ("gap_source","survivor_source","input_plan"):
                         if provenance_key in parent:record[provenance_key]=deepcopy(parent[provenance_key])
                     self.store.save(db,parent);record["retry_of"]=parent["id"]
                 if _correction:
@@ -227,7 +232,7 @@ class StudioService:
                     record["correction_root_id"]=budget["root_id"]
                     record["correction_attempt"]=budget["used"]+1
                     record["expectation_origin"]="reference_guided_ai"
-                    for provenance_key in ("gap_source","survivor_source"):
+                    for provenance_key in ("gap_source","survivor_source","input_plan"):
                         if provenance_key in parent:record[provenance_key]=deepcopy(parent[provenance_key])
                     record["correction_of"]=parent["id"]
                     record["correction_snapshot"]=deepcopy(_correction)
@@ -242,11 +247,18 @@ class StudioService:
                     generated=self.provider.generate(request["model"],prompt,format_schema)
                     record["raw_generation"]=generated
                     output=json_loads(generated["text"])
+                    if _focused is not None:
+                        if not isinstance(output,dict) or set(output)!={"assessment","cases"}:raise ValueError("Focused output requires assessment and cases only")
+                        record["generation_assessment"]=deepcopy(output["assessment"])
+                        output={"cases":output["cases"]}
                     if not isinstance(output,dict) or set(output)!={"cases"} or not isinstance(output["cases"],list) or len(output["cases"])!=request["count"]:
                         raise ValueError("Response must contain exactly the requested number of cases")
-                    record["generation_schema_issues"]=[error.message[:500] for error in Draft202012Validator(format_schema).iter_errors(output)][:8]
+                    record["generation_schema_issues"]=[error.message[:500] for error in Draft202012Validator(format_schema).iter_errors({**output,"assessment":record["generation_assessment"]} if _focused is not None else output)][:8]
                     if _correction and reference.shape(output["cases"])!=reference.shape(_correction["cases"]):raise ValueError("Correction changed frozen scenario fields; only expect objects may change")
                     record["proposals"]=checked_cases(output["cases"],sources)
+                    if _focused is not None:
+                        record["focused_validation"]=focused.check(_focused,record["generation_assessment"],output["cases"])
+                        for proposal in record["proposals"]:proposal["review_ready"]=proposal["review_ready"] and record["focused_validation"]["status"]=="matched"
                     record["state"]="proposed"
                 except Exception as error:
                     record["state"]="generation_failed"
@@ -260,6 +272,8 @@ class StudioService:
                     try:operations.finish(db,current,token)
                     except operations.LeaseLost as error:raise StudioError("OPERATION_LOST",str(error),409) from error
                     for key in ("state","raw_generation","generation_error","proposals","history","generation_schema_issues"):current[key]=record[key]
+                    if _focused is not None:
+                        for key in ("generation_assessment","focused_validation"):current[key]=record[key]
                     self.store.save(db,current)
             return current
         finally:self.generation_lock.release()
@@ -271,6 +285,13 @@ class StudioService:
         if record.get("survivor_source"):
             from healthcare_quality.survivors import group_match
             record["survivor_sequence_matches"]=bool(len(record["proposals"])==1 and record["proposals"][0]["valid"] and group_match(record["survivor_source"]["group"],record["proposals"][0]["case"]))
+        if record.get("focused_source"):
+            record["focused_validation"]=focused.check(record["focused_source"],record.get("generation_assessment"),[p["case"] for p in record["proposals"]])
+            for p in record["proposals"]:p["review_ready"]=p["review_ready"] and record["focused_validation"]["status"]=="matched"
+            record["approval_matches_focus"]=bool(record["approval"] and record["approval"].get("focused_hash")==focused.approval_hash(record))
+        if record.get("input_plan"):
+            from healthcare_quality.survivors import group_match
+            record["input_plan_matches"]=bool(len(record["proposals"])==1 and record["proposals"][0]["valid"] and group_match(record["input_plan"],record["proposals"][0]["case"]))
         record["current_reference_fingerprint"]=reference.fingerprint()
         record["approval_matches_reference"]=bool(record["approval"] and record["approval"].get("reference_fingerprint")==reference.fingerprint())
         record["current_assertion_policy_fingerprint"]=policy_fingerprint()
@@ -285,7 +306,7 @@ class StudioService:
         if parent["contract_fingerprint"]!=contract_fingerprint():raise StudioError("STALE_CONTRACT","Generate a new proposal under the current contract",409)
         cases=[p["case"] for p in parent["proposals"]]
         request={"requirement":parent["requirement"],"source_ids":parent["source_ids"],"model":parent["model"],"strategy":parent["strategy"],"count":len(cases)}
-        return self.generate(request,_correction={"id":id,**body,"cases":cases,"reference":[p["reference"] for p in parent["proposals"]],"reference_fingerprint":reference.fingerprint()})
+        return self.generate(request,_correction={"id":id,**body,"cases":cases,"reference":[p["reference"] for p in parent["proposals"]],"reference_fingerprint":reference.fingerprint(),"assessment_feedback":parent.get("focused_validation")},_focused=parent.get("focused_source"))
 
     @staticmethod
     def _reference_preview(record):
@@ -302,9 +323,15 @@ class StudioService:
                 if step["expect"]!=answer["expected"]:
                     changes.append({"case_id":case["id"],"step":answer["step"],"before":deepcopy(step["expect"]),"after":deepcopy(answer["expected"]),"explanation":answer["derivation"]})
                 step["expect"]=deepcopy(answer["expected"])
+        assessment=None
+        if record.get("focused_source"):
+            if not focused.current(record["focused_source"]):raise StudioError("STALE_FOCUS","Generate a fresh focused proposal",409)
+            assessment=focused.expected_assessment(record["focused_source"])
+            if digest(record.get("generation_assessment"))!=digest(assessment):changes.append({"case_id":cases[0]["id"],"step":"assessment","before":record.get("generation_assessment"),"after":assessment,"explanation":"Independent reference calculation summary; explicitly reference-assisted, not an AI repair."})
         if not changes:raise StudioError("NO_CORRECTIONS","Expectations already match the complete reference observations",409)
         if any(not p["review_ready"] for p in checked_cases(cases,record["source_ids"])):raise StudioError("REFERENCE_UNAVAILABLE","Expectation replacement cannot repair missing actions or other case issues",409)
         preview={"experiment_id":record["id"],"expected_revision":record["revision"],"reference_fingerprint":reference.fingerprint(),"cases":cases,"changes":changes,"origin":"reviewer_confirmed_reference"}
+        if assessment is not None:preview["assessment"]=assessment
         preview["preview_hash"]=digest(preview)
         return preview
 
@@ -326,12 +353,22 @@ class StudioService:
                          expectation_origin="reviewer_confirmed_reference",reference_assisted_of=id,correction_root_id=budget["root_id"],reference_application=deepcopy(preview),
                          prompt="No model request. Reviewer-confirmed independent reference replacements.",prompt_hash=digest(preview),generation_schema_version="reference-assisted-v1",generation_schema_hash=None,
                          history=[{"event":"reference_replacements_confirmed","at":now(),"reviewer_label":body["reviewer_label"],"note":body["review_note"],"preview_hash":preview["preview_hash"],"reference_fingerprint":preview["reference_fingerprint"]}])
+            if child.get("focused_source"):
+                child["generation_assessment"]=deepcopy(preview["assessment"])
+                child["focused_validation"]=focused.check(child["focused_source"],child["generation_assessment"],preview["cases"])
             parent["revision"]+=1
             parent["history"].append({"event":"reference_assistance_requested","at":now(),"revision":parent["revision"],"child_experiment_id":child["id"],"prior_approval":parent["approval"],"reviewer_label":body["reviewer_label"],"note":body["review_note"]})
             parent.update(approval=None,approved_ids=[],state="proposed")
             self.store.save(db,parent)
             db.execute("INSERT INTO ai_experiments VALUES(?,?,?)",(child["id"],child["created_at"],json.dumps(child,allow_nan=False)))
         return child
+
+    def generate_focused(self,body,*,_provenance=None):
+        if not isinstance(body,dict) or set(body)!={"data","model"} or body["model"] not in MODELS:raise StudioError("INVALID_REQUEST","Provide one evaluator data object and allowed local model")
+        try:context=focused.context_for(body["data"])
+        except (ValueError,TypeError,KeyError) as error:raise StudioError("INVALID_REQUEST",str(error)) from error
+        request={"requirement":"Create one focused stateless evaluation for these exact inputs: "+json.dumps(context["data"]),"source_ids":context["source_ids"],"model":body["model"],"strategy":"assertions-v2","count":1}
+        return self.generate(request,_focused=context,_provenance=_provenance)
 
     def recover_interrupted(self):
         with self.store.transaction() as db:return operations.recover(db)
@@ -344,8 +381,8 @@ class StudioService:
         if parent["state"]!="interrupted" or parent.get("interruption",{}).get("kind")!="generation":raise StudioError("INVALID_STATE","Only interrupted generation can be retried")
         request={"requirement":parent["requirement"],"source_ids":parent["source_ids"],"model":parent["model"],"strategy":parent["strategy"],"count":parent["requested_count"]}
         if parent.get("correction_snapshot"):
-            return self.generate(request,_correction={**parent["correction_snapshot"],"id":id,**body})
-        return self.generate(request,_retry={"id":id,**body},_provenance={k:deepcopy(parent[k]) for k in ("gap_source","survivor_source") if k in parent})
+            return self.generate(request,_correction={**parent["correction_snapshot"],"id":id,**body},_focused=parent.get("focused_source"))
+        return self.generate(request,_retry={"id":id,**body},_provenance={k:deepcopy(parent[k]) for k in ("gap_source","survivor_source","input_plan") if k in parent},_focused=parent.get("focused_source"))
 
     @staticmethod
     def _revision(record,body):
@@ -396,9 +433,11 @@ class StudioService:
             incomplete=[id for id in ids if not valid[id]["assertions_complete"]]
             if incomplete:raise StudioError("INCOMPLETE_ASSERTIONS","Complete required payout, payment and history assertions before approval: "+", ".join(incomplete),409)
             if any(valid[id]["reference"]["status"]!="matched" for id in ids):raise StudioError("REFERENCE_MISMATCH","Expected values disagree with the independent reference or are unsupported; correct and review again",409)
+            if ids and record.get("focused_source") and focused.check(record["focused_source"],record.get("generation_assessment"),[p["case"] for p in checked])["status"]!="matched":raise StudioError("FOCUSED_CALCULATION_MISMATCH","Correct the focused calculation and fixed input before review",409)
             record["revision"]+=1
             record["proposals"]=checked;record["approved_ids"]=ids
             record["approval"]={"revision":record["revision"],"at":now(),"reviewer_label":body["reviewer_label"],"note":body["review_note"],"expectations_checked":True,"hashes":{id:valid[id]["hash"] for id in ids},"assertion_policy_fingerprint":policy_fingerprint(),"reference_fingerprint":reference.fingerprint(),"identity_mode":"Local attestation label, not authenticated human identity"}
+            if record.get("focused_source"):record["approval"]["focused_hash"]=focused.approval_hash(record)
             record["state"]="approved" if ids else "reviewed_no_approval"
             record["history"].append({"event":record["state"],**deepcopy(record["approval"])})
             self.store.save(db,record);return record
@@ -414,6 +453,9 @@ class StudioService:
         if record["approval"].get("assertion_policy_fingerprint")!=policy_fingerprint():raise StudioError("STALE_ASSERTION_POLICY","Review again under the current assertion policy",409)
         if record["approval"].get("reference_fingerprint")!=reference.fingerprint():raise StudioError("STALE_REFERENCE","Review again under the current independent reference",409)
         if any(p["reference"]["status"]!="matched" for p in selected):raise StudioError("REFERENCE_MISMATCH","Independent reference disagrees with approved expectations",409)
+        if record.get("focused_source"):
+            if record["approval"].get("focused_hash")!=focused.approval_hash(record):raise StudioError("STALE_FOCUSED_APPROVAL","Focused context or calculation changed; review again",409)
+            if focused.check(record["focused_source"],record.get("generation_assessment"),[p["case"] for p in selected])["status"]!="matched":raise StudioError("FOCUSED_CALCULATION_MISMATCH","Focused calculation is incorrect or stale",409)
         return [deepcopy(p["case"]) for p in selected]
 
     def export_pytest(self,id):
@@ -423,13 +465,13 @@ class StudioService:
             record=self.store.load(db,id)
             self._revision(record,{"expected_revision":record["revision"]})
             cases=self._approved_cases(record)
-            snapshot={"experiment_id":id,"cases":cases,"source_ids":record["source_ids"],"approval":record["approval"],"contract_fingerprint":record["contract_fingerprint"],"expectation_origin":record.get("expectation_origin","original_ai"),"correction_of":record.get("correction_of"),"reference_assisted_of":record.get("reference_assisted_of")}
+            snapshot={"experiment_id":id,"cases":cases,"source_ids":record["source_ids"],"approval":record["approval"],"contract_fingerprint":record["contract_fingerprint"],"expectation_origin":record.get("expectation_origin","original_ai"),"correction_of":record.get("correction_of"),"reference_assisted_of":record.get("reference_assisted_of"),"focused_source":record.get("focused_source"),"generation_assessment":record.get("generation_assessment"),"assembly_sources":deepcopy(record.get("assembly_sources"))}
         literal=repr(json.dumps(snapshot,sort_keys=True,allow_nan=False))
         return ('"""Trusted pytest wrapper around explicitly reviewed case data. SNAPSHOT records expectation provenance; no generated code is executed."""\n'
                 'import json\nimport pytest\n'
                 'from healthcare_quality.ai_schema import contract_fingerprint, digest, validate_cases\n'
                 'from healthcare_quality.ai_runner import run_cases\n'
-                'from healthcare_quality import reference\n'
+                'from healthcare_quality import reference, focused\n'
                 'from healthcare_quality.assertion_quality import assess, policy_fingerprint\n'
                 'SNAPSHOT = json.loads('+literal+')\n'
                 'pytestmark = [pytest.mark.ai, pytest.mark.regression]\n'
@@ -442,6 +484,9 @@ class StudioService:
                 '    assert assess(case)["complete"], "Incomplete business assertions"\n'
                 '    assert SNAPSHOT["approval"].get("reference_fingerprint") == reference.fingerprint(), "Stale independent reference"\n'
                 '    assert reference.check(case)["status"] == "matched", "Reference mismatch"\n'
+                '    if SNAPSHOT.get("focused_source"):\n'
+                '        assert focused.check(SNAPSHOT["focused_source"], SNAPSHOT.get("generation_assessment"), [case])["status"] == "matched"\n'
+                '        assert SNAPSHOT["approval"].get("focused_hash") == focused.approval_hash(SNAPSHOT)\n'
                 '    result = run_cases([case])\n'
                 '    assert result["failed"] == 0, json.dumps(result, indent=2)\n')
 
@@ -452,7 +497,7 @@ class StudioService:
             operations.recover(db)
             record=self.store.load(db,id);self._revision(record,body)
             cases=self._approved_cases(record)
-            run={"id":uuid4().hex,"experiment_id":id,"at":now(),"revision":record["revision"],"approval":deepcopy(record["approval"]),"assertion_policy_fingerprint":policy_fingerprint(),"approved_cases":cases,"contract_fingerprint":record["contract_fingerprint"],"model":record["model"],"prompt_hash":record["prompt_hash"],"expectation_origin":record.get("expectation_origin","original_ai"),"correction_of":record.get("correction_of"),"reference_assisted_of":record.get("reference_assisted_of")}
+            run={"id":uuid4().hex,"experiment_id":id,"at":now(),"revision":record["revision"],"approval":deepcopy(record["approval"]),"assertion_policy_fingerprint":policy_fingerprint(),"approved_cases":cases,"contract_fingerprint":record["contract_fingerprint"],"model":record["model"],"prompt_hash":record["prompt_hash"],"expectation_origin":record.get("expectation_origin","original_ai"),"correction_of":record.get("correction_of"),"reference_assisted_of":record.get("reference_assisted_of"),"focused_source":record.get("focused_source"),"generation_assessment":record.get("generation_assessment"),"assembly_sources":deepcopy(record.get("assembly_sources"))}
             record["state"]="running";record["pending_run"]=deepcopy(run)
             token=operations.start(db,record,"execution",self.lease_seconds)
             self.store.save(db,record)

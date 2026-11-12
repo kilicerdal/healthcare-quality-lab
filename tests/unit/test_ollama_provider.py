@@ -37,3 +37,14 @@ def test_network_error_and_unallowed_model_do_not_fallback(monkeypatch):
 def test_oversized_response_is_rejected(monkeypatch):
     monkeypatch.setattr('urllib.request.urlopen',lambda *a,**k:io.BytesIO(b'x'*262145))
     with pytest.raises(ProviderError,match='256 KiB'):OllamaProvider().generate('qwen2.5:3b','prompt',{})
+
+
+def test_installed_larger_model_disables_hidden_thinking_without_changing_budgets(monkeypatch):
+    def respond(request,timeout):
+        body=json.loads(request.data)
+        assert body['model']=='qwen3.5:27b' and body['think'] is False
+        assert 'format' not in body and 'OUTPUT JSON SCHEMA' in body['prompt']
+        assert body['options']['num_predict']==2600 and timeout==90
+        return io.BytesIO(json.dumps({'done':True,'response':'{}'}).encode())
+    monkeypatch.setattr('urllib.request.urlopen',respond)
+    assert OllamaProvider().generate('qwen3.5:27b','prompt',{})['text']=='{}'

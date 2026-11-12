@@ -11,7 +11,7 @@ from healthcare_quality.workflow import WORKFLOW_RULES,WORKFLOW_HASH
 
 DSL_VERSION="1.0"
 MAX_CASES,MAX_STEPS=4,8
-MODELS=("qwen2.5-coder:3b","qwen2.5:3b")
+MODELS=("qwen2.5-coder:3b","qwen2.5:3b","qwen3.5:27b")
 STR={"type":"string","maxLength":80}
 SCALAR={"type":["string","integer","number","boolean","null"],"maxLength":80,"minimum":-100000000,"maximum":100000000}
 DATA_PROPERTIES={key:deepcopy(STR) for key in ("plan_id","service","claim_id","member_id","target")}

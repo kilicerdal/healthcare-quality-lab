@@ -27,3 +27,17 @@ def test_readiness_checks_coverage_store(client,app):
     assert client.get('/api/ready').json['storage']['coverage']=='ready'
     with app.extensions['coverage_lab'].store.transaction() as db:db.execute('DROP TABLE ai_experiments')
     assert client.get('/api/ready').status_code==503
+
+
+def test_focused_api_config_and_generation(app):
+    from tests.unit.test_focused_v57 import output
+    client=app.test_client();studio=app.extensions['studio'];studio.provider=FixtureProvider(output())
+    assert 'commercial_ppo' in client.get('/api/ai/focused-evaluator/config').json['plans']
+    r=client.post('/api/ai/focused-evaluator',json={'data':output()['cases'][0]['steps'][0]['data'],'model':'qwen2.5-coder:3b'})
+    assert r.status_code==201 and r.json['focused_validation']['status']=='matched'
+    assert r.json['approval'] is None
+    assert client.post('/api/coverage/assemble-evaluators',json={}).status_code==400
+
+@pytest.mark.parametrize('id',['invented','invalid-zero','payment-replay'])
+def test_gap_generation_rejects_unknown_model(client,id):
+    assert client.post('/api/coverage/gaps/'+id+'/generate',json={'model':'cloud'}).status_code==400

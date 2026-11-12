@@ -23,7 +23,7 @@ def test_evaluate_covered_claim_in_browser(page,live_url):
     expect(page.locator(".trace-row")).to_have_count(7)
     (ROOT/"artifacts").mkdir(exist_ok=True)
     page.evaluate("window.scrollTo(0, 0)")
-    page.screenshot(path=str(ROOT/"artifacts/v5.6-workspace.png"),full_page=True)
+    page.screenshot(path=str(ROOT/"artifacts/v5.7-workspace.png"),full_page=True)
 
 
 @pytest.mark.sanity
@@ -90,7 +90,7 @@ def test_mobile_layout_and_evaluation(page,live_url):
     assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
     (ROOT/"artifacts").mkdir(exist_ok=True)
     page.evaluate("window.scrollTo(0, 0)")
-    page.screenshot(path=str(ROOT/"artifacts/v5.6-mobile.png"),full_page=True)
+    page.screenshot(path=str(ROOT/"artifacts/v5.7-mobile.png"),full_page=True)
 
 
 def test_report_link_opens_the_local_engineering_report(page,live_url):
@@ -98,5 +98,5 @@ def test_report_link_opens_the_local_engineering_report(page,live_url):
     with page.expect_popup() as popup_info:
         page.get_by_role("link",name="Engineering report",exact=False).click()
     report=popup_info.value
-    expect(report).to_have_title("Healthcare Quality Lab V5.6 Engineering Report")
-    expect(report.get_by_role("heading",level=1)).to_have_text("Healthcare Quality Lab V5.6 Engineering Report")
+    expect(report).to_have_title("Healthcare Quality Lab V5.7 Engineering Report")
+    expect(report.get_by_role("heading",level=1)).to_have_text("Healthcare Quality Lab V5.7 Engineering Report")

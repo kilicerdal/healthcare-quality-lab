@@ -1,0 +1,291 @@
+{
+  "scope": "Frozen before V5.7 live inference. Fourteen prior development inputs plus six explicit boundaries; literal expectations are not supplied to the model. Not blind holdouts.",
+  "cases": [
+    {
+      "id": "core-evaluator-1",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 112345,
+        "active": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "INACTIVE_POLICY",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "core-evaluator-2",
+      "data": {
+        "plan_id": "medicare_b",
+        "service": "dental",
+        "amount_cents": 112345
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "SERVICE_NOT_COVERED",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "core-evaluator-3",
+      "data": {
+        "plan_id": "commercial_hmo",
+        "service": "medical",
+        "amount_cents": 112345,
+        "in_network": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "OUT_OF_NETWORK",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "core-evaluator-4",
+      "data": {
+        "plan_id": "medicare_advantage",
+        "service": "hospital",
+        "amount_cents": 112345,
+        "authorized": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "AUTH_REQUIRED",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "core-evaluator-5",
+      "data": {
+        "plan_id": "medicare_d",
+        "service": "prescription",
+        "amount_cents": 112345,
+        "formulary": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "NON_FORMULARY",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "core-evaluator-6",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 112345
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 102345
+      }
+    },
+    {
+      "id": "core-evaluator-7",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 245678
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 200000
+      }
+    },
+    {
+      "id": "variant-evaluator-1",
+      "data": {
+        "plan_id": "medicare_b",
+        "service": "medical",
+        "amount_cents": 154321,
+        "active": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "INACTIVE_POLICY",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "variant-evaluator-2",
+      "data": {
+        "plan_id": "medicare_a",
+        "service": "dental",
+        "amount_cents": 154321
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "SERVICE_NOT_COVERED",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "variant-evaluator-3",
+      "data": {
+        "plan_id": "commercial_hmo",
+        "service": "medical",
+        "amount_cents": 154321,
+        "in_network": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "OUT_OF_NETWORK",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "variant-evaluator-4",
+      "data": {
+        "plan_id": "medicare_a",
+        "service": "skilled_nursing",
+        "amount_cents": 154321,
+        "authorized": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "AUTH_REQUIRED",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "variant-evaluator-5",
+      "data": {
+        "plan_id": "medicare_d",
+        "service": "prescription",
+        "amount_cents": 154321,
+        "formulary": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "NON_FORMULARY",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "variant-evaluator-6",
+      "data": {
+        "plan_id": "medicare_b",
+        "service": "outpatient",
+        "amount_cents": 154321
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 144321
+      }
+    },
+    {
+      "id": "variant-evaluator-7",
+      "data": {
+        "plan_id": "medicare_a",
+        "service": "hospital",
+        "amount_cents": 310777
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 200000
+      }
+    },
+    {
+      "id": "boundary-0",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 0
+      },
+      "expect": {
+        "status": 400,
+        "error": "INVALID_REQUEST"
+      }
+    },
+    {
+      "id": "boundary-10000",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 10000
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "boundary-10001",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 10001
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 1
+      }
+    },
+    {
+      "id": "boundary-7600",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 7600
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "boundary-210000",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 210000
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 200000
+      }
+    },
+    {
+      "id": "boundary-286450",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 286450
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 200000
+      }
+    }
+  ]
+}

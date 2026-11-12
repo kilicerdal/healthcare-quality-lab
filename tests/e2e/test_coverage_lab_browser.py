@@ -23,7 +23,7 @@ def test_dashboard_scores_reviewed_cases_and_exports_evidence(page,coverage_url)
     with page.expect_download() as info:page.get_by_role('button',name='Export coverage evidence JSON').click()
     r=json.loads(Path(info.value.path()).read_text());assert r['coverage_kind']=='defect_score' and r['baselines'][0]['result']['failed']==0
     assert not provider.calls
-    page.screenshot(path=str(Path(__file__).resolve().parents[2]/'artifacts/v5.6/coverage-dashboard.png'),full_page=True)
+    page.screenshot(path=str(Path(__file__).resolve().parents[2]/'artifacts/v5.7/coverage-dashboard.png'),full_page=True)
 
 def test_gap_analysis_explicit_generation_enters_unapproved_studio(page,coverage_url):
     url,provider=coverage_url;page.goto(url+'/#test-coverage');page.get_by_role('button',name='Analyze gaps with Ollama').click()
@@ -52,3 +52,15 @@ def test_malformed_saved_draft_does_not_break_browser_inventory(page,coverage_ur
     expect(page.locator('#coverage-rules')).to_contain_text('HC-007')
     expect(page.locator('#coverage-counts')).to_contain_text('34')
     assert not errors
+
+
+def test_focused_form_generates_visible_unapproved_calculation(page,coverage_url):
+    from tests.unit.test_focused_v57 import output
+    url,provider=coverage_url;provider.output=output();provider.output['cases'][0]['steps'][0]['data'].update(active=True,in_network=True,authorized=True,formulary=True);errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+    page.goto(url+'/#test-coverage')
+    expect(page.locator('#focused-plan')).to_have_value('commercial_ppo')
+    page.locator('#focused-generate').click()
+    expect(page.locator('#ai-summary')).to_contain_text('Focused calculation · matched')
+    expect(page.locator('#ai-summary')).to_contain_text('102345')
+    expect(page.locator('#ai-execute')).to_be_disabled()
+    assert len(provider.calls)==1 and not errors

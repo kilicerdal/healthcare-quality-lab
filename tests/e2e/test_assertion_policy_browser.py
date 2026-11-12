@@ -26,4 +26,4 @@ def test_browser_identifies_missing_payout_and_requires_explicit_correction_revi
     page.get_by_text('Inspect or edit case JSON',exact=True).click();editor=page.locator('.case-json');case=json.loads(editor.input_value());case['steps'][0]['expect']['payout_cents']=90000;editor.fill(json.dumps(case))
     page.get_by_role('button',name='Save correction & invalidate approval').click();expect(page.locator('.ai-approve-case')).to_be_enabled()
     page.locator('.ai-approve-case').check();page.locator('#ai-attest').check();page.locator('#ai-save-review').click();expect(page.locator('#ai-execute')).to_be_enabled();page.locator('#ai-execute').click()
-    expect(page.locator('#ai-message')).to_contain_text('Run passed');page.screenshot(path=str(ROOT/'artifacts/v5.6/assertion-checklist-browser.png'),full_page=True)
+    expect(page.locator('#ai-message')).to_contain_text('Run passed');page.screenshot(path=str(ROOT/'artifacts/v5.7/assertion-checklist-browser.png'),full_page=True)
