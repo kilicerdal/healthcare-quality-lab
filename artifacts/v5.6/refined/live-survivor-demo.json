@@ -1,0 +1,562 @@
+{
+  "state": "completed",
+  "provider": {
+    "available": true,
+    "models": [
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "allowed_models": [
+      "qwen2.5-coder:3b",
+      "qwen2.5:3b"
+    ],
+    "endpoint": "http://127.0.0.1:11434",
+    "mode": "local Ollama only"
+  },
+  "baseline_score_id": "32581be38e3e45fabab64e282341fa80",
+  "baseline_detected": 2,
+  "applicable": 12,
+  "frozen_plans": {
+    "core": {
+      "score_id": "32581be38e3e45fabab64e282341fa80",
+      "score_hash": "a5c71cac0eb4e44f779b6b02a3775e9c0ff8a99c08b87e41b794347b192e6b9b",
+      "version": "survivor-targets-v2",
+      "survivor_ids": [
+        "eval-eligibility",
+        "eval-coverage",
+        "eval-network",
+        "eval-authorization",
+        "eval-formulary",
+        "eval-deductible",
+        "workflow-ownership",
+        "workflow-duplicate_replay",
+        "workflow-skip_approval",
+        "workflow-ledger_amount"
+      ],
+      "groups": [
+        {
+          "id": "evaluator",
+          "source_ids": [
+            "HC-002",
+            "HC-003",
+            "HC-004",
+            "HC-005",
+            "HC-006",
+            "HC-007"
+          ],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 112345,
+                "active": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "dental",
+                "amount_cents": 112345
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_hmo",
+                "service": "medical",
+                "amount_cents": 112345,
+                "in_network": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_advantage",
+                "service": "hospital",
+                "amount_cents": 112345,
+                "authorized": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_d",
+                "service": "prescription",
+                "amount_cents": 112345,
+                "formulary": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 112345
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 245678
+              }
+            }
+          ],
+          "target_fault_ids": [
+            "eval-eligibility",
+            "eval-coverage",
+            "eval-network",
+            "eval-authorization",
+            "eval-formulary",
+            "eval-deductible"
+          ],
+          "variant": false,
+          "purpose": "Activate each relevant written rule separately; later denials must not mask the targeted rule.",
+          "outcome_guidance": [
+            "Each evaluate is stateless. Reset omitted flags to true on every step.",
+            "Steps 1-5 are independently denied for INACTIVE_POLICY, SERVICE_NOT_COVERED, OUT_OF_NETWORK, AUTH_REQUIRED, NON_FORMULARY respectively. HTTP status remains 200, payout is zero.",
+            "Steps 6 and 7 are approved / COVERED: calculate their payouts separately using deductible then payout cap. Do not carry inactive=false from step 1."
+          ],
+          "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+        },
+        {
+          "id": "workflow",
+          "source_ids": [
+            "WF-001",
+            "WF-002",
+            "WF-003",
+            "WF-004",
+            "WF-005"
+          ],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "SURV-561",
+                "member_id": "M100",
+                "service": "medical",
+                "amount_cents": 112345
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "SURV-561"
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "SURV-561",
+                "member_id": "M100",
+                "service": "medical",
+                "amount_cents": 112345
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "SURV-561"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "SURV-561",
+                "target": "paid"
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "SURV-561"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "adjuster-demo",
+              "data": {
+                "claim_id": "SURV-561",
+                "target": "approved"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "SURV-561",
+                "target": "paid"
+              }
+            }
+          ],
+          "target_fault_ids": [
+            "workflow-ownership",
+            "workflow-duplicate_replay",
+            "workflow-skip_approval",
+            "workflow-ledger_amount"
+          ],
+          "variant": false,
+          "purpose": "Observe ownership, duplicate rejection/readback, forbidden early payment/readback, approval and positive ledger/history within eight steps.",
+          "outcome_guidance": [
+            "Step 1: submit succeeds, status 201, submitted, revision/events 1; payment null.",
+            "Step 2: other customer read is 403 FORBIDDEN; error response has no state/money fields.",
+            "Step 3: duplicate submit is 409 DUPLICATE_CLAIM; step 4 owner read is unchanged submitted evidence.",
+            "Step 5: finance has the correct payment role but the claim is not approved. Expect 409 INVALID_TRANSITION, not 403. Step 6 owner read is unchanged submitted evidence.",
+            "Step 7: adjuster approval succeeds with revision/events 2 and null payment. Step 8: finance payment succeeds with revision/events 3 and payment exactly equal to the positive stored payout.",
+            "Rejections and reads do not add revisions or events. Calculate payout from this member plan and amount; do not copy a different example amount."
+          ],
+          "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+        }
+      ],
+      "source_hash": "ef5d2416be4f45981d01cfae2faf3f667caa490895d6067855d086adbafb6c1c",
+      "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+      "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+      "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+      "scope": "Authored input/action plans targeting known surviving seeds. The model generates expectations; no automatic review or execution. Variants are development examples, not holdouts.",
+      "plan_hash": "a9e87ac4bed016fb2564f94d3ec5d914983d2f306fd7406a4fc4e039d5bc4359"
+    },
+    "alternate": {
+      "score_id": "32581be38e3e45fabab64e282341fa80",
+      "score_hash": "a5c71cac0eb4e44f779b6b02a3775e9c0ff8a99c08b87e41b794347b192e6b9b",
+      "version": "survivor-targets-v2",
+      "survivor_ids": [
+        "eval-eligibility",
+        "eval-coverage",
+        "eval-network",
+        "eval-authorization",
+        "eval-formulary",
+        "eval-deductible",
+        "workflow-ownership",
+        "workflow-duplicate_replay",
+        "workflow-skip_approval",
+        "workflow-ledger_amount"
+      ],
+      "groups": [
+        {
+          "id": "evaluator",
+          "source_ids": [
+            "HC-002",
+            "HC-003",
+            "HC-004",
+            "HC-005",
+            "HC-006",
+            "HC-007"
+          ],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "medical",
+                "amount_cents": 154321,
+                "active": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_a",
+                "service": "dental",
+                "amount_cents": 154321
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_hmo",
+                "service": "medical",
+                "amount_cents": 154321,
+                "in_network": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_a",
+                "service": "skilled_nursing",
+                "amount_cents": 154321,
+                "authorized": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_d",
+                "service": "prescription",
+                "amount_cents": 154321,
+                "formulary": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "outpatient",
+                "amount_cents": 154321
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_a",
+                "service": "hospital",
+                "amount_cents": 310777
+              }
+            }
+          ],
+          "target_fault_ids": [
+            "eval-eligibility",
+            "eval-coverage",
+            "eval-network",
+            "eval-authorization",
+            "eval-formulary",
+            "eval-deductible"
+          ],
+          "variant": true,
+          "purpose": "Activate each relevant written rule separately; later denials must not mask the targeted rule.",
+          "outcome_guidance": [
+            "Each evaluate is stateless. Reset omitted flags to true on every step.",
+            "Steps 1-5 are independently denied for INACTIVE_POLICY, SERVICE_NOT_COVERED, OUT_OF_NETWORK, AUTH_REQUIRED, NON_FORMULARY respectively. HTTP status remains 200, payout is zero.",
+            "Steps 6 and 7 are approved / COVERED: calculate their payouts separately using deductible then payout cap. Do not carry inactive=false from step 1."
+          ],
+          "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+        },
+        {
+          "id": "workflow",
+          "source_ids": [
+            "WF-001",
+            "WF-002",
+            "WF-003",
+            "WF-004",
+            "WF-005"
+          ],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "VAR-200",
+                "member_id": "M200",
+                "service": "medical",
+                "amount_cents": 156789
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "VAR-200"
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "VAR-200",
+                "member_id": "M200",
+                "service": "medical",
+                "amount_cents": 156789
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "VAR-200"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "VAR-200",
+                "target": "paid"
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "VAR-200"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "adjuster-demo",
+              "data": {
+                "claim_id": "VAR-200",
+                "target": "approved"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "VAR-200",
+                "target": "paid"
+              }
+            }
+          ],
+          "target_fault_ids": [
+            "workflow-ownership",
+            "workflow-duplicate_replay",
+            "workflow-skip_approval",
+            "workflow-ledger_amount"
+          ],
+          "variant": true,
+          "purpose": "Observe ownership, duplicate rejection/readback, forbidden early payment/readback, approval and positive ledger/history within eight steps.",
+          "outcome_guidance": [
+            "Step 1: submit succeeds, status 201, submitted, revision/events 1; payment null.",
+            "Step 2: other customer read is 403 FORBIDDEN; error response has no state/money fields.",
+            "Step 3: duplicate submit is 409 DUPLICATE_CLAIM; step 4 owner read is unchanged submitted evidence.",
+            "Step 5: finance has the correct payment role but the claim is not approved. Expect 409 INVALID_TRANSITION, not 403. Step 6 owner read is unchanged submitted evidence.",
+            "Step 7: adjuster approval succeeds with revision/events 2 and null payment. Step 8: finance payment succeeds with revision/events 3 and payment exactly equal to the positive stored payout.",
+            "Rejections and reads do not add revisions or events. Calculate payout from this member plan and amount; do not copy a different example amount."
+          ],
+          "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+        }
+      ],
+      "source_hash": "ef5d2416be4f45981d01cfae2faf3f667caa490895d6067855d086adbafb6c1c",
+      "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+      "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+      "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+      "scope": "Authored input/action plans targeting known surviving seeds. The model generates expectations; no automatic review or execution. Variants are development examples, not holdouts.",
+      "plan_hash": "32c0ab01fdfe37d588428523e8a42c97aa84a391fdb609d551163aaca9ab790e"
+    }
+  },
+  "proposals": [
+    {
+      "set": "core",
+      "group": "evaluator",
+      "original_id": "b4c45341e28f449392a1d6496769dcb1",
+      "corrections": [
+        "cb66408ffe4f4aa993eaf78180a52535",
+        "da53b05512b54ce0a6bb146e18d93a6f"
+      ],
+      "reference_assisted": true,
+      "manual_edit": false,
+      "final_id": "b29460316d384cb79a4aa255586d2fe0",
+      "ready_and_plan_matched": true,
+      "literal_match": true,
+      "origin": "reviewer_confirmed_reference"
+    },
+    {
+      "set": "core",
+      "group": "workflow",
+      "original_id": "9bacd245fceb4eec866a075e8da6cc7e",
+      "corrections": [],
+      "reference_assisted": false,
+      "manual_edit": false,
+      "final_id": "9bacd245fceb4eec866a075e8da6cc7e",
+      "ready_and_plan_matched": true,
+      "literal_match": true,
+      "origin": "original_ai"
+    },
+    {
+      "set": "alternate",
+      "group": "evaluator",
+      "original_id": "ae0b4f0b746c4fcb9c510606395ad7e5",
+      "corrections": [
+        "226e232755a84f06a18fff1696b7d0e1",
+        "67ba1bb59ffd4d43b83f144844d2629b"
+      ],
+      "reference_assisted": true,
+      "manual_edit": false,
+      "final_id": "7b40a05ebe414791a15756db3cdc32e2",
+      "ready_and_plan_matched": true,
+      "literal_match": true,
+      "origin": "reviewer_confirmed_reference"
+    },
+    {
+      "set": "alternate",
+      "group": "workflow",
+      "original_id": "297e3a1ae124498d9a68c2c389fc9e1d",
+      "corrections": [],
+      "reference_assisted": false,
+      "manual_edit": false,
+      "final_id": "297e3a1ae124498d9a68c2c389fc9e1d",
+      "ready_and_plan_matched": true,
+      "literal_match": true,
+      "origin": "original_ai"
+    }
+  ],
+  "scope": "Known-seed targeting with authored input/action plans and provider input constraints. The model supplies expectations. Alternate plans and literal expected answers frozen before inference; these are development variations, not blind holdouts. Operator attestations are explicitly automated engineering reviews. Corrections/reference assistance/manual edits, if used, are reported separately.",
+  "core_score": {
+    "id": "739d05de21864611bfb4f8ddec7981a6",
+    "state": "scored",
+    "detected": 12,
+    "applicable": 12,
+    "score": 1.0,
+    "errors": 0
+  },
+  "core_comparison_id": "2175ae6522db47ed994f21e5fede985b",
+  "alternate_score": {
+    "id": "22594a77616546058e4b669cb4023e8d",
+    "state": "scored",
+    "detected": 12,
+    "applicable": 12,
+    "score": 1.0,
+    "errors": 0
+  },
+  "alternate_comparison_id": "da6b8ec7bd854c1d894ccef7448f024e",
+  "selected": {
+    "core": [
+      {
+        "id": "b29460316d384cb79a4aa255586d2fe0",
+        "expected_revision": 2
+      },
+      {
+        "id": "9bacd245fceb4eec866a075e8da6cc7e",
+        "expected_revision": 2
+      }
+    ],
+    "alternate": [
+      {
+        "id": "7b40a05ebe414791a15756db3cdc32e2",
+        "expected_revision": 2
+      },
+      {
+        "id": "297e3a1ae124498d9a68c2c389fc9e1d",
+        "expected_revision": 2
+      }
+    ]
+  },
+  "summary": {
+    "core_detected": 12,
+    "alternate_detected": 12,
+    "initial_generation_calls": 4,
+    "correction_calls": 4,
+    "reference_assisted_cases": 2,
+    "manual_edits": 0
+  }
+}

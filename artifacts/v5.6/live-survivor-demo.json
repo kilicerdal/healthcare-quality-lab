@@ -1,0 +1,502 @@
+{
+  "state": "completed",
+  "provider": {
+    "available": true,
+    "models": [
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "allowed_models": [
+      "qwen2.5-coder:3b",
+      "qwen2.5:3b"
+    ],
+    "endpoint": "http://127.0.0.1:11434",
+    "mode": "local Ollama only"
+  },
+  "baseline_score_id": "3f2d1607dc28443a96034e76a0cba22e",
+  "baseline_detected": 2,
+  "applicable": 12,
+  "frozen_plans": {
+    "core": {
+      "score_id": "3f2d1607dc28443a96034e76a0cba22e",
+      "score_hash": "b8a1505293182b9738cb43215c8e89f794192ba3c3504a8c840135e67f6463de",
+      "version": "survivor-targets-v1",
+      "survivor_ids": [
+        "eval-eligibility",
+        "eval-coverage",
+        "eval-network",
+        "eval-authorization",
+        "eval-formulary",
+        "eval-deductible",
+        "workflow-ownership",
+        "workflow-duplicate_replay",
+        "workflow-skip_approval",
+        "workflow-ledger_amount"
+      ],
+      "groups": [
+        {
+          "id": "evaluator",
+          "source_ids": [
+            "HC-002",
+            "HC-003",
+            "HC-004",
+            "HC-005",
+            "HC-006",
+            "HC-007"
+          ],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 112345,
+                "active": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "dental",
+                "amount_cents": 112345
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_hmo",
+                "service": "medical",
+                "amount_cents": 112345,
+                "in_network": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_advantage",
+                "service": "hospital",
+                "amount_cents": 112345,
+                "authorized": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_d",
+                "service": "prescription",
+                "amount_cents": 112345,
+                "formulary": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 112345
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 245678
+              }
+            }
+          ],
+          "target_fault_ids": [
+            "eval-eligibility",
+            "eval-coverage",
+            "eval-network",
+            "eval-authorization",
+            "eval-formulary",
+            "eval-deductible"
+          ],
+          "variant": false,
+          "purpose": "Activate each relevant written rule separately; later denials must not mask the targeted rule.",
+          "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+        },
+        {
+          "id": "workflow",
+          "source_ids": [
+            "WF-001",
+            "WF-002",
+            "WF-003",
+            "WF-004",
+            "WF-005"
+          ],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "SURV-561",
+                "member_id": "M100",
+                "service": "medical",
+                "amount_cents": 112345
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "SURV-561"
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "SURV-561",
+                "member_id": "M100",
+                "service": "medical",
+                "amount_cents": 112345
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "SURV-561"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "SURV-561",
+                "target": "paid"
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "SURV-561"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "adjuster-demo",
+              "data": {
+                "claim_id": "SURV-561",
+                "target": "approved"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "SURV-561",
+                "target": "paid"
+              }
+            }
+          ],
+          "target_fault_ids": [
+            "workflow-ownership",
+            "workflow-duplicate_replay",
+            "workflow-skip_approval",
+            "workflow-ledger_amount"
+          ],
+          "variant": false,
+          "purpose": "Observe ownership, duplicate rejection/readback, forbidden early payment/readback, approval and positive ledger/history within eight steps.",
+          "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+        }
+      ],
+      "source_hash": "a5da6255eb4a53cbd36af898cb44c9d712d87e82bec8b7c432914dffe2524a19",
+      "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+      "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+      "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+      "scope": "Authored input/action plans targeting known surviving seeds. The model generates expectations; no automatic review or execution. Variants are development examples, not holdouts.",
+      "plan_hash": "2cc191ac39d948c7b1af175b163a4610b1131a6505cdfd66c2c9cbfb862b6c46"
+    },
+    "alternate": {
+      "score_id": "3f2d1607dc28443a96034e76a0cba22e",
+      "score_hash": "b8a1505293182b9738cb43215c8e89f794192ba3c3504a8c840135e67f6463de",
+      "version": "survivor-targets-v1",
+      "survivor_ids": [
+        "eval-eligibility",
+        "eval-coverage",
+        "eval-network",
+        "eval-authorization",
+        "eval-formulary",
+        "eval-deductible",
+        "workflow-ownership",
+        "workflow-duplicate_replay",
+        "workflow-skip_approval",
+        "workflow-ledger_amount"
+      ],
+      "groups": [
+        {
+          "id": "evaluator",
+          "source_ids": [
+            "HC-002",
+            "HC-003",
+            "HC-004",
+            "HC-005",
+            "HC-006",
+            "HC-007"
+          ],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "medical",
+                "amount_cents": 154321,
+                "active": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_a",
+                "service": "dental",
+                "amount_cents": 154321
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_hmo",
+                "service": "medical",
+                "amount_cents": 154321,
+                "in_network": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_a",
+                "service": "skilled_nursing",
+                "amount_cents": 154321,
+                "authorized": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_d",
+                "service": "prescription",
+                "amount_cents": 154321,
+                "formulary": false
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "outpatient",
+                "amount_cents": 154321
+              }
+            },
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_a",
+                "service": "hospital",
+                "amount_cents": 310777
+              }
+            }
+          ],
+          "target_fault_ids": [
+            "eval-eligibility",
+            "eval-coverage",
+            "eval-network",
+            "eval-authorization",
+            "eval-formulary",
+            "eval-deductible"
+          ],
+          "variant": true,
+          "purpose": "Activate each relevant written rule separately; later denials must not mask the targeted rule.",
+          "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+        },
+        {
+          "id": "workflow",
+          "source_ids": [
+            "WF-001",
+            "WF-002",
+            "WF-003",
+            "WF-004",
+            "WF-005"
+          ],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "VAR-200",
+                "member_id": "M200",
+                "service": "medical",
+                "amount_cents": 156789
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "VAR-200"
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "VAR-200",
+                "member_id": "M200",
+                "service": "medical",
+                "amount_cents": 156789
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "VAR-200"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "VAR-200",
+                "target": "paid"
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "VAR-200"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "adjuster-demo",
+              "data": {
+                "claim_id": "VAR-200",
+                "target": "approved"
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "VAR-200",
+                "target": "paid"
+              }
+            }
+          ],
+          "target_fault_ids": [
+            "workflow-ownership",
+            "workflow-duplicate_replay",
+            "workflow-skip_approval",
+            "workflow-ledger_amount"
+          ],
+          "variant": true,
+          "purpose": "Observe ownership, duplicate rejection/readback, forbidden early payment/readback, approval and positive ledger/history within eight steps.",
+          "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+        }
+      ],
+      "source_hash": "a5da6255eb4a53cbd36af898cb44c9d712d87e82bec8b7c432914dffe2524a19",
+      "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+      "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+      "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+      "scope": "Authored input/action plans targeting known surviving seeds. The model generates expectations; no automatic review or execution. Variants are development examples, not holdouts.",
+      "plan_hash": "00970014f70a7fe92d7167bcbafa00d1773e247ebf751ea370d8707d5d39c6c4"
+    }
+  },
+  "proposals": [
+    {
+      "set": "core",
+      "group": "evaluator",
+      "original_id": "37976fe404154ffd8903d511ca4b9bf2",
+      "corrections": [
+        "4e151c02c309439f86e0f96d388b80ad"
+      ],
+      "reference_assisted": false,
+      "manual_edit": false,
+      "final_id": "4e151c02c309439f86e0f96d388b80ad",
+      "ready_and_plan_matched": false,
+      "literal_match": false,
+      "origin": "reference_guided_ai"
+    },
+    {
+      "set": "core",
+      "group": "workflow",
+      "original_id": "4202383ec9dd404a9cabe28ac50f430b",
+      "corrections": [
+        "aea1b8beffcb49ffa4cc4c899997cae7"
+      ],
+      "reference_assisted": false,
+      "manual_edit": false,
+      "final_id": "aea1b8beffcb49ffa4cc4c899997cae7",
+      "ready_and_plan_matched": false,
+      "literal_match": false,
+      "origin": "reference_guided_ai"
+    },
+    {
+      "set": "alternate",
+      "group": "evaluator",
+      "original_id": "9c5eee3ccd0d4be9b4556ff6b0a5eddb",
+      "corrections": [
+        "00c8e01509ff410c902f991610b01f57"
+      ],
+      "reference_assisted": false,
+      "manual_edit": false,
+      "final_id": "00c8e01509ff410c902f991610b01f57",
+      "ready_and_plan_matched": false,
+      "literal_match": false,
+      "origin": "reference_guided_ai"
+    },
+    {
+      "set": "alternate",
+      "group": "workflow",
+      "original_id": "f6e2a1767d984f06813507d1e5efbb7a",
+      "corrections": [
+        "78b19868bc314ab3acc5effad8f2cf96"
+      ],
+      "reference_assisted": false,
+      "manual_edit": false,
+      "final_id": "78b19868bc314ab3acc5effad8f2cf96",
+      "ready_and_plan_matched": false,
+      "literal_match": false,
+      "origin": "reference_guided_ai"
+    }
+  ],
+  "scope": "Known-seed targeting with authored input/action plans and provider input constraints. The model supplies expectations. Alternate plans and literal expected answers frozen before inference; these are development variations, not blind holdouts. Operator attestations are explicitly automated engineering reviews. Corrections/reference assistance/manual edits, if used, are reported separately.",
+  "selected": {
+    "core": [],
+    "alternate": []
+  },
+  "summary": {
+    "core_detected": null,
+    "alternate_detected": null,
+    "initial_generation_calls": 4,
+    "correction_calls": 4,
+    "reference_assisted_cases": 0,
+    "manual_edits": 0
+  }
+}

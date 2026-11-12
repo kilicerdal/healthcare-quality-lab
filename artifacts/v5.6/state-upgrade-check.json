@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "runtime_version": "5.6.0",
+  "original_data_checks": {
+    "claims-v2.sqlite:claims": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0,
+      "original_rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "claims-v2.sqlite:events": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0,
+      "original_rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "claims-v2.sqlite:payments": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0,
+      "original_rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ai-v3.sqlite:ai_experiments": {
+      "original_rows_unchanged": 24,
+      "added_rows": 5,
+      "original_rows_sha256": "c55b1924fc04d0d9b0327c282e9f566416a251a33c5aa5bb7e7582d2a28e52d3"
+    },
+    "ai-v3.sqlite:studio_operations": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0,
+      "original_rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "evaluation-v4.sqlite:ai_experiments": {
+      "original_rows_unchanged": 3,
+      "added_rows": 0,
+      "original_rows_sha256": "723b4724278f526f90a705f112ea717904486ee97275afdd3854be2337a09cb8"
+    },
+    "evaluation-v4.sqlite:studio_operations": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0,
+      "original_rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "coverage-v55.sqlite:ai_experiments": {
+      "original_rows_unchanged": 3,
+      "added_rows": 5,
+      "original_rows_sha256": "f9544789871b888c245633ea01d6bed9c49ea17bde1f8f8f3751cc152265ff24"
+    },
+    "coverage-v55.sqlite:studio_operations": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0,
+      "original_rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "coverage_counts": {
+    "authored": 32,
+    "cases": 66,
+    "eligible": 36,
+    "missing_gaps": 2,
+    "proposals_or_stale": 30,
+    "unique_scenario_assertions": 36
+  },
+  "known_seeds_detected": 12,
+  "expectation_sources": {
+    "original_ai": 1,
+    "reviewer_confirmed_reference": 1
+  },
+  "previous_v551_archive_unchanged": true,
+  "backup": ".local/backup-before-v5.6",
+  "vs_code_opened": false
+}

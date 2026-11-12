@@ -1,0 +1,519 @@
+{
+  "scope": "Authored before V5.6 live inference. Literal expectations kept separate from reference implementation; development examples, not blind holdouts.",
+  "cases": {
+    "core-evaluator": {
+      "id": "AI-V56-EVALUATOR",
+      "title": "Authored evaluator reference",
+      "rule_ids": [
+        "HC-002",
+        "HC-003",
+        "HC-004",
+        "HC-005",
+        "HC-006",
+        "HC-007"
+      ],
+      "rationale": "Literal authored development oracle; not model output and not a holdout.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "commercial_ppo",
+            "service": "medical",
+            "amount_cents": 112345,
+            "active": false
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "INACTIVE_POLICY",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_b",
+            "service": "dental",
+            "amount_cents": 112345
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "SERVICE_NOT_COVERED",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "commercial_hmo",
+            "service": "medical",
+            "amount_cents": 112345,
+            "in_network": false
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "OUT_OF_NETWORK",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_advantage",
+            "service": "hospital",
+            "amount_cents": 112345,
+            "authorized": false
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "AUTH_REQUIRED",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_d",
+            "service": "prescription",
+            "amount_cents": 112345,
+            "formulary": false
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "NON_FORMULARY",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "commercial_ppo",
+            "service": "medical",
+            "amount_cents": 112345
+          },
+          "expect": {
+            "status": 200,
+            "decision": "approved",
+            "reason": "COVERED",
+            "payout_cents": 102345
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "commercial_ppo",
+            "service": "medical",
+            "amount_cents": 245678
+          },
+          "expect": {
+            "status": 200,
+            "decision": "approved",
+            "reason": "COVERED",
+            "payout_cents": 200000
+          }
+        }
+      ]
+    },
+    "core-workflow": {
+      "id": "AI-V56-WORKFLOW",
+      "title": "Authored workflow reference",
+      "rule_ids": [
+        "WF-001",
+        "WF-002",
+        "WF-003",
+        "WF-004",
+        "WF-005"
+      ],
+      "rationale": "Literal authored development oracle; not model output and not a holdout.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "SURV-561",
+            "member_id": "M100",
+            "service": "medical",
+            "amount_cents": 112345
+          },
+          "expect": {
+            "status": 201,
+            "claim_status": "submitted",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 102345,
+            "payment_cents": null
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "SURV-561"
+          },
+          "expect": {
+            "status": 403,
+            "error": "FORBIDDEN"
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "SURV-561",
+            "member_id": "M100",
+            "service": "medical",
+            "amount_cents": 112345
+          },
+          "expect": {
+            "status": 409,
+            "error": "DUPLICATE_CLAIM"
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "SURV-561"
+          },
+          "expect": {
+            "status": 200,
+            "claim_status": "submitted",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 102345,
+            "payment_cents": null
+          }
+        },
+        {
+          "action": "transition",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "SURV-561",
+            "target": "paid"
+          },
+          "expect": {
+            "status": 409,
+            "error": "INVALID_TRANSITION"
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "SURV-561"
+          },
+          "expect": {
+            "status": 200,
+            "claim_status": "submitted",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 102345,
+            "payment_cents": null
+          }
+        },
+        {
+          "action": "transition",
+          "actor": "adjuster-demo",
+          "data": {
+            "claim_id": "SURV-561",
+            "target": "approved"
+          },
+          "expect": {
+            "status": 200,
+            "claim_status": "approved",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 102345,
+            "payment_cents": null
+          }
+        },
+        {
+          "action": "transition",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "SURV-561",
+            "target": "paid"
+          },
+          "expect": {
+            "status": 200,
+            "claim_status": "paid",
+            "revision": 3,
+            "event_count": 3,
+            "payout_cents": 102345,
+            "payment_cents": 102345
+          }
+        }
+      ]
+    },
+    "variant-evaluator": {
+      "id": "AI-V56-VAR-EVALUATOR",
+      "title": "Authored alternate evaluator reference",
+      "rule_ids": [
+        "HC-002",
+        "HC-003",
+        "HC-004",
+        "HC-005",
+        "HC-006",
+        "HC-007"
+      ],
+      "rationale": "Literal authored development oracle; not model output and not a holdout.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_b",
+            "service": "medical",
+            "amount_cents": 154321,
+            "active": false
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "INACTIVE_POLICY",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_a",
+            "service": "dental",
+            "amount_cents": 154321
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "SERVICE_NOT_COVERED",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "commercial_hmo",
+            "service": "medical",
+            "amount_cents": 154321,
+            "in_network": false
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "OUT_OF_NETWORK",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_a",
+            "service": "skilled_nursing",
+            "amount_cents": 154321,
+            "authorized": false
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "AUTH_REQUIRED",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_d",
+            "service": "prescription",
+            "amount_cents": 154321,
+            "formulary": false
+          },
+          "expect": {
+            "status": 200,
+            "decision": "denied",
+            "reason": "NON_FORMULARY",
+            "payout_cents": 0
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_b",
+            "service": "outpatient",
+            "amount_cents": 154321
+          },
+          "expect": {
+            "status": 200,
+            "decision": "approved",
+            "reason": "COVERED",
+            "payout_cents": 144321
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_a",
+            "service": "hospital",
+            "amount_cents": 310777
+          },
+          "expect": {
+            "status": 200,
+            "decision": "approved",
+            "reason": "COVERED",
+            "payout_cents": 200000
+          }
+        }
+      ]
+    },
+    "variant-workflow": {
+      "id": "AI-V56-VAR-WORKFLOW",
+      "title": "Authored alternate workflow reference",
+      "rule_ids": [
+        "WF-001",
+        "WF-002",
+        "WF-003",
+        "WF-004",
+        "WF-005"
+      ],
+      "rationale": "Literal authored development oracle; not model output and not a holdout.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "VAR-200",
+            "member_id": "M200",
+            "service": "medical",
+            "amount_cents": 156789
+          },
+          "expect": {
+            "status": 201,
+            "claim_status": "submitted",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 146789,
+            "payment_cents": null
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "VAR-200"
+          },
+          "expect": {
+            "status": 403,
+            "error": "FORBIDDEN"
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "VAR-200",
+            "member_id": "M200",
+            "service": "medical",
+            "amount_cents": 156789
+          },
+          "expect": {
+            "status": 409,
+            "error": "DUPLICATE_CLAIM"
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "VAR-200"
+          },
+          "expect": {
+            "status": 200,
+            "claim_status": "submitted",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 146789,
+            "payment_cents": null
+          }
+        },
+        {
+          "action": "transition",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "VAR-200",
+            "target": "paid"
+          },
+          "expect": {
+            "status": 409,
+            "error": "INVALID_TRANSITION"
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "VAR-200"
+          },
+          "expect": {
+            "status": 200,
+            "claim_status": "submitted",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 146789,
+            "payment_cents": null
+          }
+        },
+        {
+          "action": "transition",
+          "actor": "adjuster-demo",
+          "data": {
+            "claim_id": "VAR-200",
+            "target": "approved"
+          },
+          "expect": {
+            "status": 200,
+            "claim_status": "approved",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 146789,
+            "payment_cents": null
+          }
+        },
+        {
+          "action": "transition",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "VAR-200",
+            "target": "paid"
+          },
+          "expect": {
+            "status": 200,
+            "claim_status": "paid",
+            "revision": 3,
+            "event_count": 3,
+            "payout_cents": 146789,
+            "payment_cents": 146789
+          }
+        }
+      ]
+    }
+  }
+}

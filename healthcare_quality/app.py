@@ -151,6 +151,18 @@ def create_app(config=None):
     @app.errorhandler(StudioError)
     def studio_error(error):return jsonify(error=error.code,message=str(error)),error.status
 
+    @app.get("/api/coverage/scores/<id>/survivor-plan")
+    def coverage_survivor_plan(id):
+        value=request.args.get('variant','false')
+        if value not in ('true','false'):raise StudioError('INVALID_REQUEST','variant must be true or false')
+        return jsonify(coverage.survivor_plan(id,value=='true'))
+
+    @app.post("/api/coverage/scores/<id>/generate-survivors")
+    def coverage_generate_survivors(id):return jsonify(coverage.generate_survivors(id,body())),201
+
+    @app.post("/api/coverage/compare")
+    def coverage_compare():return jsonify(coverage.compare(body())),201
+
     @app.get("/api/coverage/dashboard")
     def coverage_dashboard():return jsonify(coverage.dashboard())
 
@@ -199,8 +211,8 @@ def create_app(config=None):
 
     @app.get("/report")
     @app.get("/reports/<version>")
-    def report(version="v5.5"):
-        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5"):return jsonify(error="Report not found"),404
+    def report(version="v5.6"):
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)

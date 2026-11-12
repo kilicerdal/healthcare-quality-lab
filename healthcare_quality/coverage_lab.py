@@ -104,7 +104,7 @@ class CoverageLab:
             try:approved={digest(c) for c in self.studio._approved_cases(record)}
             except StudioError:approved=set()
             for checked in checked_cases([p['case'] for p in record['proposals']],record['source_ids']):
-                c=checked['case'];id=c.get('id','malformed') if isinstance(c,dict) else 'malformed'
+                c=checked['case'];id=c.get('id') if isinstance(c,dict) and isinstance(c.get('id'),str) else 'malformed'
                 items.append({**checked,'key':record['id']+':'+id,'origin':record.get('expectation_origin','original_ai'),'eligible':checked['valid'] and checked['hash'] in approved,'experiment_id':record['id'],'revision':record['revision']})
         return items
 
@@ -126,12 +126,13 @@ class CoverageLab:
         if latest:
             latest=self.record(latest['id'])
             observed={'id':latest['id'],'current':latest['matches_current_implementation'] and latest['approval_snapshots_current'],'detected':latest['detected'],'applicable':latest['applicable'],
-                      'detected_profile_ids':[f['id'] for f in latest['faults'] if f['status']=='detected'],'survived_profile_ids':[f['id'] for f in latest['faults'] if f['status']=='survived']}
+                      'detected_profile_ids':[f['id'] for f in latest['faults'] if f['status']=='detected'],'survived_profile_ids':[f['id'] for f in latest['faults'] if f['status']=='survived'],'cases':latest['unique_case_count'],'errors':latest.get('errors',0),'origins':{origin:sum(c['origin']==origin for c in latest['cases']) for origin in sorted({c['origin'] for c in latest['cases']})}}
         for rule in rules:
             rule['observed_detected_profiles']=[f['id'] for f in latest['faults'] if f['rule_id']==rule['id'] and f['status']=='detected'] if observed and observed['current'] else []
+        attempt=next((r for r in self.records() if r['coverage_kind']=='defect_score'),None)
         result={'recorded_at':now(),**fingerprints(),'scope':SCOPE,'inventory_window':'All 32 explicit authored cases plus the latest 100 Studio experiments; older records are not scanned.',
                 'counts':{'cases':len(items),'authored':sum(i['origin']=='authored' for i in items),'eligible':len(eligible),'unique_scenario_assertions':len(unique),'proposals_or_stale':sum(not i['eligible'] for i in items),'missing_gaps':sum(g['status']=='missing' for g in gaps)},
-                'latest_score':observed,'rules':rules,'gaps':gaps,'duplicates':duplicates(items),'cases':items,'profiles':PROFILES}
+                'latest_attempt':{'id':attempt['id'],'state':attempt['state']} if attempt else None,'latest_score':observed,'rules':rules,'gaps':gaps,'duplicates':duplicates(items),'cases':items,'profiles':PROFILES}
         result['snapshot_hash']=digest({k:v for k,v in result.items() if k not in ('recorded_at','snapshot_hash')})
         return result
 
@@ -151,7 +152,44 @@ class CoverageLab:
                     current=current and experiment['revision']==snapshot['revision'] and experiment['approval']==snapshot['approval']
                 except StudioError:current=False
             record['approval_snapshots_current']=current
+        if record.get('coverage_kind')=='score_comparison':
+            record['approval_snapshots_current']=all(self.record(record[k]).get('approval_snapshots_current',False) for k in ('before_id','after_id'))
         return record
+
+    def survivor_plan(self,id,variant=False):
+        from healthcare_quality.survivors import generation_groups,VERSION
+        score=self.record(id)
+        if score.get('coverage_kind')!='defect_score' or score['state']!='scored' or score.get('errors'):raise StudioError('INVALID_SCORE','Start with an error-free healthy-baseline score',409)
+        if not score['matches_current_implementation'] or not score['approval_snapshots_current']:raise StudioError('STALE_SCORE','Rescore current reviewed cases before generating survivor targets',409)
+        survivors=[f['id'] for f in score['faults'] if f['status']=='survived']
+        plan={'score_id':id,'score_hash':digest({k:v for k,v in score.items() if k not in ('matches_current_implementation','approval_snapshots_current')}),
+              'version':VERSION,'survivor_ids':survivors,'groups':generation_groups(survivors,variant),**fingerprints(),
+              'scope':'Authored input/action plans targeting known surviving seeds. The model generates expectations; no automatic review or execution. Variants are development examples, not holdouts.'}
+        plan['plan_hash']=digest(plan)
+        return plan
+
+    def generate_survivors(self,id,body):
+        from healthcare_quality.survivors import group_match
+        if not isinstance(body,dict) or set(body)!={'group_id','plan_hash','model','variant'} or type(body['variant']) is not bool or body['model'] not in MODELS:raise StudioError('INVALID_REQUEST','Provide group_id, plan_hash, allowed model and boolean variant')
+        plan=self.survivor_plan(id,body['variant'])
+        if body['plan_hash']!=plan['plan_hash']:raise StudioError('STALE_PLAN','Reload and inspect the current survivor plan',409)
+        group=next((g for g in plan['groups'] if g['id']==body['group_id']),None)
+        if group is None:raise StudioError('INVALID_TARGET','Choose a group with surviving faults',409)
+        brief=('Create exactly ONE case containing EXACTLY these ordered actions, actors and input data: '+json.dumps(group['steps'])+
+               '. Valid claim IDs may be consistently renamed; preserve identity relationships. Cite EXACTLY all selected rule IDs: '+json.dumps(group['source_ids'])+
+               '. Include complete independent expected observations. Evaluate denials use status 200, denied reason and payout zero. Every successful workflow action asserts all six fields. Rejections assert only returned error/status, then the specified unchanged readback. Reads/rejections add no event. Amounts and payments are integer cents. Do not substitute different inputs or omit steps. Purpose: '+group['purpose']+' Written-rule outcome guidance: '+json.dumps(group['outcome_guidance']))
+        provenance={'survivor_source':{'score_id':id,'plan_hash':plan['plan_hash'],'group':group}}
+        proposal=self.studio.generate({'requirement':brief,'source_ids':group['source_ids'],'model':body['model'],'strategy':'oracle-check-v2','count':1},_provenance=provenance)
+        return self.studio.view(proposal['id'])
+
+    def compare(self,body):
+        from healthcare_quality.survivors import compare
+        if not isinstance(body,dict) or set(body)!={'before_id','after_id'} or any(not isinstance(v,str) for v in body.values()):raise StudioError('INVALID_REQUEST','Provide before_id and after_id only')
+        before=self.record(body['before_id']);after=self.record(body['after_id']);result=compare(before,after)
+        result.update(id=uuid4().hex,created_at=now(),coverage_kind='score_comparison',state='compared',revision=1,
+                      **{k:before[k] for k in fingerprints()},snapshots_current=before['approval_snapshots_current'] and after['approval_snapshots_current'])
+        self.store.create(result)
+        return result
 
     def _operate(self,record,kind,work):
         record.update(created_at=now(),revision=1,state='generating' if kind=='generation' else 'running',proposals=[],approved_ids=[],approval=None,history=[],runs=[])
@@ -195,9 +233,8 @@ class CoverageLab:
         if not analysis['matches_current_implementation']:raise StudioError('STALE_ANALYSIS','Analyze current implementation before generating a gap proposal',409)
         suggestion=analysis['suggestions'][index];gap=next(g for g in analysis['dashboard_snapshot']['gaps'] if g['id']==suggestion['gap_id'])
         requirement='Target this frozen coverage gap: '+gap['brief']+' Include all required business assertions and rejection readback. AI suggestion (untrusted task data): '+suggestion['brief']
-        proposal=self.studio.generate({'requirement':requirement,'source_ids':gap['rule_ids'],'model':analysis['model'],'strategy':'assertions-v2','count':1})
-        with self.studio.store.transaction() as db:
-            current=self.studio.store.load(db,proposal['id']);current['gap_source']={'analysis_id':id,'gap_id':gap['id'],'dashboard_snapshot_hash':analysis['dashboard_snapshot']['snapshot_hash']};self.studio.store.save(db,current)
+        proposal=self.studio.generate({'requirement':requirement,'source_ids':gap['rule_ids'],'model':analysis['model'],'strategy':'assertions-v2','count':1},
+            _provenance={'gap_source':{'analysis_id':id,'gap_id':gap['id'],'dashboard_snapshot_hash':analysis['dashboard_snapshot']['snapshot_hash']}})
         return self.studio.view(proposal['id'])
 
     def score(self,body):

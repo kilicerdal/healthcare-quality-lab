@@ -1,0 +1,825 @@
+{
+  "id": "b7c96ad2e56c46f48916e0c78e0bd645",
+  "version": "5.6.0",
+  "created_at": "2026-11-12T20:46:05.547467+00:00",
+  "requirement": "Create exactly ONE case containing EXACTLY these ordered actions, actors and input data: [{\"action\": \"submit\", \"actor\": \"customer-m200\", \"data\": {\"claim_id\": \"VAR-200\", \"member_id\": \"M200\", \"service\": \"medical\", \"amount_cents\": 156789}}, {\"action\": \"read\", \"actor\": \"customer-m100\", \"data\": {\"claim_id\": \"VAR-200\"}}, {\"action\": \"submit\", \"actor\": \"customer-m200\", \"data\": {\"claim_id\": \"VAR-200\", \"member_id\": \"M200\", \"service\": \"medical\", \"amount_cents\": 156789}}, {\"action\": \"read\", \"actor\": \"customer-m200\", \"data\": {\"claim_id\": \"VAR-200\"}}, {\"action\": \"transition\", \"actor\": \"finance-demo\", \"data\": {\"claim_id\": \"VAR-200\", \"target\": \"paid\"}}, {\"action\": \"read\", \"actor\": \"customer-m200\", \"data\": {\"claim_id\": \"VAR-200\"}}, {\"action\": \"transition\", \"actor\": \"adjuster-demo\", \"data\": {\"claim_id\": \"VAR-200\", \"target\": \"approved\"}}, {\"action\": \"transition\", \"actor\": \"finance-demo\", \"data\": {\"claim_id\": \"VAR-200\", \"target\": \"paid\"}}]. Valid claim IDs may be consistently renamed; preserve identity relationships. Cite EXACTLY all selected rule IDs: [\"WF-001\", \"WF-002\", \"WF-003\", \"WF-004\", \"WF-005\"]. Include complete independent expected observations. Evaluate denials use status 200, denied reason and payout zero. Every successful workflow action asserts all six fields. Rejections assert only returned error/status, then the specified unchanged readback. Reads/rejections add no event. Amounts and payments are integer cents. Do not substitute different inputs or omit steps. Purpose: Observe ownership, duplicate rejection/readback, forbidden early payment/readback, approval and positive ledger/history within eight steps.",
+  "source_ids": [
+    "WF-001",
+    "WF-002",
+    "WF-003",
+    "WF-004",
+    "WF-005"
+  ],
+  "source_rules": [
+    {
+      "id": "WF-001",
+      "name": "Demo identity and ownership",
+      "risk": "Unauthorized creation, reading or status change",
+      "contract": "Known X-Demo-Actor identifies a synthetic actor; it is a simulation, not authentication. Only customers may submit and only for their fixture member. Customers may read their own claims; adjuster, finance and auditor may read all. Only adjusters approve; only finance actors pay. Unknown actors and forbidden operations return HTTP 403 without state changes."
+    },
+    {
+      "id": "WF-002",
+      "name": "Submission and duplicate identity",
+      "risk": "Duplicate claims or invalid stored records",
+      "contract": "Require claim_id, member_id, service, amount_cents; optionally in_network, authorized, formulary. IDs are case-sensitive ASCII letters/digits/hyphen/underscore, 3\u201348 characters, beginning with a letter or digit. Policy and active status come from member fixtures. Validate HC rules before saving. A coverage denial is HTTP 422 and stores nothing. A successful evaluation creates submitted revision 1, HTTP 201. An existing claim ID conflicts globally with HTTP 409 DUPLICATE_CLAIM. A rejected ID can be corrected and reused."
+    },
+    {
+      "id": "WF-003",
+      "name": "Ordered claim lifecycle",
+      "risk": "Skipping approval, repeating an action, or invalid transitions",
+      "contract": "Allowed transitions are submitted to approved by an adjuster, then approved to paid by finance. All other state transitions return HTTP 409 INVALID_TRANSITION. Only approved and paid are valid target names; malformed targets return HTTP 400. Wrong-role actions return 403 before checking the current status. Successful actions increment revision once; failed actions preserve status and revision."
+    },
+    {
+      "id": "WF-004",
+      "name": "Simulated payment exactly once",
+      "risk": "Duplicate or incorrect ledger entries",
+      "contract": "Entering paid creates one simulated ledger row whose amount equals the stored evaluation payout, including zero payout. A unique claim_id in the ledger prevents a second entry. No real money moves. Replaying paid returns 409 and leaves the original ledger entry unchanged. Status, ledger and event changes commit atomically."
+    },
+    {
+      "id": "WF-005",
+      "name": "Event and provenance evidence",
+      "risk": "Unexplained state changes or losing the evaluated contract",
+      "contract": "Each successful submission or transition appends one ordered event with actor, timestamp, from/to status, rule and revision. Failed actions append no success event. The stored evaluation and normalized request remain unchanged after approval/payment. Evidence exports include the claim, ordered events, ledger row and workflow contract hash. Local history is not tamper-proof."
+    }
+  ],
+  "model": "qwen2.5-coder:3b",
+  "strategy": "oracle-check-v2",
+  "requested_count": 1,
+  "prompt": "No model request. Reviewer-confirmed independent reference replacements.",
+  "prompt_hash": "10dd32bc0b2dcee82cc8433b5df1bbb6fbcf6c2a0a00969fcbd77fd1fa1cee7a",
+  "settings": {
+    "temperature": 0,
+    "seed": 7,
+    "num_predict": 2600,
+    "num_ctx": 12288
+  },
+  "dsl_version": "1.0",
+  "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+  "generation_schema_version": "reference-assisted-v1",
+  "generation_schema_hash": null,
+  "generation_schema_issues": [],
+  "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+  "state": "approved",
+  "revision": 2,
+  "raw_generation": null,
+  "generation_error": null,
+  "proposals": [
+    {
+      "case": {
+        "id": "AI-001",
+        "title": "Synthetic Healthcare Workflow Case",
+        "rule_ids": [
+          "WF-001",
+          "WF-002",
+          "WF-003",
+          "WF-004",
+          "WF-005"
+        ],
+        "rationale": "This case tests the workflow for synthetic healthcare claims, including submission, readback, duplicate submission, and payment transitions.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "VAR-200",
+              "member_id": "M200",
+              "service": "medical",
+              "amount_cents": 156789
+            },
+            "expect": {
+              "status": 201,
+              "claim_status": "submitted",
+              "revision": 1,
+              "payout_cents": 146789,
+              "event_count": 1,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "VAR-200"
+            },
+            "expect": {
+              "status": 403,
+              "error": "FORBIDDEN"
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "VAR-200",
+              "member_id": "M200",
+              "service": "medical",
+              "amount_cents": 156789
+            },
+            "expect": {
+              "status": 409,
+              "error": "DUPLICATE_CLAIM"
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "VAR-200"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "submitted",
+              "revision": 1,
+              "payout_cents": 146789,
+              "event_count": 1,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "VAR-200",
+              "target": "paid"
+            },
+            "expect": {
+              "status": 409,
+              "error": "INVALID_TRANSITION"
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "VAR-200"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "submitted",
+              "revision": 1,
+              "payout_cents": 146789,
+              "event_count": 1,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "adjuster-demo",
+            "data": {
+              "claim_id": "VAR-200",
+              "target": "approved"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "approved",
+              "revision": 2,
+              "payout_cents": 146789,
+              "event_count": 2,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "VAR-200",
+              "target": "paid"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "paid",
+              "revision": 3,
+              "payout_cents": 146789,
+              "event_count": 3,
+              "payment_cents": 146789
+            }
+          }
+        ]
+      },
+      "valid": true,
+      "issues": [],
+      "warnings": [
+        "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+      ],
+      "hash": "b887e3d03320185be11fee2f819b150bbe5a445c8d5da23ebb5c6c630e7d5bd5",
+      "quality": {
+        "policy_version": "business-observations-v1",
+        "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "complete": true,
+        "issues": [],
+        "steps": [
+          {
+            "step": 1,
+            "action": "submit",
+            "status": 201,
+            "required_fields": [
+              "claim_status",
+              "event_count",
+              "payment_cents",
+              "payout_cents",
+              "revision",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 2,
+            "action": "read",
+            "status": 403,
+            "required_fields": [
+              "error",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 3,
+            "action": "submit",
+            "status": 409,
+            "required_fields": [
+              "error",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 4,
+            "action": "read",
+            "status": 200,
+            "required_fields": [
+              "claim_status",
+              "event_count",
+              "payment_cents",
+              "payout_cents",
+              "revision",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 5,
+            "action": "transition",
+            "status": 409,
+            "required_fields": [
+              "error",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 6,
+            "action": "read",
+            "status": 200,
+            "required_fields": [
+              "claim_status",
+              "event_count",
+              "payment_cents",
+              "payout_cents",
+              "revision",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 7,
+            "action": "transition",
+            "status": 200,
+            "required_fields": [
+              "claim_status",
+              "event_count",
+              "payment_cents",
+              "payout_cents",
+              "revision",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 8,
+            "action": "transition",
+            "status": 200,
+            "required_fields": [
+              "claim_status",
+              "event_count",
+              "payment_cents",
+              "payout_cents",
+              "revision",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          }
+        ],
+        "rejected_mutation_guards": [
+          {
+            "rejected_step": 3,
+            "claim_id": "VAR-200",
+            "readback_step": 4
+          },
+          {
+            "rejected_step": 5,
+            "claim_id": "VAR-200",
+            "readback_step": 6
+          }
+        ],
+        "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+      },
+      "review_ready": true,
+      "reference": {
+        "status": "matched",
+        "reference_version": "independent-reference-v1",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "steps": [
+          {
+            "step": 1,
+            "expected": {
+              "status": 201,
+              "claim_status": "submitted",
+              "revision": 1,
+              "payout_cents": 146789,
+              "event_count": 1,
+              "payment_cents": null
+            },
+            "derivation": "156789 - deductible 10000 = 146789; below payout cap 200000; submission creates revision/event 1; no payment yet",
+            "mismatches": []
+          },
+          {
+            "step": 2,
+            "expected": {
+              "status": 403,
+              "error": "FORBIDDEN"
+            },
+            "derivation": "Written workflow contract: FORBIDDEN; no successful mutation",
+            "mismatches": []
+          },
+          {
+            "step": 3,
+            "expected": {
+              "status": 409,
+              "error": "DUPLICATE_CLAIM"
+            },
+            "derivation": "Written workflow contract: DUPLICATE_CLAIM; no successful mutation",
+            "mismatches": []
+          },
+          {
+            "step": 4,
+            "expected": {
+              "status": 200,
+              "claim_status": "submitted",
+              "revision": 1,
+              "payout_cents": 146789,
+              "event_count": 1,
+              "payment_cents": null
+            },
+            "derivation": "Read-only reference state; no revision, event or ledger changes",
+            "mismatches": []
+          },
+          {
+            "step": 5,
+            "expected": {
+              "status": 409,
+              "error": "INVALID_TRANSITION"
+            },
+            "derivation": "Written workflow contract: INVALID_TRANSITION; no successful mutation",
+            "mismatches": []
+          },
+          {
+            "step": 6,
+            "expected": {
+              "status": 200,
+              "claim_status": "submitted",
+              "revision": 1,
+              "payout_cents": 146789,
+              "event_count": 1,
+              "payment_cents": null
+            },
+            "derivation": "Read-only reference state; no revision, event or ledger changes",
+            "mismatches": []
+          },
+          {
+            "step": 7,
+            "expected": {
+              "status": 200,
+              "claim_status": "approved",
+              "revision": 2,
+              "payout_cents": 146789,
+              "event_count": 2,
+              "payment_cents": null
+            },
+            "derivation": "One successful transition adds one revision and event; payment equals stored reference payout only when paid",
+            "mismatches": []
+          },
+          {
+            "step": 8,
+            "expected": {
+              "status": 200,
+              "claim_status": "paid",
+              "revision": 3,
+              "payout_cents": 146789,
+              "event_count": 3,
+              "payment_cents": 146789
+            },
+            "derivation": "One successful transition adds one revision and event; payment equals stored reference payout only when paid",
+            "mismatches": []
+          }
+        ],
+        "mismatches": [],
+        "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+      },
+      "assertions_complete": true
+    }
+  ],
+  "approved_ids": [
+    "AI-001"
+  ],
+  "approval": {
+    "revision": 2,
+    "at": "2026-11-12T20:46:05.579160+00:00",
+    "reviewer_label": "Codex engineering operator (automated attestation)",
+    "note": "Explicit continuation of bounded correction; inspected independent reference and literal development expectations. Local engineering attestation, not authenticated human identity.",
+    "expectations_checked": true,
+    "hashes": {
+      "AI-001": "b887e3d03320185be11fee2f819b150bbe5a445c8d5da23ebb5c6c630e7d5bd5"
+    },
+    "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+    "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+    "identity_mode": "Local attestation label, not authenticated human identity"
+  },
+  "history": [
+    {
+      "event": "reference_replacements_confirmed",
+      "at": "2026-11-12T20:46:05.549418+00:00",
+      "reviewer_label": "Codex engineering operator (automated attestation)",
+      "note": "Explicit continuation of bounded correction; inspected independent reference and literal development expectations. Local engineering attestation, not authenticated human identity.",
+      "preview_hash": "2d4070017ae559edfea3de5589fb7c43d0f2ba5eb46cb824b563571e54568f28",
+      "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be"
+    },
+    {
+      "event": "approved",
+      "revision": 2,
+      "at": "2026-11-12T20:46:05.579160+00:00",
+      "reviewer_label": "Codex engineering operator (automated attestation)",
+      "note": "Explicit continuation of bounded correction; inspected independent reference and literal development expectations. Local engineering attestation, not authenticated human identity.",
+      "expectations_checked": true,
+      "hashes": {
+        "AI-001": "b887e3d03320185be11fee2f819b150bbe5a445c8d5da23ebb5c6c630e7d5bd5"
+      },
+      "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+      "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+      "identity_mode": "Local attestation label, not authenticated human identity"
+    }
+  ],
+  "runs": [],
+  "correction_root_id": "f6e2a1767d984f06813507d1e5efbb7a",
+  "expectation_origin": "reviewer_confirmed_reference",
+  "survivor_source": {
+    "score_id": "3f2d1607dc28443a96034e76a0cba22e",
+    "plan_hash": "00970014f70a7fe92d7167bcbafa00d1773e247ebf751ea370d8707d5d39c6c4",
+    "group": {
+      "id": "workflow",
+      "source_ids": [
+        "WF-001",
+        "WF-002",
+        "WF-003",
+        "WF-004",
+        "WF-005"
+      ],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "VAR-200",
+            "member_id": "M200",
+            "service": "medical",
+            "amount_cents": 156789
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "VAR-200"
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "VAR-200",
+            "member_id": "M200",
+            "service": "medical",
+            "amount_cents": 156789
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "VAR-200"
+          }
+        },
+        {
+          "action": "transition",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "VAR-200",
+            "target": "paid"
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "VAR-200"
+          }
+        },
+        {
+          "action": "transition",
+          "actor": "adjuster-demo",
+          "data": {
+            "claim_id": "VAR-200",
+            "target": "approved"
+          }
+        },
+        {
+          "action": "transition",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "VAR-200",
+            "target": "paid"
+          }
+        }
+      ],
+      "target_fault_ids": [
+        "workflow-ownership",
+        "workflow-duplicate_replay",
+        "workflow-skip_approval",
+        "workflow-ledger_amount"
+      ],
+      "variant": true,
+      "purpose": "Observe ownership, duplicate rejection/readback, forbidden early payment/readback, approval and positive ledger/history within eight steps.",
+      "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+    }
+  },
+  "reference_assisted_of": "1cb9c19856dc4974b3473e3e3dd44d36",
+  "reference_application": {
+    "experiment_id": "1cb9c19856dc4974b3473e3e3dd44d36",
+    "expected_revision": 1,
+    "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+    "cases": [
+      {
+        "id": "AI-001",
+        "title": "Synthetic Healthcare Workflow Case",
+        "rule_ids": [
+          "WF-001",
+          "WF-002",
+          "WF-003",
+          "WF-004",
+          "WF-005"
+        ],
+        "rationale": "This case tests the workflow for synthetic healthcare claims, including submission, readback, duplicate submission, and payment transitions.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "VAR-200",
+              "member_id": "M200",
+              "service": "medical",
+              "amount_cents": 156789
+            },
+            "expect": {
+              "status": 201,
+              "claim_status": "submitted",
+              "revision": 1,
+              "payout_cents": 146789,
+              "event_count": 1,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "VAR-200"
+            },
+            "expect": {
+              "status": 403,
+              "error": "FORBIDDEN"
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "VAR-200",
+              "member_id": "M200",
+              "service": "medical",
+              "amount_cents": 156789
+            },
+            "expect": {
+              "status": 409,
+              "error": "DUPLICATE_CLAIM"
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "VAR-200"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "submitted",
+              "revision": 1,
+              "payout_cents": 146789,
+              "event_count": 1,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "VAR-200",
+              "target": "paid"
+            },
+            "expect": {
+              "status": 409,
+              "error": "INVALID_TRANSITION"
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "VAR-200"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "submitted",
+              "revision": 1,
+              "payout_cents": 146789,
+              "event_count": 1,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "adjuster-demo",
+            "data": {
+              "claim_id": "VAR-200",
+              "target": "approved"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "approved",
+              "revision": 2,
+              "payout_cents": 146789,
+              "event_count": 2,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "VAR-200",
+              "target": "paid"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "paid",
+              "revision": 3,
+              "payout_cents": 146789,
+              "event_count": 3,
+              "payment_cents": 146789
+            }
+          }
+        ]
+      }
+    ],
+    "changes": [
+      {
+        "case_id": "AI-001",
+        "step": 2,
+        "before": {
+          "status": 200,
+          "claim_status": "submitted",
+          "revision": 1,
+          "payout_cents": 146789,
+          "event_count": 1,
+          "payment_cents": null
+        },
+        "after": {
+          "status": 403,
+          "error": "FORBIDDEN"
+        },
+        "explanation": "Written workflow contract: FORBIDDEN; no successful mutation"
+      },
+      {
+        "case_id": "AI-001",
+        "step": 5,
+        "before": {
+          "status": 200,
+          "claim_status": "paid",
+          "revision": 2,
+          "payout_cents": 146789,
+          "event_count": 2,
+          "payment_cents": 146789
+        },
+        "after": {
+          "status": 409,
+          "error": "INVALID_TRANSITION"
+        },
+        "explanation": "Written workflow contract: INVALID_TRANSITION; no successful mutation"
+      },
+      {
+        "case_id": "AI-001",
+        "step": 6,
+        "before": {
+          "status": 200,
+          "claim_status": "paid",
+          "revision": 2,
+          "payout_cents": 146789,
+          "event_count": 2,
+          "payment_cents": 146789
+        },
+        "after": {
+          "status": 200,
+          "claim_status": "submitted",
+          "revision": 1,
+          "payout_cents": 146789,
+          "event_count": 1,
+          "payment_cents": null
+        },
+        "explanation": "Read-only reference state; no revision, event or ledger changes"
+      },
+      {
+        "case_id": "AI-001",
+        "step": 7,
+        "before": {
+          "status": 200,
+          "claim_status": "approved",
+          "revision": 3,
+          "payout_cents": 146789,
+          "event_count": 3,
+          "payment_cents": 146789
+        },
+        "after": {
+          "status": 200,
+          "claim_status": "approved",
+          "revision": 2,
+          "payout_cents": 146789,
+          "event_count": 2,
+          "payment_cents": null
+        },
+        "explanation": "One successful transition adds one revision and event; payment equals stored reference payout only when paid"
+      },
+      {
+        "case_id": "AI-001",
+        "step": 8,
+        "before": {
+          "status": 200,
+          "claim_status": "paid",
+          "revision": 4,
+          "payout_cents": 146789,
+          "event_count": 4,
+          "payment_cents": 146789
+        },
+        "after": {
+          "status": 200,
+          "claim_status": "paid",
+          "revision": 3,
+          "payout_cents": 146789,
+          "event_count": 3,
+          "payment_cents": 146789
+        },
+        "explanation": "One successful transition adds one revision and event; payment equals stored reference payout only when paid"
+      }
+    ],
+    "origin": "reviewer_confirmed_reference",
+    "preview_hash": "2d4070017ae559edfea3de5589fb7c43d0f2ba5eb46cb824b563571e54568f28"
+  },
+  "correction_budget": {
+    "root_id": "f6e2a1767d984f06813507d1e5efbb7a",
+    "used": 2,
+    "limit": 2,
+    "remaining": 0
+  },
+  "survivor_sequence_matches": true,
+  "current_reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+  "approval_matches_reference": true,
+  "current_assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+  "approval_matches_assertion_policy": true
+}

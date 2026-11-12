@@ -83,7 +83,7 @@ def build_prompt(requirement,source_ids,strategy,count):
 Return only an object with cases, matching the supplied JSON schema. Do NOT return Python, shell, URLs, file paths or tool commands.
 Each case has a unique AI- ID, title, rule_ids from SELECTED RULES, rationale, assumptions (empty if none), and ordered steps.
 Actions: evaluate, submit, transition, read. Each step has actor, data and expect. Every expectation must contain status and at least one business observable.
-Cases use fresh isolated state. Steps within one case share state. No setup is implicit: submit first before approving or reading a saved claim.
+Cases use fresh isolated workflow state. ONLY submit/transition/read share stored claim state. EVERY evaluate action is a separate stateless request: omitted active, in_network, authorized and formulary reset to true on EACH evaluate step. Never carry a false flag, denial, plan or amount from an earlier evaluation. No workflow setup is implicit: submit first before approving or reading a saved claim.
 evaluate data: plan_id, service, amount_cents; optional active,in_network,authorized,formulary default true. actor='none'. Success HTTP-equivalent status is 200 even for denied evaluations. Observables: decision,reason,payout_cents. Invalid input: status 400,error INVALID_REQUEST.
 submit data: claim_id,member_id,service,amount_cents; optional in_network,authorized,formulary default true. actor is a named customer fixture. Server resolves plan and active status. Success status 201,claim_status submitted,revision 1,event_count 1,payment_cents null. Payout is the stored evaluation amount. Denial status 422,error COVERAGE_DENIED,reason equal to the HC reason.
 transition data: claim_id,target only. target approved by adjuster-demo or paid by finance-demo. Success status 200,claim_status target,revision increments,event_count increments. Payment equals payout only after paid; before paid payment_cents is null.
@@ -151,7 +151,7 @@ class StudioService:
         self.generation_lock=threading.BoundedSemaphore(1)
         with self.store.transaction() as db:operations.recover(db)
 
-    def generate(self,request,*,_retry=None,_evaluation_profile=None,_correction=None):
+    def generate(self,request,*,_retry=None,_evaluation_profile=None,_correction=None,_provenance=None):
         if not isinstance(request,dict) or set(request)!={"requirement","source_ids","model","strategy","count"}:
             raise StudioError("INVALID_REQUEST","Provide requirement, source_ids, model, strategy and count only")
         requirement,sources=request["requirement"],request["source_ids"]
@@ -166,6 +166,20 @@ class StudioService:
             if _evaluation_profile is not None:
                 if _evaluation_profile.get("kind")!="frozen-baseline-v51":raise ValueError("Unknown internal evaluation profile")
                 prompt=_evaluation_profile["prompt"];format_schema=_evaluation_profile["schema"];schema_version="historical-loose-format-v1"
+
+            target_group=(_provenance or {}).get("survivor_source",{}).get("group")
+            if target_group and not _correction:
+                case_schema=format_schema["properties"]["cases"]["items"]
+                step_variants=case_schema["properties"]["steps"]["items"]["oneOf"]
+                planned=[]
+                for step in target_group["steps"]:
+                    spec=next(deepcopy(v) for v in step_variants if v["properties"]["action"]["const"]==step["action"])
+                    for key in ("action","actor","data"):spec["properties"][key]={"const":step[key]}
+                    planned.append(spec)
+                case_schema["properties"]["rule_ids"]={"const":target_group["source_ids"]}
+                case_schema["properties"]["steps"]={"type":"array","items":{"anyOf":planned},"minItems":len(planned),"maxItems":len(planned)}
+                Draft202012Validator.check_schema(format_schema)
+                schema_version="survivor-inputs-v2"
 
             if _correction:
                 # Freeze every non-expectation field in the provider grammar too.
@@ -192,6 +206,9 @@ class StudioService:
                     "source_rules":[ALL_RULES[id] for id in sources],"model":request["model"],"strategy":request["strategy"],"requested_count":request["count"],
                     "prompt":prompt,"prompt_hash":digest(prompt),"settings":dict(SETTINGS),"dsl_version":DSL_VERSION,"contract_fingerprint":contract_fingerprint(),
                     "generation_schema_version":schema_version,"generation_schema_hash":digest(format_schema),"generation_schema_issues":[],"assertion_policy_fingerprint":policy_fingerprint(),"state":"generating","revision":1,"raw_generation":None,"generation_error":None,"proposals":[],"approved_ids":[],"approval":None,"history":[],"runs":[]}
+            if _provenance is not None:
+                if not isinstance(_provenance,dict) or set(_provenance)-{"gap_source","survivor_source"}:raise ValueError("Unsupported internal generation provenance")
+                record.update(deepcopy(_provenance))
             with self.store.transaction() as db:
                 operations.recover(db)
                 if _retry:
@@ -199,6 +216,8 @@ class StudioService:
                     if parent["state"]!="interrupted" or parent.get("interruption",{}).get("kind")!="generation":raise StudioError("INVALID_STATE","Only interrupted generation can be retried")
                     parent["revision"]+=1
                     parent["history"].append({"event":"generation_retry_requested","at":now(),"revision":parent["revision"],"child_experiment_id":record["id"],"reviewer_label":_retry["reviewer_label"],"note":_retry["review_note"]})
+                    for provenance_key in ("gap_source","survivor_source"):
+                        if provenance_key in parent:record[provenance_key]=deepcopy(parent[provenance_key])
                     self.store.save(db,parent);record["retry_of"]=parent["id"]
                 if _correction:
                     parent=self.store.load(db,_correction["id"]);self._revision(parent,_correction)
@@ -208,6 +227,8 @@ class StudioService:
                     record["correction_root_id"]=budget["root_id"]
                     record["correction_attempt"]=budget["used"]+1
                     record["expectation_origin"]="reference_guided_ai"
+                    for provenance_key in ("gap_source","survivor_source"):
+                        if provenance_key in parent:record[provenance_key]=deepcopy(parent[provenance_key])
                     record["correction_of"]=parent["id"]
                     record["correction_snapshot"]=deepcopy(_correction)
                     parent["revision"]+=1
@@ -247,6 +268,9 @@ class StudioService:
         record=self.store.get(id)
         if record["proposals"]:record["proposals"]=checked_cases([p["case"] for p in record["proposals"]],record["source_ids"])
         with self.store.transaction() as db:record["correction_budget"]=correction_budget(db,record)
+        if record.get("survivor_source"):
+            from healthcare_quality.survivors import group_match
+            record["survivor_sequence_matches"]=bool(len(record["proposals"])==1 and record["proposals"][0]["valid"] and group_match(record["survivor_source"]["group"],record["proposals"][0]["case"]))
         record["current_reference_fingerprint"]=reference.fingerprint()
         record["approval_matches_reference"]=bool(record["approval"] and record["approval"].get("reference_fingerprint")==reference.fingerprint())
         record["current_assertion_policy_fingerprint"]=policy_fingerprint()
@@ -321,7 +345,7 @@ class StudioService:
         request={"requirement":parent["requirement"],"source_ids":parent["source_ids"],"model":parent["model"],"strategy":parent["strategy"],"count":parent["requested_count"]}
         if parent.get("correction_snapshot"):
             return self.generate(request,_correction={**parent["correction_snapshot"],"id":id,**body})
-        return self.generate(request,_retry={"id":id,**body})
+        return self.generate(request,_retry={"id":id,**body},_provenance={k:deepcopy(parent[k]) for k in ("gap_source","survivor_source") if k in parent})
 
     @staticmethod
     def _revision(record,body):
@@ -347,9 +371,10 @@ class StudioService:
             index=next((i for i,c in enumerate(cases) if isinstance(c,dict) and c.get("id")==case_id),None)
             if index is None:raise StudioError("NOT_FOUND","Case not found",404)
             before=deepcopy(cases[index]);cases[index]=body["case"]
+            previous_origin=record.get("expectation_origin","original_ai")
             checked=checked_cases(cases,record["source_ids"])
-            record["revision"]+=1;record["proposals"]=checked;record["approved_ids"]=[];record["approval"]=None;record["state"]="proposed"
-            record["history"].append({"event":"case_edited","at":now(),"revision":record["revision"],"reviewer_label":body["reviewer_label"],"note":body["review_note"],"before":before,"after":body["case"]})
+            record["revision"]+=1;record["proposals"]=checked;record["approved_ids"]=[];record["approval"]=None;record["state"]="proposed";record["expectation_origin"]="reviewer_edit"
+            record["history"].append({"previous_expectation_origin":previous_origin,"event":"case_edited","at":now(),"revision":record["revision"],"reviewer_label":body["reviewer_label"],"note":body["review_note"],"before":before,"after":body["case"]})
             self.store.save(db,record);return record
 
     def review(self,id,body):

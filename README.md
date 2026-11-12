@@ -1,4 +1,4 @@
-# Healthcare Quality Lab — V5.5 (build 5.5.1)
+# Healthcare Quality Lab — V5.6
 
 A standalone quality engineering showcase built with **Python, pytest, Playwright and local Ollama**. Learn to define contracts, test stateful claims, review AI-created cases, measure test quality and release verified source packages.
 
@@ -26,6 +26,10 @@ The [coverage dashboard](http://127.0.0.1:8895/#test-coverage) maps 13 written r
 
 The live demonstration generated two correct gap cases with three actual model requests, closing two of four defined gaps. That two-case suite detected only 2/12 applicable seeds, with ten survivors retained. This is distinct from the authored framework benchmark's 12/12 detections. Read the [detailed V5.5 report](docs/V5.5_REPORT.md).
 
+## V5.6 survivor-targeted tests and guided showcase
+
+The reviewed primary suite improved from 2/12 to 12/12 known fault seeds, with ten new detections and zero regressions. Alternate development inputs also reach 12/12. Each final suite contains one AI-authored workflow and one reference-assisted evaluator; raw errors and corrections remain visible. The polished dashboard shows score/source context, plain-language metrics, survivor plans and a fair comparison matrix. Read the [detailed V5.6 report](docs/V5.6_REPORT.md) and [guided demo](docs/V5.6_DEMO.md).
+
 ## Start here
 
 ```sh
@@ -35,7 +39,7 @@ python3 -m tools.bootstrap --browser
 
 Open [the guided showcase](http://127.0.0.1:8895/#showcase). In VS Code select `.venv/bin/python` and **Run and Debug → V5: start Healthcare Quality Lab**. Bootstrap uses only this project's `.venv` and `.browsers`; it does not install Ollama or download models. On Windows use `.venv\Scripts\python.exe` instead of `.venv/bin/python`.
 
-Read the [V5.5 coverage and test-value report](docs/V5.5_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
+Read the [V5.6 survivor-targeting report](docs/V5.6_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
 
 ## What the five versions deliver
 
@@ -47,7 +51,7 @@ Read the [V5.5 coverage and test-value report](docs/V5.5_REPORT.md), [eight-minu
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.5 local verification:** 555 tests passed (451 unit, 65 API, 39 Chromium), with zero failures/skips. All 12 retained authored fault seeds were detected. [Patch GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43298180961); downloaded evidence matches the final local source fingerprint.
+**V5.6 local verification:** 587 tests passed (480 unit, 66 API, 41 Chromium), zero failures/skips. Current V5.6 CI evidence is recorded in the report.
 
 ## Test the application
 
@@ -77,8 +81,8 @@ After a fresh successful verification:
 
 ```sh
 .venv/bin/python -m tools.release build
-.venv/bin/python -m tools.release inspect releases/v5.5.1-source.zip
-.venv/bin/python -m tools.release stage releases/v5.5.1-source.zip
+.venv/bin/python -m tools.release inspect releases/v5.6.0-source.zip
+.venv/bin/python -m tools.release stage releases/v5.6.0-source.zip
 .venv/bin/python -m tools.release activate RELEASE_ID_FROM_STAGE
 .venv/bin/python -m tools.release serve --port 8896
 ```
@@ -91,7 +95,7 @@ Source packages exclude local databases, environments, browser binaries and cach
 
 The project has its own new private repository: [kilicerdal/healthcare-quality-lab](https://github.com/kilicerdal/healthcare-quality-lab). Existing projects and repositories are independent.
 
-GitHub Actions installs dependencies and Chromium, runs regression and known-fault checks, builds and inspects a checksummed source archive, starts its staged Waitress runtime for an actual HTTP journey, and uploads evidence. Current remote execution results are recorded in the V5.5 report and `artifacts/v5.5/github-ci.json`. Earlier version evidence remains preserved. The hosted runtime target for this delivery is local loopback; the GitHub repository is private and is not a public website.
+GitHub Actions installs dependencies and Chromium, runs regression and known-fault checks, builds and inspects a checksummed source archive, starts its staged Waitress runtime for an actual HTTP journey, and uploads evidence. Current remote execution results are recorded in the V5.6 report and `artifacts/v5.6/github-ci.json`. Earlier version evidence remains preserved. The hosted runtime target for this delivery is local loopback; the GitHub repository is private and is not a public website.
 
 ## AI tools and learning
 

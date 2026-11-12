@@ -1,0 +1,133 @@
+{
+  "state": "completed",
+  "continued_from": "live-survivor-demo.json",
+  "reason": "Measurement helper must reload the persisted assessment after each correction. Original generation and failed correction responses preserved. No repeated initial generations.",
+  "baseline_score_id": "9747642df23a47fb84123b88215271f0",
+  "proposals": [
+    {
+      "set": "core",
+      "group": "evaluator",
+      "original_id": "37976fe404154ffd8903d511ca4b9bf2",
+      "corrections": [
+        "4e151c02c309439f86e0f96d388b80ad"
+      ],
+      "reference_assisted": true,
+      "manual_edit": false,
+      "final_id": "64920ef47910447fb6708344f23960c7",
+      "ready_and_plan_matched": false,
+      "literal_match": true,
+      "origin": "reference_guided_ai",
+      "additional_correction_ids": [
+        "db2d9853492e45b2a35dc5a3c7374a03"
+      ],
+      "final_origin": "reviewer_confirmed_reference"
+    },
+    {
+      "set": "core",
+      "group": "workflow",
+      "original_id": "4202383ec9dd404a9cabe28ac50f430b",
+      "corrections": [
+        "aea1b8beffcb49ffa4cc4c899997cae7"
+      ],
+      "reference_assisted": true,
+      "manual_edit": false,
+      "final_id": "6a5c8787dfc046789518b55fc347724f",
+      "ready_and_plan_matched": false,
+      "literal_match": true,
+      "origin": "reference_guided_ai",
+      "additional_correction_ids": [
+        "08bceb165e2b4f23a364829b568a5396"
+      ],
+      "final_origin": "reviewer_confirmed_reference"
+    },
+    {
+      "set": "alternate",
+      "group": "evaluator",
+      "original_id": "9c5eee3ccd0d4be9b4556ff6b0a5eddb",
+      "corrections": [
+        "00c8e01509ff410c902f991610b01f57"
+      ],
+      "reference_assisted": true,
+      "manual_edit": false,
+      "final_id": "8a7dc98f0f4e4d3488e487f465b0587a",
+      "ready_and_plan_matched": false,
+      "literal_match": true,
+      "origin": "reference_guided_ai",
+      "additional_correction_ids": [
+        "11945d31c36f47e491df9d8600315a95"
+      ],
+      "final_origin": "reviewer_confirmed_reference"
+    },
+    {
+      "set": "alternate",
+      "group": "workflow",
+      "original_id": "f6e2a1767d984f06813507d1e5efbb7a",
+      "corrections": [
+        "78b19868bc314ab3acc5effad8f2cf96"
+      ],
+      "reference_assisted": true,
+      "manual_edit": false,
+      "final_id": "b7c96ad2e56c46f48916e0c78e0bd645",
+      "ready_and_plan_matched": false,
+      "literal_match": true,
+      "origin": "reference_guided_ai",
+      "additional_correction_ids": [
+        "1cb9c19856dc4974b3473e3e3dd44d36"
+      ],
+      "final_origin": "reviewer_confirmed_reference"
+    }
+  ],
+  "selections": {
+    "core": [
+      {
+        "id": "64920ef47910447fb6708344f23960c7",
+        "expected_revision": 2
+      },
+      {
+        "id": "6a5c8787dfc046789518b55fc347724f",
+        "expected_revision": 2
+      }
+    ],
+    "alternate": [
+      {
+        "id": "8a7dc98f0f4e4d3488e487f465b0587a",
+        "expected_revision": 2
+      },
+      {
+        "id": "b7c96ad2e56c46f48916e0c78e0bd645",
+        "expected_revision": 2
+      }
+    ]
+  },
+  "scores": {
+    "core": {
+      "id": "d9afbfa6601749c0ba31c540e469fac0",
+      "state": "scored",
+      "detected": 12,
+      "applicable": 12,
+      "errors": 0,
+      "score": 1.0
+    },
+    "alternate": {
+      "id": "1bb72eabeb364f7eb9c372f521e12118",
+      "state": "scored",
+      "detected": 12,
+      "applicable": 12,
+      "errors": 0,
+      "score": 1.0
+    }
+  },
+  "comparisons": {
+    "core": "4cfe532bd2ff4427940b6374d6b3e174",
+    "alternate": "58b3b77989c7411d84cbcb668d614d54"
+  },
+  "scope": "Known-seed targeting with authored input/action plans and provider input constraints. The model supplies expectations. Alternate plans and literal expected answers frozen before inference; these are development variations, not blind holdouts. Operator attestations are explicitly automated engineering reviews. Corrections/reference assistance/manual edits, if used, are reported separately.",
+  "summary": {
+    "initial_generation_calls": 4,
+    "all_correction_calls": 8,
+    "reference_assisted_cases": 4,
+    "manual_edits": 0,
+    "core_detected": 12,
+    "alternate_detected": 12
+  }
+}

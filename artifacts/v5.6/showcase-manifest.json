@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "model_requests": 0,
+  "imported_studio_records": [
+    "b4c45341e28f449392a1d6496769dcb1",
+    "cb66408ffe4f4aa993eaf78180a52535",
+    "da53b05512b54ce0a6bb146e18d93a6f",
+    "b29460316d384cb79a4aa255586d2fe0",
+    "9bacd245fceb4eec866a075e8da6cc7e"
+  ],
+  "approved_core_cases": [
+    "b29460316d384cb79a4aa255586d2fe0",
+    "9bacd245fceb4eec866a075e8da6cc7e"
+  ],
+  "baseline_id": "0b1311fe660d45498c737dc2dff45466",
+  "after_id": "5002b95d4b0f49efb8f63831f6002a2e",
+  "comparison_id": "59bce57982c741868377a79f752ecb86",
+  "alternate_score_id": "cd88b869692b4be6827d53cafa1bdda0",
+  "before_detected": 2,
+  "after_detected": 12,
+  "newly_detected": [
+    "eval-eligibility",
+    "eval-coverage",
+    "eval-network",
+    "eval-authorization",
+    "eval-formulary",
+    "eval-deductible",
+    "workflow-ownership",
+    "workflow-duplicate_replay",
+    "workflow-skip_approval",
+    "workflow-ledger_amount"
+  ],
+  "expectation_sources": {
+    "original_ai": 1,
+    "reviewer_confirmed_reference": 1
+  },
+  "scope": "Additive showcase import of two reviewed cases plus their complete correction/reference lineage. Every earlier record is retained."
+}

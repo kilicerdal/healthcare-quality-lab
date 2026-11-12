@@ -60,7 +60,7 @@ def render(source, version="v3"):
 def main():
     import argparse
     parser=argparse.ArgumentParser()
-    parser.add_argument("--version",choices=("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5"),default="v5.5")
+    parser.add_argument("--version",choices=("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6"),default="v5.6")
     args=parser.parse_args()
     name=args.version.upper()+"_REPORT"
     source=(ROOT/f"docs/{name}.md").read_text()

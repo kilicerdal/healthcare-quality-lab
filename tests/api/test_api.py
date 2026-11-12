@@ -7,7 +7,7 @@ BASE = {"plan_id":"commercial_ppo","service":"medical","amount_cents":100000}
 
 @pytest.mark.smoke
 def test_health_and_home_are_available(client):
-    assert client.get("/api/health").json == {"status":"ok","version":"5.5.1"}
+    assert client.get("/api/health").json == {"status":"ok","version":"5.6.0"}
     assert client.get("/").status_code == 200
 
 
@@ -77,4 +77,4 @@ def test_engineering_report_is_served_as_html(client):
     response=client.get("/report")
     assert response.status_code==200
     assert response.mimetype=="text/html"
-    assert b"Healthcare Quality Lab V5.5 Engineering Report" in response.data
+    assert b"Healthcare Quality Lab V5.6 Engineering Report" in response.data

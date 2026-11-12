@@ -1,0 +1,703 @@
+{
+  "id": "b29460316d384cb79a4aa255586d2fe0",
+  "version": "5.6.0",
+  "created_at": "2026-11-12T20:47:50.380008+00:00",
+  "requirement": "Create exactly ONE case containing EXACTLY these ordered actions, actors and input data: [{\"action\": \"evaluate\", \"actor\": \"none\", \"data\": {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 112345, \"active\": false}}, {\"action\": \"evaluate\", \"actor\": \"none\", \"data\": {\"plan_id\": \"medicare_b\", \"service\": \"dental\", \"amount_cents\": 112345}}, {\"action\": \"evaluate\", \"actor\": \"none\", \"data\": {\"plan_id\": \"commercial_hmo\", \"service\": \"medical\", \"amount_cents\": 112345, \"in_network\": false}}, {\"action\": \"evaluate\", \"actor\": \"none\", \"data\": {\"plan_id\": \"medicare_advantage\", \"service\": \"hospital\", \"amount_cents\": 112345, \"authorized\": false}}, {\"action\": \"evaluate\", \"actor\": \"none\", \"data\": {\"plan_id\": \"medicare_d\", \"service\": \"prescription\", \"amount_cents\": 112345, \"formulary\": false}}, {\"action\": \"evaluate\", \"actor\": \"none\", \"data\": {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 112345}}, {\"action\": \"evaluate\", \"actor\": \"none\", \"data\": {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 245678}}]. Valid claim IDs may be consistently renamed; preserve identity relationships. Cite EXACTLY all selected rule IDs: [\"HC-002\", \"HC-003\", \"HC-004\", \"HC-005\", \"HC-006\", \"HC-007\"]. Include complete independent expected observations. Evaluate denials use status 200, denied reason and payout zero. Every successful workflow action asserts all six fields. Rejections assert only returned error/status, then the specified unchanged readback. Reads/rejections add no event. Amounts and payments are integer cents. Do not substitute different inputs or omit steps. Purpose: Activate each relevant written rule separately; later denials must not mask the targeted rule. Written-rule outcome guidance: [\"Each evaluate is stateless. Reset omitted flags to true on every step.\", \"Steps 1-5 are independently denied for INACTIVE_POLICY, SERVICE_NOT_COVERED, OUT_OF_NETWORK, AUTH_REQUIRED, NON_FORMULARY respectively. HTTP status remains 200, payout is zero.\", \"Steps 6 and 7 are approved / COVERED: calculate their payouts separately using deductible then payout cap. Do not carry inactive=false from step 1.\"]",
+  "source_ids": [
+    "HC-002",
+    "HC-003",
+    "HC-004",
+    "HC-005",
+    "HC-006",
+    "HC-007"
+  ],
+  "source_rules": [
+    {
+      "id": "HC-002",
+      "name": "Active coverage",
+      "risk": "Payment for an inactive teaching policy.",
+      "contract": "An inactive policy returns decision denied and reason INACTIVE_POLICY, before any benefit or network check."
+    },
+    {
+      "id": "HC-003",
+      "name": "Service benefit",
+      "risk": "Payment for a service missing from the chosen contract.",
+      "contract": "Use plans.json as the authoritative synthetic matrix. A known service not listed in the selected plan returns denied / SERVICE_NOT_COVERED. Part C and Medicare Advantage are the same category. These service lists are teaching fixtures, not actual coverage determinations."
+    },
+    {
+      "id": "HC-004",
+      "name": "Network control",
+      "risk": "Bypassing a synthetic network restriction.",
+      "contract": "When network_required is true and in_network is false, return denied / OUT_OF_NETWORK. Other plans accept either network flag with identical simplified payout; real emergency exceptions and cost sharing are outside V1."
+    },
+    {
+      "id": "HC-005",
+      "name": "Prior authorization",
+      "risk": "Approving a claim without the required teaching authorization.",
+      "contract": "If service appears in authorization_services and authorized is false, return denied / AUTH_REQUIRED. Check this after service coverage and network."
+    },
+    {
+      "id": "HC-006",
+      "name": "Drug formulary",
+      "risk": "Accepting a prescription outside the synthetic formulary.",
+      "contract": "For a covered prescription service, formulary false returns denied / NON_FORMULARY. For other services, the flag has no effect. Check after network and authorization."
+    },
+    {
+      "id": "HC-007",
+      "name": "Payout calculation",
+      "risk": "Overpayment, negative payout, or policy-limit bypass.",
+      "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+    }
+  ],
+  "model": "qwen2.5-coder:3b",
+  "strategy": "oracle-check-v2",
+  "requested_count": 1,
+  "prompt": "No model request. Reviewer-confirmed independent reference replacements.",
+  "prompt_hash": "cef6f1a98fd0b571b6cf7028c62631591036d847464f9b32d16a0869f635ea19",
+  "settings": {
+    "temperature": 0,
+    "seed": 7,
+    "num_predict": 2600,
+    "num_ctx": 12288
+  },
+  "dsl_version": "1.0",
+  "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+  "generation_schema_version": "reference-assisted-v1",
+  "generation_schema_hash": null,
+  "generation_schema_issues": [],
+  "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+  "state": "approved",
+  "revision": 2,
+  "raw_generation": null,
+  "generation_error": null,
+  "proposals": [
+    {
+      "case": {
+        "id": "AI-1234567890",
+        "title": "Evaluate Multiple Claims with Different Rules",
+        "rule_ids": [
+          "HC-002",
+          "HC-003",
+          "HC-004",
+          "HC-005",
+          "HC-006",
+          "HC-007"
+        ],
+        "rationale": "This case evaluates multiple claims to ensure that each rule is applied correctly and that the system handles different scenarios as expected.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "active": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "INACTIVE_POLICY",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_b",
+              "service": "dental",
+              "amount_cents": 112345
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "SERVICE_NOT_COVERED",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_hmo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "in_network": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "OUT_OF_NETWORK",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_advantage",
+              "service": "hospital",
+              "amount_cents": 112345,
+              "authorized": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "AUTH_REQUIRED",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_d",
+              "service": "prescription",
+              "amount_cents": 112345,
+              "formulary": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "NON_FORMULARY",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 102345
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 245678
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 200000
+            }
+          }
+        ]
+      },
+      "valid": true,
+      "issues": [],
+      "warnings": [
+        "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+      ],
+      "hash": "e5023a8f6e4263591a120ac4d101deeebcee05ec63dbf249c9d616b9d0c2c04a",
+      "quality": {
+        "policy_version": "business-observations-v1",
+        "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "complete": true,
+        "issues": [],
+        "steps": [
+          {
+            "step": 1,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 2,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 3,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 4,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 5,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "reason",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 6,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          },
+          {
+            "step": 7,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          }
+        ],
+        "rejected_mutation_guards": [],
+        "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+      },
+      "review_ready": true,
+      "reference": {
+        "status": "matched",
+        "reference_version": "independent-reference-v1",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "steps": [
+          {
+            "step": 1,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "INACTIVE_POLICY",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: INACTIVE_POLICY; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 2,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "SERVICE_NOT_COVERED",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: SERVICE_NOT_COVERED; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 3,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "OUT_OF_NETWORK",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: OUT_OF_NETWORK; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 4,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "AUTH_REQUIRED",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: AUTH_REQUIRED; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 5,
+            "expected": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "NON_FORMULARY",
+              "payout_cents": 0
+            },
+            "derivation": "Ordered written denial rules: NON_FORMULARY; payout 0",
+            "mismatches": []
+          },
+          {
+            "step": 6,
+            "expected": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 102345
+            },
+            "derivation": "112345 - deductible 10000 = 102345; below payout cap 200000",
+            "mismatches": []
+          },
+          {
+            "step": 7,
+            "expected": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 200000
+            },
+            "derivation": "245678 >= deductible 10000 + payout cap 200000; payout = 200000",
+            "mismatches": []
+          }
+        ],
+        "mismatches": [],
+        "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+      },
+      "assertions_complete": true
+    }
+  ],
+  "approved_ids": [
+    "AI-1234567890"
+  ],
+  "approval": {
+    "revision": 2,
+    "at": "2026-11-12T20:47:50.394968+00:00",
+    "reviewer_label": "Codex engineering operator (automated attestation)",
+    "note": "Checked planned actions, literal development answers and independent reference before healthy-baseline and seeded-defect scoring. Local label, not authenticated human identity.",
+    "expectations_checked": true,
+    "hashes": {
+      "AI-1234567890": "e5023a8f6e4263591a120ac4d101deeebcee05ec63dbf249c9d616b9d0c2c04a"
+    },
+    "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+    "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+    "identity_mode": "Local attestation label, not authenticated human identity"
+  },
+  "history": [
+    {
+      "event": "reference_replacements_confirmed",
+      "at": "2026-11-12T20:47:50.381111+00:00",
+      "reviewer_label": "Codex engineering operator (automated attestation)",
+      "note": "Checked planned actions, literal development answers and independent reference before healthy-baseline and seeded-defect scoring. Local label, not authenticated human identity.",
+      "preview_hash": "78aab041b19c0b3219fbde6737a4b8de9c5bb72195223acbc931db016c0129d9",
+      "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be"
+    },
+    {
+      "event": "approved",
+      "revision": 2,
+      "at": "2026-11-12T20:47:50.394968+00:00",
+      "reviewer_label": "Codex engineering operator (automated attestation)",
+      "note": "Checked planned actions, literal development answers and independent reference before healthy-baseline and seeded-defect scoring. Local label, not authenticated human identity.",
+      "expectations_checked": true,
+      "hashes": {
+        "AI-1234567890": "e5023a8f6e4263591a120ac4d101deeebcee05ec63dbf249c9d616b9d0c2c04a"
+      },
+      "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+      "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+      "identity_mode": "Local attestation label, not authenticated human identity"
+    }
+  ],
+  "runs": [],
+  "correction_root_id": "b4c45341e28f449392a1d6496769dcb1",
+  "expectation_origin": "reviewer_confirmed_reference",
+  "survivor_source": {
+    "score_id": "32581be38e3e45fabab64e282341fa80",
+    "plan_hash": "a9e87ac4bed016fb2564f94d3ec5d914983d2f306fd7406a4fc4e039d5bc4359",
+    "group": {
+      "id": "evaluator",
+      "source_ids": [
+        "HC-002",
+        "HC-003",
+        "HC-004",
+        "HC-005",
+        "HC-006",
+        "HC-007"
+      ],
+      "steps": [
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "commercial_ppo",
+            "service": "medical",
+            "amount_cents": 112345,
+            "active": false
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_b",
+            "service": "dental",
+            "amount_cents": 112345
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "commercial_hmo",
+            "service": "medical",
+            "amount_cents": 112345,
+            "in_network": false
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_advantage",
+            "service": "hospital",
+            "amount_cents": 112345,
+            "authorized": false
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "medicare_d",
+            "service": "prescription",
+            "amount_cents": 112345,
+            "formulary": false
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "commercial_ppo",
+            "service": "medical",
+            "amount_cents": 112345
+          }
+        },
+        {
+          "action": "evaluate",
+          "actor": "none",
+          "data": {
+            "plan_id": "commercial_ppo",
+            "service": "medical",
+            "amount_cents": 245678
+          }
+        }
+      ],
+      "target_fault_ids": [
+        "eval-eligibility",
+        "eval-coverage",
+        "eval-network",
+        "eval-authorization",
+        "eval-formulary",
+        "eval-deductible"
+      ],
+      "variant": false,
+      "purpose": "Activate each relevant written rule separately; later denials must not mask the targeted rule.",
+      "outcome_guidance": [
+        "Each evaluate is stateless. Reset omitted flags to true on every step.",
+        "Steps 1-5 are independently denied for INACTIVE_POLICY, SERVICE_NOT_COVERED, OUT_OF_NETWORK, AUTH_REQUIRED, NON_FORMULARY respectively. HTTP status remains 200, payout is zero.",
+        "Steps 6 and 7 are approved / COVERED: calculate their payouts separately using deductible then payout cap. Do not carry inactive=false from step 1."
+      ],
+      "matching_scope": "Exact action/actor/data sequence with equivalent omitted true flags and consistently renamed valid claim IDs. Every selected rule must be cited."
+    }
+  },
+  "reference_assisted_of": "da53b05512b54ce0a6bb146e18d93a6f",
+  "reference_application": {
+    "experiment_id": "da53b05512b54ce0a6bb146e18d93a6f",
+    "expected_revision": 1,
+    "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+    "cases": [
+      {
+        "id": "AI-1234567890",
+        "title": "Evaluate Multiple Claims with Different Rules",
+        "rule_ids": [
+          "HC-002",
+          "HC-003",
+          "HC-004",
+          "HC-005",
+          "HC-006",
+          "HC-007"
+        ],
+        "rationale": "This case evaluates multiple claims to ensure that each rule is applied correctly and that the system handles different scenarios as expected.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "active": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "INACTIVE_POLICY",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_b",
+              "service": "dental",
+              "amount_cents": 112345
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "SERVICE_NOT_COVERED",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_hmo",
+              "service": "medical",
+              "amount_cents": 112345,
+              "in_network": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "OUT_OF_NETWORK",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_advantage",
+              "service": "hospital",
+              "amount_cents": 112345,
+              "authorized": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "AUTH_REQUIRED",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "medicare_d",
+              "service": "prescription",
+              "amount_cents": 112345,
+              "formulary": false
+            },
+            "expect": {
+              "status": 200,
+              "decision": "denied",
+              "reason": "NON_FORMULARY",
+              "payout_cents": 0
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 112345
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 102345
+            }
+          },
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 245678
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 200000
+            }
+          }
+        ]
+      }
+    ],
+    "changes": [
+      {
+        "case_id": "AI-1234567890",
+        "step": 6,
+        "before": {
+          "status": 200,
+          "decision": "denied",
+          "reason": "INACTIVE_POLICY",
+          "payout_cents": 0
+        },
+        "after": {
+          "status": 200,
+          "decision": "approved",
+          "reason": "COVERED",
+          "payout_cents": 102345
+        },
+        "explanation": "112345 - deductible 10000 = 102345; below payout cap 200000"
+      }
+    ],
+    "origin": "reviewer_confirmed_reference",
+    "preview_hash": "78aab041b19c0b3219fbde6737a4b8de9c5bb72195223acbc931db016c0129d9"
+  },
+  "correction_budget": {
+    "root_id": "b4c45341e28f449392a1d6496769dcb1",
+    "used": 2,
+    "limit": 2,
+    "remaining": 0
+  },
+  "survivor_sequence_matches": true,
+  "current_reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+  "approval_matches_reference": true,
+  "current_assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+  "approval_matches_assertion_policy": true
+}
