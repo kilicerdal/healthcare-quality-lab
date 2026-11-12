@@ -132,3 +132,12 @@ def test_assembly_retains_more_than_four_source_assumptions_without_losing_snaps
     assert len(a['proposals'][0]['case']['assumptions'])==1
     assert [s['case']['assumptions'] for s in a['assembly_sources']]==[r['proposals'][0]['case']['assumptions'] for r in records]
     assert a['approval'] is None
+
+
+def test_live_measurement_refuses_reused_state_before_any_provider_call(tmp_path):
+    import subprocess,sys
+    state=tmp_path/'old-state';state.mkdir();(state/'sentinel').write_text('retain old evidence')
+    out=tmp_path/'new-output'
+    run=subprocess.run([sys.executable,'-m','tools.measure_focused','--state-dir',str(state),'--output',str(out)],capture_output=True,text=True)
+    assert run.returncode==2 and 'cannot silently reuse old proposals' in run.stderr
+    assert not out.exists() and (state/'sentinel').read_text()=='retain old evidence'
