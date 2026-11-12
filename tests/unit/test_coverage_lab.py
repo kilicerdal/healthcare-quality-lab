@@ -172,3 +172,19 @@ def test_invalid_claim_id_boundary_is_not_normalized_into_valid_scenario():
     a=workflow_case();b=deepcopy(a)
     for step in b['steps']:step['data']['claim_id']='x'
     assert scenario_hash(a)!=scenario_hash(b)
+
+
+@pytest.mark.parametrize('malformed',[{'id':'AI-BAD','rule_ids':None,'steps':None},'not-a-case',{'id':'AI-BAD','rule_ids':['HC-007'],'steps':[None]}])
+def test_malformed_saved_proposals_remain_visible_without_breaking_dashboard(tmp_path,malformed):
+    lab=make(tmp_path,FixtureProvider({'cases':[malformed]}));record=lab.studio.generate(generation_request())
+    assert record['proposals'] and not record['proposals'][0]['valid']
+    dashboard=lab.dashboard();assert dashboard['counts']['cases']==33 and dashboard['counts']['eligible']==32
+    bad=next(i for i in dashboard['cases'] if i['experiment_id']==record['id']);assert bad['issues'] and not bad['eligible']
+
+
+@pytest.mark.parametrize('failure',['provider','json'])
+def test_generation_failure_with_no_cases_does_not_break_inventory(tmp_path,failure):
+    from healthcare_quality.ollama_provider import ProviderError
+    provider=FixtureProvider(error=ProviderError('Fixture unavailable')) if failure=='provider' else FixtureProvider('not JSON')
+    lab=make(tmp_path,provider);r=lab.studio.generate(generation_request());assert r['state']=='generation_failed' and not r['proposals']
+    assert lab.dashboard()['counts']['cases']==32

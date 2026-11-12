@@ -7,7 +7,7 @@ BASE = {"plan_id":"commercial_ppo","service":"medical","amount_cents":100000}
 
 @pytest.mark.smoke
 def test_health_and_home_are_available(client):
-    assert client.get("/api/health").json == {"status":"ok","version":"5.5.0"}
+    assert client.get("/api/health").json == {"status":"ok","version":"5.5.1"}
     assert client.get("/").status_code == 200
 
 

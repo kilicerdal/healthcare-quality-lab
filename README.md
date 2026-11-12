@@ -1,4 +1,4 @@
-# Healthcare Quality Lab — V5.5
+# Healthcare Quality Lab — V5.5 (build 5.5.1)
 
 A standalone quality engineering showcase built with **Python, pytest, Playwright and local Ollama**. Learn to define contracts, test stateful claims, review AI-created cases, measure test quality and release verified source packages.
 
@@ -47,7 +47,7 @@ Read the [V5.5 coverage and test-value report](docs/V5.5_REPORT.md), [eight-minu
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.5 local verification:** 549 tests passed (446 unit, 65 API, 38 Chromium), with zero failures/skips. All 12 retained authored fault seeds were detected. [GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43296538470); downloaded evidence matches the local source fingerprint.
+**V5.5 local verification:** 555 tests passed (451 unit, 65 API, 39 Chromium), with zero failures/skips. All 12 retained authored fault seeds were detected. Current patch CI evidence is recorded in the V5.5 report.
 
 ## Test the application
 
@@ -77,8 +77,8 @@ After a fresh successful verification:
 
 ```sh
 .venv/bin/python -m tools.release build
-.venv/bin/python -m tools.release inspect releases/v5.5.0-source.zip
-.venv/bin/python -m tools.release stage releases/v5.5.0-source.zip
+.venv/bin/python -m tools.release inspect releases/v5.5.1-source.zip
+.venv/bin/python -m tools.release stage releases/v5.5.1-source.zip
 .venv/bin/python -m tools.release activate RELEASE_ID_FROM_STAGE
 .venv/bin/python -m tools.release serve --port 8896
 ```

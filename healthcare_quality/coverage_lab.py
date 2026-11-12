@@ -100,6 +100,7 @@ class CoverageLab:
             operations.recover(db)
             records=[json_loads(r['record_json']) for r in db.execute('SELECT record_json FROM ai_experiments ORDER BY created_at DESC LIMIT 100')]
         for record in records:
+            if not record['proposals']:continue
             try:approved={digest(c) for c in self.studio._approved_cases(record)}
             except StudioError:approved=set()
             for checked in checked_cases([p['case'] for p in record['proposals']],record['source_ids']):
@@ -116,7 +117,7 @@ class CoverageLab:
             gaps.append({'id':id,'rule_ids':rules,'brief':brief,'status':'represented' if matches else 'missing','case_keys':matches})
         rules=[]
         for id,rule in ALL_RULES.items():
-            linked=[i for i in items if isinstance(i['case'],dict) and id in i['case'].get('rule_ids',[])]
+            linked=[i for i in items if i['valid'] and id in i['case']['rule_ids']]
             rules.append({'id':id,'name':rule['name'],'linked_cases':[i['key'] for i in linked],'eligible_cases':[i['key'] for i in linked if i['eligible']],
                           'missing_gap_ids':[g['id'] for g in gaps if id in g['rule_ids'] and g['status']=='missing'],
                           'limitation':'Concurrency, reopen and storage rollback require authored tests outside sequential DSL; not measured here.' if id=='WF-006' else 'Linked cases and selected scenario evidence; not complete rule coverage.'})

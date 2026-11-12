@@ -42,3 +42,13 @@ def test_mobile_coverage_dashboard_has_no_page_overflow(page,coverage_url):
     expect(page.locator('#coverage-rules')).to_contain_text('HC-007')
     assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
     assert not provider.calls
+
+
+def test_malformed_saved_draft_does_not_break_browser_inventory(page,coverage_url):
+    from tests.support.ai_fixtures import generation_request
+    url,provider=coverage_url;provider.output={'cases':[{'id':'AI-BAD','rule_ids':None,'steps':None}]}
+    response=page.request.post(url+'/api/ai/experiments',data=generation_request());assert response.status==201
+    errors=[];page.on('pageerror',lambda error:errors.append(str(error)));page.goto(url+'/#test-coverage')
+    expect(page.locator('#coverage-rules')).to_contain_text('HC-007')
+    expect(page.locator('#coverage-counts')).to_contain_text('34')
+    assert not errors
