@@ -51,7 +51,7 @@ Read the [V5.6 survivor-targeting report](docs/V5.6_REPORT.md), [eight-minute de
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.6 local verification:** 587 tests passed (480 unit, 66 API, 41 Chromium), zero failures/skips. Current V5.6 CI evidence is recorded in the report.
+**V5.6 local verification:** 587 tests passed (480 unit, 66 API, 41 Chromium), zero failures/skips. [GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43305569715); downloaded evidence matches the final local source fingerprint.
 
 ## Test the application
 

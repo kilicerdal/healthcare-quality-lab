@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "version": "5.6.0",
+  "run_id": 43305569715,
+  "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43305569715",
+  "commit": "36b43fcb223076e9001b51d460bf384187635224",
+  "downloaded_evidence_verified": true,
+  "verification": {
+    "status": "passed",
+    "version": "5.6.0",
+    "recorded_at": "2026-11-12T16:00:35.546817-05:00",
+    "recorded_date": "2026-11-12",
+    "source_hash": "e36889042312d9894e490ea1b2359191cf55dec3fd171a5e0c2c2aeae18e0168",
+    "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+    "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
+    "tests_total": 587,
+    "tests_passed": 587,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "categories": {
+      "unit": 480,
+      "api": 66,
+      "e2e": 41
+    },
+    "e2e_tests": 41,
+    "seeded_defects_detected": 7,
+    "seeded_defects_total": 7,
+    "workflow_seeded_defects_detected": 5,
+    "workflow_seeded_defects_total": 5,
+    "ai_case_language": "declarative DSL 1.0",
+    "live_model_in_core_tests": false,
+    "reference_examples": 28,
+    "duration_seconds": 89.8,
+    "environment": {
+      "python": "3.13.18",
+      "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+      "pytest": "8.4.2",
+      "playwright": "1.56.0",
+      "flask": "3.1.2",
+      "waitress": "3.0.2",
+      "browser": "Chromium only"
+    },
+    "command": "python -m tools.verify",
+    "subprocess_returncode": 0,
+    "ci_executed": true,
+    "scope": "Local V5.6 regression: release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."
+  },
+  "runtime_rehearsal": {
+    "status": "passed",
+    "recorded_at": "2026-11-12T21:00:37.784987+00:00",
+    "archive": "/home/runner/work/healthcare-quality-lab/healthcare-quality-lab/releases/ci/v5.6.0-source.zip",
+    "active_release": "v5.6.0-473527a3b027",
+    "rollback_verified": false,
+    "phases": [
+      {
+        "phase": "new_release",
+        "version": "5.6.0",
+        "claim_id": "REL-6d60c1f849a6",
+        "payout_cents": 90000,
+        "payment_cents": 90000,
+        "events": 3,
+        "revision": 3,
+        "checks": [
+          "health",
+          "payout",
+          "submit",
+          "duplicate_rejected",
+          "ownership_rejected",
+          "skip_approval_rejected",
+          "approve",
+          "pay",
+          "ledger_and_history",
+          "invalid_generation_rejected_without_inference"
+        ]
+      }
+    ],
+    "live_model_calls": 0,
+    "scope": "Actual staged archives and loopback Waitress HTTP, with separate per-release synthetic state. Pointer changes take effect on next server start; no hot swap or database migration."
+  },
+  "runner_annotation": "Existing action versions emit a Node runtime deprecation annotation; all steps succeeded. Action-version migration is outside this scoped release."
+}
