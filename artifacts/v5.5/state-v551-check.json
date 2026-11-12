@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "version": "5.5.1",
+  "tests_passed": 555,
+  "original_data_checks": {
+    "claims-v2.sqlite:claims": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    },
+    "claims-v2.sqlite:events": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    },
+    "claims-v2.sqlite:payments": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    },
+    "ai-v3.sqlite:ai_experiments": {
+      "original_rows_unchanged": 22,
+      "added_rows": 2
+    },
+    "ai-v3.sqlite:studio_operations": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    },
+    "evaluation-v4.sqlite:ai_experiments": {
+      "original_rows_unchanged": 3,
+      "added_rows": 0
+    },
+    "evaluation-v4.sqlite:studio_operations": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    }
+  },
+  "v550_archive_unchanged": true,
+  "coverage_counts": {
+    "authored": 32,
+    "cases": 61,
+    "eligible": 34,
+    "missing_gaps": 2,
+    "proposals_or_stale": 27,
+    "unique_scenario_assertions": 34
+  },
+  "observed_seed_detections": 2,
+  "applicable_profiles": 12,
+  "model_requests_for_patch": 0,
+  "vs_code_opened": false
+}

@@ -47,7 +47,7 @@ Read the [V5.5 coverage and test-value report](docs/V5.5_REPORT.md), [eight-minu
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.5 local verification:** 555 tests passed (451 unit, 65 API, 39 Chromium), with zero failures/skips. All 12 retained authored fault seeds were detected. Current patch CI evidence is recorded in the V5.5 report.
+**V5.5 local verification:** 555 tests passed (451 unit, 65 API, 39 Chromium), with zero failures/skips. All 12 retained authored fault seeds were detected. [Patch GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43298180961); downloaded evidence matches the final local source fingerprint.
 
 ## Test the application
 

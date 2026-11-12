@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "version": "5.5.1",
+  "run_id": 43298180961,
+  "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43298180961",
+  "commit": "c7028048dad6294c90412ceec5ea4d806c08545b",
+  "downloaded_evidence_verified": true,
+  "verification": {
+    "status": "passed",
+    "version": "5.5.1",
+    "recorded_at": "2026-11-12T15:15:37.256674-05:00",
+    "recorded_date": "2026-11-12",
+    "source_hash": "5c8a995f4f85e340e0733c8387668a50ef905e640e34c6bf85b4a2d5193dc6e0",
+    "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+    "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
+    "tests_total": 555,
+    "tests_passed": 555,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "categories": {
+      "unit": 451,
+      "api": 65,
+      "e2e": 39
+    },
+    "e2e_tests": 39,
+    "seeded_defects_detected": 7,
+    "seeded_defects_total": 7,
+    "workflow_seeded_defects_detected": 5,
+    "workflow_seeded_defects_total": 5,
+    "ai_case_language": "declarative DSL 1.0",
+    "live_model_in_core_tests": false,
+    "reference_examples": 28,
+    "duration_seconds": 76.81,
+    "environment": {
+      "python": "3.13.18",
+      "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+      "pytest": "8.4.2",
+      "playwright": "1.56.0",
+      "flask": "3.1.2",
+      "waitress": "3.0.2",
+      "browser": "Chromium only"
+    },
+    "command": "python -m tools.verify",
+    "subprocess_returncode": 0,
+    "ci_executed": true,
+    "scope": "Local V5.5 regression: release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."
+  },
+  "runtime_rehearsal": {
+    "status": "passed",
+    "recorded_at": "2026-11-12T20:15:39.689986+00:00",
+    "archive": "/home/runner/work/healthcare-quality-lab/healthcare-quality-lab/releases/ci/v5.5.1-source.zip",
+    "active_release": "v5.5.1-74d1856a3d83",
+    "rollback_verified": false,
+    "phases": [
+      {
+        "phase": "new_release",
+        "version": "5.5.1",
+        "claim_id": "REL-a854429af6bc",
+        "payout_cents": 90000,
+        "payment_cents": 90000,
+        "events": 3,
+        "revision": 3,
+        "checks": [
+          "health",
+          "payout",
+          "submit",
+          "duplicate_rejected",
+          "ownership_rejected",
+          "skip_approval_rejected",
+          "approve",
+          "pay",
+          "ledger_and_history",
+          "invalid_generation_rejected_without_inference"
+        ]
+      }
+    ],
+    "live_model_calls": 0,
+    "scope": "Actual staged archives and loopback Waitress HTTP, with separate per-release synthetic state. Pointer changes take effect on next server start; no hot swap or database migration."
+  }
+}
