@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "runtime_version": "5.4.0",
+  "older_worker_stopped_before_upgrade": true,
+  "sqlite_backup": "Project-local .local/backup-before-v5.4; backups not committed or packaged",
+  "original_data_checks": {
+    "claims-v2.sqlite": {
+      "original_tables_unchanged": true,
+      "original_row_counts": {
+        "claims": 0,
+        "events": 0,
+        "payments": 0
+      }
+    },
+    "ai-v3.sqlite": {
+      "original_tables_unchanged": true,
+      "original_row_counts": {
+        "ai_experiments": 22,
+        "studio_operations": 0
+      }
+    },
+    "evaluation-v4.sqlite": {
+      "original_tables_unchanged": true,
+      "original_row_counts": {
+        "ai_experiments": 3,
+        "studio_operations": 0
+      }
+    }
+  },
+  "scope": "Row counts and sorted row digests of every original table match before upgrade. All original tables and saved evidence were preserved; no abandoned job existed in this actual store. Recovery itself is separately tested with isolated crash fixtures."
+}

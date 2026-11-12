@@ -1,0 +1,580 @@
+{
+  "created_at": "2026-11-12T15:06:10.829493+00:00",
+  "state": "completed",
+  "provider": {
+    "available": true,
+    "models": [
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "allowed_models": [
+      "qwen2.5-coder:3b",
+      "qwen2.5:3b"
+    ],
+    "endpoint": "http://127.0.0.1:11434",
+    "mode": "local Ollama only"
+  },
+  "settings": {
+    "temperature": 0,
+    "seed": 7,
+    "num_predict": 2600,
+    "num_ctx": 12288
+  },
+  "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+  "frozen_new_tasks": [
+    {
+      "id": "N01",
+      "literal_case": {
+        "id": "AI-NEW54-1",
+        "title": "Frozen evaluator boundary",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Check the written synthetic payout contract.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 10002
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 2
+            }
+          }
+        ]
+      },
+      "request": {
+        "requirement": "Create exactly one evaluate-only case, actor none, with exactly these data fields: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 10002}. Include status, decision, reason and payout_cents. Do not add other steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "3a0fe5ba0020138c6d2ca4b84e68cd2384f1c9aaf4be13cdcdf0bd6e9a2090b7"
+    },
+    {
+      "id": "N02",
+      "literal_case": {
+        "id": "AI-NEW54-2",
+        "title": "Frozen evaluator boundary",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Check the written synthetic payout contract.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 9998
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 0
+            }
+          }
+        ]
+      },
+      "request": {
+        "requirement": "Create exactly one evaluate-only case, actor none, with exactly these data fields: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 9998}. Include status, decision, reason and payout_cents. Do not add other steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "3fa83a52d40950b7e02c47c5dfa9389c2b54a63950af7f036e8b1a5fb8d41f9b"
+    },
+    {
+      "id": "N03",
+      "literal_case": {
+        "id": "AI-NEW54-3",
+        "title": "Frozen evaluator boundary",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Check the written synthetic payout contract.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 210002
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 200000
+            }
+          }
+        ]
+      },
+      "request": {
+        "requirement": "Create exactly one evaluate-only case, actor none, with exactly these data fields: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 210002}. Include status, decision, reason and payout_cents. Do not add other steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "4a86981a005bfe0caaeabce2df754b13062f9de44113b2fdd417cb4f0bfd3a4d"
+    },
+    {
+      "id": "N04",
+      "literal_case": {
+        "id": "AI-NEW54-4",
+        "title": "Frozen evaluator boundary",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Check the written synthetic payout contract.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 205250
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 195250
+            }
+          }
+        ]
+      },
+      "request": {
+        "requirement": "Create exactly one evaluate-only case, actor none, with exactly these data fields: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 205250}. Include status, decision, reason and payout_cents. Do not add other steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "496b24bb70c19e1ea90833df4e5e62e33d3c34fa223dde36440fb2fe84f9bdca"
+    },
+    {
+      "id": "N05",
+      "literal_case": {
+        "id": "AI-NEW54-5",
+        "title": "Frozen evaluator boundary",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "rationale": "Check the written synthetic payout contract.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "evaluate",
+            "actor": "none",
+            "data": {
+              "plan_id": "commercial_ppo",
+              "service": "medical",
+              "amount_cents": 300100
+            },
+            "expect": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 200000
+            }
+          }
+        ]
+      },
+      "request": {
+        "requirement": "Create exactly one evaluate-only case, actor none, with exactly these data fields: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 300100}. Include status, decision, reason and payout_cents. Do not add other steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "943227911052393b8bf447cdcee248b4ee67323e9765d33bfca1cac13dd83456"
+    },
+    {
+      "id": "N06",
+      "literal_case": {
+        "id": "AI-NEW54-ZERO",
+        "title": "Zero payout lifecycle",
+        "rule_ids": [
+          "HC-007",
+          "WF-001",
+          "WF-003",
+          "WF-004",
+          "WF-005"
+        ],
+        "rationale": "A zero simulated payment is distinct from no payment.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "NEW54-ZERO",
+              "member_id": "M100",
+              "service": "medical",
+              "amount_cents": 9901
+            },
+            "expect": {
+              "status": 201,
+              "claim_status": "submitted",
+              "revision": 1,
+              "event_count": 1,
+              "payout_cents": 0,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "adjuster-demo",
+            "data": {
+              "claim_id": "NEW54-ZERO",
+              "target": "approved"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "approved",
+              "revision": 2,
+              "event_count": 2,
+              "payout_cents": 0,
+              "payment_cents": null
+            }
+          },
+          {
+            "action": "transition",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "NEW54-ZERO",
+              "target": "paid"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "paid",
+              "revision": 3,
+              "event_count": 3,
+              "payout_cents": 0,
+              "payment_cents": 0
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "NEW54-ZERO"
+            },
+            "expect": {
+              "status": 200,
+              "claim_status": "paid",
+              "revision": 3,
+              "event_count": 3,
+              "payout_cents": 0,
+              "payment_cents": 0
+            }
+          }
+        ]
+      },
+      "request": {
+        "requirement": "Create exactly one case with these four ordered actions, actors and data: [{\"action\": \"submit\", \"actor\": \"customer-m100\", \"data\": {\"claim_id\": \"NEW54-ZERO\", \"member_id\": \"M100\", \"service\": \"medical\", \"amount_cents\": 9901}}, {\"action\": \"transition\", \"actor\": \"adjuster-demo\", \"data\": {\"claim_id\": \"NEW54-ZERO\", \"target\": \"approved\"}}, {\"action\": \"transition\", \"actor\": \"finance-demo\", \"data\": {\"claim_id\": \"NEW54-ZERO\", \"target\": \"paid\"}}, {\"action\": \"read\", \"actor\": \"customer-m100\", \"data\": {\"claim_id\": \"NEW54-ZERO\"}}]. Include all six successful workflow observations at every step. No other steps.",
+        "source_ids": [
+          "HC-007",
+          "WF-001",
+          "WF-003",
+          "WF-004",
+          "WF-005"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "8baa96c32c88d939ae705e0a3597dbda33de5d7eeb16a5c9fb37dd5d8018530d"
+    }
+  ],
+  "known_results": [
+    {
+      "task_id": "F03",
+      "amount_cents": 10001,
+      "literal_payout_cents": 1,
+      "original": {
+        "experiment_id": "f4981b44e49e4703ae299385ee7ca9fe",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      },
+      "ai_attempts": [
+        {
+          "experiment_id": "8c4299517e01450f83f1bf8c14dc907e",
+          "state": "proposed",
+          "origin": "reference_guided_ai",
+          "structure": true,
+          "complete": true,
+          "reference_match": true,
+          "literal_pass": true
+        }
+      ],
+      "reference_assisted": null,
+      "final": {
+        "experiment_id": "8c4299517e01450f83f1bf8c14dc907e",
+        "state": "approved",
+        "origin": "reference_guided_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      },
+      "execution": {
+        "run_id": "f50ad25155c2418090b13b32a65973c5",
+        "status": "passed",
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    {
+      "task_id": "F07",
+      "amount_cents": 286450,
+      "literal_payout_cents": 200000,
+      "original": {
+        "experiment_id": "37933fb6b7a044ad981480b085f2d851",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      },
+      "ai_attempts": [
+        {
+          "experiment_id": "64f6b5d21333420c9c7699e52de83107",
+          "state": "proposed",
+          "origin": "reference_guided_ai",
+          "structure": true,
+          "complete": true,
+          "reference_match": true,
+          "literal_pass": true
+        }
+      ],
+      "reference_assisted": null,
+      "final": {
+        "experiment_id": "64f6b5d21333420c9c7699e52de83107",
+        "state": "approved",
+        "origin": "reference_guided_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      },
+      "execution": {
+        "run_id": "d814ef92613845af9a3d63f17b8a45af",
+        "status": "passed",
+        "passed": 1,
+        "failed": 0
+      }
+    }
+  ],
+  "new_results": [
+    {
+      "task_id": "N01",
+      "original": {
+        "experiment_id": "e11fb57b599c409c8fab5ab38417c906",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      },
+      "ai_attempts": [
+        {
+          "experiment_id": "aed8f2aa89784c8d991a9dd4be72b7f4",
+          "state": "proposed",
+          "origin": "reference_guided_ai",
+          "structure": true,
+          "complete": true,
+          "reference_match": true,
+          "literal_pass": true
+        }
+      ],
+      "reference_assisted": null,
+      "final_ai": {
+        "experiment_id": "aed8f2aa89784c8d991a9dd4be72b7f4",
+        "state": "proposed",
+        "origin": "reference_guided_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "N02",
+      "original": {
+        "experiment_id": "3e5a1c84eaea4381b70493d16e03b457",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      },
+      "ai_attempts": [],
+      "reference_assisted": null,
+      "final_ai": {
+        "experiment_id": "3e5a1c84eaea4381b70493d16e03b457",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "N03",
+      "original": {
+        "experiment_id": "6220478195a043dc80a1c8f105f84e03",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      },
+      "ai_attempts": [
+        {
+          "experiment_id": "f77779421aaa4cc58b1b59a842440480",
+          "state": "proposed",
+          "origin": "reference_guided_ai",
+          "structure": true,
+          "complete": true,
+          "reference_match": true,
+          "literal_pass": true
+        }
+      ],
+      "reference_assisted": null,
+      "final_ai": {
+        "experiment_id": "f77779421aaa4cc58b1b59a842440480",
+        "state": "proposed",
+        "origin": "reference_guided_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "N04",
+      "original": {
+        "experiment_id": "c4d790c4c0b74ad68f849781b436a0ee",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      },
+      "ai_attempts": [],
+      "reference_assisted": null,
+      "final_ai": {
+        "experiment_id": "c4d790c4c0b74ad68f849781b436a0ee",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "N05",
+      "original": {
+        "experiment_id": "a98de3ee81f54b75b12431d709769cb8",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      },
+      "ai_attempts": [],
+      "reference_assisted": null,
+      "final_ai": {
+        "experiment_id": "a98de3ee81f54b75b12431d709769cb8",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "N06",
+      "original": {
+        "experiment_id": "a8e6a54ae630421c9591f9d1669c3a61",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      },
+      "ai_attempts": [],
+      "reference_assisted": null,
+      "final_ai": {
+        "experiment_id": "a8e6a54ae630421c9591f9d1669c3a61",
+        "state": "proposed",
+        "origin": "original_ai",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    }
+  ],
+  "scope": "Known V5.3 failures are reused development cases, counted separately. Six new tasks frozen before inference, not a blind held-out benchmark. Up to two explicit engineering AI attempts per correction lineage; failed/interrupted calls consume budget. Reference-assisted outcomes are separate from AI successes. Only repaired known cases are reviewed/executed by the engineering operator; new model drafts are not approved.",
+  "finished_at": "2026-11-12T15:07:13.346360+00:00",
+  "summary": {
+    "known_cases": 2,
+    "known_ai_repaired": 2,
+    "known_reference_assisted": 0,
+    "known_executions_passed": 2,
+    "new_cases": 6,
+    "new_original_passes": 4,
+    "new_final_ai_passes": 6,
+    "new_ai_correction_calls": 2
+  }
+}

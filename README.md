@@ -1,4 +1,4 @@
-# Healthcare Quality Lab — V5.3
+# Healthcare Quality Lab — V5.4
 
 A standalone quality engineering showcase built with **Python, pytest, Playwright and local Ollama**. Learn to define contracts, test stateful claims, review AI-created cases, measure test quality and release verified source packages.
 
@@ -16,6 +16,10 @@ Outcome-specific local generation requests payout, payment and history observati
 
 A separate standard-library reference model calculates payout, payment and history without calling the application. Mismatched expectations block approval, execution and export. Explicit Ollama correction creates a separate draft with frozen scenario fields and requires fresh review. The eight-task live demonstration improved correct answers from 3/8 to 6/8 after one correction; two wrong drafts remained blocked. Read the [detailed V5.3 report](docs/V5.3_REPORT.md).
 
+## V5.4 bounded correction and confirmed reference assistance
+
+Focused local Ollama correction repaired both retained V5.3 failures: 10,001 cents now expects payout 1, and 286,450 expects 200,000. Both repaired tests and exported pytest wrappers pass. Six separately authored new tasks improved from 4/6 correct to 6/6 after correction. AI requests are limited to two per correction history; a previewed, explicitly confirmed reference fallback creates a distinctly labeled draft requiring fresh review. Read the [detailed V5.4 report](docs/V5.4_REPORT.md).
+
 ## Start here
 
 ```sh
@@ -25,7 +29,7 @@ python3 -m tools.bootstrap --browser
 
 Open [the guided showcase](http://127.0.0.1:8895/#showcase). In VS Code select `.venv/bin/python` and **Run and Debug → V5: start Healthcare Quality Lab**. Bootstrap uses only this project's `.venv` and `.browsers`; it does not install Ollama or download models. On Windows use `.venv\Scripts\python.exe` instead of `.venv/bin/python`.
 
-Read the [V5.3 independent-reference report](docs/V5.3_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
+Read the [V5.4 correction report](docs/V5.4_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
 
 ## What the five versions deliver
 
@@ -37,7 +41,7 @@ Read the [V5.3 independent-reference report](docs/V5.3_REPORT.md), [eight-minute
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.3 local verification:** 441 tests passed (349 unit, 58 API, 34 Chromium); all 12 authored fault seeds detected. [GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43233442177); downloaded evidence matches the local source fingerprint.
+**V5.4 local verification:** 470 tests passed (376 unit, 59 API, 35 Chromium); all 12 authored fault seeds detected. The two actual repaired-case pytest wrappers also pass. Current CI evidence is recorded in the V5.4 report.
 
 ## Test the application
 
@@ -55,7 +59,7 @@ The deterministic suite uses clearly labeled offline provider doubles. Real V4 m
 
 1. Start your existing Ollama service with an installed allowed model (`qwen2.5-coder:3b` or `qwen2.5:3b`). Check it explicitly in AI Test Studio.
 2. Provide a synthetic requirement, select 1–6 written contracts and request 1–4 cases. Generation creates new declarative case proposals, not a prerecorded catalog selection.
-3. Inspect inputs, expectations, source IDs, completeness and independent reference checks. Use explicit Ollama correction to create a separate draft, or edit expectations with a reviewer label and note. Wrong values remain blocked.
+3. Inspect inputs, expectations, source IDs, completeness and independent reference checks. Use explicit Ollama correction (at most two attempts per history), inspect and confirm reference replacements, or edit expectations with a reviewer label and note. Every correction remains unapproved until fresh review; wrong values stay blocked.
 4. Select valid cases, attest that you checked their expectations, and save the review. Editing clears approval; stale fingerprints and mismatched hashes block execution.
 5. Execute the approved snapshot. Each case gets a fresh disposable SQLite database. Interactive claims are not used. Export evidence JSON or the fixed trusted pytest wrapper.
 
@@ -67,8 +71,8 @@ After a fresh successful verification:
 
 ```sh
 .venv/bin/python -m tools.release build
-.venv/bin/python -m tools.release inspect releases/v5.3.0-source.zip
-.venv/bin/python -m tools.release stage releases/v5.3.0-source.zip
+.venv/bin/python -m tools.release inspect releases/v5.4.0-source.zip
+.venv/bin/python -m tools.release stage releases/v5.4.0-source.zip
 .venv/bin/python -m tools.release activate RELEASE_ID_FROM_STAGE
 .venv/bin/python -m tools.release serve --port 8896
 ```
@@ -81,7 +85,7 @@ Source packages exclude local databases, environments, browser binaries and cach
 
 The project has its own new private repository: [kilicerdal/healthcare-quality-lab](https://github.com/kilicerdal/healthcare-quality-lab). Existing projects and repositories are independent.
 
-GitHub Actions installs dependencies and Chromium, runs regression and known-fault checks, builds and inspects a checksummed source archive, starts its staged Waitress runtime for an actual HTTP journey, and uploads evidence. Current remote execution results are recorded in the V5.3 report and `artifacts/v5.3/github-ci.json`. Earlier version evidence remains preserved. The hosted runtime target for this delivery is local loopback; the GitHub repository is private and is not a public website.
+GitHub Actions installs dependencies and Chromium, runs regression and known-fault checks, builds and inspects a checksummed source archive, starts its staged Waitress runtime for an actual HTTP journey, and uploads evidence. Current remote execution results are recorded in the V5.4 report and `artifacts/v5.4/github-ci.json`. Earlier version evidence remains preserved. The hosted runtime target for this delivery is local loopback; the GitHub repository is private and is not a public website.
 
 ## AI tools and learning
 
