@@ -3,7 +3,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 import threading
 import pytest
-from healthcare_quality.ai_schema import validate_cases,contract_fingerprint,suite_schema
+from healthcare_quality.ai_schema import validate_cases,contract_fingerprint,suite_schema,generation_schema
 from healthcare_quality.ai_studio import StudioService,ExperimentStore,StudioError
 from healthcare_quality.ai_runner import run_cases
 from healthcare_quality.ollama_provider import ProviderError
@@ -24,7 +24,7 @@ def test_generation_creates_new_unapproved_cases_and_preserves_raw_provenance(st
     assert record['raw_generation']['raw_envelope']['response']
     assert record['source_rules'][0]['id']=='HC-007'
     assert record['contract_fingerprint']==contract_fingerprint()
-    assert studio.provider.calls[0]['schema']==suite_schema(1,['HC-007'])
+    assert studio.provider.calls[0]['schema']==generation_schema(1,['HC-007'])
 
 
 @pytest.mark.smoke

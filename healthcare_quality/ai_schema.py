@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 from jsonschema import Draft202012Validator
+from healthcare_quality.assertion_quality import assess
 from healthcare_quality.catalog import RULES,CONTRACT_HASH
 from healthcare_quality.workflow import WORKFLOW_RULES,WORKFLOW_HASH
 
@@ -140,5 +141,29 @@ def validate_cases(cases,source_ids):
             if "HC-007" in case["rule_ids"] and "payout_cents" not in asserted:candidate["warnings"].append("HC-007 is cited but the case has no payout assertion.")
             if "WF-004" in case["rule_ids"] and "payment_cents" not in asserted:candidate["warnings"].append("WF-004 is cited but the case has no simulated-payment amount assertion.")
             if "WF-005" in case["rule_ids"] and "event_count" not in asserted:candidate["warnings"].append("WF-005 is cited but the case has no event-count assertion.")
+        candidate["quality"]=assess(case) if not issues else None
+        candidate["review_ready"]=not issues and candidate["quality"]["complete"]
         checked.append(candidate)
     return checked
+
+
+GENERATION_SCHEMA_VERSION="complete-outcomes-v1"
+def generation_schema(count,source_ids=None):
+    """Stronger provider contract; the historical structural DSL is unchanged."""
+    schema=suite_schema(count,source_ids)
+    variants=schema["properties"]["cases"]["items"]["properties"]["steps"]["items"]["oneOf"]
+    def expected(statuses,fields):
+        result={"type":"object","additionalProperties":False,"required":list(fields),"properties":{key:deepcopy(EXPECT_PROPERTIES[key]) for key in fields}}
+        result["properties"]["status"]={"type":"integer","enum":list(statuses)}
+        return result
+    for step in variants:
+        action=step["properties"]["action"]["const"]
+        if action=="evaluate":
+            options=[expected([200],["status","decision","reason","payout_cents"]),expected([400],["status","error"])]
+        elif action=="submit":
+            options=[expected([201],["status","claim_status","revision","payout_cents","event_count","payment_cents"]),expected([400,403,409],["status","error"]),expected([422],["status","error","reason"])]
+        else:
+            options=[expected([200],["status","claim_status","revision","payout_cents","event_count","payment_cents"]),expected([400,403,404,409] if action=="transition" else [403,404],["status","error"])]
+        step["properties"]["expect"]={"oneOf":options}
+    Draft202012Validator.check_schema(schema)
+    return schema

@@ -1,4 +1,4 @@
-# Healthcare Quality Lab — V5.1
+# Healthcare Quality Lab — V5.2
 
 A standalone quality engineering showcase built with **Python, pytest, Playwright and local Ollama**. Learn to define contracts, test stateful claims, review AI-created cases, measure test quality and release verified source packages.
 
@@ -7,6 +7,10 @@ A standalone quality engineering showcase built with **Python, pytest, Playwrigh
 ## V5.1 corrections
 
 Cached bytecode is rejected from staged releases; abandoned Studio operations recover using persisted leases; exact rule IDs return only explicitly selected sources. Interrupted generation retries create a new unapproved child. Interrupted execution requires fresh review. Stop V5 workers before using the same stores with V5.1. The original V5 release remains preserved.
+
+## V5.2 assertion completeness
+
+Outcome-specific local generation requests payout, payment and history observations. Per-step checklists block incomplete approval, execution and new pytest export. Older approvals need fresh policy review. The live comparison improved required-field presence from 41/51 to 51/51, but full-reference passes were 2/8 baseline versus 1/8 V5.2; numeric correctness still needs independent review. See the detailed report.
 
 ## Start here
 
@@ -17,7 +21,7 @@ python3 -m tools.bootstrap --browser
 
 Open [the guided showcase](http://127.0.0.1:8895/#showcase). In VS Code select `.venv/bin/python` and **Run and Debug → V5: start Healthcare Quality Lab**. Bootstrap uses only this project's `.venv` and `.browsers`; it does not install Ollama or download models. On Windows use `.venv\Scripts\python.exe` instead of `.venv/bin/python`.
 
-Read the [V5.1 correction report](docs/V5.1_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
+Read the [V5.2 assertion-quality report](docs/V5.2_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
 
 ## What the five versions deliver
 
@@ -29,7 +33,7 @@ Read the [V5.1 correction report](docs/V5.1_REPORT.md), [eight-minute demo](docs
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**Verified locally and in GitHub Actions:** 370 tests passed (283 unit, 55 API, 32 Chromium), with 12/12 known faults detected. [Observed V5.1 CI run](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43170594377); downloaded runner evidence matches the local source fingerprint. Actual local archive activation, rollback and state preservation also passed.
+**V5.2 local verification:** 400 tests passed (310 unit, 57 API, 33 Chromium). Remote V5.2 results are recorded in its detailed report after observation.
 
 ## Test the application
 
@@ -59,8 +63,8 @@ After a fresh successful verification:
 
 ```sh
 .venv/bin/python -m tools.release build
-.venv/bin/python -m tools.release inspect releases/v5.1.0-source.zip
-.venv/bin/python -m tools.release stage releases/v5.1.0-source.zip
+.venv/bin/python -m tools.release inspect releases/v5.2.0-source.zip
+.venv/bin/python -m tools.release stage releases/v5.2.0-source.zip
 .venv/bin/python -m tools.release activate RELEASE_ID_FROM_STAGE
 .venv/bin/python -m tools.release serve --port 8896
 ```

@@ -1,21 +1,21 @@
 {
   "status": "passed",
-  "version": "5.1.0",
-  "recorded_at": "2026-11-12T01:40:35.299454-05:00",
+  "version": "5.2.0",
+  "recorded_at": "2026-11-12T02:21:04.660318-05:00",
   "recorded_date": "2026-11-12",
-  "source_hash": "5bc46731daec4bcbb1d8b7bbdbdc3516f549231ae4c7df8112552e09fbe3e202",
+  "source_hash": "b58a91319f4d3439adfa53a6707b4a7b3ffceb839403a03b9f6daabbca009727",
   "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
   "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
-  "tests_total": 370,
-  "tests_passed": 370,
+  "tests_total": 400,
+  "tests_passed": 400,
   "tests_failed": 0,
   "tests_skipped": 0,
   "categories": {
-    "unit": 283,
-    "api": 55,
-    "e2e": 32
+    "unit": 310,
+    "api": 57,
+    "e2e": 33
   },
-  "e2e_tests": 32,
+  "e2e_tests": 33,
   "seeded_defects_detected": 7,
   "seeded_defects_total": 7,
   "workflow_seeded_defects_detected": 5,
@@ -23,7 +23,7 @@
   "ai_case_language": "declarative DSL 1.0",
   "live_model_in_core_tests": false,
   "reference_examples": 28,
-  "duration_seconds": 46.05,
+  "duration_seconds": 42.62,
   "environment": {
     "python": "3.13.18",
     "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
@@ -36,5 +36,5 @@
   "command": "python -m tools.verify",
   "subprocess_returncode": 0,
   "ci_executed": false,
-  "scope": "Local V5.1 regression: release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."
+  "scope": "Local V5.2 regression: release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."
 }

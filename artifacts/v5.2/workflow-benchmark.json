@@ -1,0 +1,54 @@
+{
+  "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
+  "detected": 5,
+  "total": 5,
+  "reference_failures": 0,
+  "experiments": [
+    {
+      "defect": "ownership",
+      "rule_id": "WF-001",
+      "expected": 403,
+      "reference": 403,
+      "observed_mutant": "accessible",
+      "reference_passed": true,
+      "detected": true
+    },
+    {
+      "defect": "duplicate_replay",
+      "rule_id": "WF-002",
+      "expected": "DUPLICATE_CLAIM",
+      "reference": "DUPLICATE_CLAIM",
+      "observed_mutant": "accepted",
+      "reference_passed": true,
+      "detected": true
+    },
+    {
+      "defect": "skip_approval",
+      "rule_id": "WF-003",
+      "expected": "INVALID_TRANSITION",
+      "reference": "INVALID_TRANSITION",
+      "observed_mutant": "paid",
+      "reference_passed": true,
+      "detected": true
+    },
+    {
+      "defect": "ledger_amount",
+      "rule_id": "WF-004",
+      "expected": 90000,
+      "reference": 90000,
+      "observed_mutant": 180000,
+      "reference_passed": true,
+      "detected": true
+    },
+    {
+      "defect": "history_skip",
+      "rule_id": "WF-005",
+      "expected": 3,
+      "reference": 3,
+      "observed_mutant": 1,
+      "reference_passed": true,
+      "detected": true
+    }
+  ],
+  "limitation": "Five authored internal fault modes and known expectations. Not exhaustive mutation coverage or a blind benchmark."
+}

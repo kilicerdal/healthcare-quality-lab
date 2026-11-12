@@ -6,7 +6,7 @@ from healthcare_quality.ollama_provider import ProviderError
 
 def sample_case(id="AI-TEST-1",amount=100000,payout=90000):
     return {"id":id,"title":"Synthetic payout assertion","rule_ids":["HC-007"],"rationale":"Check payout against the written synthetic contract.","assumptions":[],
-            "steps":[{"action":"evaluate","actor":"none","data":{"plan_id":"commercial_ppo","service":"medical","amount_cents":amount},"expect":{"status":200,"decision":"approved","payout_cents":payout}}]}
+            "steps":[{"action":"evaluate","actor":"none","data":{"plan_id":"commercial_ppo","service":"medical","amount_cents":amount},"expect":{"status":200,"decision":"approved","reason":"COVERED","payout_cents":payout}}]}
 
 
 class FixtureProvider:

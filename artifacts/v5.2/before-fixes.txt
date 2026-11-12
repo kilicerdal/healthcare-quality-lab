@@ -1,0 +1,127 @@
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+________ test_missing_payout_cannot_be_approved_despite_valid_structure ________
+
+tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-34/test_missing_payout_cannot_be_0')
+
+    def test_missing_payout_cannot_be_approved_despite_valid_structure(tmp_path):
+        case=sample_case();del case['steps'][0]['expect']['payout_cents']
+        studio=StudioService(ExperimentStore(tmp_path/'ai.sqlite'),FixtureProvider({'cases':[case]}));record=studio.generate(generation_request())
+        assert record['proposals'][0]['valid']
+>       with pytest.raises(StudioError) as error:studio.review(record['id'],review_request(record))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'healthcare_quality.ai_studio.StudioError'>
+
+tests/unit/test_assertion_completeness.py:20: Failed
+_______ test_missing_workflow_observation_blocks_review[0-payout_cents] ________
+
+tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-34/test_missing_workflow_observat0')
+step_index = 0, field = 'payout_cents'
+
+    @pytest.mark.parametrize('step_index,field',[(0,'payout_cents'),(0,'event_count'),(1,'payment_cents'),(2,'payment_cents'),(2,'event_count'),(2,'payout_cents')])
+    def test_missing_workflow_observation_blocks_review(tmp_path,step_index,field):
+        case=workflow_case();del case['steps'][step_index]['expect'][field]
+        studio=StudioService(ExperimentStore(tmp_path/'ai.sqlite'),FixtureProvider({'cases':[case]}));request={**generation_request(),'source_ids':case['rule_ids']};record=studio.generate(request)
+        assert record['proposals'][0]['valid']
+>       with pytest.raises(StudioError) as error:studio.review(record['id'],review_request(record))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'healthcare_quality.ai_studio.StudioError'>
+
+tests/unit/test_assertion_completeness.py:28: Failed
+________ test_missing_workflow_observation_blocks_review[0-event_count] ________
+
+tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-34/test_missing_workflow_observat1')
+step_index = 0, field = 'event_count'
+
+    @pytest.mark.parametrize('step_index,field',[(0,'payout_cents'),(0,'event_count'),(1,'payment_cents'),(2,'payment_cents'),(2,'event_count'),(2,'payout_cents')])
+    def test_missing_workflow_observation_blocks_review(tmp_path,step_index,field):
+        case=workflow_case();del case['steps'][step_index]['expect'][field]
+        studio=StudioService(ExperimentStore(tmp_path/'ai.sqlite'),FixtureProvider({'cases':[case]}));request={**generation_request(),'source_ids':case['rule_ids']};record=studio.generate(request)
+        assert record['proposals'][0]['valid']
+>       with pytest.raises(StudioError) as error:studio.review(record['id'],review_request(record))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'healthcare_quality.ai_studio.StudioError'>
+
+tests/unit/test_assertion_completeness.py:28: Failed
+_______ test_missing_workflow_observation_blocks_review[1-payment_cents] _______
+
+tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-34/test_missing_workflow_observat2')
+step_index = 1, field = 'payment_cents'
+
+    @pytest.mark.parametrize('step_index,field',[(0,'payout_cents'),(0,'event_count'),(1,'payment_cents'),(2,'payment_cents'),(2,'event_count'),(2,'payout_cents')])
+    def test_missing_workflow_observation_blocks_review(tmp_path,step_index,field):
+        case=workflow_case();del case['steps'][step_index]['expect'][field]
+        studio=StudioService(ExperimentStore(tmp_path/'ai.sqlite'),FixtureProvider({'cases':[case]}));request={**generation_request(),'source_ids':case['rule_ids']};record=studio.generate(request)
+        assert record['proposals'][0]['valid']
+>       with pytest.raises(StudioError) as error:studio.review(record['id'],review_request(record))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'healthcare_quality.ai_studio.StudioError'>
+
+tests/unit/test_assertion_completeness.py:28: Failed
+_______ test_missing_workflow_observation_blocks_review[2-payment_cents] _______
+
+tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-34/test_missing_workflow_observat3')
+step_index = 2, field = 'payment_cents'
+
+    @pytest.mark.parametrize('step_index,field',[(0,'payout_cents'),(0,'event_count'),(1,'payment_cents'),(2,'payment_cents'),(2,'event_count'),(2,'payout_cents')])
+    def test_missing_workflow_observation_blocks_review(tmp_path,step_index,field):
+        case=workflow_case();del case['steps'][step_index]['expect'][field]
+        studio=StudioService(ExperimentStore(tmp_path/'ai.sqlite'),FixtureProvider({'cases':[case]}));request={**generation_request(),'source_ids':case['rule_ids']};record=studio.generate(request)
+        assert record['proposals'][0]['valid']
+>       with pytest.raises(StudioError) as error:studio.review(record['id'],review_request(record))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'healthcare_quality.ai_studio.StudioError'>
+
+tests/unit/test_assertion_completeness.py:28: Failed
+________ test_missing_workflow_observation_blocks_review[2-event_count] ________
+
+tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-34/test_missing_workflow_observat4')
+step_index = 2, field = 'event_count'
+
+    @pytest.mark.parametrize('step_index,field',[(0,'payout_cents'),(0,'event_count'),(1,'payment_cents'),(2,'payment_cents'),(2,'event_count'),(2,'payout_cents')])
+    def test_missing_workflow_observation_blocks_review(tmp_path,step_index,field):
+        case=workflow_case();del case['steps'][step_index]['expect'][field]
+        studio=StudioService(ExperimentStore(tmp_path/'ai.sqlite'),FixtureProvider({'cases':[case]}));request={**generation_request(),'source_ids':case['rule_ids']};record=studio.generate(request)
+        assert record['proposals'][0]['valid']
+>       with pytest.raises(StudioError) as error:studio.review(record['id'],review_request(record))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'healthcare_quality.ai_studio.StudioError'>
+
+tests/unit/test_assertion_completeness.py:28: Failed
+_______ test_missing_workflow_observation_blocks_review[2-payout_cents] ________
+
+tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-34/test_missing_workflow_observat5')
+step_index = 2, field = 'payout_cents'
+
+    @pytest.mark.parametrize('step_index,field',[(0,'payout_cents'),(0,'event_count'),(1,'payment_cents'),(2,'payment_cents'),(2,'event_count'),(2,'payout_cents')])
+    def test_missing_workflow_observation_blocks_review(tmp_path,step_index,field):
+        case=workflow_case();del case['steps'][step_index]['expect'][field]
+        studio=StudioService(ExperimentStore(tmp_path/'ai.sqlite'),FixtureProvider({'cases':[case]}));request={**generation_request(),'source_ids':case['rule_ids']};record=studio.generate(request)
+        assert record['proposals'][0]['valid']
+>       with pytest.raises(StudioError) as error:studio.review(record['id'],review_request(record))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'healthcare_quality.ai_studio.StudioError'>
+
+tests/unit/test_assertion_completeness.py:28: Failed
+______________ test_rejected_payment_requires_unchanged_readback _______________
+
+tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-34/test_rejected_payment_requires0')
+
+    def test_rejected_payment_requires_unchanged_readback(tmp_path):
+        case=workflow_case();case['steps']=case['steps'][:1]+[{'action':'transition','actor':'finance-demo','data':{'claim_id':'COMPLETE-1','target':'paid'},'expect':{'status':409,'error':'INVALID_TRANSITION'}}]
+        studio=StudioService(ExperimentStore(tmp_path/'ai.sqlite'),FixtureProvider({'cases':[case]}));record=studio.generate({**generation_request(),'source_ids':case['rule_ids']})
+>       with pytest.raises(StudioError) as error:studio.review(record['id'],review_request(record))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'healthcare_quality.ai_studio.StudioError'>
+
+tests/unit/test_assertion_completeness.py:35: Failed
+=========================== short test summary info ============================
+FAILED tests/unit/test_assertion_completeness.py::test_missing_payout_cannot_be_approved_despite_valid_structure
+FAILED tests/unit/test_assertion_completeness.py::test_missing_workflow_observation_blocks_review[0-payout_cents]
+FAILED tests/unit/test_assertion_completeness.py::test_missing_workflow_observation_blocks_review[0-event_count]
+FAILED tests/unit/test_assertion_completeness.py::test_missing_workflow_observation_blocks_review[1-payment_cents]
+FAILED tests/unit/test_assertion_completeness.py::test_missing_workflow_observation_blocks_review[2-payment_cents]
+FAILED tests/unit/test_assertion_completeness.py::test_missing_workflow_observation_blocks_review[2-event_count]
+FAILED tests/unit/test_assertion_completeness.py::test_missing_workflow_observation_blocks_review[2-payout_cents]
+FAILED tests/unit/test_assertion_completeness.py::test_rejected_payment_requires_unchanged_readback
+8 failed in 0.10s

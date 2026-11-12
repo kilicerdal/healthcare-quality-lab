@@ -25,11 +25,12 @@ def signature(case):
 def score(task,record):
     required=sum(len(fields) for fields in task["required_assertions"])
     result={"task_id":task["id"],"generation_ok":record["state"]!="generation_failed",
-            "schema_valid":False,"input_match":False,"required_total":required,"required_present":0,
+            "schema_valid":False,"policy_complete":False,"input_match":False,"required_total":required,"required_present":0,
             "required_correct":0,"comparable_total":0,"comparable_correct":0,"strict_pass":False,"differences":[]}
     proposals=record.get("proposals",[])
     if len(proposals)!=1 or not proposals[0]["valid"]:return result
     result["schema_valid"]=True
+    result["policy_complete"]=bool(proposals[0].get("review_ready"))
     case=proposals[0]["case"]; reference=task["reference_case"]
     if signature(case)!=signature(reference):return result
     result["input_match"]=True
@@ -49,8 +50,8 @@ def score(task,record):
     return result
 
 def summarize(rows):
-    keys=("generation_ok","schema_valid","input_match","strict_pass","required_total","required_present","required_correct","comparable_total","comparable_correct")
-    return {"requests":len(rows),**{key:sum(int(row[key]) for row in rows) for key in keys}}
+    keys=("generation_ok","schema_valid","policy_complete","input_match","strict_pass","required_total","required_present","required_correct","comparable_total","comparable_correct")
+    return {"requests":len(rows),**{key:sum(int(row.get(key,0)) for row in rows) for key in keys}}
 
 RULE_ID_PATTERN=re.compile(r"(?<![A-Za-z0-9_-])(?:HC|WF)-[0-9]+(?![A-Za-z0-9_-])",re.IGNORECASE)
 RETRIEVAL_VERSION="exact-ids-lexical-v2"

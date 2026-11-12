@@ -15,6 +15,7 @@ from healthcare_quality.ai_schema import ALL_RULES,MODELS,SUITE_SCHEMA,DSL_VERSI
 from healthcare_quality.quality_lab import QualityLab
 from healthcare_quality.evaluation import dataset,retrieve
 from healthcare_quality.showcase import summary,readiness,EVIDENCE
+from healthcare_quality.assertion_quality import POLICY,policy_fingerprint
 from healthcare_quality.catalog import get_catalog
 from healthcare_quality.claims import ContractError, evaluate_claim
 from healthcare_quality.workflow import ACTORS, MEMBERS, WORKFLOW_RULES, WORKFLOW_HASH, ClaimStore, WorkflowService, WorkflowError
@@ -101,7 +102,7 @@ def create_app(config=None):
     def oversized(error):return jsonify(error="Request exceeds 16 KiB",rule_id="HC-001"),413
 
     @app.get("/api/ai/config")
-    def ai_config():return jsonify(version=__version__,dsl_version=DSL_VERSION,rules=list(ALL_RULES.values()),models=list(MODELS),strategies=PROMPTS,schema=SUITE_SCHEMA,contract_fingerprint=contract_fingerprint(),execution_mode="Approved declarative cases; fresh temporary databases")
+    def ai_config():return jsonify(version=__version__,dsl_version=DSL_VERSION,rules=list(ALL_RULES.values()),models=list(MODELS),strategies=PROMPTS,schema=SUITE_SCHEMA,assertion_policy=POLICY,assertion_policy_fingerprint=policy_fingerprint(),contract_fingerprint=contract_fingerprint(),execution_mode="Approved declarative cases; fresh temporary databases")
 
     @app.get("/api/ai/provider")
     def ai_provider():return jsonify(studio.provider.status())
@@ -120,7 +121,7 @@ def create_app(config=None):
 
     @app.get("/api/ai/experiments/<id>")
     @app.get("/api/ai/experiments/<id>/evidence")
-    def ai_detail(id):return jsonify(studio.store.get(id))
+    def ai_detail(id):return jsonify(studio.view(id))
 
     @app.put("/api/ai/experiments/<id>/cases/<case_id>")
     def ai_edit(id,case_id):return jsonify(studio.edit(id,case_id,body()))
@@ -167,8 +168,8 @@ def create_app(config=None):
 
     @app.get("/report")
     @app.get("/reports/<version>")
-    def report(version="v5.1"):
-        if version not in ("v1","v2","v3","v4","v5","v5.1"):return jsonify(error="Report not found"),404
+    def report(version="v5.2"):
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)
