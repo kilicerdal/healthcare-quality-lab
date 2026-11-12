@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "model_requests": 0,
+  "revalidated_executions": [
+    {
+      "task_id": "F03",
+      "run_id": "c59e28ee1a84481b913e0fcb4b1f7488",
+      "status": "passed",
+      "expectation_origin": "reference_guided_ai",
+      "source_hash": "48311433e31390d3fb167c02167f3f6e4d33f77d70c0c6b701b4406d21e297a1"
+    },
+    {
+      "task_id": "F07",
+      "run_id": "e3ef02050d374945bb9117b0be3ec3a7",
+      "status": "passed",
+      "expectation_origin": "reference_guided_ai",
+      "source_hash": "48311433e31390d3fb167c02167f3f6e4d33f77d70c0c6b701b4406d21e297a1"
+    }
+  ]
+}

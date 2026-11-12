@@ -398,9 +398,9 @@ class StudioService:
             record=self.store.load(db,id)
             self._revision(record,{"expected_revision":record["revision"]})
             cases=self._approved_cases(record)
-            snapshot={"experiment_id":id,"cases":cases,"source_ids":record["source_ids"],"approval":record["approval"],"contract_fingerprint":record["contract_fingerprint"]}
+            snapshot={"experiment_id":id,"cases":cases,"source_ids":record["source_ids"],"approval":record["approval"],"contract_fingerprint":record["contract_fingerprint"],"expectation_origin":record.get("expectation_origin","original_ai"),"correction_of":record.get("correction_of"),"reference_assisted_of":record.get("reference_assisted_of")}
         literal=repr(json.dumps(snapshot,sort_keys=True,allow_nan=False))
-        return ('"""Trusted pytest wrapper around explicitly reviewed Ollama-created case data. No generated code is executed."""\n'
+        return ('"""Trusted pytest wrapper around explicitly reviewed case data. SNAPSHOT records expectation provenance; no generated code is executed."""\n'
                 'import json\nimport pytest\n'
                 'from healthcare_quality.ai_schema import contract_fingerprint, digest, validate_cases\n'
                 'from healthcare_quality.ai_runner import run_cases\n'
@@ -427,7 +427,7 @@ class StudioService:
             operations.recover(db)
             record=self.store.load(db,id);self._revision(record,body)
             cases=self._approved_cases(record)
-            run={"id":uuid4().hex,"experiment_id":id,"at":now(),"revision":record["revision"],"approval":deepcopy(record["approval"]),"assertion_policy_fingerprint":policy_fingerprint(),"approved_cases":cases,"contract_fingerprint":record["contract_fingerprint"],"model":record["model"],"prompt_hash":record["prompt_hash"]}
+            run={"id":uuid4().hex,"experiment_id":id,"at":now(),"revision":record["revision"],"approval":deepcopy(record["approval"]),"assertion_policy_fingerprint":policy_fingerprint(),"approved_cases":cases,"contract_fingerprint":record["contract_fingerprint"],"model":record["model"],"prompt_hash":record["prompt_hash"],"expectation_origin":record.get("expectation_origin","original_ai"),"correction_of":record.get("correction_of"),"reference_assisted_of":record.get("reference_assisted_of")}
             record["state"]="running";record["pending_run"]=deepcopy(run)
             token=operations.start(db,record,"execution",self.lease_seconds)
             self.store.save(db,record)

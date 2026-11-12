@@ -789,6 +789,13 @@
       "at": "2026-11-12T15:06:16.275085+00:00",
       "revision": 2,
       "result": "passed"
+    },
+    {
+      "event": "run_recorded",
+      "run_id": "c59e28ee1a84481b913e0fcb4b1f7488",
+      "at": "2026-11-12T15:16:11.361497+00:00",
+      "revision": 2,
+      "result": "passed"
     }
   ],
   "runs": [
@@ -965,6 +972,186 @@
       "actions_executed": 1,
       "action_budget": 32,
       "duration_ms": 2.39,
+      "isolation": "Fresh SQLite file per case; all execution files removed after the run. Interactive claims are never used.",
+      "scope": "Generated declarative cases against Python services, not generated browser automation or an independent proof of oracle correctness.",
+      "status": "passed"
+    },
+    {
+      "id": "c59e28ee1a84481b913e0fcb4b1f7488",
+      "experiment_id": "8c4299517e01450f83f1bf8c14dc907e",
+      "at": "2026-11-12T15:16:11.345968+00:00",
+      "revision": 2,
+      "approval": {
+        "revision": 2,
+        "at": "2026-11-12T15:06:16.243068+00:00",
+        "reviewer_label": "Codex engineering operator (automated attestation)",
+        "note": "Known failure expectations checked against authored literal results, reference and unchanged scenario. Engineering validation only, not authenticated human approval.",
+        "expectations_checked": true,
+        "hashes": {
+          "AI-001": "38ec8b5e2ddd31ab0e227c5c3745b774ad4ce0c3e726118a7c2f12d7eee4c773"
+        },
+        "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "identity_mode": "Local attestation label, not authenticated human identity"
+      },
+      "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+      "approved_cases": [
+        {
+          "id": "AI-001",
+          "title": "Evaluate Medical Claim for Commercial PPO",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Evaluate a medical claim for a commercial PPO member to ensure correct payout calculation.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "amount_cents": 10001,
+                "plan_id": "commercial_ppo",
+                "service": "medical"
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 1
+              }
+            }
+          ]
+        }
+      ],
+      "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+      "model": "qwen2.5-coder:3b",
+      "prompt_hash": "16224028fb38bdeb3ba8f18e2286e429c74f983fc0b5483d2abe36d1ff4943ad",
+      "expectation_origin": "reference_guided_ai",
+      "correction_of": "f4981b44e49e4703ae299385ee7ca9fe",
+      "reference_assisted_of": null,
+      "source_hash": "48311433e31390d3fb167c02167f3f6e4d33f77d70c0c6b701b4406d21e297a1",
+      "results": [
+        {
+          "case_id": "AI-001",
+          "title": "Evaluate Medical Claim for Commercial PPO",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "steps": [
+            {
+              "number": 1,
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "amount_cents": 10001,
+                "plan_id": "commercial_ppo",
+                "service": "medical"
+              },
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 1
+              },
+              "observed": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 1
+              },
+              "assertions": [
+                {
+                  "field": "status",
+                  "expected": 200,
+                  "observed": 200,
+                  "passed": true
+                },
+                {
+                  "field": "decision",
+                  "expected": "approved",
+                  "observed": "approved",
+                  "passed": true
+                },
+                {
+                  "field": "reason",
+                  "expected": "COVERED",
+                  "observed": "COVERED",
+                  "passed": true
+                },
+                {
+                  "field": "payout_cents",
+                  "expected": 1,
+                  "observed": 1,
+                  "passed": true
+                }
+              ],
+              "evidence": {
+                "version": "5.4.0",
+                "synthetic": true,
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "request": {
+                  "amount_cents": 10001,
+                  "plan_id": "commercial_ppo",
+                  "service": "medical",
+                  "in_network": true,
+                  "formulary": true,
+                  "active": true,
+                  "authorized": true
+                },
+                "plan_name": "Commercial PPO",
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 1,
+                "trace": [
+                  {
+                    "rule_id": "HC-001",
+                    "outcome": "passed",
+                    "detail": "Request satisfies the input contract"
+                  },
+                  {
+                    "rule_id": "HC-002",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-003",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-004",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-005",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-006",
+                    "outcome": "passed",
+                    "detail": "No denial triggered under this contract"
+                  },
+                  {
+                    "rule_id": "HC-007",
+                    "outcome": "passed",
+                    "detail": "Claim 10001 cents; deductible 10000; cap 200000; payout 1"
+                  }
+                ]
+              },
+              "passed": true
+            }
+          ],
+          "execution_error": null,
+          "passed": true
+        }
+      ],
+      "passed": 1,
+      "failed": 0,
+      "actions_executed": 1,
+      "action_budget": 32,
+      "duration_ms": 1.36,
       "isolation": "Fresh SQLite file per case; all execution files removed after the run. Interactive claims are never used.",
       "scope": "Generated declarative cases against Python services, not generated browser automation or an independent proof of oracle correctness.",
       "status": "passed"

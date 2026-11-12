@@ -140,3 +140,11 @@ def test_failed_and_interrupted_requests_are_both_charged_before_retry(tmp_path)
     assert error.value.code=='CORRECTION_LIMIT'
     preview=studio.reference_preview(interrupted['id']);repaired=studio.apply_reference(interrupted['id'],fallback_body(preview))
     assert repaired['proposals'][0]['reference']['status']=='matched'
+
+
+def test_reference_provenance_survives_execution_and_pytest_export(tmp_path):
+    studio=make(tmp_path);parent=studio.generate(generation_request());preview=studio.reference_preview(parent['id']);child=studio.apply_reference(parent['id'],fallback_body(preview));approved=studio.review(child['id'],review_request(child))
+    run=studio.execute(child['id'],{'expected_revision':approved['revision']})
+    assert run['expectation_origin']=='reviewer_confirmed_reference' and run['reference_assisted_of']==parent['id']
+    namespace={};exec(compile(studio.export_pytest(child['id']),'exported.py','exec'),namespace)
+    assert namespace['SNAPSHOT']['expectation_origin']=='reviewer_confirmed_reference' and namespace['SNAPSHOT']['reference_assisted_of']==parent['id']
