@@ -128,6 +128,9 @@ def create_app(config=None):
     @app.post("/api/ai/experiments/<id>/review")
     def ai_review(id):return jsonify(studio.review(id,body()))
 
+    @app.post("/api/ai/experiments/<id>/retry")
+    def ai_retry(id):return jsonify(studio.retry(id,body())),201
+
     @app.post("/api/ai/experiments/<id>/execute")
     def ai_execute(id):return jsonify(studio.execute(id,body()))
 
@@ -151,7 +154,7 @@ def create_app(config=None):
 
     @app.get("/api/quality/retrieval")
     def quality_retrieve():
-        try:return jsonify(method="Lexical overlap plus exact rule-ID boost; not vector search",results=retrieve(request.args.get("q","")))
+        try:return jsonify(method="Explicit rule-ID resolution; lexical overlap excludes IDs and namespace fragments",results=retrieve(request.args.get("q","")))
         except ValueError as error:raise StudioError("INVALID_REQUEST",str(error))
 
     @app.get("/api/verification")
@@ -164,8 +167,8 @@ def create_app(config=None):
 
     @app.get("/report")
     @app.get("/reports/<version>")
-    def report(version="v5"):
-        if version not in ("v1","v2","v3","v4","v5"):return jsonify(error="Report not found"),404
+    def report(version="v5.1"):
+        if version not in ("v1","v2","v3","v4","v5","v5.1"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)

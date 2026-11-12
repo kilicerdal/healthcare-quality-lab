@@ -86,9 +86,33 @@ def test_packaging_requires_fresh_pass_and_will_not_overwrite(tmp_path,monkeypat
     import tools.release as module
     root=tmp_path/'source';(root/'artifacts').mkdir(parents=True);(root/'app.py').write_text('print("synthetic")')
     monkeypatch.setattr(module,'ROOT',root);monkeypatch.setattr(module,'source_hash',lambda:'current')
-    verification={'status':'passed','source_hash':'old','version':'5.0.0','tests_passed':1,'categories':{'unit':1}}
+    verification={'status':'passed','source_hash':'old','version':module.__version__,'tests_passed':1,'categories':{'unit':1}}
     (root/'artifacts/verification.json').write_text(json.dumps(verification))
     with pytest.raises(ReleaseError,match='Fresh'):build(tmp_path/'output')
     verification['source_hash']='current';(root/'artifacts/verification.json').write_text(json.dumps(verification))
-    record=build(tmp_path/'output');assert inspect(record['archive'])['version']=='5.0.0'
+    record=build(tmp_path/'output');assert inspect(record['archive'])['version']==module.__version__
     with pytest.raises(ReleaseError,match='overwrite'):build(tmp_path/'output')
+
+
+@pytest.mark.parametrize('name',['probe.pyc','probe.pyo','pkg/__pycache__/probe.cpython-313.pyc'])
+def test_compiled_artifacts_are_rejected_even_when_manifest_lists_them(tmp_path,name):
+    with pytest.raises(ReleaseError,match='[Bb]ytecode|cache'):inspect(bundle(tmp_path,members={name:b'not source'}))
+
+
+def test_empty_cache_directory_is_not_silently_accepted(tmp_path):
+    target=tmp_path/'deploy';id=stage(bundle(tmp_path),target)['release_id'];tree=target/'releases'/id
+    (tree/'__pycache__').mkdir()
+    with pytest.raises(ReleaseError,match='cache'):verify_tree(tree)
+
+
+def test_release_launcher_does_not_inherit_external_python_cache_or_import_paths(tmp_path,monkeypatch):
+    import tools.release as module
+    target=tmp_path/'deploy';id=stage(bundle(tmp_path),target)['release_id'];activate(target,id)
+    monkeypatch.setenv('PYTHONPYCACHEPREFIX',str(tmp_path/'unverified-cache'));monkeypatch.setenv('PYTHONPATH','unverified-path');monkeypatch.setenv('PYTHONHOME','unverified-home')
+    captured={}
+    class StopLaunch(Exception):pass
+    def launch(executable,args,env):captured.update(env);raise StopLaunch()
+    monkeypatch.setattr(module.os,'execvpe',launch);monkeypatch.setattr(module.os,'chdir',lambda path:None)
+    with pytest.raises(StopLaunch):module.serve(target,8899)
+    assert all(key not in captured for key in ('PYTHONPYCACHEPREFIX','PYTHONPATH','PYTHONHOME'))
+    assert captured['PYTHONDONTWRITEBYTECODE']=='1'

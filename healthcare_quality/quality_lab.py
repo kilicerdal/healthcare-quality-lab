@@ -7,7 +7,7 @@ import time
 from uuid import uuid4
 from healthcare_quality.ai_studio import ExperimentStore,StudioError,build_prompt,now
 from healthcare_quality.ai_schema import MODELS,digest,contract_fingerprint,json_loads
-from healthcare_quality.evaluation import dataset,score,summarize,retrieve
+from healthcare_quality.evaluation import dataset,score,summarize,retrieve,RETRIEVAL_VERSION
 from healthcare_quality.ollama_provider import SETTINGS
 from jsonschema import validate
 from tools.fingerprints import source_hash
@@ -105,7 +105,7 @@ class QualityLab:
                 for assertion in step["assertions"]:
                     if not assertion["passed"]:facts.append({"id":f"E{len(facts)+1}","case_id":case["case_id"],"step":step["number"],"action":step["action"],"data":step["data"],"assertion":assertion,"rule_ids":case["rule_ids"]})
         rules=retrieve(" ".join(id for f in facts for id in f["rule_ids"])) if facts else []
-        record={"id":uuid4().hex,"kind":"investigation","created_at":now(),"experiment_id":experiment["id"],"run_id":run["id"],"facts":facts,"sources":rules,"model":body["model"],"state":"abstained","hypotheses":[],"raw_generation":None,
+        record={"id":uuid4().hex,"kind":"investigation","retrieval_version":RETRIEVAL_VERSION,"created_at":now(),"experiment_id":experiment["id"],"run_id":run["id"],"facts":facts,"sources":rules,"model":body["model"],"state":"abstained","hypotheses":[],"raw_generation":None,
                 "scope":"Runner assertions are facts about this execution. Model explanations are hypotheses; citation validation does not prove semantic support."}
         if not facts:record["reason"]="No failed assertions in this stored run"
         elif run.get("contract_fingerprint")!=contract_fingerprint():record["reason"]="Stored contract is stale"

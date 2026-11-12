@@ -31,6 +31,7 @@ def sidecar(path):
 
 def safe_name(name):
     path=PurePosixPath(name)
+    if "__pycache__" in path.parts or path.suffix.lower() in (".pyc",".pyo"):raise ReleaseError("Bytecode/cache artifacts are forbidden in source releases")
     if not name or "\\" in name or path.is_absolute() or any(p in (".","..","") for p in name.split("/")) or any(p in EXCLUDED or p.startswith(".env") for p in path.parts) or name=="release-manifest.json":raise ReleaseError("Unsafe or excluded release member")
     return name
 
@@ -70,7 +71,7 @@ def build(output):
         with zipfile.ZipFile(temporary,"w",zipfile.ZIP_DEFLATED) as z:
             for path in sorted(ROOT.rglob("*")):
                 rel=path.relative_to(ROOT)
-                if not path.is_file() or path.is_symlink() or set(rel.parts)&EXCLUDED or path.name==".DS_Store" or any(p.startswith(".env") for p in rel.parts) or path.resolve().is_relative_to(output):continue
+                if not path.is_file() or path.is_symlink() or set(rel.parts)&EXCLUDED or path.suffix.lower() in (".pyc",".pyo") or path.name==".DS_Store" or any(p.startswith(".env") for p in rel.parts) or path.resolve().is_relative_to(output):continue
                 name=safe_name(str(rel));content=path.read_bytes();files[name]=sha(content);z.writestr(PREFIX+name,content)
         if source_hash()!=fingerprint:raise ReleaseError("Implementation changed during packaging")
         manifest={"version":__version__,"created_at":datetime.now(timezone.utc).isoformat(),"archive":archive.name,"sha256":sha(temporary.read_bytes()),"source_hash":fingerprint,"files":files,"verification":{"tests_passed":verification["tests_passed"],"categories":verification["categories"]},"scope":"Source and synthetic evidence. Local runtime dependencies installed separately. Checksums are integrity evidence, not a signed publisher identity."}
@@ -88,7 +89,9 @@ def verify_tree(directory):
     actual=set()
     for path in directory.rglob("*"):
         if path.is_symlink():raise ReleaseError("Staged symlink rejected")
-        if not path.is_file() or "__pycache__" in path.parts:continue
+        if "__pycache__" in path.relative_to(directory).parts or path.suffix.lower() in (".pyc",".pyo"):
+            raise ReleaseError("Bytecode/cache artifacts are forbidden in staged releases; restage a clean archive")
+        if not path.is_file():continue
         rel=str(path.relative_to(directory))
         if rel=="release-manifest.json":continue
         actual.add(rel)
@@ -153,7 +156,8 @@ def serve(target,port):
     state=(Path(target).resolve()/"state"/id);state.mkdir(parents=True,exist_ok=True)
     # Fixed trusted launcher works with the archived V4 app as well as V5.
     launcher="from pathlib import Path; import os; from waitress import serve; from healthcare_quality.app import create_app; p=Path(os.environ['HQL_STATE_DIR']); app=create_app({'DATABASE':str(p/'claims.sqlite'),'AI_DATABASE':str(p/'ai.sqlite')}); serve(app,host='127.0.0.1',port=int(os.environ['HQL_PORT']),threads=8)"
-    env={**os.environ,"PYTHONDONTWRITEBYTECODE":"1","HQL_STATE_DIR":str(state),"HQL_PORT":str(port),"HQL_RELEASE_ID":id}
+    env={key:value for key,value in os.environ.items() if key not in ("PYTHONPYCACHEPREFIX","PYTHONPATH","PYTHONHOME")}
+    env.update({"PYTHONDONTWRITEBYTECODE":"1","HQL_STATE_DIR":str(state),"HQL_PORT":str(port),"HQL_RELEASE_ID":id})
     os.chdir(directory)
     os.execvpe(sys.executable,[sys.executable,"-c",launcher],env)
 

@@ -52,14 +52,21 @@ def summarize(rows):
     keys=("generation_ok","schema_valid","input_match","strict_pass","required_total","required_present","required_correct","comparable_total","comparable_correct")
     return {"requests":len(rows),**{key:sum(int(row[key]) for row in rows) for key in keys}}
 
+RULE_ID_PATTERN=re.compile(r"(?<![A-Za-z0-9_-])(?:HC|WF)-[0-9]+(?![A-Za-z0-9_-])",re.IGNORECASE)
+RETRIEVAL_VERSION="exact-ids-lexical-v2"
+
 def retrieve(query,limit=3):
     if not isinstance(query,str) or not 1<=len(query.strip())<=1000:raise ValueError("Query must contain 1–1000 characters")
-    stop={"the","a","an","and","of","to","in","for","is","it","with","this","test","claim","claims"}
-    terms=set(re.findall(r"[a-z0-9]+",query.lower()))-stop
-    matches=[]
+    if type(limit) is not int or not 1<=limit<=len(ALL_RULES):raise ValueError("Limit must be between 1 and the number of rules")
+    explicit=list(dict.fromkeys(match.upper() for match in RULE_ID_PATTERN.findall(query)))
+    if explicit:
+        # An explicit source selection is authoritative, including unknown IDs.
+        return [{"rule_id":id,"score":100,"matched_terms":[id],"match_method":"exact_rule_id","retrieval_version":RETRIEVAL_VERSION,"rule":ALL_RULES[id]}
+                for id in explicit if id in ALL_RULES][:limit]
+    stop={"the","a","an","and","of","to","in","for","is","it","with","this","test","claim","claims","hc","wf"}
+    def words(text):return set(re.findall(r"[a-z]+",RULE_ID_PATTERN.sub(" ",text).lower()))-stop
+    terms=words(query);matches=[]
     for id,rule in ALL_RULES.items():
-        text=json.dumps(rule).lower();tokens=set(re.findall(r"[a-z0-9]+",text))-stop
-        common=sorted(terms&tokens);exact=id.lower() in query.lower()
-        value=len(common)+10*exact
-        if value:matches.append({"rule_id":id,"score":value,"matched_terms":common,"rule":rule})
+        common=sorted(terms&words(json.dumps({key:value for key,value in rule.items() if key!="id"})))
+        if common:matches.append({"rule_id":id,"score":len(common),"matched_terms":common,"match_method":"lexical_overlap","retrieval_version":RETRIEVAL_VERSION,"rule":rule})
     return sorted(matches,key=lambda r:(-r["score"],r["rule_id"]))[:limit]

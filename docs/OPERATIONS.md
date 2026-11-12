@@ -32,6 +32,14 @@ The V4 provider remains fixed to loopback port 11434, bounded to a 256 KiB envel
 
 CI omits the baseline flag because historical ZIPs are retained locally rather than tracked in Git. Its rehearsal validates the current source package's HTTP journey. Local evidence separately demonstrates rollback. Do not conflate those scopes.
 
+## V5.1 upgrade and recovery
+
+Stop V5 workers before opening their databases with V5.1. Back up SQLite stores before an in-place upgrade. The new operation table is additive; legacy busy Studio records have no valid ownership lease and are marked interrupted during upgrade. Completed records and claims are retained.
+
+Studio generation/execution now have 30-second leases, renewed every five seconds. After process death, recovery occurs on a later startup/read/list/mutation once the lease expires. Valid active leases are retained. Interrupted generation can be explicitly retried into a new unapproved child. Interrupted execution needs fresh selection and review; it is never replayed automatically.
+
+A staged source payload containing __pycache__, .pyc or .pyo is rejected. Restage a clean trusted archive rather than changing an immutable payload or deleting arbitrary files. The release launcher clears inherited Python cache/import overrides and disables writing new bytecode. This does not make the entire installed environment a signed or sandboxed runtime.
+
 ## Remote CI and deployment
 
 The private GitHub Actions workflow needs only contents:read. It uploads release/evidence artifacts after testing. It does not connect to a production host, publish a public endpoint or ship model downloads. A cloud target would require a separate design for authentication, storage, secrets, private model access, operational ownership and deployment approval.

@@ -1,0 +1,39 @@
+{
+  "baseline": "V5 implementation, eight original reproductions failed; see before-fixes.txt",
+  "after": "V5.1 full verifier JUnit output",
+  "source_hash": "5bc46731daec4bcbb1d8b7bbdbdc3516f549231ae4c7df8112552e09fbe3e202",
+  "original_reproductions": [
+    {
+      "name": "test_reproduced_injected_bytecode_cannot_pass_staged_verification",
+      "passed": true
+    },
+    {
+      "name": "test_legacy_interrupted_experiment_is_recovered_and_requires_new_review[generating]",
+      "passed": true
+    },
+    {
+      "name": "test_legacy_interrupted_experiment_is_recovered_and_requires_new_review[running]",
+      "passed": true
+    },
+    {
+      "name": "test_exact_rule_ids_do_not_pull_unrelated_namespace_matches[HC-007-expected0]",
+      "passed": true
+    },
+    {
+      "name": "test_exact_rule_ids_do_not_pull_unrelated_namespace_matches[hc-007-expected1]",
+      "passed": true
+    },
+    {
+      "name": "test_exact_rule_ids_do_not_pull_unrelated_namespace_matches[HC-007 WF-004-expected2]",
+      "passed": true
+    },
+    {
+      "name": "test_exact_rule_ids_do_not_pull_unrelated_namespace_matches[HC-999-expected3]",
+      "passed": true
+    },
+    {
+      "name": "test_exact_rule_ids_do_not_pull_unrelated_namespace_matches[HC-0070-expected4]",
+      "passed": true
+    }
+  ]
+}
