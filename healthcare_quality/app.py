@@ -1,3 +1,4 @@
+from healthcare_quality import reference
 """V5 local healthcare quality showcase, AI review controls and transactional API."""
 import json
 import logging
@@ -102,7 +103,7 @@ def create_app(config=None):
     def oversized(error):return jsonify(error="Request exceeds 16 KiB",rule_id="HC-001"),413
 
     @app.get("/api/ai/config")
-    def ai_config():return jsonify(version=__version__,dsl_version=DSL_VERSION,rules=list(ALL_RULES.values()),models=list(MODELS),strategies=PROMPTS,schema=SUITE_SCHEMA,assertion_policy=POLICY,assertion_policy_fingerprint=policy_fingerprint(),contract_fingerprint=contract_fingerprint(),execution_mode="Approved declarative cases; fresh temporary databases")
+    def ai_config():return jsonify(version=__version__,dsl_version=DSL_VERSION,rules=list(ALL_RULES.values()),models=list(MODELS),strategies=PROMPTS,schema=SUITE_SCHEMA,reference_fingerprint=reference.fingerprint(),reference_version=reference.VERSION,assertion_policy=POLICY,assertion_policy_fingerprint=policy_fingerprint(),contract_fingerprint=contract_fingerprint(),execution_mode="Approved declarative cases; fresh temporary databases")
 
     @app.get("/api/ai/provider")
     def ai_provider():return jsonify(studio.provider.status())
@@ -128,6 +129,9 @@ def create_app(config=None):
 
     @app.post("/api/ai/experiments/<id>/review")
     def ai_review(id):return jsonify(studio.review(id,body()))
+
+    @app.post("/api/ai/experiments/<id>/correct")
+    def ai_correct(id):return jsonify(studio.correct(id,body())),201
 
     @app.post("/api/ai/experiments/<id>/retry")
     def ai_retry(id):return jsonify(studio.retry(id,body())),201
@@ -168,8 +172,8 @@ def create_app(config=None):
 
     @app.get("/report")
     @app.get("/reports/<version>")
-    def report(version="v5.2"):
-        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2"):return jsonify(error="Report not found"),404
+    def report(version="v5.3"):
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)

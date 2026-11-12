@@ -116,14 +116,13 @@ def test_stale_review_or_run_revision_is_rejected(studio):
     with pytest.raises(StudioError):studio.execute(record['id'],{'expected_revision':1})
 
 
-def test_structurally_valid_wrong_oracle_produces_a_visible_failure(studio):
+def test_structurally_valid_wrong_oracle_is_blocked_before_execution(studio):
     wrong=sample_case(payout=1);studio.provider=FixtureProvider({'cases':[wrong]})
     record=studio.generate(generation_request());assert record['proposals'][0]['valid']
-    reviewed=studio.review(record['id'],review_request(record))
-    run=studio.execute(record['id'],{'expected_revision':reviewed['revision']})
-    assert run['status']=='failed'
-    assertion=next(a for a in run['results'][0]['steps'][0]['assertions'] if a['field']=='payout_cents')
-    assert assertion=={'field':'payout_cents','expected':1,'observed':90000,'passed':False}
+    assert record['proposals'][0]['reference']['status']=='mismatch'
+    with pytest.raises(StudioError) as error:studio.review(record['id'],review_request(record))
+    assert error.value.code=='REFERENCE_MISMATCH'
+    assert not studio.store.get(record['id'])['runs']
 
 
 def test_unknown_or_invalid_case_cannot_be_approved(studio):

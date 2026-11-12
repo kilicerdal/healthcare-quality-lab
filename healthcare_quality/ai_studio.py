@@ -15,7 +15,7 @@ from healthcare_quality.ai_schema import ALL_RULES,MODELS,DSL_VERSION,SUITE_SCHE
 from healthcare_quality.ai_runner import run_cases
 from healthcare_quality.ollama_provider import OllamaProvider,ProviderError,SETTINGS
 from tools.fingerprints import source_hash
-from healthcare_quality import operations
+from healthcare_quality import operations, reference
 from healthcare_quality.assertion_quality import POLICY,policy_fingerprint
 
 PROMPTS={
@@ -100,6 +100,15 @@ Return the exact requested inputs/order. Do not silently change inputs to easier
     return instructions+"\nSTRATEGY: "+PROMPTS[strategy]+f"\nCreate exactly {count} cases; maximum 8 steps per case.\nSELECTED RULES: "+json.dumps(contracts)+"\nPLANS: "+json.dumps(catalog["plans"])+"\nMEMBER FIXTURES: "+json.dumps(MEMBERS)+"\nACTOR FIXTURES: "+json.dumps(ACTORS)+"\nJSON SCHEMA: "+json.dumps(generation_schema(count,source_ids))+"\nUSER REQUIREMENT: "+requirement
 
 
+def checked_cases(cases,sources):
+    checked=validate_cases(cases,sources)
+    for proposal in checked:
+        proposal["reference"]=reference.check(proposal["case"]) if proposal["valid"] else {"status":"unsupported","reason":"Fix structural issues first"}
+        proposal["assertions_complete"]=proposal["review_ready"]
+        proposal["review_ready"]=proposal["review_ready"] and proposal["reference"]["status"]=="matched"
+    return checked
+
+
 class StudioService:
     def __init__(self,store,provider=None,*,lease_seconds=30,heartbeat_interval=5):
         if not 0<heartbeat_interval<lease_seconds:raise ValueError("Heartbeat must be shorter than the lease")
@@ -108,7 +117,7 @@ class StudioService:
         self.generation_lock=threading.BoundedSemaphore(1)
         with self.store.transaction() as db:operations.recover(db)
 
-    def generate(self,request,*,_retry=None,_evaluation_profile=None):
+    def generate(self,request,*,_retry=None,_evaluation_profile=None,_correction=None):
         if not isinstance(request,dict) or set(request)!={"requirement","source_ids","model","strategy","count"}:
             raise StudioError("INVALID_REQUEST","Provide requirement, source_ids, model, strategy and count only")
         requirement,sources=request["requirement"],request["source_ids"]
@@ -124,6 +133,26 @@ class StudioService:
                 if _evaluation_profile.get("kind")!="frozen-baseline-v51":raise ValueError("Unknown internal evaluation profile")
                 prompt=_evaluation_profile["prompt"];format_schema=_evaluation_profile["schema"];schema_version="historical-loose-format-v1"
 
+            if _correction:
+                # Freeze every non-expectation field in the provider grammar too.
+                # The post-response shape check remains an independent backstop.
+                template=deepcopy(format_schema["properties"]["cases"]["items"])
+                frozen=[]
+                for case in _correction["cases"]:
+                    item=deepcopy(template)
+                    for key,value in case.items():
+                        if key!="steps":item["properties"][key]={"const":value}
+                    steps=[]
+                    for step in case["steps"]:
+                        spec=next(deepcopy(v) for v in template["properties"]["steps"]["items"]["oneOf"] if v["properties"]["action"]["const"]==step["action"])
+                        for key in ("action","actor","data"):spec["properties"][key]={"const":step[key]}
+                        steps.append(spec)
+                    item["properties"]["steps"]={"type":"array","items":{"anyOf":steps},"minItems":len(steps),"maxItems":len(steps)}
+                    frozen.append(item)
+                format_schema["properties"]["cases"]={"type":"array","items":{"anyOf":frozen},"minItems":len(frozen),"maxItems":len(frozen)}
+                Draft202012Validator.check_schema(format_schema)
+                schema_version="frozen-expectations-correction-v1"
+                prompt+="\nCORRECTION TASK (overrides scenario creation): Return the SAME cases below, changing ONLY step expect objects. Preserve every other field, input, actor, action, identifier and order exactly. Use the independent reference observations and derivations to correct expectations. Never execute anything.\nFROZEN CASES: "+json.dumps(_correction["cases"])+"\nINDEPENDENT REFERENCE: "+json.dumps(_correction["reference"])
             record={"id":uuid4().hex,"version":__version__,"created_at":now(),"requirement":requirement,"source_ids":sources,
                     "source_rules":[ALL_RULES[id] for id in sources],"model":request["model"],"strategy":request["strategy"],"requested_count":request["count"],
                     "prompt":prompt,"prompt_hash":digest(prompt),"settings":dict(SETTINGS),"dsl_version":DSL_VERSION,"contract_fingerprint":contract_fingerprint(),
@@ -136,6 +165,15 @@ class StudioService:
                     parent["revision"]+=1
                     parent["history"].append({"event":"generation_retry_requested","at":now(),"revision":parent["revision"],"child_experiment_id":record["id"],"reviewer_label":_retry["reviewer_label"],"note":_retry["review_note"]})
                     self.store.save(db,parent);record["retry_of"]=parent["id"]
+                if _correction:
+                    parent=self.store.load(db,_correction["id"]);self._revision(parent,_correction)
+                    if reference.fingerprint()!=_correction["reference_fingerprint"]:raise StudioError("STALE_REFERENCE","Reference changed before correction",409)
+                    record["correction_of"]=parent["id"]
+                    record["correction_snapshot"]=deepcopy(_correction)
+                    parent["revision"]+=1
+                    parent["history"].append({"event":"ai_correction_requested","at":now(),"revision":parent["revision"],"child_experiment_id":record["id"],"prior_approval":parent["approval"],"reviewer_label":_correction["reviewer_label"],"note":_correction["review_note"]})
+                    parent["approval"]=None;parent["approved_ids"]=[];parent["state"]="proposed"
+                    self.store.save(db,parent)
                 token=operations.start(db,record,"generation",self.lease_seconds)
                 db.execute("INSERT INTO ai_experiments VALUES(?,?,?)",(record["id"],record["created_at"],json.dumps(record,allow_nan=False)))
             with operations.keepalive(self.store.path,token,self.lease_seconds,self.heartbeat_interval):
@@ -146,7 +184,8 @@ class StudioService:
                     if not isinstance(output,dict) or set(output)!={"cases"} or not isinstance(output["cases"],list) or len(output["cases"])!=request["count"]:
                         raise ValueError("Response must contain exactly the requested number of cases")
                     record["generation_schema_issues"]=[error.message[:500] for error in Draft202012Validator(format_schema).iter_errors(output)][:8]
-                    record["proposals"]=validate_cases(output["cases"],sources)
+                    if _correction and reference.shape(output["cases"])!=reference.shape(_correction["cases"]):raise ValueError("Correction changed frozen scenario fields; only expect objects may change")
+                    record["proposals"]=checked_cases(output["cases"],sources)
                     record["state"]="proposed"
                 except Exception as error:
                     record["state"]="generation_failed"
@@ -166,10 +205,22 @@ class StudioService:
 
     def view(self,id):
         record=self.store.get(id)
-        if record["proposals"]:record["proposals"]=validate_cases([p["case"] for p in record["proposals"]],record["source_ids"])
+        if record["proposals"]:record["proposals"]=checked_cases([p["case"] for p in record["proposals"]],record["source_ids"])
+        record["current_reference_fingerprint"]=reference.fingerprint()
+        record["approval_matches_reference"]=bool(record["approval"] and record["approval"].get("reference_fingerprint")==reference.fingerprint())
         record["current_assertion_policy_fingerprint"]=policy_fingerprint()
         record["approval_matches_assertion_policy"]=bool(record["approval"] and record["approval"].get("assertion_policy_fingerprint")==policy_fingerprint())
         return record
+
+    def correct(self,id,body):
+        if not isinstance(body,dict) or set(body)!={"expected_revision","reviewer_label","review_note"}:raise StudioError("INVALID_REQUEST","Provide expected_revision, reviewer_label and review_note")
+        self._reviewer(body)
+        parent=self.view(id);self._revision(parent,body)
+        if not parent["proposals"] or any(not p["valid"] for p in parent["proposals"]):raise StudioError("INVALID_STATE","Correction requires structurally valid proposals",409)
+        if parent["contract_fingerprint"]!=contract_fingerprint():raise StudioError("STALE_CONTRACT","Generate a new proposal under the current contract",409)
+        cases=[p["case"] for p in parent["proposals"]]
+        request={"requirement":parent["requirement"],"source_ids":parent["source_ids"],"model":parent["model"],"strategy":parent["strategy"],"count":len(cases)}
+        return self.generate(request,_correction={"id":id,**body,"cases":cases,"reference":[p["reference"] for p in parent["proposals"]],"reference_fingerprint":reference.fingerprint()})
 
     def recover_interrupted(self):
         with self.store.transaction() as db:return operations.recover(db)
@@ -181,6 +232,8 @@ class StudioService:
         self._revision(parent,body)
         if parent["state"]!="interrupted" or parent.get("interruption",{}).get("kind")!="generation":raise StudioError("INVALID_STATE","Only interrupted generation can be retried")
         request={"requirement":parent["requirement"],"source_ids":parent["source_ids"],"model":parent["model"],"strategy":parent["strategy"],"count":parent["requested_count"]}
+        if parent.get("correction_snapshot"):
+            return self.generate(request,_correction={**parent["correction_snapshot"],"id":id,**body})
         return self.generate(request,_retry={"id":id,**body})
 
     @staticmethod
@@ -207,7 +260,7 @@ class StudioService:
             index=next((i for i,c in enumerate(cases) if isinstance(c,dict) and c.get("id")==case_id),None)
             if index is None:raise StudioError("NOT_FOUND","Case not found",404)
             before=deepcopy(cases[index]);cases[index]=body["case"]
-            checked=validate_cases(cases,record["source_ids"])
+            checked=checked_cases(cases,record["source_ids"])
             record["revision"]+=1;record["proposals"]=checked;record["approved_ids"]=[];record["approval"]=None;record["state"]="proposed"
             record["history"].append({"event":"case_edited","at":now(),"revision":record["revision"],"reviewer_label":body["reviewer_label"],"note":body["review_note"],"before":before,"after":body["case"]})
             self.store.save(db,record);return record
@@ -225,14 +278,15 @@ class StudioService:
             record=self.store.load(db,id);self._revision(record,body)
             if record["contract_fingerprint"]!=contract_fingerprint():raise StudioError("STALE_CONTRACT","Contract/schema changed; generate a new proposal",409)
             if not record["proposals"]:raise StudioError("INVALID_STATE","There are no proposed cases to review",409)
-            checked=validate_cases([p["case"] for p in record["proposals"]],record["source_ids"])
+            checked=checked_cases([p["case"] for p in record["proposals"]],record["source_ids"])
             valid={p["case"]["id"]:p for p in checked if p["valid"]}
             if not set(ids)<=set(valid):raise StudioError("INVALID_REVIEW","Only valid proposed cases can be approved")
-            incomplete=[id for id in ids if not valid[id]["review_ready"]]
+            incomplete=[id for id in ids if not valid[id]["assertions_complete"]]
             if incomplete:raise StudioError("INCOMPLETE_ASSERTIONS","Complete required payout, payment and history assertions before approval: "+", ".join(incomplete),409)
+            if any(valid[id]["reference"]["status"]!="matched" for id in ids):raise StudioError("REFERENCE_MISMATCH","Expected values disagree with the independent reference or are unsupported; correct and review again",409)
             record["revision"]+=1
             record["proposals"]=checked;record["approved_ids"]=ids
-            record["approval"]={"revision":record["revision"],"at":now(),"reviewer_label":body["reviewer_label"],"note":body["review_note"],"expectations_checked":True,"hashes":{id:valid[id]["hash"] for id in ids},"assertion_policy_fingerprint":policy_fingerprint(),"identity_mode":"Local attestation label, not authenticated human identity"}
+            record["approval"]={"revision":record["revision"],"at":now(),"reviewer_label":body["reviewer_label"],"note":body["review_note"],"expectations_checked":True,"hashes":{id:valid[id]["hash"] for id in ids},"assertion_policy_fingerprint":policy_fingerprint(),"reference_fingerprint":reference.fingerprint(),"identity_mode":"Local attestation label, not authenticated human identity"}
             record["state"]="approved" if ids else "reviewed_no_approval"
             record["history"].append({"event":record["state"],**deepcopy(record["approval"])})
             self.store.save(db,record);return record
@@ -241,11 +295,13 @@ class StudioService:
     def _approved_cases(record):
         if record["state"]!="approved" or not record["approval"] or not record["approved_ids"]:raise StudioError("REVIEW_REQUIRED","Approve at least one reviewed valid case before execution",409)
         if record["contract_fingerprint"]!=contract_fingerprint():raise StudioError("STALE_CONTRACT","Contract/schema changed; generate a new proposal",409)
-        checked=validate_cases([p["case"] for p in record["proposals"]],record["source_ids"])
+        checked=checked_cases([p["case"] for p in record["proposals"]],record["source_ids"])
         selected=[p for p in checked if isinstance(p["case"],dict) and p["case"].get("id") in record["approved_ids"]]
         if len(selected)!=len(record["approved_ids"]) or any(not p["valid"] or record["approval"]["hashes"].get(p["case"]["id"])!=p["hash"] for p in selected):raise StudioError("STALE_APPROVAL","Proposal changed; review again",409)
-        if any(not p["review_ready"] for p in selected):raise StudioError("INCOMPLETE_ASSERTIONS","Approved data lacks required business assertions; correct and review again",409)
+        if any(not p["assertions_complete"] for p in selected):raise StudioError("INCOMPLETE_ASSERTIONS","Approved data lacks required business assertions; correct and review again",409)
         if record["approval"].get("assertion_policy_fingerprint")!=policy_fingerprint():raise StudioError("STALE_ASSERTION_POLICY","Review again under the current assertion policy",409)
+        if record["approval"].get("reference_fingerprint")!=reference.fingerprint():raise StudioError("STALE_REFERENCE","Review again under the current independent reference",409)
+        if any(p["reference"]["status"]!="matched" for p in selected):raise StudioError("REFERENCE_MISMATCH","Independent reference disagrees with approved expectations",409)
         return [deepcopy(p["case"]) for p in selected]
 
     def export_pytest(self,id):
@@ -261,6 +317,7 @@ class StudioService:
                 'import json\nimport pytest\n'
                 'from healthcare_quality.ai_schema import contract_fingerprint, digest, validate_cases\n'
                 'from healthcare_quality.ai_runner import run_cases\n'
+                'from healthcare_quality import reference\n'
                 'from healthcare_quality.assertion_quality import assess, policy_fingerprint\n'
                 'SNAPSHOT = json.loads('+literal+')\n'
                 'pytestmark = [pytest.mark.ai, pytest.mark.regression]\n'
@@ -271,6 +328,8 @@ class StudioService:
                 '    assert validate_cases([case], SNAPSHOT["source_ids"])[0]["valid"]\n'
                 '    assert SNAPSHOT["approval"].get("assertion_policy_fingerprint") == policy_fingerprint(), "Stale assertion policy"\n'
                 '    assert assess(case)["complete"], "Incomplete business assertions"\n'
+                '    assert SNAPSHOT["approval"].get("reference_fingerprint") == reference.fingerprint(), "Stale independent reference"\n'
+                '    assert reference.check(case)["status"] == "matched", "Reference mismatch"\n'
                 '    result = run_cases([case])\n'
                 '    assert result["failed"] == 0, json.dumps(result, indent=2)\n')
 

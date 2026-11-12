@@ -36,7 +36,8 @@ def investigation_url(tmp_path):
     from tests.support.ai_fixtures import sample_case,generation_request,review_request
     provider=FixtureProvider(output={"cases":[sample_case(payout=91000)]})
     app=create_app({'TESTING':True,'DATABASE':str(tmp_path/'investigation.sqlite'),'AI_PROVIDER':provider})
-    studio=app.extensions['studio'];record=studio.generate(generation_request());record=studio.review(record['id'],review_request(record));studio.execute(record['id'],{'expected_revision':record['revision']})
+    from tests.support.ai_fixtures import historical_failed_experiment
+    historical_failed_experiment(app.extensions['studio'].store)
     provider.output={'summary':'Check expected payout','insufficient_evidence':False,'hypotheses':[{'description':'<img src=x onerror=alert(1)> Oracle may be wrong','evidence_ids':['E1'],'rule_ids':['HC-007'],'confidence':'low','next_check':'Recalculate deductible'}]}
     server=make_server('127.0.0.1',0,app,threaded=True);thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
     yield f'http://127.0.0.1:{server.server_port}'

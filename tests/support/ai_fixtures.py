@@ -27,3 +27,12 @@ def generation_request(count=1):
 
 def review_request(record,ids=None):
     return {"expected_revision":record["revision"],"approved_ids":ids if ids is not None else [p["case"]["id"] for p in record["proposals"] if p["valid"]],"reviewer_label":"Automated test-fixture reviewer","review_note":"Fixture expectations independently checked against the synthetic contract.","expectations_checked":True}
+
+
+def historical_failed_experiment(store):
+    """Import actual retained V4 evidence, never bypass current approval gates."""
+    from pathlib import Path
+    record=json.loads((Path(__file__).resolve().parents[2]/'artifacts/v4/authored-failure-experiment.json').read_text())
+    record['test_provenance']='Historical V4 failed execution imported for investigation regression; not a current approval.'
+    store.create(record)
+    return record

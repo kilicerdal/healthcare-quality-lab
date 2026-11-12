@@ -99,11 +99,12 @@ def test_busy_comparison_rejected_and_restart_marks_interrupted(tmp_path):
 
 
 def stored_run(service,wrong=False):
-    request=generation_request();record=service.studio.generate(request)
     if wrong:
-        case=record["proposals"][0]["case"];case["steps"][0]["expect"]["payout_cents"]+=1000
-        record=service.studio.edit(record["id"],case["id"],{"expected_revision":record["revision"],"case":case,"reviewer_label":"Authored fixture","review_note":"Intentionally wrong oracle for failure explanation testing"})
-    record=service.studio.review(record["id"],review_request(record));run=service.studio.execute(record["id"],{"expected_revision":record["revision"]})
+        from tests.support.ai_fixtures import historical_failed_experiment
+        record=historical_failed_experiment(service.studio.store);run=record['runs'][0]
+    else:
+        record=service.studio.generate(generation_request())
+        record=service.studio.review(record["id"],review_request(record));run=service.studio.execute(record["id"],{"expected_revision":record["revision"]})
     return {"experiment_id":record["id"],"run_id":run["id"],"model":"qwen2.5:3b"}
 
 

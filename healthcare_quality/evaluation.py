@@ -30,7 +30,7 @@ def score(task,record):
     proposals=record.get("proposals",[])
     if len(proposals)!=1 or not proposals[0]["valid"]:return result
     result["schema_valid"]=True
-    result["policy_complete"]=bool(proposals[0].get("review_ready"))
+    result["policy_complete"]=bool(proposals[0].get("quality",{}).get("complete",proposals[0].get("review_ready")))
     case=proposals[0]["case"]; reference=task["reference_case"]
     if signature(case)!=signature(reference):return result
     result["input_match"]=True

@@ -1,4 +1,4 @@
-# Healthcare Quality Lab — V5.2
+# Healthcare Quality Lab — V5.3
 
 A standalone quality engineering showcase built with **Python, pytest, Playwright and local Ollama**. Learn to define contracts, test stateful claims, review AI-created cases, measure test quality and release verified source packages.
 
@@ -12,6 +12,10 @@ Cached bytecode is rejected from staged releases; abandoned Studio operations re
 
 Outcome-specific local generation requests payout, payment and history observations. Per-step checklists block incomplete approval, execution and new pytest export. Older approvals need fresh policy review. The live comparison improved required-field presence from 41/51 to 51/51, but full-reference passes were 2/8 baseline versus 1/8 V5.2; numeric correctness still needs independent review. See the detailed report.
 
+## V5.3 independent expectations and AI correction
+
+A separate standard-library reference model calculates payout, payment and history without calling the application. Mismatched expectations block approval, execution and export. Explicit Ollama correction creates a separate draft with frozen scenario fields and requires fresh review. The eight-task live demonstration improved correct answers from 3/8 to 6/8 after one correction; two wrong drafts remained blocked. Read the [detailed V5.3 report](docs/V5.3_REPORT.md).
+
 ## Start here
 
 ```sh
@@ -21,7 +25,7 @@ python3 -m tools.bootstrap --browser
 
 Open [the guided showcase](http://127.0.0.1:8895/#showcase). In VS Code select `.venv/bin/python` and **Run and Debug → V5: start Healthcare Quality Lab**. Bootstrap uses only this project's `.venv` and `.browsers`; it does not install Ollama or download models. On Windows use `.venv\Scripts\python.exe` instead of `.venv/bin/python`.
 
-Read the [V5.2 assertion-quality report](docs/V5.2_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
+Read the [V5.3 independent-reference report](docs/V5.3_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
 
 ## What the five versions deliver
 
@@ -33,7 +37,7 @@ Read the [V5.2 assertion-quality report](docs/V5.2_REPORT.md), [eight-minute dem
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.2 local and GitHub verification:** 400 tests passed (310 unit, 57 API, 33 Chromium). [Observed CI run](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43174974271), with downloaded evidence matching the local source fingerprint.
+**V5.3 local verification:** 441 tests passed (349 unit, 58 API, 34 Chromium); all 12 authored fault seeds detected. CI evidence is recorded in the V5.3 report.
 
 ## Test the application
 
@@ -51,7 +55,7 @@ The deterministic suite uses clearly labeled offline provider doubles. Real V4 m
 
 1. Start your existing Ollama service with an installed allowed model (`qwen2.5-coder:3b` or `qwen2.5:3b`). Check it explicitly in AI Test Studio.
 2. Provide a synthetic requirement, select 1–6 written contracts and request 1–4 cases. Generation creates new declarative case proposals, not a prerecorded catalog selection.
-3. Inspect inputs, expectations, source IDs, assumptions and validation warnings. Edit incorrect or incomplete expectations with a reviewer label and note.
+3. Inspect inputs, expectations, source IDs, completeness and independent reference checks. Use explicit Ollama correction to create a separate draft, or edit expectations with a reviewer label and note. Wrong values remain blocked.
 4. Select valid cases, attest that you checked their expectations, and save the review. Editing clears approval; stale fingerprints and mismatched hashes block execution.
 5. Execute the approved snapshot. Each case gets a fresh disposable SQLite database. Interactive claims are not used. Export evidence JSON or the fixed trusted pytest wrapper.
 

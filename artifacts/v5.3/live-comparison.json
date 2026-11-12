@@ -1,0 +1,397 @@
+{
+  "created_at": "2026-11-12T13:59:12.465703+00:00",
+  "state": "completed",
+  "provider": {
+    "available": true,
+    "models": [
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "allowed_models": [
+      "qwen2.5-coder:3b",
+      "qwen2.5:3b"
+    ],
+    "endpoint": "http://127.0.0.1:11434",
+    "mode": "local Ollama only"
+  },
+  "settings": {
+    "temperature": 0,
+    "seed": 7,
+    "num_predict": 2600,
+    "num_ctx": 12288
+  },
+  "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+  "tasks": [
+    {
+      "id": "F01",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 8300
+      },
+      "literal_expected": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 0
+      },
+      "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 8300}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+      "request": {
+        "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 8300}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "ea14e9f8811330f294ed6969dccaaaf858b4ca349ae0c8067ab7758814926842"
+    },
+    {
+      "id": "F02",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 10000
+      },
+      "literal_expected": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 0
+      },
+      "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 10000}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+      "request": {
+        "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 10000}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "bc7caca9708df5e6e2f95e92387f0ed970c0ca5a311c06a9561ca479bdb838e4"
+    },
+    {
+      "id": "F03",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 10001
+      },
+      "literal_expected": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 1
+      },
+      "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 10001}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+      "request": {
+        "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 10001}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "e63c8371ac658d2bf48093b74a116733c00f03b9b0154e48a2787e6054f4ce9f"
+    },
+    {
+      "id": "F04",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 143750
+      },
+      "literal_expected": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 133750
+      },
+      "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 143750}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+      "request": {
+        "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 143750}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "801fac64832e4f56e591b7cdbe0ac0ee9cfc927cf9428e5c5d0b840e1aa4c28f"
+    },
+    {
+      "id": "F05",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 209999
+      },
+      "literal_expected": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 199999
+      },
+      "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 209999}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+      "request": {
+        "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 209999}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "eee51402fe43928032997784f193374f5d5810effd220cbb00570a78eac5e5e2"
+    },
+    {
+      "id": "F06",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 210000
+      },
+      "literal_expected": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 200000
+      },
+      "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 210000}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+      "request": {
+        "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 210000}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "971a5da8d638c51b08df9066e58dda27bc6865cb5dfd816916badb9132a88ec1"
+    },
+    {
+      "id": "F07",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 286450
+      },
+      "literal_expected": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 200000
+      },
+      "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 286450}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+      "request": {
+        "requirement": "Create exactly one evaluate-only case. actor none. Use these exact inputs: {\"plan_id\": \"commercial_ppo\", \"service\": \"medical\", \"amount_cents\": 286450}. Assert status, decision, reason and exact payout_cents. Do not include workflow steps.",
+        "source_ids": [
+          "HC-007"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "0e3300c5e15d5c359e685d57bca3aa3140bf09938c92525b30a4967a98fa43fe"
+    },
+    {
+      "id": "F08",
+      "amount": 117340,
+      "literal_payout": 107340,
+      "requirement": "Create one case with exactly four steps: customer-m100 submits claim FRESH-853 for member M100, service medical, amount_cents 117340; adjuster-demo transitions it to approved; finance-demo transitions it to paid; customer-m100 reads it. Assert all six successful workflow observations on every step: status,claim_status,revision,payout_cents,event_count,payment_cents. No other steps.",
+      "request": {
+        "requirement": "Create one case with exactly four steps: customer-m100 submits claim FRESH-853 for member M100, service medical, amount_cents 117340; adjuster-demo transitions it to approved; finance-demo transitions it to paid; customer-m100 reads it. Assert all six successful workflow observations on every step: status,claim_status,revision,payout_cents,event_count,payment_cents. No other steps.",
+        "source_ids": [
+          "HC-007",
+          "WF-001",
+          "WF-003",
+          "WF-004",
+          "WF-005"
+        ],
+        "model": "qwen2.5-coder:3b",
+        "strategy": "assertions-v2",
+        "count": 1
+      },
+      "prompt_hash": "4d4609fea2b7e39637f1185c06eb7073040211a91d7a582a8eb22c58188743f6"
+    }
+  ],
+  "results": [
+    {
+      "task_id": "F01",
+      "original": {
+        "state": "proposed",
+        "experiment_id": "04042f617f5440beaa32544e55ff4846",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      },
+      "correction": {
+        "state": "proposed",
+        "experiment_id": "ad629aa490c94abda97d5ff840d2c752",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "F02",
+      "original": {
+        "state": "proposed",
+        "experiment_id": "a8a5a5d6090449c2b2f67d8e2267b353",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      },
+      "correction": {
+        "state": "proposed",
+        "experiment_id": "86fed146f40f429a867a66204f659f02",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "F03",
+      "original": {
+        "state": "proposed",
+        "experiment_id": "65f372bca258465980fb324e4180eccc",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      },
+      "correction": {
+        "state": "proposed",
+        "experiment_id": "f4981b44e49e4703ae299385ee7ca9fe",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      }
+    },
+    {
+      "task_id": "F04",
+      "original": {
+        "state": "proposed",
+        "experiment_id": "0426cc9186604c1c88a74175e9237b1f",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      },
+      "correction": {
+        "state": "proposed",
+        "experiment_id": "c7040bed1a5046c0bdd5b3594774e260",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "F05",
+      "original": {
+        "state": "proposed",
+        "experiment_id": "78aa71a339454a349981fe2cdc769b2b",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      },
+      "correction": {
+        "state": "proposed",
+        "experiment_id": "960931e73ad04a4da231c3e1c059adbe",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "F06",
+      "original": {
+        "state": "proposed",
+        "experiment_id": "495a676ed59d4a0e90b16d6785c50dc5",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      },
+      "correction": {
+        "state": "proposed",
+        "experiment_id": "e880cf5c8ef14a208b73db23b4344620",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    },
+    {
+      "task_id": "F07",
+      "original": {
+        "state": "proposed",
+        "experiment_id": "593d7e33b64940148574a28d8eb39430",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      },
+      "correction": {
+        "state": "proposed",
+        "experiment_id": "37933fb6b7a044ad981480b085f2d851",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      }
+    },
+    {
+      "task_id": "F08",
+      "original": {
+        "state": "proposed",
+        "experiment_id": "9ac110a69ae242b69cc8fc54ee8eb067",
+        "structure": true,
+        "complete": true,
+        "reference_match": false,
+        "literal_pass": false
+      },
+      "correction": {
+        "state": "proposed",
+        "experiment_id": "973328dac86d461daba53d069ef74b60",
+        "structure": true,
+        "complete": true,
+        "reference_match": true,
+        "literal_pass": true
+      }
+    }
+  ],
+  "scope": "Eight newly authored tasks frozen before local inference. Each raw generation receives at most one explicit correction; no approval or execution. Small demonstration, not a held-out accuracy benchmark. Literal answers authored before calls, separate from calculator.",
+  "finished_at": "2026-11-12T14:01:12.868395+00:00",
+  "summary": {
+    "original": {
+      "structure": 8,
+      "complete": 8,
+      "reference_match": 3,
+      "literal_pass": 3
+    },
+    "correction": {
+      "structure": 8,
+      "complete": 8,
+      "reference_match": 6,
+      "literal_pass": 6
+    }
+  }
+}
