@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "version": "5.1.0",
+  "recorded_at": "2026-11-12T01:48:41.807257-05:00",
+  "recorded_date": "2026-11-12",
+  "source_hash": "5bc46731daec4bcbb1d8b7bbdbdc3516f549231ae4c7df8112552e09fbe3e202",
+  "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+  "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
+  "tests_total": 370,
+  "tests_passed": 370,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "categories": {
+    "unit": 283,
+    "api": 55,
+    "e2e": 32
+  },
+  "e2e_tests": 32,
+  "seeded_defects_detected": 7,
+  "seeded_defects_total": 7,
+  "workflow_seeded_defects_detected": 5,
+  "workflow_seeded_defects_total": 5,
+  "ai_case_language": "declarative DSL 1.0",
+  "live_model_in_core_tests": false,
+  "reference_examples": 28,
+  "duration_seconds": 49.78,
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "pytest": "8.4.2",
+    "playwright": "1.56.0",
+    "flask": "3.1.2",
+    "waitress": "3.0.2",
+    "browser": "Chromium only"
+  },
+  "command": "python -m tools.verify",
+  "subprocess_returncode": 0,
+  "ci_executed": true,
+  "scope": "Local V5.1 regression: release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."
+}

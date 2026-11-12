@@ -29,7 +29,7 @@ Read the [V5.1 correction report](docs/V5.1_REPORT.md), [eight-minute demo](docs
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**Verified locally:** 370 tests passed (283 unit, 55 API, 32 Chromium), with 12/12 known faults detected. V5.1 remote CI evidence is recorded in its detailed report after observation. Actual local archive activation, rollback and state preservation also passed.
+**Verified locally and in GitHub Actions:** 370 tests passed (283 unit, 55 API, 32 Chromium), with 12/12 known faults detected. [Observed V5.1 CI run](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43170594377); downloaded runner evidence matches the local source fingerprint. Actual local archive activation, rollback and state preservation also passed.
 
 ## Test the application
 
