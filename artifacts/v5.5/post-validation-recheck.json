@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "model_requests": 0,
+  "reason": "Final scenario predicate hardening distinguishes unknown actors from foreign customers and pre-approval failures from paid replay. Existing generated cases rescored without new model requests.",
+  "score_id": "f124247eb1fd41d9b2a5844217fc9618",
+  "detected": 2,
+  "applicable": 12,
+  "missing_gaps": 2
+}

@@ -1,0 +1,5206 @@
+{
+  "id": "dde6b882bfcc4ff88030b73df1b3cc42",
+  "coverage_kind": "gap_analysis",
+  "model": "qwen2.5-coder:3b",
+  "dashboard_snapshot": {
+    "recorded_at": "2026-11-12T19:53:20.857352+00:00",
+    "source_hash": "026267fbd2abfa3ac68f4e51a994eb39b12938e1638d77fc3ce98f0a4d34fd59",
+    "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+    "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+    "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+    "scope": "Explicit authored inventory plus saved Studio proposals; not repository-wide pytest discovery, line/branch coverage, exhaustive mutation testing or real insurance certification.",
+    "inventory_window": "All 32 explicit authored cases plus the latest 100 Studio experiments; older records are not scanned.",
+    "counts": {
+      "cases": 32,
+      "authored": 32,
+      "eligible": 32,
+      "unique_scenario_assertions": 32,
+      "proposals_or_stale": 0,
+      "missing_gaps": 4
+    },
+    "latest_score": null,
+    "rules": [
+      {
+        "id": "HC-001",
+        "name": "Input contract",
+        "linked_cases": [],
+        "eligible_cases": [],
+        "missing_gap_ids": [
+          "invalid-zero"
+        ],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "HC-002",
+        "name": "Active coverage",
+        "linked_cases": [
+          "authored:AI-G09",
+          "authored:AI-G25"
+        ],
+        "eligible_cases": [
+          "authored:AI-G09",
+          "authored:AI-G25"
+        ],
+        "missing_gap_ids": [],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "HC-003",
+        "name": "Service benefit",
+        "linked_cases": [
+          "authored:AI-G01",
+          "authored:AI-G02",
+          "authored:AI-G03",
+          "authored:AI-G04",
+          "authored:AI-G05",
+          "authored:AI-G06",
+          "authored:AI-G07",
+          "authored:AI-G08",
+          "authored:AI-G10",
+          "authored:AI-G23",
+          "authored:AI-G28"
+        ],
+        "eligible_cases": [
+          "authored:AI-G01",
+          "authored:AI-G02",
+          "authored:AI-G03",
+          "authored:AI-G04",
+          "authored:AI-G05",
+          "authored:AI-G06",
+          "authored:AI-G07",
+          "authored:AI-G08",
+          "authored:AI-G10",
+          "authored:AI-G23",
+          "authored:AI-G28"
+        ],
+        "missing_gap_ids": [],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "HC-004",
+        "name": "Network control",
+        "linked_cases": [
+          "authored:AI-G11",
+          "authored:AI-G20",
+          "authored:AI-G24"
+        ],
+        "eligible_cases": [
+          "authored:AI-G11",
+          "authored:AI-G20",
+          "authored:AI-G24"
+        ],
+        "missing_gap_ids": [],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "HC-005",
+        "name": "Prior authorization",
+        "linked_cases": [
+          "authored:AI-G12",
+          "authored:AI-G21"
+        ],
+        "eligible_cases": [
+          "authored:AI-G12",
+          "authored:AI-G21"
+        ],
+        "missing_gap_ids": [],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "HC-006",
+        "name": "Drug formulary",
+        "linked_cases": [
+          "authored:AI-G13",
+          "authored:AI-G22"
+        ],
+        "eligible_cases": [
+          "authored:AI-G13",
+          "authored:AI-G22"
+        ],
+        "missing_gap_ids": [],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "HC-007",
+        "name": "Payout calculation",
+        "linked_cases": [
+          "authored:AI-G14",
+          "authored:AI-G15",
+          "authored:AI-G16",
+          "authored:AI-G17",
+          "authored:AI-G18",
+          "authored:AI-G19",
+          "authored:AI-G26",
+          "authored:AI-G27"
+        ],
+        "eligible_cases": [
+          "authored:AI-G14",
+          "authored:AI-G15",
+          "authored:AI-G16",
+          "authored:AI-G17",
+          "authored:AI-G18",
+          "authored:AI-G19",
+          "authored:AI-G26",
+          "authored:AI-G27"
+        ],
+        "missing_gap_ids": [
+          "cap-plus-one",
+          "zero-payment"
+        ],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "WF-001",
+        "name": "Demo identity and ownership",
+        "linked_cases": [
+          "authored:AI-COV-OWN"
+        ],
+        "eligible_cases": [
+          "authored:AI-COV-OWN"
+        ],
+        "missing_gap_ids": [],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "WF-002",
+        "name": "Submission and duplicate identity",
+        "linked_cases": [
+          "authored:AI-COV-OWN",
+          "authored:AI-COV-DUP",
+          "authored:AI-COV-PAY"
+        ],
+        "eligible_cases": [
+          "authored:AI-COV-OWN",
+          "authored:AI-COV-DUP",
+          "authored:AI-COV-PAY"
+        ],
+        "missing_gap_ids": [
+          "zero-payment"
+        ],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "WF-003",
+        "name": "Ordered claim lifecycle",
+        "linked_cases": [
+          "authored:AI-COV-ORDER",
+          "authored:AI-COV-PAY"
+        ],
+        "eligible_cases": [
+          "authored:AI-COV-ORDER",
+          "authored:AI-COV-PAY"
+        ],
+        "missing_gap_ids": [
+          "zero-payment",
+          "payment-replay"
+        ],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "WF-004",
+        "name": "Simulated payment exactly once",
+        "linked_cases": [
+          "authored:AI-COV-PAY"
+        ],
+        "eligible_cases": [
+          "authored:AI-COV-PAY"
+        ],
+        "missing_gap_ids": [
+          "zero-payment",
+          "payment-replay"
+        ],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "WF-005",
+        "name": "Event and provenance evidence",
+        "linked_cases": [
+          "authored:AI-COV-DUP",
+          "authored:AI-COV-ORDER",
+          "authored:AI-COV-PAY"
+        ],
+        "eligible_cases": [
+          "authored:AI-COV-DUP",
+          "authored:AI-COV-ORDER",
+          "authored:AI-COV-PAY"
+        ],
+        "missing_gap_ids": [
+          "zero-payment",
+          "payment-replay"
+        ],
+        "limitation": "Linked cases and selected scenario evidence; not complete rule coverage.",
+        "observed_detected_profiles": []
+      },
+      {
+        "id": "WF-006",
+        "name": "Persistence and isolation",
+        "linked_cases": [],
+        "eligible_cases": [],
+        "missing_gap_ids": [],
+        "limitation": "Concurrency, reopen and storage rollback require authored tests outside sequential DSL; not measured here.",
+        "observed_detected_profiles": []
+      }
+    ],
+    "gaps": [
+      {
+        "id": "invalid-zero",
+        "rule_ids": [
+          "HC-001"
+        ],
+        "brief": "Evaluate commercial_ppo medical amount_cents 0; assert 400 INVALID_REQUEST.",
+        "status": "missing",
+        "case_keys": []
+      },
+      {
+        "id": "inactive-uncovered",
+        "rule_ids": [
+          "HC-002",
+          "HC-003"
+        ],
+        "brief": "Evaluate medicare_b dental amount_cents 100000 active false; assert inactive denial takes precedence.",
+        "status": "represented",
+        "case_keys": [
+          "authored:AI-G25"
+        ]
+      },
+      {
+        "id": "network-authorization",
+        "rule_ids": [
+          "HC-004",
+          "HC-005"
+        ],
+        "brief": "Evaluate medicare_advantage hospital amount_cents 100000 in_network false authorized false; assert network denial precedes authorization.",
+        "status": "represented",
+        "case_keys": [
+          "authored:AI-G24"
+        ]
+      },
+      {
+        "id": "formulary",
+        "rule_ids": [
+          "HC-006"
+        ],
+        "brief": "Evaluate medicare_d prescription amount_cents 100000 formulary false; assert NON_FORMULARY and zero payout.",
+        "status": "represented",
+        "case_keys": [
+          "authored:AI-G13"
+        ]
+      },
+      {
+        "id": "deductible-plus-one",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "brief": "Evaluate commercial_ppo medical amount_cents 10001; assert approved payout exactly 1 cent.",
+        "status": "represented",
+        "case_keys": [
+          "authored:AI-G17"
+        ]
+      },
+      {
+        "id": "cap-plus-one",
+        "rule_ids": [
+          "HC-007"
+        ],
+        "brief": "Evaluate commercial_ppo medical amount_cents 210001; assert approved payout capped at 200000.",
+        "status": "missing",
+        "case_keys": []
+      },
+      {
+        "id": "ownership",
+        "rule_ids": [
+          "WF-001",
+          "WF-002"
+        ],
+        "brief": "Submit an M100 medical claim as customer-m100, then reject customer-m200 read with 403; owner reads unchanged evidence.",
+        "status": "represented",
+        "case_keys": [
+          "authored:AI-COV-OWN"
+        ]
+      },
+      {
+        "id": "duplicate-readback",
+        "rule_ids": [
+          "WF-002",
+          "WF-005"
+        ],
+        "brief": "Submit an M100 claim, repeat the same ID with 409 DUPLICATE_CLAIM, then owner reads unchanged full evidence.",
+        "status": "represented",
+        "case_keys": [
+          "authored:AI-COV-DUP"
+        ]
+      },
+      {
+        "id": "skip-approval",
+        "rule_ids": [
+          "WF-003",
+          "WF-005"
+        ],
+        "brief": "Submit an M100 claim then finance attempts paid before approval, expect 409; owner reads unchanged full evidence.",
+        "status": "represented",
+        "case_keys": [
+          "authored:AI-COV-ORDER"
+        ]
+      },
+      {
+        "id": "zero-payment",
+        "rule_ids": [
+          "HC-007",
+          "WF-002",
+          "WF-003",
+          "WF-004",
+          "WF-005"
+        ],
+        "brief": "M100 medical amount 9999: submit, adjuster approve, finance pay, owner read. Assert payout 0 throughout, null payment before paid then payment 0; revisions/events 1,2,3,3.",
+        "status": "missing",
+        "case_keys": []
+      },
+      {
+        "id": "payment-replay",
+        "rule_ids": [
+          "WF-003",
+          "WF-004",
+          "WF-005"
+        ],
+        "brief": "M100 medical amount 100000: submit, approve, pay, repeat paid expecting 409, then owner read unchanged payout/payment 90000 and revision/events 3.",
+        "status": "missing",
+        "case_keys": []
+      }
+    ],
+    "duplicates": [],
+    "cases": [
+      {
+        "case": {
+          "id": "AI-G01",
+          "title": "medicare_a accepts hospital",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G01; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_a",
+                "service": "hospital",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "ed7facab6db4b5cad7b7150a4d1c27a525023322bb04b1de86b7c4a9510468cf",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G01",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G02",
+          "title": "medicare_b accepts medical",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G02; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "f5cbd5ee4ae11f2d42051000075660a3fd6943fd1e847dbbc4587f878017ed8c",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G02",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G03",
+          "title": "medicare_advantage accepts hospital",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G03; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_advantage",
+                "service": "hospital",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "a7661f4df181344a545df0b64e41a31b6cb7981bfa4d2cba6a7b36c665ba0f4e",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G03",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G04",
+          "title": "medicare_d accepts prescription",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G04; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_d",
+                "service": "prescription",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "c23bc0de600d285fa7d6b9e5a03ddf8a29253332fdbd3a768a6e7ce6b1e351f3",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G04",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G05",
+          "title": "commercial_ppo accepts outpatient",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G05; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "outpatient",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "c12b82a0ecef5407d29170d1fc2c1660b9526af77974d7900c0f8a20049f1f03",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G05",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G06",
+          "title": "commercial_hmo accepts medical",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G06; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_hmo",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "bff4c00eab2bab47268b29fc34f27d581d5d89eb83672d2e1a554452cf3c7a46",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G06",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G07",
+          "title": "dental accepts dental",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G07; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "dental",
+                "service": "dental",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "95a7ff7a853604196c0c7f3ad0dbc80ec156a75ea9e0928c7f4ec7c9905a6716",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G07",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G08",
+          "title": "vision accepts vision",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G08; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "vision",
+                "service": "vision",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "8c42cd4d5962a148d2fda8f1bcd5cecf69d64468b7898b292489c94435056034",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G08",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G09",
+          "title": "Inactive contract denies before benefit check",
+          "rule_ids": [
+            "HC-002"
+          ],
+          "rationale": "Authored golden reference G09; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 100000,
+                "active": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "INACTIVE_POLICY",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "994d3b0cd10362b584d9931e4201538e63f41249d7bb254f70a270db8f26da45",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "reason",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "INACTIVE_POLICY",
+                "payout_cents": 0
+              },
+              "derivation": "Ordered written denial rules: INACTIVE_POLICY; payout 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G09",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G10",
+          "title": "Part A does not include routine dental in this fixture",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G10; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_a",
+                "service": "dental",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "SERVICE_NOT_COVERED",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "0c302266ce480c02c2608c68fba30ed2a93485a4f45b9f4f54375130e1b94f36",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "reason",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "SERVICE_NOT_COVERED",
+                "payout_cents": 0
+              },
+              "derivation": "Ordered written denial rules: SERVICE_NOT_COVERED; payout 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G10",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G11",
+          "title": "HMO enforces network",
+          "rule_ids": [
+            "HC-004"
+          ],
+          "rationale": "Authored golden reference G11; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_hmo",
+                "service": "medical",
+                "amount_cents": 100000,
+                "in_network": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "OUT_OF_NETWORK",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "c0726e033fd2695a88772a8a317ff63fd2335822b2de1eb102b0401515b7d3c1",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "reason",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "OUT_OF_NETWORK",
+                "payout_cents": 0
+              },
+              "derivation": "Ordered written denial rules: OUT_OF_NETWORK; payout 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G11",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G12",
+          "title": "Advantage hospital requires authorization",
+          "rule_ids": [
+            "HC-005"
+          ],
+          "rationale": "Authored golden reference G12; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_advantage",
+                "service": "hospital",
+                "amount_cents": 100000,
+                "authorized": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "AUTH_REQUIRED",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "fd04ede82d6a2306b03ac89542ad12c9e6e2b31554b74d8f7ba7d04841fdfb5a",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "reason",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "AUTH_REQUIRED",
+                "payout_cents": 0
+              },
+              "derivation": "Ordered written denial rules: AUTH_REQUIRED; payout 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G12",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G13",
+          "title": "Part D enforces formulary",
+          "rule_ids": [
+            "HC-006"
+          ],
+          "rationale": "Authored golden reference G13; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_d",
+                "service": "prescription",
+                "amount_cents": 100000,
+                "formulary": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "NON_FORMULARY",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "90dbd3a36722b221700c1644e98c7ddf354e5a049d61e381392878990185019d",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "reason",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "NON_FORMULARY",
+                "payout_cents": 0
+              },
+              "derivation": "Ordered written denial rules: NON_FORMULARY; payout 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G13",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G14",
+          "title": "Deductible is subtracted",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Authored golden reference G14; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "4e4be2f900f7043fffddd643e4a0b191832443290b43904e8159b900fd7c3a03",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G14",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G15",
+          "title": "At deductible payout is zero",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Authored golden reference G15; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 10000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "5030882b612a1050d76ec3c07ee033592229f3231bcb6f463be3f811cbfb48cb",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 0
+              },
+              "derivation": "10000 <= deductible 10000; payout = 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G15",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G16",
+          "title": "Below deductible never produces negative payout",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Authored golden reference G16; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 9999
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "3c459e3cd27d72079c8d1ef399c7216374747d6092a67d697827b313eaa0bb83",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 0
+              },
+              "derivation": "9999 <= deductible 10000; payout = 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G16",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G17",
+          "title": "One cent above deductible",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Authored golden reference G17; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 10001
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 1
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "1eab40890c4726896f549ffa9b6b1ba5fbc716e80a48849ec7cf316191fb28f4",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 1
+              },
+              "derivation": "10001 - deductible 10000 = 1; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G17",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G18",
+          "title": "Payout cap is enforced",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Authored golden reference G18; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 300000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "69b471953a8a9cd0b11df42f6bfe7e52d2b9168469c0783a618196803383f95e",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000
+              },
+              "derivation": "300000 >= deductible 10000 + payout cap 200000; payout = 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G18",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G19",
+          "title": "Payout exactly reaches cap",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Authored golden reference G19; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 210000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "b8e3f8c7f8b6d4dbe4e81b4c0bc3209662ae8d756f0212337b1e8eb64200b1a3",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000
+              },
+              "derivation": "210000 >= deductible 10000 + payout cap 200000; payout = 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G19",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G20",
+          "title": "PPO permits out-of-network in this fixture",
+          "rule_ids": [
+            "HC-004"
+          ],
+          "rationale": "Authored golden reference G20; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 100000,
+                "in_network": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "27a1446dd3f74cfd9048eba0b161866cf028b88dac87adbe6a6f3b9a3af04d72",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G20",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G21",
+          "title": "Covered hospital authorization received",
+          "rule_ids": [
+            "HC-005"
+          ],
+          "rationale": "Authored golden reference G21; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_hmo",
+                "service": "hospital",
+                "amount_cents": 100000,
+                "authorized": true
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "c8ad5579704b63f2c857d24d47c00559404edbb7483cac06f3037bd043db71ca",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G21",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G22",
+          "title": "Formulary flag irrelevant to medical service",
+          "rule_ids": [
+            "HC-006"
+          ],
+          "rationale": "Authored golden reference G22; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 100000,
+                "formulary": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "13fae21e64ec9ea8b94a46a2375db7615a56558834ebe53c632d6c04773b3381",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G22",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G23",
+          "title": "Benefit denial precedes network denial",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G23; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_d",
+                "service": "hospital",
+                "amount_cents": 100000,
+                "in_network": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "SERVICE_NOT_COVERED",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "28b5831359fb42c530d34c9b26adea78acd9e4e981b1a552c555e180465aea68",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "reason",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "SERVICE_NOT_COVERED",
+                "payout_cents": 0
+              },
+              "derivation": "Ordered written denial rules: SERVICE_NOT_COVERED; payout 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G23",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G24",
+          "title": "Network denial precedes authorization",
+          "rule_ids": [
+            "HC-004"
+          ],
+          "rationale": "Authored golden reference G24; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_advantage",
+                "service": "hospital",
+                "amount_cents": 100000,
+                "in_network": false,
+                "authorized": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "OUT_OF_NETWORK",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "1d5880b1333550d1d9bf4f17b2706b637a63d0e2ea9ad0bedd43f3b1603d8a7b",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "reason",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "OUT_OF_NETWORK",
+                "payout_cents": 0
+              },
+              "derivation": "Ordered written denial rules: OUT_OF_NETWORK; payout 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G24",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G25",
+          "title": "Inactive denial precedes benefit",
+          "rule_ids": [
+            "HC-002"
+          ],
+          "rationale": "Authored golden reference G25; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_a",
+                "service": "dental",
+                "amount_cents": 100000,
+                "active": false
+              },
+              "expect": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "INACTIVE_POLICY",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "063d2da02f8d76916929d22e84752f54fc0c35e6be2bbda45494ffe41e2f6a7e",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "reason",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "denied",
+                "reason": "INACTIVE_POLICY",
+                "payout_cents": 0
+              },
+              "derivation": "Ordered written denial rules: INACTIVE_POLICY; payout 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G25",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G26",
+          "title": "Lowest valid amount is accepted",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Authored golden reference G26; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 1
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 0
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "331b66b704e4c00b4ab2178ab5963c9689fbbb7e328f333a0e5146613eafdb65",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 0
+              },
+              "derivation": "1 <= deductible 10000; payout = 0",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G26",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G27",
+          "title": "Maximum valid amount is capped",
+          "rule_ids": [
+            "HC-007"
+          ],
+          "rationale": "Authored golden reference G27; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "commercial_ppo",
+                "service": "medical",
+                "amount_cents": 100000000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "a6de73d191df210e358b924a97ec346083ce0ef57aa66798ae154c217af93a4a",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 200000
+              },
+              "derivation": "100000000 >= deductible 10000 + payout cap 200000; payout = 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G27",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-G28",
+          "title": "Part B outpatient fixture",
+          "rule_ids": [
+            "HC-003"
+          ],
+          "rationale": "Authored golden reference G28; not an AI-generated test.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "evaluate",
+              "actor": "none",
+              "data": {
+                "plan_id": "medicare_b",
+                "service": "outpatient",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "79c221d1a853eb8a32f3de129c3f8f67b5ff01e9e1e40309d78d9ff386dcc411",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "evaluate",
+              "status": 200,
+              "required_fields": [
+                "decision",
+                "payout_cents",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 200,
+                "decision": "approved",
+                "reason": "COVERED",
+                "payout_cents": 90000
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-G28",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-COV-OWN",
+          "title": "Authored workflow OWN",
+          "rule_ids": [
+            "WF-001",
+            "WF-002"
+          ],
+          "rationale": "Authored observable workflow fixture, separate from generated proposals.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "COV-100",
+                "member_id": "M100",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 201,
+                "claim_status": "submitted",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 90000,
+                "payment_cents": null
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "COV-100"
+              },
+              "expect": {
+                "status": 403,
+                "error": "FORBIDDEN"
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "COV-100"
+              },
+              "expect": {
+                "status": 200,
+                "claim_status": "submitted",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 90000,
+                "payment_cents": null
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "126b4c729cbd56bbd4fe15728ebe9a611d46708e79596591561d0710f4047ba7",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "submit",
+              "status": 201,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            },
+            {
+              "step": 2,
+              "action": "read",
+              "status": 403,
+              "required_fields": [
+                "error",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            },
+            {
+              "step": 3,
+              "action": "read",
+              "status": 200,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 201,
+                "claim_status": "submitted",
+                "revision": 1,
+                "payout_cents": 90000,
+                "event_count": 1,
+                "payment_cents": null
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000; submission creates revision/event 1; no payment yet",
+              "mismatches": []
+            },
+            {
+              "step": 2,
+              "expected": {
+                "status": 403,
+                "error": "FORBIDDEN"
+              },
+              "derivation": "Written workflow contract: FORBIDDEN; no successful mutation",
+              "mismatches": []
+            },
+            {
+              "step": 3,
+              "expected": {
+                "status": 200,
+                "claim_status": "submitted",
+                "revision": 1,
+                "payout_cents": 90000,
+                "event_count": 1,
+                "payment_cents": null
+              },
+              "derivation": "Read-only reference state; no revision, event or ledger changes",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-COV-OWN",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-COV-DUP",
+          "title": "Authored workflow DUP",
+          "rule_ids": [
+            "WF-002",
+            "WF-005"
+          ],
+          "rationale": "Authored observable workflow fixture, separate from generated proposals.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "COV-100",
+                "member_id": "M100",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 201,
+                "claim_status": "submitted",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 90000,
+                "payment_cents": null
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "COV-100",
+                "member_id": "M100",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 409,
+                "error": "DUPLICATE_CLAIM"
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "COV-100"
+              },
+              "expect": {
+                "status": 200,
+                "claim_status": "submitted",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 90000,
+                "payment_cents": null
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "aa93966f62aa3ea5e452befd279f867bf271f90267dde8dc04576eea0e83a03d",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "submit",
+              "status": 201,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            },
+            {
+              "step": 2,
+              "action": "submit",
+              "status": 409,
+              "required_fields": [
+                "error",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            },
+            {
+              "step": 3,
+              "action": "read",
+              "status": 200,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [
+            {
+              "rejected_step": 2,
+              "claim_id": "COV-100",
+              "readback_step": 3
+            }
+          ],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 201,
+                "claim_status": "submitted",
+                "revision": 1,
+                "payout_cents": 90000,
+                "event_count": 1,
+                "payment_cents": null
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000; submission creates revision/event 1; no payment yet",
+              "mismatches": []
+            },
+            {
+              "step": 2,
+              "expected": {
+                "status": 409,
+                "error": "DUPLICATE_CLAIM"
+              },
+              "derivation": "Written workflow contract: DUPLICATE_CLAIM; no successful mutation",
+              "mismatches": []
+            },
+            {
+              "step": 3,
+              "expected": {
+                "status": 200,
+                "claim_status": "submitted",
+                "revision": 1,
+                "payout_cents": 90000,
+                "event_count": 1,
+                "payment_cents": null
+              },
+              "derivation": "Read-only reference state; no revision, event or ledger changes",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-COV-DUP",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-COV-ORDER",
+          "title": "Authored workflow ORDER",
+          "rule_ids": [
+            "WF-003",
+            "WF-005"
+          ],
+          "rationale": "Authored observable workflow fixture, separate from generated proposals.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "COV-100",
+                "member_id": "M100",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 201,
+                "claim_status": "submitted",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 90000,
+                "payment_cents": null
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "COV-100",
+                "target": "paid"
+              },
+              "expect": {
+                "status": 409,
+                "error": "INVALID_TRANSITION"
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "COV-100"
+              },
+              "expect": {
+                "status": 200,
+                "claim_status": "submitted",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 90000,
+                "payment_cents": null
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "8598cf72bfa72826ed26f747eef9bfa1974502703fd2ebe62c5427a1b063d383",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "submit",
+              "status": 201,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            },
+            {
+              "step": 2,
+              "action": "transition",
+              "status": 409,
+              "required_fields": [
+                "error",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            },
+            {
+              "step": 3,
+              "action": "read",
+              "status": 200,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [
+            {
+              "rejected_step": 2,
+              "claim_id": "COV-100",
+              "readback_step": 3
+            }
+          ],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 201,
+                "claim_status": "submitted",
+                "revision": 1,
+                "payout_cents": 90000,
+                "event_count": 1,
+                "payment_cents": null
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000; submission creates revision/event 1; no payment yet",
+              "mismatches": []
+            },
+            {
+              "step": 2,
+              "expected": {
+                "status": 409,
+                "error": "INVALID_TRANSITION"
+              },
+              "derivation": "Written workflow contract: INVALID_TRANSITION; no successful mutation",
+              "mismatches": []
+            },
+            {
+              "step": 3,
+              "expected": {
+                "status": 200,
+                "claim_status": "submitted",
+                "revision": 1,
+                "payout_cents": 90000,
+                "event_count": 1,
+                "payment_cents": null
+              },
+              "derivation": "Read-only reference state; no revision, event or ledger changes",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-COV-ORDER",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      },
+      {
+        "case": {
+          "id": "AI-COV-PAY",
+          "title": "Authored workflow PAY",
+          "rule_ids": [
+            "WF-002",
+            "WF-003",
+            "WF-004",
+            "WF-005"
+          ],
+          "rationale": "Authored observable workflow fixture, separate from generated proposals.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "COV-100",
+                "member_id": "M100",
+                "service": "medical",
+                "amount_cents": 100000
+              },
+              "expect": {
+                "status": 201,
+                "claim_status": "submitted",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 90000,
+                "payment_cents": null
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "adjuster-demo",
+              "data": {
+                "claim_id": "COV-100",
+                "target": "approved"
+              },
+              "expect": {
+                "status": 200,
+                "claim_status": "approved",
+                "revision": 2,
+                "event_count": 2,
+                "payout_cents": 90000,
+                "payment_cents": null
+              }
+            },
+            {
+              "action": "transition",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "COV-100",
+                "target": "paid"
+              },
+              "expect": {
+                "status": 200,
+                "claim_status": "paid",
+                "revision": 3,
+                "event_count": 3,
+                "payout_cents": 90000,
+                "payment_cents": 90000
+              }
+            },
+            {
+              "action": "read",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "COV-100"
+              },
+              "expect": {
+                "status": 200,
+                "claim_status": "paid",
+                "revision": 3,
+                "event_count": 3,
+                "payout_cents": 90000,
+                "payment_cents": 90000
+              }
+            }
+          ]
+        },
+        "valid": true,
+        "issues": [],
+        "warnings": [
+          "Expected results require independent reviewer verification; source-ID validity does not establish correctness."
+        ],
+        "hash": "0d898c11f64ce459ad4a3c4995d77d526f9cf333599ee6ffd7fa0e91f5c25a60",
+        "quality": {
+          "policy_version": "business-observations-v1",
+          "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+          "complete": true,
+          "issues": [],
+          "steps": [
+            {
+              "step": 1,
+              "action": "submit",
+              "status": 201,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            },
+            {
+              "step": 2,
+              "action": "transition",
+              "status": 200,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            },
+            {
+              "step": 3,
+              "action": "transition",
+              "status": 200,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            },
+            {
+              "step": 4,
+              "action": "read",
+              "status": 200,
+              "required_fields": [
+                "claim_status",
+                "event_count",
+                "payment_cents",
+                "payout_cents",
+                "revision",
+                "status"
+              ],
+              "missing_fields": [],
+              "unsupported_fields": []
+            }
+          ],
+          "rejected_mutation_guards": [],
+          "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+        },
+        "review_ready": true,
+        "reference": {
+          "status": "matched",
+          "reference_version": "independent-reference-v1",
+          "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 201,
+                "claim_status": "submitted",
+                "revision": 1,
+                "payout_cents": 90000,
+                "event_count": 1,
+                "payment_cents": null
+              },
+              "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000; submission creates revision/event 1; no payment yet",
+              "mismatches": []
+            },
+            {
+              "step": 2,
+              "expected": {
+                "status": 200,
+                "claim_status": "approved",
+                "revision": 2,
+                "payout_cents": 90000,
+                "event_count": 2,
+                "payment_cents": null
+              },
+              "derivation": "One successful transition adds one revision and event; payment equals stored reference payout only when paid",
+              "mismatches": []
+            },
+            {
+              "step": 3,
+              "expected": {
+                "status": 200,
+                "claim_status": "paid",
+                "revision": 3,
+                "payout_cents": 90000,
+                "event_count": 3,
+                "payment_cents": 90000
+              },
+              "derivation": "One successful transition adds one revision and event; payment equals stored reference payout only when paid",
+              "mismatches": []
+            },
+            {
+              "step": 4,
+              "expected": {
+                "status": 200,
+                "claim_status": "paid",
+                "revision": 3,
+                "payout_cents": 90000,
+                "event_count": 3,
+                "payment_cents": 90000
+              },
+              "derivation": "Read-only reference state; no revision, event or ledger changes",
+              "mismatches": []
+            }
+          ],
+          "mismatches": [],
+          "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+        },
+        "assertions_complete": true,
+        "key": "authored:AI-COV-PAY",
+        "origin": "authored",
+        "eligible": true,
+        "experiment_id": null
+      }
+    ],
+    "profiles": [
+      {
+        "id": "eval-eligibility",
+        "family": "evaluate",
+        "defect": "eligibility",
+        "rule_id": "HC-002"
+      },
+      {
+        "id": "eval-coverage",
+        "family": "evaluate",
+        "defect": "coverage",
+        "rule_id": "HC-003"
+      },
+      {
+        "id": "eval-network",
+        "family": "evaluate",
+        "defect": "network",
+        "rule_id": "HC-004"
+      },
+      {
+        "id": "eval-authorization",
+        "family": "evaluate",
+        "defect": "authorization",
+        "rule_id": "HC-005"
+      },
+      {
+        "id": "eval-formulary",
+        "family": "evaluate",
+        "defect": "formulary",
+        "rule_id": "HC-006"
+      },
+      {
+        "id": "eval-deductible",
+        "family": "evaluate",
+        "defect": "deductible",
+        "rule_id": "HC-007"
+      },
+      {
+        "id": "eval-limit",
+        "family": "evaluate",
+        "defect": "limit",
+        "rule_id": "HC-007"
+      },
+      {
+        "id": "workflow-ownership",
+        "family": "workflow",
+        "defect": "ownership",
+        "rule_id": "WF-001"
+      },
+      {
+        "id": "workflow-duplicate_replay",
+        "family": "workflow",
+        "defect": "duplicate_replay",
+        "rule_id": "WF-002"
+      },
+      {
+        "id": "workflow-skip_approval",
+        "family": "workflow",
+        "defect": "skip_approval",
+        "rule_id": "WF-003"
+      },
+      {
+        "id": "workflow-ledger_amount",
+        "family": "workflow",
+        "defect": "ledger_amount",
+        "rule_id": "WF-004"
+      },
+      {
+        "id": "workflow-history_skip",
+        "family": "workflow",
+        "defect": "history_skip",
+        "rule_id": "WF-005"
+      }
+    ],
+    "snapshot_hash": "8c51d35b3fef79782cea4261f2422337c08ba157a206a653550c75264f45fcc6"
+  },
+  "prompt": "Analyze ONLY these missing synthetic test scenarios. Return JSON suggestions matching the supplied schema, at most three distinct gap IDs. Explain the observable risk and propose a precise testing brief. No case execution, code, shell or approval. Facts are a bounded inventory, not all repository tests. Missing scenarios: [{\"id\": \"invalid-zero\", \"rule_ids\": [\"HC-001\"], \"brief\": \"Evaluate commercial_ppo medical amount_cents 0; assert 400 INVALID_REQUEST.\", \"status\": \"missing\", \"case_keys\": []}, {\"id\": \"cap-plus-one\", \"rule_ids\": [\"HC-007\"], \"brief\": \"Evaluate commercial_ppo medical amount_cents 210001; assert approved payout capped at 200000.\", \"status\": \"missing\", \"case_keys\": []}, {\"id\": \"zero-payment\", \"rule_ids\": [\"HC-007\", \"WF-002\", \"WF-003\", \"WF-004\", \"WF-005\"], \"brief\": \"M100 medical amount 9999: submit, adjuster approve, finance pay, owner read. Assert payout 0 throughout, null payment before paid then payment 0; revisions/events 1,2,3,3.\", \"status\": \"missing\", \"case_keys\": []}, {\"id\": \"payment-replay\", \"rule_ids\": [\"WF-003\", \"WF-004\", \"WF-005\"], \"brief\": \"M100 medical amount 100000: submit, approve, pay, repeat paid expecting 409, then owner read unchanged payout/payment 90000 and revision/events 3.\", \"status\": \"missing\", \"case_keys\": []}] Latest score (historical unless current=true): null Rules: [{\"id\": \"HC-001\", \"name\": \"Input contract\", \"risk\": \"Invalid requests can become misleading financial results.\", \"contract\": \"Require plan_id, service and amount_cents. Only active, in_network, authorized and formulary may additionally be supplied, defaulting to true. Identifiers must be strings, plan_id must be known, service must be a known catalog service, amount_cents must be a positive built-in integer no greater than 100000000, and all flags must be actual booleans. Reject malformed input with HTTP 400. No claim is stored.\"}, {\"id\": \"HC-007\", \"name\": \"Payout calculation\", \"risk\": \"Overpayment, negative payout, or policy-limit bypass.\", \"contract\": \"For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment.\"}, {\"id\": \"WF-002\", \"name\": \"Submission and duplicate identity\", \"risk\": \"Duplicate claims or invalid stored records\", \"contract\": \"Require claim_id, member_id, service, amount_cents; optionally in_network, authorized, formulary. IDs are case-sensitive ASCII letters/digits/hyphen/underscore, 3\\u201348 characters, beginning with a letter or digit. Policy and active status come from member fixtures. Validate HC rules before saving. A coverage denial is HTTP 422 and stores nothing. A successful evaluation creates submitted revision 1, HTTP 201. An existing claim ID conflicts globally with HTTP 409 DUPLICATE_CLAIM. A rejected ID can be corrected and reused.\"}, {\"id\": \"WF-003\", \"name\": \"Ordered claim lifecycle\", \"risk\": \"Skipping approval, repeating an action, or invalid transitions\", \"contract\": \"Allowed transitions are submitted to approved by an adjuster, then approved to paid by finance. All other state transitions return HTTP 409 INVALID_TRANSITION. Only approved and paid are valid target names; malformed targets return HTTP 400. Wrong-role actions return 403 before checking the current status. Successful actions increment revision once; failed actions preserve status and revision.\"}, {\"id\": \"WF-004\", \"name\": \"Simulated payment exactly once\", \"risk\": \"Duplicate or incorrect ledger entries\", \"contract\": \"Entering paid creates one simulated ledger row whose amount equals the stored evaluation payout, including zero payout. A unique claim_id in the ledger prevents a second entry. No real money moves. Replaying paid returns 409 and leaves the original ledger entry unchanged. Status, ledger and event changes commit atomically.\"}, {\"id\": \"WF-005\", \"name\": \"Event and provenance evidence\", \"risk\": \"Unexplained state changes or losing the evaluated contract\", \"contract\": \"Each successful submission or transition appends one ordered event with actor, timestamp, from/to status, rule and revision. Failed actions append no success event. The stored evaluation and normalized request remain unchanged after approval/payment. Evidence exports include the claim, ordered events, ledger row and workflow contract hash. Local history is not tamper-proof.\"}]",
+  "prompt_hash": "018bfa9f67cf5b19fb2949de14f0442db0c409e92978e0288d954b9ea5104d80",
+  "schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "suggestions"
+    ],
+    "properties": {
+      "suggestions": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "gap_id",
+            "explanation",
+            "brief"
+          ],
+          "properties": {
+            "gap_id": {
+              "enum": [
+                "invalid-zero",
+                "cap-plus-one",
+                "zero-payment",
+                "payment-replay"
+              ]
+            },
+            "explanation": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 900
+            },
+            "brief": {
+              "type": "string",
+              "minLength": 10,
+              "maxLength": 1200
+            }
+          }
+        }
+      }
+    }
+  },
+  "source_hash": "026267fbd2abfa3ac68f4e51a994eb39b12938e1638d77fc3ce98f0a4d34fd59",
+  "contract_fingerprint": "3b062e81b83724527d2afc4c8cb85cd07849d074f682023038eaed89825c43dc",
+  "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+  "assertion_policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+  "created_at": "2026-11-12T19:53:20.870896+00:00",
+  "revision": 1,
+  "state": "analyzed",
+  "proposals": [],
+  "approved_ids": [],
+  "approval": null,
+  "history": [],
+  "runs": [],
+  "raw_generation": {
+    "text": "{\n  \"suggestions\": [\n    {\n      \"gap_id\": \"invalid-zero\",\n      \"explanation\": \"The scenario 'invalid-zero' checks the behavior of the system when the 'amount_cents' is set to 0. This is a critical risk as it could lead to misleading financial results, as the system should not allow a zero amount to be processed. The testing brief should include scenarios where the system is expected to reject requests with an amount of 0 and return an appropriate error message.\",\n      \"brief\": \"Evaluate commercial_ppo medical amount_cents 0; assert 400 INVALID_REQUEST.\"\n    },\n    {\n      \"gap_id\": \"cap-plus-one\",\n      \"explanation\": \"The scenario 'cap-plus-one' checks the behavior of the system when the 'amount_cents' is set to 210001. This is a critical risk as it could lead to overpayment, as the system should not allow an amount that exceeds the policy limit. The testing brief should include scenarios where the system is expected to cap the payout at the policy limit and return an appropriate error message.\",\n      \"brief\": \"Evaluate commercial_ppo medical amount_cents 210001; assert approved payout capped at 200000.\"\n    },\n    {\n      \"gap_id\": \"zero-payment\",\n      \"explanation\": \"The scenario 'zero-payment' checks the behavior of the system when the 'amount_cents' is set to 9999. This is a critical risk as it could lead to incorrect payout calculations, as the system should not allow a zero amount to be processed. The testing brief should include scenarios where the system is expected to handle zero payments correctly and return an appropriate error message.\",\n      \"brief\": \"M100 medical amount 9999: submit, adjuster approve, finance pay, owner read. Assert payout 0 throughout, null payment before paid then payment 0; revisions/events 1,2,3,3.\"\n    }\n  ]\n}",
+    "raw_envelope": {
+      "model": "qwen2.5-coder:3b",
+      "created_at": "2026-11-12T19:53:28.371021Z",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"gap_id\": \"invalid-zero\",\n      \"explanation\": \"The scenario 'invalid-zero' checks the behavior of the system when the 'amount_cents' is set to 0. This is a critical risk as it could lead to misleading financial results, as the system should not allow a zero amount to be processed. The testing brief should include scenarios where the system is expected to reject requests with an amount of 0 and return an appropriate error message.\",\n      \"brief\": \"Evaluate commercial_ppo medical amount_cents 0; assert 400 INVALID_REQUEST.\"\n    },\n    {\n      \"gap_id\": \"cap-plus-one\",\n      \"explanation\": \"The scenario 'cap-plus-one' checks the behavior of the system when the 'amount_cents' is set to 210001. This is a critical risk as it could lead to overpayment, as the system should not allow an amount that exceeds the policy limit. The testing brief should include scenarios where the system is expected to cap the payout at the policy limit and return an appropriate error message.\",\n      \"brief\": \"Evaluate commercial_ppo medical amount_cents 210001; assert approved payout capped at 200000.\"\n    },\n    {\n      \"gap_id\": \"zero-payment\",\n      \"explanation\": \"The scenario 'zero-payment' checks the behavior of the system when the 'amount_cents' is set to 9999. This is a critical risk as it could lead to incorrect payout calculations, as the system should not allow a zero amount to be processed. The testing brief should include scenarios where the system is expected to handle zero payments correctly and return an appropriate error message.\",\n      \"brief\": \"M100 medical amount 9999: submit, adjuster approve, finance pay, owner read. Assert payout 0 throughout, null payment before paid then payment 0; revisions/events 1,2,3,3.\"\n    }\n  ]\n}",
+      "done": true,
+      "done_reason": "stop",
+      "context": [
+        151644,
+        8948,
+        198,
+        2610,
+        525,
+        1207,
+        16948,
+        11,
+        3465,
+        553,
+        54364,
+        14817,
+        13,
+        1446,
+        525,
+        264,
+        10950,
+        17847,
+        13,
+        151645,
+        198,
+        151644,
+        872,
+        198,
+        2082,
+        55856,
+        26687,
+        1493,
+        7402,
+        27268,
+        1273,
+        25283,
+        13,
+        3411,
+        4718,
+        18225,
+        12579,
+        279,
+        17221,
+        10802,
+        11,
+        518,
+        1429,
+        2326,
+        12460,
+        12929,
+        28360,
+        13,
+        81917,
+        279,
+        39535,
+        5214,
+        323,
+        29614,
+        264,
+        23560,
+        7497,
+        9814,
+        13,
+        2308,
+        1142,
+        11320,
+        11,
+        2038,
+        11,
+        12528,
+        476,
+        14427,
+        13,
+        44983,
+        525,
+        264,
+        61115,
+        15444,
+        11,
+        537,
+        678,
+        12542,
+        7032,
+        13,
+        35264,
+        25283,
+        25,
+        61753,
+        307,
+        788,
+        330,
+        11808,
+        36929,
+        497,
+        330,
+        12937,
+        8077,
+        788,
+        4383,
+        22455,
+        12,
+        15,
+        15,
+        16,
+        7914,
+        330,
+        6658,
+        788,
+        330,
+        82345,
+        8353,
+        31600,
+        78,
+        6457,
+        3311,
+        666,
+        805,
+        220,
+        15,
+        26,
+        2060,
+        220,
+        19,
+        15,
+        15,
+        32269,
+        14454,
+        10465,
+        330,
+        2829,
+        788,
+        330,
+        30616,
+        497,
+        330,
+        5638,
+        12631,
+        788,
+        3056,
+        2137,
+        5212,
+        307,
+        788,
+        330,
+        11346,
+        22934,
+        18589,
+        497,
+        330,
+        12937,
+        8077,
+        788,
+        4383,
+        22455,
+        12,
+        15,
+        15,
+        22,
+        7914,
+        330,
+        6658,
+        788,
+        330,
+        82345,
+        8353,
+        31600,
+        78,
+        6457,
+        3311,
+        666,
+        805,
+        220,
+        17,
+        16,
+        15,
+        15,
+        15,
+        16,
+        26,
+        2060,
+        11792,
+        45888,
+        60146,
+        518,
+        220,
+        17,
+        15,
+        15,
+        15,
+        15,
+        15,
+        10465,
+        330,
+        2829,
+        788,
+        330,
+        30616,
+        497,
+        330,
+        5638,
+        12631,
+        788,
+        3056,
+        2137,
+        5212,
+        307,
+        788,
+        330,
+        14154,
+        72443,
+        497,
+        330,
+        12937,
+        8077,
+        788,
+        4383,
+        22455,
+        12,
+        15,
+        15,
+        22,
+        497,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        17,
+        497,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        18,
+        497,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        19,
+        497,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        20,
+        7914,
+        330,
+        6658,
+        788,
+        330,
+        44,
+        16,
+        15,
+        15,
+        6457,
+        3311,
+        220,
+        24,
+        24,
+        24,
+        24,
+        25,
+        9318,
+        11,
+        7500,
+        261,
+        28151,
+        11,
+        17017,
+        2291,
+        11,
+        6372,
+        1349,
+        13,
+        5319,
+        45888,
+        220,
+        15,
+        6814,
+        11,
+        845,
+        8160,
+        1573,
+        7171,
+        1221,
+        8160,
+        220,
+        15,
+        26,
+        53762,
+        42764,
+        220,
+        16,
+        11,
+        17,
+        11,
+        18,
+        11,
+        18,
+        10465,
+        330,
+        2829,
+        788,
+        330,
+        30616,
+        497,
+        330,
+        5638,
+        12631,
+        788,
+        3056,
+        2137,
+        5212,
+        307,
+        788,
+        330,
+        13755,
+        5504,
+        1363,
+        497,
+        330,
+        12937,
+        8077,
+        788,
+        4383,
+        32131,
+        12,
+        15,
+        15,
+        18,
+        497,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        19,
+        497,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        20,
+        7914,
+        330,
+        6658,
+        788,
+        330,
+        44,
+        16,
+        15,
+        15,
+        6457,
+        3311,
+        220,
+        16,
+        15,
+        15,
+        15,
+        15,
+        15,
+        25,
+        9318,
+        11,
+        28151,
+        11,
+        2291,
+        11,
+        13153,
+        7171,
+        22331,
+        220,
+        19,
+        15,
+        24,
+        11,
+        1221,
+        6372,
+        1349,
+        34857,
+        45888,
+        81821,
+        220,
+        24,
+        15,
+        15,
+        15,
+        15,
+        323,
+        23578,
+        42764,
+        220,
+        18,
+        10465,
+        330,
+        2829,
+        788,
+        330,
+        30616,
+        497,
+        330,
+        5638,
+        12631,
+        788,
+        3056,
+        25439,
+        28157,
+        5456,
+        320,
+        43441,
+        938,
+        7241,
+        1482,
+        11265,
+        1648,
+        845,
+        22847,
+        25,
+        61753,
+        307,
+        788,
+        330,
+        22455,
+        12,
+        15,
+        15,
+        16,
+        497,
+        330,
+        606,
+        788,
+        330,
+        2505,
+        5116,
+        497,
+        330,
+        80943,
+        788,
+        330,
+        7928,
+        7388,
+        646,
+        3635,
+        37209,
+        5896,
+        3059,
+        10465,
+        330,
+        20257,
+        788,
+        330,
+        17959,
+        3119,
+        842,
+        11,
+        2473,
+        323,
+        3311,
+        666,
+        805,
+        13,
+        8278,
+        4541,
+        11,
+        304,
+        20966,
+        11,
+        18630,
+        323,
+        1352,
+        23216,
+        1231,
+        36838,
+        387,
+        17221,
+        11,
+        1638,
+        287,
+        311,
+        830,
+        13,
+        22507,
+        11836,
+        1969,
+        387,
+        9069,
+        11,
+        3119,
+        842,
+        1969,
+        387,
+        3881,
+        11,
+        2473,
+        1969,
+        387,
+        264,
+        3881,
+        16403,
+        2473,
+        11,
+        3311,
+        666,
+        805,
+        1969,
+        387,
+        264,
+        6785,
+        5798,
+        3419,
+        7546,
+        902,
+        7046,
+        1091,
+        220,
+        16,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        11,
+        323,
+        678,
+        8042,
+        1969,
+        387,
+        5042,
+        708,
+        96999,
+        13,
+        87293,
+        79250,
+        1946,
+        448,
+        10130,
+        220,
+        19,
+        15,
+        15,
+        13,
+        2308,
+        3717,
+        374,
+        9768,
+        1189,
+        2137,
+        5212,
+        307,
+        788,
+        330,
+        22455,
+        12,
+        15,
+        15,
+        22,
+        497,
+        330,
+        606,
+        788,
+        330,
+        47,
+        1407,
+        21937,
+        497,
+        330,
+        80943,
+        788,
+        330,
+        1918,
+        13755,
+        11,
+        8225,
+        45888,
+        11,
+        476,
+        4842,
+        71159,
+        30718,
+        10465,
+        330,
+        20257,
+        788,
+        330,
+        2461,
+        458,
+        5937,
+        11666,
+        1681,
+        11,
+        45888,
+        666,
+        805,
+        284,
+        1308,
+        8739,
+        33989,
+        666,
+        805,
+        481,
+        77812,
+        666,
+        805,
+        11,
+        220,
+        15,
+        701,
+        3930,
+        666,
+        805,
+        568,
+        4457,
+        77812,
+        323,
+        3930,
+        504,
+        6649,
+        4323,
+        13,
+        2009,
+        647,
+        16,
+        6649,
+        35092,
+        990,
+        264,
+        27268,
+        220,
+        16,
+        15,
+        15,
+        15,
+        15,
+        21217,
+        77812,
+        323,
+        220,
+        17,
+        15,
+        15,
+        15,
+        15,
+        15,
+        21217,
+        2062,
+        817,
+        16460,
+        13,
+        2411,
+        476,
+        3685,
+        279,
+        77812,
+        11,
+        470,
+        11792,
+        608,
+        95039,
+        1479,
+        448,
+        7168,
+        45888,
+        13,
+        1096,
+        374,
+        537,
+        458,
+        9775,
+        56312,
+        11,
+        5042,
+        30722,
+        77812,
+        11,
+        5420,
+        12,
+        6045,
+        21937,
+        11,
+        476,
+        1931,
+        8760,
+        8160,
+        1189,
+        2137,
+        5212,
+        307,
+        788,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        17,
+        497,
+        330,
+        606,
+        788,
+        330,
+        86621,
+        323,
+        22513,
+        9569,
+        497,
+        330,
+        80943,
+        788,
+        330,
+        53979,
+        8186,
+        476,
+        8318,
+        9768,
+        7424,
+        497,
+        330,
+        20257,
+        788,
+        330,
+        17959,
+        3717,
+        842,
+        11,
+        4462,
+        842,
+        11,
+        2473,
+        11,
+        3311,
+        666,
+        805,
+        26,
+        45524,
+        304,
+        20966,
+        11,
+        18630,
+        11,
+        1352,
+        23216,
+        13,
+        28360,
+        525,
+        1142,
+        56667,
+        39316,
+        11931,
+        3446,
+        18667,
+        7530,
+        88,
+        14769,
+        14,
+        53933,
+        11,
+        220,
+        18,
+        3770,
+        17,
+        15,
+        16,
+        18,
+        19,
+        23,
+        5766,
+        11,
+        7167,
+        448,
+        264,
+        6524,
+        476,
+        15723,
+        13,
+        10974,
+        323,
+        4541,
+        2639,
+        2525,
+        504,
+        4462,
+        37664,
+        13,
+        23282,
+        45828,
+        5601,
+        1573,
+        13997,
+        13,
+        362,
+        10191,
+        33913,
+        374,
+        10130,
+        220,
+        19,
+        17,
+        17,
+        323,
+        10533,
+        4302,
+        13,
+        362,
+        6849,
+        16460,
+        11450,
+        14634,
+        23578,
+        220,
+        16,
+        11,
+        10130,
+        220,
+        17,
+        15,
+        16,
+        13,
+        1527,
+        6350,
+        3717,
+        3034,
+        25800,
+        30450,
+        448,
+        10130,
+        220,
+        19,
+        15,
+        24,
+        47055,
+        76828,
+        6843,
+        14323,
+        13,
+        362,
+        17551,
+        3034,
+        646,
+        387,
+        35965,
+        323,
+        68743,
+        1189,
+        2137,
+        5212,
+        307,
+        788,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        18,
+        497,
+        330,
+        606,
+        788,
+        330,
+        54384,
+        3717,
+        47508,
+        497,
+        330,
+        80943,
+        788,
+        330,
+        85945,
+        14427,
+        11,
+        39816,
+        458,
+        1917,
+        11,
+        476,
+        8318,
+        33592,
+        497,
+        330,
+        20257,
+        788,
+        330,
+        35382,
+        33592,
+        525,
+        14634,
+        311,
+        11792,
+        553,
+        458,
+        7500,
+        261,
+        11,
+        1221,
+        11792,
+        311,
+        7171,
+        553,
+        17017,
+        13,
+        2009,
+        1008,
+        1584,
+        33592,
+        470,
+        10130,
+        220,
+        19,
+        15,
+        24,
+        32269,
+        28953,
+        7092,
+        13,
+        8278,
+        11792,
+        323,
+        7171,
+        525,
+        2697,
+        2169,
+        5036,
+        26,
+        79250,
+        11550,
+        470,
+        10130,
+        220,
+        19,
+        15,
+        15,
+        13,
+        40756,
+        54821,
+        6168,
+        470,
+        220,
+        19,
+        15,
+        18,
+        1573,
+        13295,
+        279,
+        1482,
+        2639,
+        13,
+        45526,
+        6168,
+        16252,
+        23578,
+        3055,
+        26,
+        4641,
+        6168,
+        21129,
+        2639,
+        323,
+        23578,
+        1189,
+        2137,
+        5212,
+        307,
+        788,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        19,
+        497,
+        330,
+        606,
+        788,
+        330,
+        14027,
+        7757,
+        8160,
+        6896,
+        3055,
+        497,
+        330,
+        80943,
+        788,
+        330,
+        53979,
+        476,
+        15114,
+        46933,
+        10695,
+        497,
+        330,
+        20257,
+        788,
+        330,
+        82867,
+        7171,
+        11450,
+        825,
+        45736,
+        46933,
+        2802,
+        6693,
+        3311,
+        16819,
+        279,
+        9768,
+        16460,
+        45888,
+        11,
+        2670,
+        7168,
+        45888,
+        13,
+        362,
+        4911,
+        3717,
+        842,
+        304,
+        279,
+        46933,
+        27934,
+        264,
+        2086,
+        4343,
+        13,
+        2308,
+        1931,
+        3220,
+        10797,
+        13,
+        1032,
+        41912,
+        7171,
+        4675,
+        220,
+        19,
+        15,
+        24,
+        323,
+        10901,
+        279,
+        4024,
+        46933,
+        4343,
+        34857,
+        13,
+        8104,
+        11,
+        46933,
+        323,
+        1538,
+        4344,
+        5266,
+        19124,
+        2673,
+        1189,
+        2137,
+        5212,
+        307,
+        788,
+        330,
+        32131,
+        12,
+        15,
+        15,
+        20,
+        497,
+        330,
+        606,
+        788,
+        330,
+        1556,
+        323,
+        16622,
+        681,
+        5904,
+        497,
+        330,
+        80943,
+        788,
+        330,
+        1806,
+        80850,
+        1584,
+        4344,
+        476,
+        13188,
+        279,
+        25070,
+        5116,
+        497,
+        330,
+        20257,
+        788,
+        330,
+        4854,
+        6849,
+        20503,
+        476,
+        9142,
+        906,
+        1412,
+        825,
+        11457,
+        1538,
+        448,
+        12089,
+        11,
+        11441,
+        11,
+        504,
+        32429,
+        2639,
+        11,
+        5912,
+        323,
+        23578,
+        13,
+        21379,
+        6168,
+        8737,
+        902,
+        2393,
+        1538,
+        13,
+        576,
+        9768,
+        16460,
+        323,
+        29410,
+        1681,
+        7146,
+        34857,
+        1283,
+        14427,
+        81821,
+        13,
+        43696,
+        12794,
+        2924,
+        279,
+        3717,
+        11,
+        11457,
+        4357,
+        11,
+        46933,
+        2802,
+        323,
+        28288,
+        5116,
+        5175,
+        13,
+        8774,
+        3840,
+        374,
+        537,
+        25476,
+        712,
+        59167,
+        1189,
+        25439,
+        151645,
+        198,
+        151644,
+        77091,
+        198,
+        515,
+        220,
+        330,
+        82,
+        37882,
+        788,
+        2278,
+        262,
+        341,
+        414,
+        330,
+        41410,
+        842,
+        788,
+        330,
+        11808,
+        36929,
+        756,
+        414,
+        330,
+        327,
+        35890,
+        788,
+        330,
+        785,
+        15048,
+        364,
+        11808,
+        36929,
+        6,
+        12341,
+        279,
+        7709,
+        315,
+        279,
+        1849,
+        979,
+        279,
+        364,
+        6045,
+        666,
+        805,
+        6,
+        374,
+        738,
+        311,
+        220,
+        15,
+        13,
+        1096,
+        374,
+        264,
+        9023,
+        5214,
+        438,
+        432,
+        1410,
+        2990,
+        311,
+        37209,
+        5896,
+        3059,
+        11,
+        438,
+        279,
+        1849,
+        1265,
+        537,
+        2138,
+        264,
+        7168,
+        3311,
+        311,
+        387,
+        15233,
+        13,
+        576,
+        7497,
+        9814,
+        1265,
+        2924,
+        25283,
+        1380,
+        279,
+        1849,
+        374,
+        3601,
+        311,
+        7850,
+        7388,
+        448,
+        458,
+        3311,
+        315,
+        220,
+        15,
+        323,
+        470,
+        458,
+        8311,
+        1465,
+        1943,
+        10346,
+        414,
+        330,
+        6658,
+        788,
+        330,
+        82345,
+        8353,
+        31600,
+        78,
+        6457,
+        3311,
+        666,
+        805,
+        220,
+        15,
+        26,
+        2060,
+        220,
+        19,
+        15,
+        15,
+        32269,
+        14454,
+        10040,
+        262,
+        1153,
+        262,
+        341,
+        414,
+        330,
+        41410,
+        842,
+        788,
+        330,
+        11346,
+        22934,
+        18589,
+        756,
+        414,
+        330,
+        327,
+        35890,
+        788,
+        330,
+        785,
+        15048,
+        364,
+        11346,
+        22934,
+        18589,
+        6,
+        12341,
+        279,
+        7709,
+        315,
+        279,
+        1849,
+        979,
+        279,
+        364,
+        6045,
+        666,
+        805,
+        6,
+        374,
+        738,
+        311,
+        220,
+        17,
+        16,
+        15,
+        15,
+        15,
+        16,
+        13,
+        1096,
+        374,
+        264,
+        9023,
+        5214,
+        438,
+        432,
+        1410,
+        2990,
+        311,
+        916,
+        13755,
+        11,
+        438,
+        279,
+        1849,
+        1265,
+        537,
+        2138,
+        458,
+        3311,
+        429,
+        35275,
+        279,
+        4842,
+        3930,
+        13,
+        576,
+        7497,
+        9814,
+        1265,
+        2924,
+        25283,
+        1380,
+        279,
+        1849,
+        374,
+        3601,
+        311,
+        2062,
+        279,
+        45888,
+        518,
+        279,
+        4842,
+        3930,
+        323,
+        470,
+        458,
+        8311,
+        1465,
+        1943,
+        10346,
+        414,
+        330,
+        6658,
+        788,
+        330,
+        82345,
+        8353,
+        31600,
+        78,
+        6457,
+        3311,
+        666,
+        805,
+        220,
+        17,
+        16,
+        15,
+        15,
+        15,
+        16,
+        26,
+        2060,
+        11792,
+        45888,
+        60146,
+        518,
+        220,
+        17,
+        15,
+        15,
+        15,
+        15,
+        15,
+        10040,
+        262,
+        1153,
+        262,
+        341,
+        414,
+        330,
+        41410,
+        842,
+        788,
+        330,
+        14154,
+        72443,
+        756,
+        414,
+        330,
+        327,
+        35890,
+        788,
+        330,
+        785,
+        15048,
+        364,
+        14154,
+        72443,
+        6,
+        12341,
+        279,
+        7709,
+        315,
+        279,
+        1849,
+        979,
+        279,
+        364,
+        6045,
+        666,
+        805,
+        6,
+        374,
+        738,
+        311,
+        220,
+        24,
+        24,
+        24,
+        24,
+        13,
+        1096,
+        374,
+        264,
+        9023,
+        5214,
+        438,
+        432,
+        1410,
+        2990,
+        311,
+        15114,
+        45888,
+        28117,
+        11,
+        438,
+        279,
+        1849,
+        1265,
+        537,
+        2138,
+        264,
+        7168,
+        3311,
+        311,
+        387,
+        15233,
+        13,
+        576,
+        7497,
+        9814,
+        1265,
+        2924,
+        25283,
+        1380,
+        279,
+        1849,
+        374,
+        3601,
+        311,
+        3705,
+        7168,
+        14173,
+        12440,
+        323,
+        470,
+        458,
+        8311,
+        1465,
+        1943,
+        10346,
+        414,
+        330,
+        6658,
+        788,
+        330,
+        44,
+        16,
+        15,
+        15,
+        6457,
+        3311,
+        220,
+        24,
+        24,
+        24,
+        24,
+        25,
+        9318,
+        11,
+        7500,
+        261,
+        28151,
+        11,
+        17017,
+        2291,
+        11,
+        6372,
+        1349,
+        13,
+        5319,
+        45888,
+        220,
+        15,
+        6814,
+        11,
+        845,
+        8160,
+        1573,
+        7171,
+        1221,
+        8160,
+        220,
+        15,
+        26,
+        53762,
+        42764,
+        220,
+        16,
+        11,
+        17,
+        11,
+        18,
+        11,
+        18,
+        10040,
+        262,
+        456,
+        220,
+        5133,
+        92
+      ],
+      "total_duration": 7497435458,
+      "load_duration": 1551216667,
+      "prompt_eval_count": 1169,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 1058027000,
+      "eval_count": 423,
+      "eval_duration": 4877751000
+    },
+    "model": "qwen2.5-coder:3b",
+    "latency_ms": 7502.64,
+    "input_tokens": 1169,
+    "output_tokens": 423,
+    "settings": {
+      "temperature": 0,
+      "seed": 7,
+      "num_predict": 2600,
+      "num_ctx": 12288
+    },
+    "endpoint": "http://127.0.0.1:11434/api/generate"
+  },
+  "suggestions": [
+    {
+      "gap_id": "invalid-zero",
+      "explanation": "The scenario 'invalid-zero' checks the behavior of the system when the 'amount_cents' is set to 0. This is a critical risk as it could lead to misleading financial results, as the system should not allow a zero amount to be processed. The testing brief should include scenarios where the system is expected to reject requests with an amount of 0 and return an appropriate error message.",
+      "brief": "Evaluate commercial_ppo medical amount_cents 0; assert 400 INVALID_REQUEST."
+    },
+    {
+      "gap_id": "cap-plus-one",
+      "explanation": "The scenario 'cap-plus-one' checks the behavior of the system when the 'amount_cents' is set to 210001. This is a critical risk as it could lead to overpayment, as the system should not allow an amount that exceeds the policy limit. The testing brief should include scenarios where the system is expected to cap the payout at the policy limit and return an appropriate error message.",
+      "brief": "Evaluate commercial_ppo medical amount_cents 210001; assert approved payout capped at 200000."
+    },
+    {
+      "gap_id": "zero-payment",
+      "explanation": "The scenario 'zero-payment' checks the behavior of the system when the 'amount_cents' is set to 9999. This is a critical risk as it could lead to incorrect payout calculations, as the system should not allow a zero amount to be processed. The testing brief should include scenarios where the system is expected to handle zero payments correctly and return an appropriate error message.",
+      "brief": "M100 medical amount 9999: submit, adjuster approve, finance pay, owner read. Assert payout 0 throughout, null payment before paid then payment 0; revisions/events 1,2,3,3."
+    }
+  ],
+  "finished_at": "2026-11-12T19:53:28.380336+00:00"
+}

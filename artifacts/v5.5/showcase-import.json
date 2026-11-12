@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "model_requests": 0,
+  "policy": "Additive import of two locally reviewed synthetic engineering proposals and their analysis/latest scoring evidence. No earlier record was replaced; local labels are not authenticated human identity.",
+  "added": [
+    {
+      "id": "ed66bafce6264ad8ae0bc4e917511a4b",
+      "origin": "original_ai",
+      "kind": "engineering-reviewed Studio demonstration"
+    },
+    {
+      "id": "d60cf809910c486cbf44fbe6f670d35a",
+      "origin": "original_ai",
+      "kind": "engineering-reviewed Studio demonstration"
+    },
+    {
+      "id": "dde6b882bfcc4ff88030b73df1b3cc42",
+      "kind": "gap_analysis"
+    },
+    {
+      "id": "1e5faee369a74c7c82c42080ec222c11",
+      "kind": "defect_score"
+    }
+  ]
+}

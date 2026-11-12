@@ -1,4 +1,4 @@
-name: V5.4 quality and release checks
+name: V5.5 quality and release checks
 on:
   push:
   pull_request:
@@ -32,17 +32,17 @@ jobs:
       - name: Build and inspect a checksummed source release
         run: |
           python -m tools.release build --output releases/ci
-          python -m tools.release inspect releases/ci/v5.4.0-source.zip
+          python -m tools.release inspect releases/ci/v5.5.0-source.zip
       - name: Rehearse the staged release through actual HTTP
-        run: python -m tools.rehearse releases/ci/v5.4.0-source.zip --output artifacts/v5.4/ci-runtime-rehearsal.json
+        run: python -m tools.rehearse releases/ci/v5.5.0-source.zip --output artifacts/v5.5/ci-runtime-rehearsal.json
       - name: Save checksummed release and execution evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: healthcare-quality-lab-v5.4-evidence
+          name: healthcare-quality-lab-v5.5-evidence
           path: |
-            releases/ci/v5.4.0-source.zip
-            releases/ci/v5.4.0-manifest.json
+            releases/ci/v5.5.0-source.zip
+            releases/ci/v5.5.0-manifest.json
             artifacts/
             test-results/
           retention-days: 14

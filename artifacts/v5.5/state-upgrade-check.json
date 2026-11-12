@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "original_data_checks": {
+    "claims-v2.sqlite:claims": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    },
+    "claims-v2.sqlite:events": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    },
+    "claims-v2.sqlite:payments": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    },
+    "ai-v3.sqlite:ai_experiments": {
+      "original_rows_unchanged": 22,
+      "added_rows": 2
+    },
+    "ai-v3.sqlite:studio_operations": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    },
+    "evaluation-v4.sqlite:ai_experiments": {
+      "original_rows_unchanged": 3,
+      "added_rows": 0
+    },
+    "evaluation-v4.sqlite:studio_operations": {
+      "original_rows_unchanged": 0,
+      "added_rows": 0
+    }
+  },
+  "backup": ".local/backup-before-v5.5",
+  "showcase_counts": {
+    "authored": 32,
+    "cases": 61,
+    "eligible": 34,
+    "missing_gaps": 2,
+    "proposals_or_stale": 27,
+    "unique_scenario_assertions": 34
+  },
+  "current_observed_seed_detection": {
+    "detected": 2,
+    "applicable": 12
+  },
+  "prior_v54_archive_unchanged": true,
+  "vs_code_opened": false
+}

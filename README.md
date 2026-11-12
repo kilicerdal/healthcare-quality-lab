@@ -1,4 +1,4 @@
-# Healthcare Quality Lab — V5.4
+# Healthcare Quality Lab — V5.5
 
 A standalone quality engineering showcase built with **Python, pytest, Playwright and local Ollama**. Learn to define contracts, test stateful claims, review AI-created cases, measure test quality and release verified source packages.
 
@@ -20,6 +20,12 @@ A separate standard-library reference model calculates payout, payment and histo
 
 Focused local Ollama correction repaired both retained V5.3 failures: 10,001 cents now expects payout 1, and 286,450 expects 200,000. Both repaired tests and exported pytest wrappers pass. Six separately authored new tasks improved from 4/6 correct to 6/6 after correction. AI requests are limited to two per correction history; a previewed, explicitly confirmed reference fallback creates a distinctly labeled draft requiring fresh review. Read the [detailed V5.4 report](docs/V5.4_REPORT.md).
 
+## V5.5 test coverage and observed defect detection
+
+The [coverage dashboard](http://127.0.0.1:8895/#test-coverage) maps 13 written rules, an explicit 32-case authored catalog and current Studio proposals. Eleven scenario predicates identify gaps; duplicate checks distinguish equivalent inputs, assertion differences and conflicts. Local Ollama suggests grounded gaps and explicitly generates unapproved proposals. Reviewed cases must pass a healthy baseline before scoring against twelve controlled fault profiles. Errors never earn detection credit.
+
+The live demonstration generated two correct gap cases with three actual model requests, closing two of four defined gaps. That two-case suite detected only 2/12 applicable seeds, with ten survivors retained. This is distinct from the authored framework benchmark's 12/12 detections. Read the [detailed V5.5 report](docs/V5.5_REPORT.md).
+
 ## Start here
 
 ```sh
@@ -29,7 +35,7 @@ python3 -m tools.bootstrap --browser
 
 Open [the guided showcase](http://127.0.0.1:8895/#showcase). In VS Code select `.venv/bin/python` and **Run and Debug → V5: start Healthcare Quality Lab**. Bootstrap uses only this project's `.venv` and `.browsers`; it does not install Ollama or download models. On Windows use `.venv\Scripts\python.exe` instead of `.venv/bin/python`.
 
-Read the [V5.4 correction report](docs/V5.4_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
+Read the [V5.5 coverage and test-value report](docs/V5.5_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
 
 ## What the five versions deliver
 
@@ -41,7 +47,7 @@ Read the [V5.4 correction report](docs/V5.4_REPORT.md), [eight-minute demo](docs
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.4 local verification:** 471 tests passed (377 unit, 59 API, 35 Chromium); all 12 authored fault seeds detected. The two actual repaired-case pytest wrappers also pass. [GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43246024213); downloaded CI evidence matches the local source fingerprint.
+**V5.5 local verification:** 549 tests passed (446 unit, 65 API, 38 Chromium), with zero failures/skips. All 12 retained authored fault seeds were detected. Current CI evidence is recorded in the V5.5 report.
 
 ## Test the application
 
@@ -71,8 +77,8 @@ After a fresh successful verification:
 
 ```sh
 .venv/bin/python -m tools.release build
-.venv/bin/python -m tools.release inspect releases/v5.4.0-source.zip
-.venv/bin/python -m tools.release stage releases/v5.4.0-source.zip
+.venv/bin/python -m tools.release inspect releases/v5.5.0-source.zip
+.venv/bin/python -m tools.release stage releases/v5.5.0-source.zip
 .venv/bin/python -m tools.release activate RELEASE_ID_FROM_STAGE
 .venv/bin/python -m tools.release serve --port 8896
 ```
@@ -85,7 +91,7 @@ Source packages exclude local databases, environments, browser binaries and cach
 
 The project has its own new private repository: [kilicerdal/healthcare-quality-lab](https://github.com/kilicerdal/healthcare-quality-lab). Existing projects and repositories are independent.
 
-GitHub Actions installs dependencies and Chromium, runs regression and known-fault checks, builds and inspects a checksummed source archive, starts its staged Waitress runtime for an actual HTTP journey, and uploads evidence. Current remote execution results are recorded in the V5.4 report and `artifacts/v5.4/github-ci.json`. Earlier version evidence remains preserved. The hosted runtime target for this delivery is local loopback; the GitHub repository is private and is not a public website.
+GitHub Actions installs dependencies and Chromium, runs regression and known-fault checks, builds and inspects a checksummed source archive, starts its staged Waitress runtime for an actual HTTP journey, and uploads evidence. Current remote execution results are recorded in the V5.5 report and `artifacts/v5.5/github-ci.json`. Earlier version evidence remains preserved. The hosted runtime target for this delivery is local loopback; the GitHub repository is private and is not a public website.
 
 ## AI tools and learning
 

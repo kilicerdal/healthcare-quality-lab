@@ -13,6 +13,7 @@ from tools.fingerprints import source_hash
 from healthcare_quality import __version__
 from healthcare_quality.ai_studio import StudioService,ExperimentStore,StudioError,PROMPTS
 from healthcare_quality.ai_schema import ALL_RULES,MODELS,SUITE_SCHEMA,DSL_VERSION,contract_fingerprint
+from healthcare_quality.coverage_lab import CoverageLab
 from healthcare_quality.quality_lab import QualityLab
 from healthcare_quality.evaluation import dataset,retrieve
 from healthcare_quality.showcase import summary,readiness,EVIDENCE
@@ -36,6 +37,8 @@ def create_app(config=None):
     app.extensions["studio"]=studio
     lab=QualityLab(str(Path(ai_path).with_name("evaluation-v4.sqlite")),studio)
     app.extensions["quality_lab"]=lab
+    coverage=CoverageLab(str(Path(ai_path).with_name("coverage-v55.sqlite")),studio)
+    app.extensions["coverage_lab"]=coverage
 
     @app.before_request
     def request_trace():
@@ -43,7 +46,7 @@ def create_app(config=None):
 
     @app.get("/api/ready")
     def ready():
-        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments")])
+        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments"),("coverage",coverage.store.path,"ai_experiments")])
         return jsonify(result),200 if result["status"]=="ready" else 503
 
     @app.get("/api/showcase")
@@ -148,6 +151,24 @@ def create_app(config=None):
     @app.errorhandler(StudioError)
     def studio_error(error):return jsonify(error=error.code,message=str(error)),error.status
 
+    @app.get("/api/coverage/dashboard")
+    def coverage_dashboard():return jsonify(coverage.dashboard())
+
+    @app.get("/api/coverage/records")
+    def coverage_records():return jsonify(records=coverage.records())
+
+    @app.get("/api/coverage/records/<id>")
+    def coverage_record(id):return jsonify(coverage.record(id))
+
+    @app.post("/api/coverage/analyze")
+    def coverage_analyze():return jsonify(coverage.analyze(body())),201
+
+    @app.post("/api/coverage/analyses/<id>/propose")
+    def coverage_propose(id):return jsonify(coverage.propose(id,body())),201
+
+    @app.post("/api/coverage/score")
+    def coverage_score():return jsonify(coverage.score(body())),201
+
     @app.get("/api/quality/dataset")
     def quality_dataset():return jsonify(dataset())
 
@@ -178,8 +199,8 @@ def create_app(config=None):
 
     @app.get("/report")
     @app.get("/reports/<version>")
-    def report(version="v5.4"):
-        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4"):return jsonify(error="Report not found"),404
+    def report(version="v5.5"):
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)

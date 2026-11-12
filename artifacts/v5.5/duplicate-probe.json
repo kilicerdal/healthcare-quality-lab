@@ -1,0 +1,21 @@
+{
+  "scope": "Deliberate duplicate of one actual generated case, for normalization demonstration; not an additional model generation.",
+  "groups": [
+    {
+      "scenario_hash": "fb2be1d34c74684655af1d6028351cb69856ce69c97c1e46620a5786e25902d8",
+      "members": [
+        "actual-live-case",
+        "deliberate-probe"
+      ],
+      "equivalent_assertion_groups": [
+        [
+          "actual-live-case",
+          "deliberate-probe"
+        ]
+      ],
+      "different_assertions": false,
+      "conflicts": [],
+      "note": "Equivalent inputs do not imply redundant assertions. No cases or approvals are deleted."
+    }
+  ]
+}

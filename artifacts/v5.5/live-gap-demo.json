@@ -1,0 +1,76 @@
+{
+  "state": "completed",
+  "provider": {
+    "available": true,
+    "models": [
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "allowed_models": [
+      "qwen2.5-coder:3b",
+      "qwen2.5:3b"
+    ],
+    "endpoint": "http://127.0.0.1:11434",
+    "mode": "local Ollama only"
+  },
+  "before_counts": {
+    "cases": 32,
+    "authored": 32,
+    "eligible": 32,
+    "unique_scenario_assertions": 32,
+    "proposals_or_stale": 0,
+    "missing_gaps": 4
+  },
+  "missing_before": [
+    "invalid-zero",
+    "cap-plus-one",
+    "zero-payment",
+    "payment-replay"
+  ],
+  "cases": [
+    {
+      "gap_id": "zero-payment",
+      "original_id": "ed66bafce6264ad8ae0bc4e917511a4b",
+      "corrections": [],
+      "approved": true,
+      "ready_and_matches_target": true,
+      "approved_id": "ed66bafce6264ad8ae0bc4e917511a4b"
+    },
+    {
+      "gap_id": "cap-plus-one",
+      "original_id": "d60cf809910c486cbf44fbe6f670d35a",
+      "corrections": [],
+      "approved": true,
+      "ready_and_matches_target": true,
+      "approved_id": "d60cf809910c486cbf44fbe6f670d35a"
+    }
+  ],
+  "scope": "One real gap analysis, at most two explicit generated proposals. Engineering operator verifies scenario and reference before review; model requests/corrections retained. Scoring uses known seeded defects, not blind mutation evaluation. Duplicate probe is deliberately constructed and not a new AI success.",
+  "analysis_id": "dde6b882bfcc4ff88030b73df1b3cc42",
+  "score": {
+    "id": "c6ffc8ef04474378b951151a53198457",
+    "state": "scored",
+    "detected": 2,
+    "applicable": 12,
+    "score": 0.1667,
+    "errors": 0
+  },
+  "after_counts": {
+    "cases": 34,
+    "authored": 32,
+    "eligible": 34,
+    "unique_scenario_assertions": 34,
+    "proposals_or_stale": 0,
+    "missing_gaps": 2
+  },
+  "missing_after": [
+    "invalid-zero",
+    "payment-replay"
+  ]
+}

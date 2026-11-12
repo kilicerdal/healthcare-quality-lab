@@ -1,4 +1,4 @@
-"""Run and record V5.4 evidence. A failed run never produces a passing dashboard."""
+"""Run and record V5.5 evidence. A failed run never produces a passing dashboard."""
 from datetime import datetime
 from importlib.metadata import version
 import json
@@ -47,9 +47,9 @@ def main():
             "workflow_seeded_defects_detected":workflow_report["detected"],"workflow_seeded_defects_total":workflow_report["total"],"ai_case_language":"declarative DSL 1.0","live_model_in_core_tests":False,"reference_examples":defect_report["reference_cases"],"duration_seconds":round(time.monotonic()-started,2),
             "environment":{"python":platform.python_version(),"platform":platform.platform(),"pytest":version("pytest"),"playwright":version("playwright"),"flask":version("flask"),"waitress":version("waitress"),"browser":"Chromium only"},
             "command":"python -m tools.verify","subprocess_returncode":run.returncode,"ci_executed":os.environ.get("GITHUB_ACTIONS")=="true",
-            "scope":"Local V5.4 regression: release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."}
+            "scope":"Local V5.5 regression: release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."}
     (artifacts/"verification.json").write_text(json.dumps(result,indent=2)+"\n")
-    print(f"V5.4 verification: {result['status']} — {result['tests_passed']}/{result['tests_total']} passed; {result['e2e_tests']} browser checks; {defect_report['detected']}/{defect_report['total']} evaluation seeds and {workflow_report['detected']}/{workflow_report['total']} workflow seeds detected.")
+    print(f"V5.5 verification: {result['status']} — {result['tests_passed']}/{result['tests_total']} passed; {result['e2e_tests']} browser checks; {defect_report['detected']}/{defect_report['total']} evaluation seeds and {workflow_report['detected']}/{workflow_report['total']} workflow seeds detected.")
     return 0 if good else 1
 
 if __name__=="__main__":

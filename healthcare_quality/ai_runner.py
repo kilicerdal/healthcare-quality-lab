@@ -2,7 +2,7 @@
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import time
-from healthcare_quality.claims import ContractError,evaluate_claim
+from healthcare_quality.claims import ContractError,evaluate_claim,DEFECTS as EVALUATION_DEFECTS
 from healthcare_quality.workflow import ClaimStore,WorkflowService,WorkflowError,WORKFLOW_DEFECTS
 from healthcare_quality.ai_schema import MAX_CASES,MAX_STEPS
 
@@ -14,11 +14,11 @@ def project_evidence(evidence,status=200):
             "payment_cents":evidence["payment"]["amount_cents"] if evidence["payment"] else None}
 
 
-def perform(step,service):
+def perform(step,service,*,evaluation_defect="none"):
     action,actor,data=step["action"],step["actor"],step["data"]
     try:
         if action=="evaluate":
-            raw=evaluate_claim(data)
+            raw=evaluate_claim(data,defect=evaluation_defect)
             return {"status":200,**{k:raw[k] for k in ("decision","reason","payout_cents")}},raw
         if action=="submit":raw=service.submit(actor,data);return project_evidence(raw,201),raw
         if action=="transition":
@@ -35,7 +35,8 @@ def perform(step,service):
         return observed,raw
 
 
-def run_cases(cases,*,workflow_defect="none"):
+def run_cases(cases,*,workflow_defect="none",evaluation_defect="none"):
+    if evaluation_defect not in EVALUATION_DEFECTS:raise ValueError("Unknown internal evaluator fault profile")
     if workflow_defect not in WORKFLOW_DEFECTS:raise ValueError("Unknown internal fault profile")
     if not 1<=len(cases)<=MAX_CASES:raise ValueError("Case budget exceeded")
     results=[];actions=0;started=time.monotonic()
@@ -49,7 +50,7 @@ def run_cases(cases,*,workflow_defect="none"):
                     execution_error="Execution action/time budget exhausted";break
                 actions+=1
                 try:
-                    observed,raw=perform(step,service)
+                    observed,raw=perform(step,service) if evaluation_defect=="none" else perform(step,service,evaluation_defect=evaluation_defect)
                     assertions=[{"field":key,"expected":value,"observed":observed.get(key),
                                  "passed":key in observed and type(observed[key]) is type(value) and observed[key]==value}
                                 for key,value in step["expect"].items()]
