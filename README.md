@@ -41,7 +41,7 @@ Read the [V5.4 correction report](docs/V5.4_REPORT.md), [eight-minute demo](docs
 | V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
 | V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
 
-**V5.4 local verification:** 471 tests passed (377 unit, 59 API, 35 Chromium); all 12 authored fault seeds detected. The two actual repaired-case pytest wrappers also pass. Current CI evidence is recorded in the V5.4 report.
+**V5.4 local verification:** 471 tests passed (377 unit, 59 API, 35 Chromium); all 12 authored fault seeds detected. The two actual repaired-case pytest wrappers also pass. [GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43246024213); downloaded CI evidence matches the local source fingerprint.
 
 ## Test the application
 
