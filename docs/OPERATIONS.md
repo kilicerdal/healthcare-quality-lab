@@ -42,4 +42,4 @@ A staged source payload containing __pycache__, .pyc or .pyo is rejected. Restag
 
 ## Remote CI and deployment
 
-The private GitHub Actions workflow needs only contents:read. It uploads release/evidence artifacts after testing. It does not connect to a production host, publish a public endpoint or ship model downloads. A cloud target would require a separate design for authentication, storage, secrets, private model access, operational ownership and deployment approval.
+The GitHub Actions workflow needs only contents:read. It uploads release/evidence artifacts after testing. It does not connect to a production host, publish a public endpoint or ship model downloads. A cloud target would require a separate design for authentication, storage, secrets, private model access, operational ownership and deployment approval.
