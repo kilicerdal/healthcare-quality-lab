@@ -1,9 +1,9 @@
 {
   "status": "passed",
   "version": "5.8.0",
-  "recorded_at": "2026-11-17T15:07:26.912086-05:00",
+  "recorded_at": "2026-11-17T17:28:17.141459-05:00",
   "recorded_date": "2026-11-17",
-  "source_hash": "d03983b8e872253880fa4b61ccca57aed5f3b85a0395d3c599758ec3c06fd9c8",
+  "source_hash": "149c5cb0e2817d2d5bffd3a2d96415236c3089221ada88d9d4f5f0fea8bffe28",
   "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
   "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
   "tests_total": 665,
@@ -23,12 +23,12 @@
   "ai_case_language": "declarative DSL 1.0",
   "live_model_in_core_tests": false,
   "reference_examples": 28,
-  "duration_seconds": 66.39,
+  "duration_seconds": 77.03,
   "environment": {
     "python": "3.13.18",
     "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
-    "pytest": "9.0.3",
-    "playwright": "1.56.0",
+    "pytest": "9.2.0",
+    "playwright": "1.65.2",
     "flask": "3.1.3",
     "waitress": "3.0.2",
     "browser": "Chromium only"

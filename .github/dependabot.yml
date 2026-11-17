@@ -2,6 +2,9 @@ version: 2
 updates:
   - package-ecosystem: "pip"
     directory: "/"
+    # Recorded environments are historical evidence, not install manifests.
+    exclude-paths:
+      - "/artifacts/**"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 3

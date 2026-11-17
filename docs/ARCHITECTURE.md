@@ -2,6 +2,25 @@
 
 The system has three evidence paths sharing written synthetic contracts.
 
+## Current provider and proof boundaries
+
+```mermaid
+flowchart LR
+  Browser[Engineering proof browser] --> API[Loopback Flask API]
+  API --> Proof[Authored isolated proof scenarios]
+  Proof --> Temp[(Disposable SQLite state)]
+  Browser --> Results[Recorded provider comparison]
+  CLI[Explicit paid evaluation CLI] --> Budget[(Persistent reservation ledger)]
+  Budget --> OpenAI[OpenAI Responses API]
+  Local[Explicit local evaluation CLI] --> Ollama[Loopback Ollama]
+  OpenAI --> Proposed[Unapproved expectations and calculations]
+  Ollama --> Proposed
+  Proposed --> Reference[Independent reference checks]
+  Reference --> Results
+```
+
+The proof page executes authored controls, not model calls. Provider comparison data is read-only in the browser. Live evaluation is a separate explicit CLI path; its budget ledger and credentials do not enter browser assets or the source bundle. Model output is neither approved nor executed automatically. Proof scenarios isolate temporary state; the separate claim desk may retain its own synthetic database.
+
 ```mermaid
 flowchart TD
   C[Written synthetic contracts] --> E[Python evaluator]
