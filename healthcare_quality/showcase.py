@@ -7,7 +7,7 @@ from urllib.parse import quote
 from healthcare_quality import __version__
 from tools.fingerprints import source_hash
 ROOT=Path(__file__).resolve().parents[1]
-EVIDENCE={"verification":"artifacts/verification.json","development":"artifacts/v4/development-comparison.json","reserved":"artifacts/v4/held_out-comparison.json","investigation":"artifacts/v4/live-investigation.json","sensitivity":"artifacts/v4/assertion-sensitivity.json","rehearsal":"artifacts/v5/deployment-rehearsal.json"}
+EVIDENCE={"verification":"artifacts/verification.json","development":"artifacts/v4/development-comparison.json","reserved":"artifacts/v4/held_out-comparison.json","investigation":"artifacts/v4/live-investigation.json","sensitivity":"artifacts/v4/assertion-sensitivity.json","rehearsal":"artifacts/v5/deployment-rehearsal.json","focused":"artifacts/v5.7/focused-measurement.json","showcase":"artifacts/showcase/deterministic-evidence.json","providers":"artifacts/showcase/provider-comparison.json"}
 
 def verification():
     try:
@@ -34,4 +34,4 @@ def summary():
         {"version":"V4","title":"Measure AI quality","outcome":"16 saved live proposals; scoring exposes missing assertions and wrong oracles","page":"evaluation"},
         {"version":"V5","title":"Repeatable showcase release","outcome":"Validated packages, local activation/rollback, readiness and request tracing","page":"showcase"}],
         "evidence":[{"id":key,"available":(ROOT/path).is_file(),"url":"/api/showcase/evidence/"+key} for key,path in EVIDENCE.items()],
-        "repository":"https://github.com/kilicerdal/healthcare-quality-lab","repository_visibility":"private","deployment_scope":"Loopback local demonstration. GitHub CI status is recorded separately; no public healthcare service is deployed."}
+        "repository":"https://github.com/kilicerdal/healthcare-quality-lab","repository_visibility":"public","deployment_scope":"Loopback local demonstration. GitHub CI status is recorded separately; no public healthcare service is deployed."}

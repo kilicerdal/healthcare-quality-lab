@@ -11,7 +11,7 @@ def test_readiness_checks_stores_but_does_not_require_ollama(client,app):
 
 def test_showcase_has_five_milestones_and_fixed_evidence_allowlist(client):
     response=client.get('/api/showcase');assert response.status_code==200 and len(response.json['milestones'])==5
-    assert response.json['repository_visibility']=='private'
+    assert response.json['repository_visibility']=='public'
     assert client.get('/api/showcase/evidence/reserved').status_code==200
     assert client.get('/api/showcase/evidence/not-allowed').status_code==404
 

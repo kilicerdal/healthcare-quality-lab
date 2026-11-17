@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "scope": "Newly authored sixteen-input evaluation cohort, frozen before these provider runs. Scenario families are known and references are inspectable. Not a blind holdout or population accuracy estimate. Authored wrappers; providers generate expectations and compact calculations.",
+  "cases": [
+    {
+      "id": "odd-amount",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 137891
+      }
+    },
+    {
+      "id": "near-deductible",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 10037
+      }
+    },
+    {
+      "id": "below-deductible",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 9973
+      }
+    },
+    {
+      "id": "above-cap",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 282467
+      }
+    },
+    {
+      "id": "one-cent-below-cap",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 209999
+      }
+    },
+    {
+      "id": "one-cent-above-cap",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 210003
+      }
+    },
+    {
+      "id": "large-valid",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 99999997
+      }
+    },
+    {
+      "id": "negative",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": -17
+      }
+    },
+    {
+      "id": "inactive",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 137893,
+        "active": false
+      }
+    },
+    {
+      "id": "network-denial",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 137897,
+        "in_network": false
+      }
+    },
+    {
+      "id": "authorization",
+      "data": {
+        "plan_id": "commercial_hmo",
+        "service": "hospital",
+        "amount_cents": 182731,
+        "authorized": false
+      }
+    },
+    {
+      "id": "formulary",
+      "data": {
+        "plan_id": "medicare_d",
+        "service": "prescription",
+        "amount_cents": 67391,
+        "formulary": false
+      }
+    },
+    {
+      "id": "unsupported",
+      "data": {
+        "plan_id": "medicare_a",
+        "service": "dental",
+        "amount_cents": 34127
+      }
+    },
+    {
+      "id": "network-independent",
+      "data": {
+        "plan_id": "medicare_b",
+        "service": "medical",
+        "amount_cents": 158273,
+        "in_network": false
+      }
+    },
+    {
+      "id": "denial-precedence",
+      "data": {
+        "plan_id": "commercial_hmo",
+        "service": "hospital",
+        "amount_cents": 133771,
+        "active": false,
+        "in_network": false,
+        "authorized": false
+      }
+    },
+    {
+      "id": "prescription-approved",
+      "data": {
+        "plan_id": "medicare_d",
+        "service": "prescription",
+        "amount_cents": 57319
+      }
+    }
+  ]
+}

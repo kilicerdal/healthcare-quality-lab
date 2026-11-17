@@ -1,18 +1,48 @@
-# Healthcare Quality Lab — V5.7
+# Healthcare Quality Lab — V5.8
 
-A quality engineering portfolio built with **Python, Flask, SQLite, pytest, Playwright and local Ollama**.
+A quality engineering portfolio built with **Python, Flask, SQLite, pytest, Playwright, local Ollama and an explicit OpenAI evaluation CLI**.
 
 The central question is simple: **does a test detect the wrong business result, or does it only pass?** This lab follows synthetic claims from evaluation through approval and payment, checks AI-created expectations against an independent reference model, and measures reviewed tests against known defects.
 
 **Synthetic data only.** Plan amounts, demo identities and payments are invented. This is a local teaching application, not a real payer system or a compliance certification.
 
-**Start here:** [Case study](docs/CASE_STUDY.md) · [Guided demo](docs/V5.7_DEMO.md) · [Code examples](#review-the-code) · [Run locally](#run-locally)
+**Start here:** [Two-minute engineering demo](docs/V5.8_DEMO.md) · [Case study](docs/CASE_STUDY.md) · [Guided demo](docs/V5.7_DEMO.md) · [Code examples](#review-the-code) · [Run locally](#run-locally)
+
+## V5.8: inspect the engineering proof
+
+Run competing payment requests, interrupt a worker before commit, investigate an incorrect expectation, and see a requirement change invalidate a review. Each authored scenario executes against disposable synthetic state, exposes expected/observed values and retains provenance. No model is called by the proof page.
+
+```sh
+python3 -m tools.bootstrap --browser
+.venv/bin/python -m tools.demo --state-dir .local/demo-first-run --port 8895
+```
+
+Open [Engineering proof](http://127.0.0.1:8895/#proof). The launcher refuses nonempty directories and never resets your existing work. Historical experiment IDs are unnecessary.
+
+[Current engineering report](docs/V5.8_REPORT.md) · [Actual captioned walkthrough](https://github.com/kilicerdal/healthcare-quality-lab/releases/tag/v5.8.0) · [Observed authored scenario evidence](artifacts/showcase/deterministic-evidence.json)
+
+![Actual concurrent payment demonstration](docs/images/engineering-proof-desktop.png)
+
+## Recorded provider comparison
+
+Sixteen newly authored inputs, three trials each. Providers generate expectations and compact calculations inside an authored wrapper. Both receive the same base prompt/schema and synthetic rules; transport, decoding, hardware and model size differ.
+
+| Provider | Literal expectations | Calculation records | Eligible for review | Median latency | API usage cost estimate |
+| --- | --- | --- | --- | --- | --- |
+| OpenAI GPT-6.1 Terra | 48/48 | 48/48 | 48/48 | 2.22 s | $0.04056 for the comparison |
+| Local Ollama qwen3.5:27b | 48/48 | 42/48 | 42/48 | 9.75 s | Local hardware/electricity cost not measured |
+
+Ollama's six blocked outputs had matching expected outcomes but incorrect or incomplete calculation records. Both providers repeated identical expectations across all sixteen inputs under the recorded settings. That does not establish stochastic robustness or general accuracy. All outputs remain unapproved; none was automatically executed.
+
+The separate pilot plus comparison made 49 OpenAI requests: **$0.04218 usage-derived estimate**, with **$2.68744 conservatively reserved against the $15 cap**. These are different accounting measures, not an account billing invoice. No automatic retries or cloud fallback were used.
+
+[Full trial evidence, failures, settings and budget](artifacts/showcase/provider-comparison.json) · [Evaluation commands and limits](docs/V5.8_DEMO.md)
 
 ## Results you can inspect
 
 | Evidence | Recorded result | What it means |
 | --- | --- | --- |
-| Deterministic regression | **622 passed:** 510 unit, 70 API, 42 Chromium | Offline provider doubles; actual browser flows. [Fresh publication verification](docs/PUBLICATION_REVIEW.md#verification) |
+| Deterministic regression | **665 passed:** 538 unit, 81 API, 46 Chromium | Offline provider doubles; actual browser flows. [Current verification](artifacts/verification.json) |
 | Focused local AI generation | **20/20** correct first-attempt assertions/calculations | A frozen development cohort using local `qwen3.5:27b`; zero corrections or reference replacements. [Measurement](artifacts/v5.7/focused-measurement.json) |
 | Reviewed AI-derived core suite | **12/12** known fault seeds detected | One original AI workflow plus an evaluator assembled from seven reviewed model outputs. Known seeds, not exhaustive defect coverage. [Report](docs/V5.7_REPORT.md) |
 | Final guided showcase | **0 remaining gaps** among 11 defined scenario predicates | The four-case final suite closes this particular gap map. It does not establish complete application coverage. |
@@ -77,7 +107,7 @@ The model has no shell, browser, database or arbitrary network tools. The case l
 
 ## Reports and release operations
 
-Read the [case study](docs/CASE_STUDY.md), [architecture](docs/ARCHITECTURE.md), [operations guide](docs/OPERATIONS.md) and [publication review](docs/PUBLICATION_REVIEW.md).
+Read the [V5.8 report](docs/V5.8_REPORT.md), [current demo](docs/V5.8_DEMO.md), [case study](docs/CASE_STUDY.md), [architecture](docs/ARCHITECTURE.md), [operations guide](docs/OPERATIONS.md) and [publication review](docs/PUBLICATION_REVIEW.md).
 
 Historical reports: [V5.1](docs/V5.1_REPORT.md) · [V5.2](docs/V5.2_REPORT.md) · [V5.3](docs/V5.3_REPORT.md) · [V5.4](docs/V5.4_REPORT.md) · [V5.5](docs/V5.5_REPORT.md) · [V5.6](docs/V5.6_REPORT.md) · [V5.7](docs/V5.7_REPORT.md).
 
@@ -85,7 +115,7 @@ After fresh verification, build and inspect a source package:
 
 ```sh
 .venv/bin/python -m tools.release build
-.venv/bin/python -m tools.release inspect releases/v5.7.0-source.zip
+.venv/bin/python -m tools.release inspect releases/v5.8.0-source.zip
 ```
 
 The operations guide covers staging, activation and rollback. Packages exclude local databases, environments, browser binaries and caches. Checksums establish integrity, not a signed publisher identity.

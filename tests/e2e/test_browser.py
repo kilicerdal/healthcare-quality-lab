@@ -96,7 +96,7 @@ def test_mobile_layout_and_evaluation(page,live_url):
 def test_report_link_opens_the_local_engineering_report(page,live_url):
     open_workspace(page,live_url)
     with page.expect_popup() as popup_info:
-        page.get_by_role("link",name="Engineering report",exact=False).click()
+        page.get_by_role("link",name="Engineering report ↗",exact=True).click()
     report=popup_info.value
-    expect(report).to_have_title("Healthcare Quality Lab V5.7 Engineering Report")
-    expect(report.get_by_role("heading",level=1)).to_have_text("Healthcare Quality Lab V5.7 Engineering Report")
+    expect(report).to_have_title("Healthcare Quality Lab V5.8 Engineering Report")
+    expect(report.get_by_role("heading",level=1)).to_have_text("Healthcare Quality Lab V5.8 Engineering Report")

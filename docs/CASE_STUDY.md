@@ -40,6 +40,17 @@ These are bounded results. The cohort was used during development; both model an
 - [Coverage and known-fault scoring](../healthcare_quality/coverage_lab.py)
 - [Guided local demo](V5.7_DEMO.md)
 
-The deterministic regression has **622 tests** across unit, API and Chromium layers. It uses offline provider doubles. Actual local model measurements are separate. The runtime stays on loopback, uses invented data and does not claim production authentication or healthcare compliance.
+The retained V5.7 regression recorded **622 tests** across unit, API and Chromium layers. Current V5.8 verification records **665 tests**. It uses offline provider doubles. Actual local model measurements are separate. The runtime stays on loopback, uses invented data and does not claim production authentication or healthcare compliance.
 
 The engineering value is the chain of evidence: a proposal, an independently checked expectation, a reviewed snapshot, a healthy control and an observed defect. Each link can be inspected.
+
+
+## V5.8: prove payment integrity and inspect provider failures
+
+The new engineering proof page runs two actual concurrent HTTP payment requests, demonstrates rollback after a real worker-process interruption, and exposes request IDs and committed history. An isolated requirement change exercises the actual stale-review execution guard. These authored demonstrations use disposable state; they do not claim model generation.
+
+A new sixteen-input, three-trial provider evaluation separates expected outcomes from calculation records. Both OpenAI GPT-6.1 Terra and local qwen3.5:27b matched all 48 literal expected outcomes. OpenAI matched all 48 calculation records; six local outputs had wrong or incomplete calculation fields and were blocked. Eligible outputs were never automatically approved or executed. This small cohort and differing runtime settings do not establish a general provider ranking.
+
+The comparison cost estimate was $0.04056, or $0.04218 including a separate pilot. A persistent $15 ledger retained $2.68744 in conservative reservations. Token-derived estimates, reservations and billing invoices are distinct.
+
+[Current report](V5.8_REPORT.md) · [Two-minute guided demo](V5.8_DEMO.md) · [All recorded trials](../artifacts/showcase/provider-comparison.json)
