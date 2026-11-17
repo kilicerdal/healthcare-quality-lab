@@ -126,4 +126,4 @@ Codex built the implementation. Ollama performed the recorded local generation e
 
 ## License
 
-No open-source license has been granted for this project's original code. It is published for portfolio review; public visibility does not grant a general reuse license. Third-party dependencies retain their own licenses.
+This project's original code is licensed under the [MIT License](LICENSE), copyright (c) 2026 Erdal Kilic. Third-party dependencies and separately attributed materials retain their own licenses.
