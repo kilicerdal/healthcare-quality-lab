@@ -1,0 +1,19 @@
+{
+  "version": "7.0.0",
+  "status": "passed",
+  "source_hash": "2ce9329c4b4245c0db3d8477c3f3a3cbac08795c88a91f7caff2fc05a352fe5f",
+  "total": 1040,
+  "passed": 1040,
+  "failed": 0,
+  "skipped": 0,
+  "browsers": {
+    "chromium": 67,
+    "firefox": 67,
+    "webkit": 67
+  },
+  "unit": 712,
+  "api": 127,
+  "e2e": 201,
+  "ci_executed": false,
+  "scope": "Complete accepted-source Linux unit/API plus every E2E case in three browsers; overlaps the standard 906-test verification."
+}

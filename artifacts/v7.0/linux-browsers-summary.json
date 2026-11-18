@@ -1,19 +1,19 @@
 {
-  "version": "7.0.0",
+  "version": "7.0.1",
   "status": "passed",
-  "source_hash": "2ce9329c4b4245c0db3d8477c3f3a3cbac08795c88a91f7caff2fc05a352fe5f",
-  "total": 1040,
-  "passed": 1040,
+  "source_hash": "4175ba30ccfb41cb3bbda5426d0ff1603d3f2ce47e056fc422dff533e70721b7",
+  "total": 1043,
+  "passed": 1043,
   "failed": 0,
   "skipped": 0,
   "browsers": {
-    "chromium": 67,
-    "firefox": 67,
-    "webkit": 67
+    "chromium": 68,
+    "firefox": 68,
+    "webkit": 68
   },
   "unit": 712,
   "api": 127,
-  "e2e": 201,
+  "e2e": 204,
   "ci_executed": false,
-  "scope": "Complete accepted-source Linux unit/API plus every E2E case in three browsers; overlaps the standard 906-test verification."
+  "scope": "Complete patch regression; overlaps standard 907 checks. Earlier 906/1040 results and failed hosted WebKit sweep are preserved as pre-patch evidence."
 }

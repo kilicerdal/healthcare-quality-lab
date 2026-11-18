@@ -1,21 +1,21 @@
 {
   "status": "passed",
-  "version": "7.0.0",
-  "recorded_at": "2026-11-18T12:28:20.071068-05:00",
+  "version": "7.0.1",
+  "recorded_at": "2026-11-18T12:49:00.480534-05:00",
   "recorded_date": "2026-11-18",
-  "source_hash": "2ce9329c4b4245c0db3d8477c3f3a3cbac08795c88a91f7caff2fc05a352fe5f",
+  "source_hash": "4175ba30ccfb41cb3bbda5426d0ff1603d3f2ce47e056fc422dff533e70721b7",
   "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
   "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
-  "tests_total": 906,
-  "tests_passed": 906,
+  "tests_total": 907,
+  "tests_passed": 907,
   "tests_failed": 0,
   "tests_skipped": 0,
   "categories": {
     "unit": 712,
     "api": 127,
-    "e2e": 67
+    "e2e": 68
   },
-  "e2e_tests": 67,
+  "e2e_tests": 68,
   "seeded_defects_detected": 7,
   "seeded_defects_total": 7,
   "workflow_seeded_defects_detected": 5,
@@ -23,7 +23,7 @@
   "ai_case_language": "declarative DSL 1.0",
   "live_model_in_core_tests": false,
   "reference_examples": 28,
-  "duration_seconds": 121.35,
+  "duration_seconds": 127.22,
   "environment": {
     "python": "3.13.18",
     "platform": "Linux-6.8.0-117-generic-aarch64-with-glibc2.36",
