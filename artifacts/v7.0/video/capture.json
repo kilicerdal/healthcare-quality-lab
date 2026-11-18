@@ -1,0 +1,7 @@
+{
+  "source_hash": "2ce9329c4b4245c0db3d8477c3f3a3cbac08795c88a91f7caff2fc05a352fe5f",
+  "duration_seconds": 81.14,
+  "live_model_calls": 0,
+  "passed": true,
+  "scope": "Actual headless Chromium authored UI execution and historical saved model measurements, with captions and trace. No new model calls, voice narration or interactive-store writes."
+}

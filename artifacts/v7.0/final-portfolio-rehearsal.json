@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "source_hash": "2ce9329c4b4245c0db3d8477c3f3a3cbac08795c88a91f7caff2fc05a352fe5f",
+  "authored_control": {
+    "case_id": "AB-ADJUST",
+    "review_required": true,
+    "scripted_engineering_review": true,
+    "http_passed": 1,
+    "http_failed": 0
+  },
+  "traceability": {
+    "current_passing_cost_sharing_scenarios": 1,
+    "what_if_affected": 1,
+    "contract_applied": false
+  },
+  "known_defect": {
+    "healthy_failures": 0,
+    "fault_failures": 1,
+    "restored_failures": 0,
+    "evidence_hash": "9f4d959994858fa2000267a790c6276e2e057ef71ccd5cf0bc190b8d565a8eee"
+  },
+  "reports": {
+    "6.8": 200,
+    "6.9": 200,
+    "6.10": 200,
+    "6.11": 200,
+    "6.12": 200,
+    "7.0": 200
+  },
+  "live_model_calls": 0,
+  "scope": "Actual connected UI/API services in disposable synthetic state. Authored control with explicit scripted review; no AI generation, human-approval claim, real payment or interactive data write."
+}

@@ -3,6 +3,8 @@
 [![Quality and release checks](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml)
 ![Tested Python 3.11, 3.12 and 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?logo=python) ![Tests: pytest and Playwright](https://img.shields.io/badge/Tests-pytest%20%2B%20Playwright-2EAD33) [![MIT license](https://img.shields.io/github/license/kilicerdal/healthcare-quality-lab)](LICENSE)
 
+**Final local checks:** 906/906 standard and 1040/1040 complete three-browser checks passed (overlapping totals). [Complete delivery report](docs/V6.8_TO_V7.0_DELIVERY_REPORT.md).
+
 **Review V7.0:** [Fresh-start guided demo](docs/V7.0_DEMO.md) · [Detailed final report](docs/V7.0_REPORT.md) · [Architecture](docs/V7.0_ARCHITECTURE.md) · [AI learning guide](docs/AI_LEARNING_GUIDE.md).
 
 **Earlier review in five minutes:** [What to run, which failure to inspect, and what it proves](docs/REVIEWER_GUIDE.md) · [Evidence provenance](docs/EVIDENCE.md).

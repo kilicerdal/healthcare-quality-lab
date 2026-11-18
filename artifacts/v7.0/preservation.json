@@ -1,0 +1,185 @@
+{
+  "original_stores": {
+    "advanced-v63.sqlite": {
+      "ai_experiments": {
+        "original_rows": 1,
+        "current_rows": 1,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "claims-v2.sqlite": {
+      "claims": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      },
+      "events": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      },
+      "payments": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "integrations-v67.sqlite": {
+      "ai_experiments": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "ai-v3.sqlite": {
+      "ai_experiments": {
+        "original_rows": 52,
+        "current_rows": 52,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "v58-reserved.sqlite": {
+      "ai_experiments": {
+        "original_rows": 2,
+        "current_rows": 2,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "benefits-v60.sqlite": {
+      "benefit_claims": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      },
+      "accumulators": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      },
+      "benefit_ledger": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      },
+      "benefit_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "advanced-evaluations-v64.sqlite": {
+      "ai_experiments": {
+        "original_rows": 4,
+        "current_rows": 4,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "coverage-v55.sqlite": {
+      "ai_experiments": {
+        "original_rows": 19,
+        "current_rows": 19,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "evaluation-v4.sqlite": {
+      "ai_experiments": {
+        "original_rows": 3,
+        "current_rows": 3,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "research-v59.sqlite": {
+      "ai_experiments": {
+        "original_rows": 1,
+        "current_rows": 1,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "advanced-reviewed-v67.sqlite": {
+      "ai_experiments": {
+        "original_rows": 2,
+        "current_rows": 2,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "v63-development.sqlite": {
+      "ai_experiments": {
+        "original_rows": 1,
+        "current_rows": 1,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    },
+    "review-audit.sqlite": {
+      "review_audit": {
+        "original_rows": 4,
+        "current_rows": 4,
+        "preserved": true
+      }
+    },
+    "reliability-v58.sqlite": {
+      "ai_experiments": {
+        "original_rows": 2,
+        "current_rows": 2,
+        "preserved": true
+      },
+      "studio_operations": {
+        "original_rows": 0,
+        "current_rows": 0,
+        "preserved": true
+      }
+    }
+  },
+  "v4_working_draft_sha256": "26f7f5bf44d5ee30843e821ce7cdb07e22f273f7bc1d73ac9c43d34a5eaa7801",
+  "all_original_rows_preserved": true,
+  "scope": "Baseline covers 14 existing stores. Additional new records/stores are allowed; no original row was removed or changed."
+}
