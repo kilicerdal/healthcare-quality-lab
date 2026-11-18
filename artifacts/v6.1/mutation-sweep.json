@@ -1,0 +1,295 @@
+{
+  "source_hash": "8e2144be4220fdc513df80e468962e6aac9eabf0aaee19eeb39d52c90648edf8",
+  "total": 26,
+  "detected": 26,
+  "survived": [],
+  "mutants": [
+    {
+      "site": 67,
+      "original": "allowed - other",
+      "mutated": "allowed + other",
+      "detected": true,
+      "witness": {
+        "amount": 1,
+        "service": "medical",
+        "other_payer": 1
+      }
+    },
+    {
+      "site": 148,
+      "original": "min(eligible, max(0, policy['individual_deductible'] - ind['deductible']), max(0, policy['family_deductible'] - fam['deductible']))",
+      "mutated": "max(eligible, max(0, policy['individual_deductible'] - ind['deductible']), max(0, policy['family_deductible'] - fam['deductible']))",
+      "detected": true,
+      "witness": {
+        "amount": 5003,
+        "service": "medical",
+        "other_payer": 2119
+      }
+    },
+    {
+      "site": 150,
+      "original": "min(eligible - ded, policy['copay'])",
+      "mutated": "max(eligible - ded, policy['copay'])",
+      "detected": true,
+      "witness": {
+        "amount": 1,
+        "service": "medical",
+        "other_payer": 1
+      }
+    },
+    {
+      "site": 152,
+      "original": "eligible - ded - copay",
+      "mutated": "eligible - ded + copay",
+      "detected": true,
+      "witness": {
+        "amount": 5003,
+        "service": "medical",
+        "other_payer": 2119
+      }
+    },
+    {
+      "site": 154,
+      "original": "remaining * policy['payer_bps'] // 10000",
+      "mutated": "remaining * policy['payer_bps'] * 10000",
+      "detected": true,
+      "witness": {
+        "amount": 5003,
+        "service": "medical",
+        "other_payer": 2119
+      }
+    },
+    {
+      "site": 156,
+      "original": "min(eligible - preliminary, max(0, policy['individual_oop'] - ind['oop']), max(0, policy['family_oop'] - fam['oop']))",
+      "mutated": "max(eligible - preliminary, max(0, policy['individual_oop'] - ind['oop']), max(0, policy['family_oop'] - fam['oop']))",
+      "detected": true,
+      "witness": {
+        "amount": 1,
+        "service": "medical",
+        "other_payer": 1
+      }
+    },
+    {
+      "site": 158,
+      "original": "min(eligible - member, max(0, policy['annual_benefit'] - ind['benefit']))",
+      "mutated": "max(eligible - member, max(0, policy['annual_benefit'] - ind['benefit']))",
+      "detected": true,
+      "witness": {
+        "amount": 1,
+        "service": "medical",
+        "other_payer": 1
+      }
+    },
+    {
+      "site": 160,
+      "original": "eligible - member - payout",
+      "mutated": "eligible - member + payout",
+      "detected": true,
+      "witness": {
+        "amount": 5003,
+        "service": "medical",
+        "other_payer": 2119
+      }
+    },
+    {
+      "site": 162,
+      "original": "min(ded, member)",
+      "mutated": "max(ded, member)",
+      "detected": true,
+      "witness": {
+        "amount": 5003,
+        "service": "medical",
+        "other_payer": 2119
+      }
+    },
+    {
+      "site": 212,
+      "original": "max(0, policy['individual_deductible'] - ind['deductible'])",
+      "mutated": "min(0, policy['individual_deductible'] - ind['deductible'])",
+      "detected": true,
+      "witness": {
+        "amount": 5000,
+        "service": "medical",
+        "other_payer": 3050
+      }
+    },
+    {
+      "site": 213,
+      "original": "max(0, policy['family_deductible'] - fam['deductible'])",
+      "mutated": "min(0, policy['family_deductible'] - fam['deductible'])",
+      "detected": true,
+      "witness": {
+        "amount": 5000,
+        "service": "medical",
+        "other_payer": 3050
+      }
+    },
+    {
+      "site": 216,
+      "original": "eligible - ded",
+      "mutated": "eligible + ded",
+      "detected": true,
+      "witness": {
+        "amount": 5000,
+        "service": "medical",
+        "other_payer": 3050
+      }
+    },
+    {
+      "site": 219,
+      "original": "eligible - ded",
+      "mutated": "eligible + ded",
+      "detected": true,
+      "witness": {
+        "amount": 5000,
+        "service": "medical",
+        "other_payer": 3050
+      }
+    },
+    {
+      "site": 223,
+      "original": "remaining * policy['payer_bps']",
+      "mutated": "remaining + policy['payer_bps']",
+      "detected": true,
+      "witness": {
+        "amount": 5003,
+        "service": "medical",
+        "other_payer": 2119
+      }
+    },
+    {
+      "site": 228,
+      "original": "eligible - preliminary",
+      "mutated": "eligible + preliminary",
+      "detected": true,
+      "witness": {
+        "amount": 5003,
+        "service": "medical",
+        "other_payer": 2119
+      }
+    },
+    {
+      "site": 229,
+      "original": "max(0, policy['individual_oop'] - ind['oop'])",
+      "mutated": "min(0, policy['individual_oop'] - ind['oop'])",
+      "detected": true,
+      "witness": {
+        "amount": 5000,
+        "service": "medical",
+        "other_payer": 3050
+      }
+    },
+    {
+      "site": 230,
+      "original": "max(0, policy['family_oop'] - fam['oop'])",
+      "mutated": "min(0, policy['family_oop'] - fam['oop'])",
+      "detected": true,
+      "witness": {
+        "amount": 5000,
+        "service": "medical",
+        "other_payer": 3050
+      }
+    },
+    {
+      "site": 233,
+      "original": "eligible - member",
+      "mutated": "eligible + member",
+      "detected": true,
+      "witness": {
+        "amount": 5000,
+        "service": "medical",
+        "other_payer": 3050
+      }
+    },
+    {
+      "site": 234,
+      "original": "max(0, policy['annual_benefit'] - ind['benefit'])",
+      "mutated": "min(0, policy['annual_benefit'] - ind['benefit'])",
+      "detected": true,
+      "witness": {
+        "amount": 5003,
+        "service": "medical",
+        "other_payer": 2119
+      }
+    },
+    {
+      "site": 236,
+      "original": "eligible - member",
+      "mutated": "eligible + member",
+      "detected": true,
+      "witness": {
+        "amount": 5000,
+        "service": "medical",
+        "other_payer": 3050
+      }
+    },
+    {
+      "site": 289,
+      "original": "ind[k] - start[k]",
+      "mutated": "ind[k] + start[k]",
+      "detected": true,
+      "witness": {
+        "amount": 1,
+        "service": "medical",
+        "other_payer": 1
+      }
+    },
+    {
+      "site": 316,
+      "original": "policy['individual_deductible'] - ind['deductible']",
+      "mutated": "policy['individual_deductible'] + ind['deductible']",
+      "detected": true,
+      "witness": {
+        "amount": 100000,
+        "service": "medical",
+        "other_payer": 1846
+      }
+    },
+    {
+      "site": 319,
+      "original": "policy['family_deductible'] - fam['deductible']",
+      "mutated": "policy['family_deductible'] + fam['deductible']",
+      "detected": true,
+      "witness": {
+        "amount": 5003,
+        "service": "medical",
+        "other_payer": 2119
+      }
+    },
+    {
+      "site": 340,
+      "original": "policy['individual_oop'] - ind['oop']",
+      "mutated": "policy['individual_oop'] + ind['oop']",
+      "detected": true,
+      "witness": {
+        "amount": 50000,
+        "service": "medical",
+        "other_payer": 24088
+      }
+    },
+    {
+      "site": 343,
+      "original": "policy['family_oop'] - fam['oop']",
+      "mutated": "policy['family_oop'] + fam['oop']",
+      "detected": true,
+      "witness": {
+        "amount": 9999,
+        "service": "medical",
+        "other_payer": 6679
+      }
+    },
+    {
+      "site": 350,
+      "original": "policy['annual_benefit'] - ind['benefit']",
+      "mutated": "policy['annual_benefit'] + ind['benefit']",
+      "detected": true,
+      "witness": {
+        "amount": 210000,
+        "service": "medical",
+        "other_payer": 100981
+      }
+    }
+  ],
+  "scope": "Bounded arithmetic/min/max AST mutations of trusted pricing code, tested against separate Fraction oracle. Survivors include potentially equivalent mutants; not exhaustive mutation coverage."
+}

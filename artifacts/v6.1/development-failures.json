@@ -1,0 +1,30 @@
+{
+  "mutation_phases": [
+    {
+      "detected": 19,
+      "total": 26,
+      "note": "Initial money-only zero-state witnesses"
+    },
+    {
+      "detected": 23,
+      "total": 26,
+      "note": "Added nonzero accumulator checks"
+    },
+    {
+      "detected": 24,
+      "total": 26,
+      "note": "Family and allocation witnesses still masked two changes"
+    },
+    {
+      "detected": 26,
+      "total": 26,
+      "note": "Independent family/member/OOP states and allocation deltas"
+    }
+  ],
+  "local_browsers": {
+    "webkit": "3 passed",
+    "firefox": "3 launch errors; macOS framebuffer/sandbox error before tests",
+    "failure_log": ".local/v62-cross-browser.log"
+  },
+  "scope": "Observed development summaries; detailed final mutant witnesses are retained in mutation-sweep.json. Linux CI supplies Firefox validation."
+}

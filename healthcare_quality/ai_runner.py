@@ -35,7 +35,12 @@ def perform(step,service,*,evaluation_defect="none"):
         return observed,raw
 
 
-def run_cases(cases,*,workflow_defect="none",evaluation_defect="none"):
+def run_cases(cases,*,workflow_defect="none",evaluation_defect="none",transport="service"):
+    if transport not in ("service","http"):raise ValueError("Unknown execution transport")
+    if transport=="http":
+        if workflow_defect!="none" or evaluation_defect!="none":raise ValueError("HTTP adapter does not inject internal faults")
+        from healthcare_quality.http_runner import run_http_cases
+        return run_http_cases(cases)
     if evaluation_defect not in EVALUATION_DEFECTS:raise ValueError("Unknown internal evaluator fault profile")
     if workflow_defect not in WORKFLOW_DEFECTS:raise ValueError("Unknown internal fault profile")
     if not 1<=len(cases)<=MAX_CASES:raise ValueError("Case budget exceeded")
