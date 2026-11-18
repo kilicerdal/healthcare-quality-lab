@@ -29,3 +29,5 @@ Expected/observed values come from actual authored scenarios against disposable 
 ```
 
 Full verification includes browser checks and the known evaluation/workflow seeds. It requires Chromium, but no paid key or model. [Compatibility matrix](MAINTENANCE.md) · [Evidence provenance](EVIDENCE.md) · [Architecture](ARCHITECTURE.md).
+
+[How this project complements the portfolio](https://github.com/kilicerdal/eai-engineering/blob/main/docs/PROJECTS.md).

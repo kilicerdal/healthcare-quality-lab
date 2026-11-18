@@ -1,7 +1,7 @@
 # Healthcare Quality Lab — V5.8
 
 [![Quality and release checks](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml)
-![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python) ![Tests: pytest and Playwright](https://img.shields.io/badge/Tests-pytest%20%2B%20Playwright-2EAD33) [![MIT license](https://img.shields.io/github/license/kilicerdal/healthcare-quality-lab)](LICENSE)
+![Tested Python 3.11, 3.12 and 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?logo=python) ![Tests: pytest and Playwright](https://img.shields.io/badge/Tests-pytest%20%2B%20Playwright-2EAD33) [![MIT license](https://img.shields.io/github/license/kilicerdal/healthcare-quality-lab)](LICENSE)
 
 **Review in five minutes:** [What to run, which failure to inspect, and what it proves](docs/REVIEWER_GUIDE.md) · [Evidence provenance](docs/EVIDENCE.md).
 
