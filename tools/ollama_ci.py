@@ -36,7 +36,7 @@ def main():
     # Lima's host bridge is verified from this isolated VM before registration.
     bridge='192.168.5.2'
     probe=command(docker+['run','--rm','--entrypoint','python','python:3.13-slim-bookworm','-c',"import urllib.request,json;print(json.load(urllib.request.urlopen('http://192.168.5.2:11434/api/tags',timeout=5))['models'][0]['name'])"])
-    nonce=uuid4().hex;name='hql-ollama-'+nonce;label=name;a.output.parent.mkdir(parents=True,exist_ok=True);log=a.output.with_suffix('.private.log');run_id=None;runner_process=None
+    nonce=uuid4().hex;name='hql-ollama-'+nonce;label=name;a.output.parent.mkdir(parents=True,exist_ok=True);log=Path('.local/runner-logs')/(name+'.log');log.parent.mkdir(parents=True,exist_ok=True,mode=0o700);run_id=None;runner_process=None
     try:
         with log.open('w') as out:
             log.chmod(0o600)
