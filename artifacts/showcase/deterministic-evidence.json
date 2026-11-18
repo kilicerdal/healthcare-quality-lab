@@ -1,0 +1,738 @@
+{
+  "recorded_at": "2026-11-17T19:56:14.283619+00:00",
+  "scenarios": [
+    {
+      "run_id": "4ea84c89154e4db8bb1bf1b7d11f6752",
+      "scenario": "oracle",
+      "title": "A plausible AI expectation is blocked",
+      "recorded_at": "2026-11-17T19:56:14.286943+00:00",
+      "status": "passed",
+      "provenance": "Authored deterministic scenario; executed now against disposable synthetic state.",
+      "live_model_calls": 0,
+      "paid_api_calls": 0,
+      "checks": [
+        {
+          "label": "Wrong expectation cannot reach review",
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        {
+          "label": "Corrected expectation reaches review",
+          "expected": true,
+          "observed": true,
+          "passed": true
+        },
+        {
+          "label": "Authored healthy control passes",
+          "expected": 1,
+          "observed": 1,
+          "passed": true
+        },
+        {
+          "label": "Seeded deductible defect produces a failed assertion",
+          "expected": 1,
+          "observed": 1,
+          "passed": true
+        },
+        {
+          "label": "Fault was a mismatch, not an execution error",
+          "expected": null,
+          "observed": null,
+          "passed": true
+        }
+      ],
+      "investigation": {
+        "input": {
+          "plan_id": "commercial_ppo",
+          "service": "medical",
+          "amount_cents": 112345
+        },
+        "rule": {
+          "id": "HC-007",
+          "name": "Payout calculation",
+          "risk": "Overpayment, negative payout, or policy-limit bypass.",
+          "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+        },
+        "proposed": {
+          "status": 200,
+          "decision": "approved",
+          "reason": "COVERED",
+          "payout_cents": 112345
+        },
+        "independent_expected": {
+          "status": 200,
+          "decision": "approved",
+          "reason": "COVERED",
+          "payout_cents": 102345
+        },
+        "mismatches": [
+          {
+            "step": 1,
+            "field": "payout_cents",
+            "proposed": 112345,
+            "reference": 102345,
+            "observable": true,
+            "explanation": "112345 - deductible 10000 = 102345; below payout cap 200000"
+          }
+        ],
+        "actual_fault_observation": {
+          "status": 200,
+          "decision": "approved",
+          "reason": "COVERED",
+          "payout_cents": 112345
+        },
+        "healthy_control": {
+          "results": [
+            {
+              "case_id": "AI-PROOF-ORACLE",
+              "title": "Inspect the payout before trusting the case",
+              "rule_ids": [
+                "HC-007"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "action": "evaluate",
+                  "actor": "none",
+                  "data": {
+                    "plan_id": "commercial_ppo",
+                    "service": "medical",
+                    "amount_cents": 112345
+                  },
+                  "expected": {
+                    "status": 200,
+                    "decision": "approved",
+                    "reason": "COVERED",
+                    "payout_cents": 102345
+                  },
+                  "observed": {
+                    "status": 200,
+                    "decision": "approved",
+                    "reason": "COVERED",
+                    "payout_cents": 102345
+                  },
+                  "assertions": [
+                    {
+                      "field": "status",
+                      "expected": 200,
+                      "observed": 200,
+                      "passed": true
+                    },
+                    {
+                      "field": "decision",
+                      "expected": "approved",
+                      "observed": "approved",
+                      "passed": true
+                    },
+                    {
+                      "field": "reason",
+                      "expected": "COVERED",
+                      "observed": "COVERED",
+                      "passed": true
+                    },
+                    {
+                      "field": "payout_cents",
+                      "expected": 102345,
+                      "observed": 102345,
+                      "passed": true
+                    }
+                  ],
+                  "evidence": {
+                    "version": "5.8.0",
+                    "synthetic": true,
+                    "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                    "request": {
+                      "plan_id": "commercial_ppo",
+                      "service": "medical",
+                      "amount_cents": 112345,
+                      "active": true,
+                      "in_network": true,
+                      "authorized": true,
+                      "formulary": true
+                    },
+                    "plan_name": "Commercial PPO",
+                    "decision": "approved",
+                    "reason": "COVERED",
+                    "payout_cents": 102345,
+                    "trace": [
+                      {
+                        "rule_id": "HC-001",
+                        "outcome": "passed",
+                        "detail": "Request satisfies the input contract"
+                      },
+                      {
+                        "rule_id": "HC-002",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-003",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-004",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-005",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-006",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-007",
+                        "outcome": "passed",
+                        "detail": "Claim 112345 cents; deductible 10000; cap 200000; payout 102345"
+                      }
+                    ]
+                  },
+                  "passed": true
+                }
+              ],
+              "execution_error": null,
+              "passed": true
+            }
+          ],
+          "passed": 1,
+          "failed": 0,
+          "actions_executed": 1,
+          "action_budget": 32,
+          "duration_ms": 1.03,
+          "isolation": "Fresh SQLite file per case; all execution files removed after the run. Interactive claims are never used.",
+          "scope": "Generated declarative cases against Python services, not generated browser automation or an independent proof of oracle correctness."
+        },
+        "seeded_fault": {
+          "results": [
+            {
+              "case_id": "AI-PROOF-ORACLE",
+              "title": "Inspect the payout before trusting the case",
+              "rule_ids": [
+                "HC-007"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "action": "evaluate",
+                  "actor": "none",
+                  "data": {
+                    "plan_id": "commercial_ppo",
+                    "service": "medical",
+                    "amount_cents": 112345
+                  },
+                  "expected": {
+                    "status": 200,
+                    "decision": "approved",
+                    "reason": "COVERED",
+                    "payout_cents": 102345
+                  },
+                  "observed": {
+                    "status": 200,
+                    "decision": "approved",
+                    "reason": "COVERED",
+                    "payout_cents": 112345
+                  },
+                  "assertions": [
+                    {
+                      "field": "status",
+                      "expected": 200,
+                      "observed": 200,
+                      "passed": true
+                    },
+                    {
+                      "field": "decision",
+                      "expected": "approved",
+                      "observed": "approved",
+                      "passed": true
+                    },
+                    {
+                      "field": "reason",
+                      "expected": "COVERED",
+                      "observed": "COVERED",
+                      "passed": true
+                    },
+                    {
+                      "field": "payout_cents",
+                      "expected": 102345,
+                      "observed": 112345,
+                      "passed": false
+                    }
+                  ],
+                  "evidence": {
+                    "version": "5.8.0",
+                    "synthetic": true,
+                    "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                    "request": {
+                      "plan_id": "commercial_ppo",
+                      "service": "medical",
+                      "amount_cents": 112345,
+                      "active": true,
+                      "in_network": true,
+                      "authorized": true,
+                      "formulary": true
+                    },
+                    "plan_name": "Commercial PPO",
+                    "decision": "approved",
+                    "reason": "COVERED",
+                    "payout_cents": 112345,
+                    "trace": [
+                      {
+                        "rule_id": "HC-001",
+                        "outcome": "passed",
+                        "detail": "Request satisfies the input contract"
+                      },
+                      {
+                        "rule_id": "HC-002",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-003",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-004",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-005",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-006",
+                        "outcome": "passed",
+                        "detail": "No denial triggered under this contract"
+                      },
+                      {
+                        "rule_id": "HC-007",
+                        "outcome": "passed",
+                        "detail": "Claim 112345 cents; deductible 10000; cap 200000; payout 112345"
+                      }
+                    ]
+                  },
+                  "passed": false
+                }
+              ],
+              "execution_error": null,
+              "passed": false
+            }
+          ],
+          "passed": 0,
+          "failed": 1,
+          "actions_executed": 1,
+          "action_budget": 32,
+          "duration_ms": 0.79,
+          "isolation": "Fresh SQLite file per case; all execution files removed after the run. Interactive claims are never used.",
+          "scope": "Generated declarative cases against Python services, not generated browser automation or an independent proof of oracle correctness."
+        },
+        "corrected": {
+          "status": 200,
+          "decision": "approved",
+          "reason": "COVERED",
+          "payout_cents": 102345
+        },
+        "approval": "Not approved; explicit human review is still required.",
+        "next_step": "Inspect the mismatch, correct the expectation, then explicitly review the snapshot in AI Test Studio."
+      },
+      "method": "Authored wrong-answer fixture, not a live AI response. The corrected authored control passes the healthy service and detects a seeded skipped-deductible fault through an assertion mismatch. Generated cases still require explicit Studio review."
+    },
+    {
+      "run_id": "a946c89e6cff48aab9c7e2ad140f98d6",
+      "scenario": "concurrency",
+      "title": "Two payment requests, one ledger entry",
+      "recorded_at": "2026-11-17T19:56:14.873960+00:00",
+      "status": "passed",
+      "provenance": "Authored deterministic scenario; executed now against disposable synthetic state.",
+      "live_model_calls": 0,
+      "paid_api_calls": 0,
+      "checks": [
+        {
+          "label": "HTTP outcomes",
+          "expected": [
+            200,
+            409
+          ],
+          "observed": [
+            200,
+            409
+          ],
+          "passed": true
+        },
+        {
+          "label": "One simulated payment",
+          "expected": 1,
+          "observed": 1,
+          "passed": true
+        },
+        {
+          "label": "Stored payment equals payout",
+          "expected": 90000,
+          "observed": 90000,
+          "passed": true
+        },
+        {
+          "label": "Exactly three committed revisions",
+          "expected": 3,
+          "observed": 3,
+          "passed": true
+        },
+        {
+          "label": "Exactly three history events",
+          "expected": 3,
+          "observed": 3,
+          "passed": true
+        }
+      ],
+      "responses": [
+        {
+          "status": 200,
+          "request_id": "dbe923234fc949d0bd4d6dd74e233d3a",
+          "body": {
+            "claim": {
+              "claim_id": "PROOF-100",
+              "created_at": "2026-11-17T19:56:14.287679+00:00",
+              "evaluation": {
+                "contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+                "decision": "approved",
+                "payout_cents": 90000,
+                "plan_name": "Commercial PPO",
+                "reason": "COVERED",
+                "request": {
+                  "active": true,
+                  "amount_cents": 100000,
+                  "authorized": true,
+                  "formulary": true,
+                  "in_network": true,
+                  "plan_id": "commercial_ppo",
+                  "service": "medical"
+                },
+                "synthetic": true,
+                "trace": [
+                  {
+                    "detail": "Request satisfies the input contract",
+                    "outcome": "passed",
+                    "rule_id": "HC-001"
+                  },
+                  {
+                    "detail": "No denial triggered under this contract",
+                    "outcome": "passed",
+                    "rule_id": "HC-002"
+                  },
+                  {
+                    "detail": "No denial triggered under this contract",
+                    "outcome": "passed",
+                    "rule_id": "HC-003"
+                  },
+                  {
+                    "detail": "No denial triggered under this contract",
+                    "outcome": "passed",
+                    "rule_id": "HC-004"
+                  },
+                  {
+                    "detail": "No denial triggered under this contract",
+                    "outcome": "passed",
+                    "rule_id": "HC-005"
+                  },
+                  {
+                    "detail": "No denial triggered under this contract",
+                    "outcome": "passed",
+                    "rule_id": "HC-006"
+                  },
+                  {
+                    "detail": "Claim 100000 cents; deductible 10000; cap 200000; payout 90000",
+                    "outcome": "passed",
+                    "rule_id": "HC-007"
+                  }
+                ],
+                "version": "5.8.0"
+              },
+              "member_id": "M100",
+              "request": {
+                "active": true,
+                "amount_cents": 100000,
+                "authorized": true,
+                "claim_id": "PROOF-100",
+                "formulary": true,
+                "in_network": true,
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service": "medical"
+              },
+              "revision": 3,
+              "status": "paid",
+              "submitted_by": "customer-m100",
+              "updated_at": "2026-11-17T19:56:14.364973+00:00",
+              "workflow_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3"
+            },
+            "events": [
+              {
+                "actor_id": "customer-m100",
+                "created_at": "2026-11-17T19:56:14.287679+00:00",
+                "from_status": null,
+                "revision": 1,
+                "rule_id": "WF-002",
+                "to_status": "submitted"
+              },
+              {
+                "actor_id": "adjuster-demo",
+                "created_at": "2026-11-17T19:56:14.288438+00:00",
+                "from_status": "submitted",
+                "revision": 2,
+                "rule_id": "WF-003",
+                "to_status": "approved"
+              },
+              {
+                "actor_id": "finance-demo",
+                "created_at": "2026-11-17T19:56:14.364973+00:00",
+                "from_status": "approved",
+                "revision": 3,
+                "rule_id": "WF-004",
+                "to_status": "paid"
+              }
+            ],
+            "payment": {
+              "actor_id": "finance-demo",
+              "amount_cents": 90000,
+              "claim_id": "PROOF-100",
+              "created_at": "2026-11-17T19:56:14.364973+00:00",
+              "payment_id": "SIM-c5ba946a004f4db98481275ea2cb9bdb"
+            },
+            "synthetic": true,
+            "version": "5.8.0",
+            "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3"
+          }
+        },
+        {
+          "status": 409,
+          "request_id": "9f01329b3f29428e8b614db84bfdc422",
+          "body": {
+            "error": "INVALID_TRANSITION",
+            "message": "Cannot move paid to paid",
+            "rule_id": "WF-003"
+          }
+        }
+      ],
+      "state": {
+        "status": "paid",
+        "revision": 3,
+        "events": 3,
+        "ledger_entries": 1,
+        "payment_cents": 90000
+      },
+      "timeline": [
+        {
+          "revision": 1,
+          "actor_id": "customer-m100",
+          "from_status": null,
+          "to_status": "submitted",
+          "rule_id": "WF-002",
+          "created_at": "2026-11-17T19:56:14.287679+00:00"
+        },
+        {
+          "revision": 2,
+          "actor_id": "adjuster-demo",
+          "from_status": "submitted",
+          "to_status": "approved",
+          "rule_id": "WF-003",
+          "created_at": "2026-11-17T19:56:14.288438+00:00"
+        },
+        {
+          "revision": 3,
+          "actor_id": "finance-demo",
+          "from_status": "approved",
+          "to_status": "paid",
+          "rule_id": "WF-004",
+          "created_at": "2026-11-17T19:56:14.364973+00:00"
+        }
+      ],
+      "method": "Two real loopback HTTP clients released by a thread barrier; SQLite serializes writes. This is not a distributed load test."
+    },
+    {
+      "run_id": "f25c2a1dde6345dcaa22a1aad52dfedd",
+      "scenario": "recovery",
+      "title": "Worker interruption rolls back partial payment",
+      "recorded_at": "2026-11-17T19:56:14.966359+00:00",
+      "status": "passed",
+      "provenance": "Authored deterministic scenario; executed now against disposable synthetic state.",
+      "live_model_calls": 0,
+      "paid_api_calls": 0,
+      "checks": [
+        {
+          "label": "Worker exited at injected checkpoint",
+          "expected": 73,
+          "observed": 73,
+          "passed": true
+        },
+        {
+          "label": "Uncommitted writes rolled back",
+          "expected": {
+            "status": "approved",
+            "revision": 2,
+            "events": 2,
+            "ledger_entries": 0,
+            "payment_cents": null
+          },
+          "observed": {
+            "status": "approved",
+            "revision": 2,
+            "events": 2,
+            "ledger_entries": 0,
+            "payment_cents": null
+          },
+          "passed": true
+        },
+        {
+          "label": "Retry created one ledger entry",
+          "expected": 1,
+          "observed": 1,
+          "passed": true
+        },
+        {
+          "label": "Retry paid the correct amount",
+          "expected": 90000,
+          "observed": 90000,
+          "passed": true
+        },
+        {
+          "label": "Repeated payment rejected",
+          "expected": 409,
+          "observed": 409,
+          "passed": true
+        },
+        {
+          "label": "Rejected replay left state unchanged",
+          "expected": {
+            "status": "paid",
+            "revision": 3,
+            "events": 3,
+            "ledger_entries": 1,
+            "payment_cents": 90000
+          },
+          "observed": {
+            "status": "paid",
+            "revision": 3,
+            "events": 3,
+            "ledger_entries": 1,
+            "payment_cents": 90000
+          },
+          "passed": true
+        }
+      ],
+      "before": {
+        "status": "approved",
+        "revision": 2,
+        "events": 2,
+        "ledger_entries": 0,
+        "payment_cents": null
+      },
+      "after_interruption": {
+        "status": "approved",
+        "revision": 2,
+        "events": 2,
+        "ledger_entries": 0,
+        "payment_cents": null
+      },
+      "after_retry": {
+        "status": "paid",
+        "revision": 3,
+        "events": 3,
+        "ledger_entries": 1,
+        "payment_cents": 90000
+      },
+      "timeline": [
+        {
+          "revision": 1,
+          "actor_id": "customer-m100",
+          "from_status": null,
+          "to_status": "submitted",
+          "rule_id": "WF-002",
+          "created_at": "2026-11-17T19:56:14.876843+00:00"
+        },
+        {
+          "revision": 2,
+          "actor_id": "adjuster-demo",
+          "from_status": "submitted",
+          "to_status": "approved",
+          "rule_id": "WF-003",
+          "created_at": "2026-11-17T19:56:14.879178+00:00"
+        },
+        {
+          "revision": 3,
+          "actor_id": "finance-demo",
+          "from_status": "approved",
+          "to_status": "paid",
+          "rule_id": "WF-004",
+          "created_at": "2026-11-17T19:56:14.964688+00:00"
+        }
+      ],
+      "method": "Actual subprocess exit after payment/state/history writes and before SQLite commit. No production crash hook is installed."
+    },
+    {
+      "run_id": "27fdf913477047f788065b641b768d4f",
+      "scenario": "rule-change",
+      "title": "A requirement change invalidates reviewed evidence",
+      "recorded_at": "2026-11-17T19:56:15.128647+00:00",
+      "status": "passed",
+      "provenance": "Authored deterministic scenario; executed now against disposable synthetic state.",
+      "live_model_calls": 0,
+      "paid_api_calls": 0,
+      "checks": [
+        {
+          "label": "Old focused context is stale",
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        {
+          "label": "Old review no longer matches reference",
+          "expected": false,
+          "observed": false,
+          "passed": true
+        },
+        {
+          "label": "Actual Studio execution guard blocks stale approval",
+          "expected": "STALE_REFERENCE",
+          "observed": "STALE_REFERENCE",
+          "passed": true
+        },
+        {
+          "label": "Original payout",
+          "expected": 102345,
+          "observed": 102345,
+          "passed": true
+        },
+        {
+          "label": "Changed reference observes new payout",
+          "expected": 97345,
+          "observed": 97345,
+          "passed": true
+        }
+      ],
+      "change": {
+        "plan": "commercial_ppo",
+        "deductible_before_cents": 10000,
+        "deductible_after_cents": 15000,
+        "original_reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "candidate_reference_fingerprint": "bb76837debcb2c7fcb8f8218450afd825d307790e3e64a6d0a844702853957c8",
+        "affected": [
+          "Focused context",
+          "Expected payout",
+          "Reference-bound review",
+          "Recorded measurements"
+        ],
+        "required_action": "Revise affected expectations and independently review them again before execution."
+      },
+      "method": "Isolated child-process what-if contract, actual Studio review and stale-execution guard. Scripted authored fixture, no model or human-review claim. Runtime fixtures and user stores are unchanged."
+    }
+  ],
+  "scope": "Authored deterministic demonstrations executed against disposable synthetic state. Zero inference or paid calls."
+}

@@ -1,108 +1,148 @@
-# Healthcare Quality Lab — V5.7
+# Healthcare Quality Lab — V5.8
 
-A standalone quality engineering showcase built with **Python, pytest, Playwright and local Ollama**. Learn to define contracts, test stateful claims, review AI-created cases, measure test quality and release verified source packages.
+[![Quality and release checks](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml)
+![Tested Python 3.11, 3.12 and 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?logo=python) ![Tests: pytest and Playwright](https://img.shields.io/badge/Tests-pytest%20%2B%20Playwright-2EAD33) [![MIT license](https://img.shields.io/github/license/kilicerdal/healthcare-quality-lab)](LICENSE)
 
-**Synthetic teaching data only.** The plan amounts, demo identities and payments are invented. Medicare Advantage is Part C. This lab is not a real payer system.
+**Review in five minutes:** [What to run, which failure to inspect, and what it proves](docs/REVIEWER_GUIDE.md) · [Evidence provenance](docs/EVIDENCE.md).
 
-## V5.1 corrections
+A quality engineering portfolio built with **Python, Flask, SQLite, pytest, Playwright, local Ollama and an explicit OpenAI evaluation CLI**.
 
-Cached bytecode is rejected from staged releases; abandoned Studio operations recover using persisted leases; exact rule IDs return only explicitly selected sources. Interrupted generation retries create a new unapproved child. Interrupted execution requires fresh review. Stop V5 workers before using the same stores with V5.1. The original V5 release remains preserved.
+The central question is simple: **does a test detect the wrong business result, or does it only pass?** This lab follows synthetic claims from evaluation through approval and payment, checks AI-created expectations against an independent reference model, and measures reviewed tests against known defects.
 
-## V5.2 assertion completeness
+**Synthetic data only.** Plan amounts, demo identities and payments are invented. This is a local teaching application, not a real payer system or a compliance certification.
 
-Outcome-specific local generation requests payout, payment and history observations. Per-step checklists block incomplete approval, execution and new pytest export. Older approvals need fresh policy review. The live comparison improved required-field presence from 41/51 to 51/51, but full-reference passes were 2/8 baseline versus 1/8 V5.2; numeric correctness still needs independent review. See the detailed report.
+**Start here:** [Two-minute engineering demo](docs/V5.8_DEMO.md) · [Case study](docs/CASE_STUDY.md) · [Historical V5.7 guided demo](docs/V5.7_DEMO.md) · [Code examples](#review-the-code) · [Run locally](#run-locally)
 
-## V5.3 independent expectations and AI correction
+**How this differs from [Healthcare Quality Platform](https://github.com/kilicerdal/ai-healthcare-quality-platform):** this lab focuses on business-rule correctness, independent checking of AI expectations, review gates, and payment concurrency/recovery. The platform focuses on API contracts, PostgreSQL persistence, and simulated S3/SQS message processing.
 
-A separate standard-library reference model calculates payout, payment and history without calling the application. Mismatched expectations block approval, execution and export. Explicit Ollama correction creates a separate draft with frozen scenario fields and requires fresh review. The eight-task live demonstration improved correct answers from 3/8 to 6/8 after one correction; two wrong drafts remained blocked. Read the [detailed V5.3 report](docs/V5.3_REPORT.md).
+## V5.8: inspect the engineering proof
 
-## V5.4 bounded correction and confirmed reference assistance
-
-Focused local Ollama correction repaired both retained V5.3 failures: 10,001 cents now expects payout 1, and 286,450 expects 200,000. Both repaired tests and exported pytest wrappers pass. Six separately authored new tasks improved from 4/6 correct to 6/6 after correction. AI requests are limited to two per correction history; a previewed, explicitly confirmed reference fallback creates a distinctly labeled draft requiring fresh review. Read the [detailed V5.4 report](docs/V5.4_REPORT.md).
-
-## V5.5 test coverage and observed defect detection
-
-The [coverage dashboard](http://127.0.0.1:8895/#test-coverage) maps 13 written rules, an explicit 32-case authored catalog and current Studio proposals. Eleven scenario predicates identify gaps; duplicate checks distinguish equivalent inputs, assertion differences and conflicts. Local Ollama suggests grounded gaps and explicitly generates unapproved proposals. Reviewed cases must pass a healthy baseline before scoring against twelve controlled fault profiles. Errors never earn detection credit.
-
-The live demonstration generated two correct gap cases with three actual model requests, closing two of four defined gaps. That two-case suite detected only 2/12 applicable seeds, with ten survivors retained. This is distinct from the authored framework benchmark's 12/12 detections. Read the [detailed V5.5 report](docs/V5.5_REPORT.md).
-
-## V5.6 survivor-targeted tests and guided showcase
-
-The reviewed primary suite improved from 2/12 to 12/12 known fault seeds, with ten new detections and zero regressions. Alternate development inputs also reach 12/12. Each final suite contains one AI-authored workflow and one reference-assisted evaluator; raw errors and corrections remain visible. The polished dashboard shows score/source context, plain-language metrics, survivor plans and a fair comparison matrix. Read the [detailed V5.6 report](docs/V5.6_REPORT.md) and [guided demo](docs/V5.6_DEMO.md).
-
-## V5.7 focused AI generation and complete defined gap map
-
-The installed local `qwen3.5:27b` generated 20/20 correct first-attempt evaluator assertions/calculations on the frozen development cohort, with zero AI corrections and zero reference-assisted replacements. One-request generation retrieves one plan and relevant rules; visible structured calculations are independently checked. Reviewed sources assemble into a fresh unapproved suite by copying exact input/expectation snapshots. The core AI-derived suite detects 12/12 known seeds without a reference-assisted evaluator. Zero-amount rejection and paid-payment replay with unchanged readback close the last two of eleven defined scenario gaps.
-
-The 27B runtime uses explicit prompt JSON with validation; smaller models use constrained output. Failed small-model pilots and runtime-compatibility attempts are preserved separately. This is a development demonstration, not blind-holdout performance or exhaustive defect coverage. Read the [detailed V5.7 report](docs/V5.7_REPORT.md) and [guided demo](docs/V5.7_DEMO.md).
-
-## Start here
+Run competing payment requests, interrupt a worker before commit, investigate an incorrect expectation, and see a requirement change invalidate a review. Each authored scenario executes against disposable synthetic state, exposes expected/observed values and retains provenance. No model is called by the proof page.
 
 ```sh
+python3 -m tools.bootstrap --browser
+.venv/bin/python -m tools.demo --state-dir .local/demo-first-run --port 8895
+```
+
+Open [Engineering proof](http://127.0.0.1:8895/#proof). The launcher refuses nonempty directories and never resets your existing work. Historical experiment IDs are unnecessary.
+
+[Recorded V5.8 engineering report](docs/V5.8_REPORT.md) · [Recorded V5.8 captioned walkthrough](https://github.com/kilicerdal/healthcare-quality-lab/releases/tag/v5.8.0) · [Observed authored scenario evidence](artifacts/showcase/deterministic-evidence.json)
+
+![Recorded V5.8 concurrent payment demonstration](docs/images/engineering-proof-desktop.png)
+
+*Recorded local V5.8 authored demonstration, November 17, 2026; not a live execution or provider result. [Source evidence and limits](docs/EVIDENCE.md).*
+
+## Recorded V5.8 local provider comparison — November 17, 2026
+
+Sixteen newly authored inputs, three trials each. Providers generate expectations and compact calculations inside an authored wrapper. Both receive the same base prompt/schema and synthetic rules; transport, decoding, hardware and model size differ.
+
+| Provider | Literal expectations | Calculation records | Eligible for review | Median latency | API usage cost estimate |
+| --- | --- | --- | --- | --- | --- |
+| OpenAI GPT-6.1 Terra | 48/48 | 48/48 | 48/48 | 2.22 s | $0.04056 for the comparison |
+| Local Ollama qwen3.5:27b | 48/48 | 42/48 | 42/48 | 9.75 s | Local hardware/electricity cost not measured |
+
+Ollama's six blocked outputs had matching expected outcomes but incorrect or incomplete calculation records. Both providers repeated identical expectations across all sixteen inputs under the recorded settings. That does not establish stochastic robustness or general accuracy. All outputs remain unapproved; none was automatically executed.
+
+The separate pilot plus comparison made 49 OpenAI requests: **$0.04218 usage-derived estimate**, with **$2.68744 conservatively reserved against the $15 cap**. These are different accounting measures, not an account billing invoice. No automatic retries or cloud fallback were used.
+
+[Full trial evidence, failures, settings and budget](artifacts/showcase/provider-comparison.json) · [Evaluation commands and limits](docs/V5.8_DEMO.md)
+
+## Results you can inspect
+
+| Evidence | Recorded result | What it means |
+| --- | --- | --- |
+| Deterministic regression | **665 passed:** 538 unit, 81 API, 46 Chromium | Offline provider doubles; actual browser flows. [Recorded local verification, November 17, 2026](artifacts/verification.json) |
+| Focused local AI generation | **20/20** correct first-attempt assertions/calculations | A frozen development cohort using local `qwen3.5:27b`; zero corrections or reference replacements. [Measurement](artifacts/v5.7/focused-measurement.json) |
+| Reviewed AI-derived core suite | **12/12** known fault seeds detected | One original AI workflow plus an evaluator assembled from seven reviewed model outputs. Known seeds, not exhaustive defect coverage. [Report](docs/V5.7_REPORT.md) |
+| Final guided showcase | **0 remaining gaps** among 11 defined scenario predicates | The four-case final suite closes this particular gap map. It does not establish complete application coverage. |
+
+[Recorded GitHub Actions run](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43314919548) passed on the previously recorded implementation fingerprint. Current checks appear in the [Actions tab](https://github.com/kilicerdal/healthcare-quality-lab/actions). Local model experiments and deterministic CI are separate evidence.
+
+![Recorded focused-generation panel showing the twenty-task development cohort](artifacts/v5.7/focused-panel-desktop.png)
+
+*Recorded V5.7 local experiment. These are observed development results, not a fresh model run or a blind benchmark.*
+
+![Recorded final showcase with known-fault detection and the defined gap map](artifacts/v5.7/showcase-desktop.png)
+
+*Historical V5.7 local showcase; its gap map is bounded to eleven defined predicates. It is not the current CI result.*
+
+## Review the code
+
+| Example | Engineering decision |
+| --- | --- |
+| [Claim evaluator](healthcare_quality/claims.py) and [workflow](healthcare_quality/workflow.py) | Explicit business rules, persisted state, ownership checks, duplicate protection and ordered payment history |
+| [Independent reference model](healthcare_quality/reference.py) | Expectations are calculated separately from the application under test |
+| [AI review and execution](healthcare_quality/ai_studio.py) | Hash-bound approvals, fresh review after edits, isolated execution and retained provenance |
+| [Coverage and defect scoring](healthcare_quality/coverage_lab.py) | Healthy controls first; assertion mismatches earn detection credit, infrastructure errors do not |
+| [Operation recovery](healthcare_quality/operations.py) | Persisted heartbeat leases and fenced completion after interruption |
+| [Unit tests](tests/unit), [API tests](tests/api), [browser tests](tests/e2e) | Different layers verify business behavior and the actual UI |
+| [CI workflow](.github/workflows/ci.yml) and [release tooling](tools/release.py) | Regression, source integrity checks and a staged runtime rehearsal |
+
+## Run locally
+
+Requires **Python 3.11–3.13** for the documented hosted matrix; the recorded delivery used Python 3.13. [Runtime and test matrix](docs/MAINTENANCE.md). Newer Python versions are not yet verified.
+
+```sh
+git clone https://github.com/kilicerdal/healthcare-quality-lab.git
+cd healthcare-quality-lab
 python3 -m tools.bootstrap --browser
 .venv/bin/python -m tools.serve --port 8895
 ```
 
-Open [the guided showcase](http://127.0.0.1:8895/#showcase). In VS Code select `.venv/bin/python` and **Run and Debug → V5: start Healthcare Quality Lab**. Bootstrap uses only this project's `.venv` and `.browsers`; it does not install Ollama or download models. On Windows use `.venv\Scripts\python.exe` instead of `.venv/bin/python`.
+Open [the local guided showcase](http://127.0.0.1:8895/#showcase). On Windows use `.venv\Scripts\python.exe` instead of `.venv/bin/python`.
 
-Read the [V5.7 focused-generation report](docs/V5.7_REPORT.md), [eight-minute demo](docs/V5_DEMO.md), [release operations guide](docs/OPERATIONS.md) and [final architecture narrative](docs/ARCHITECTURE.md). Earlier version reports remain at `/reports/v1` through `/reports/v4`.
-
-## What the five versions deliver
-
-| Version | Concrete outcome |
-| --- | --- |
-| V1 | Eight synthetic plan configurations, written rules, evaluator, rule trace, unit/API/browser tests |
-| V2 | Owned persisted claims, duplicate protection, approval/payment order, simulated ledger, atomic history |
-| V3 | Actual local Ollama proposals, validation, edits, explicit review, hash-bound approval, disposable execution |
-| V4 | Eight authored evaluation tasks, frozen prompt comparisons, rule retrieval, cited failure hypotheses |
-| V5 | Guided showcase, Waitress serving, readiness/request tracing, checked packaging, local activation/rollback and GitHub Actions |
-
-**V5.7 local verification:** 622 tests passed (510 unit, 70 API, 42 Chromium), zero failures/skips. [GitHub Actions passed](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/43314919548); downloaded evidence matches the final local source fingerprint.
-
-## Test the application
+Bootstrap installs project-local dependencies and Chromium. It does not install Ollama or download models. **The deterministic tests do not require a model or paid API credits.** Running actual AI generation is optional and requires your own local Ollama service and an allowed installed model.
 
 ```sh
 .venv/bin/python -m tools.verify
 .venv/bin/python -m pytest -m smoke -v
-.venv/bin/python -m pytest -m sanity -v
-.venv/bin/python -m pytest -m ai -v
 .venv/bin/python -m pytest -m e2e --headed --slowmo 350
 ```
 
-The deterministic suite uses clearly labeled offline provider doubles. Real V4 model measurements are preserved separately: 16 proposals plus one explanation. Both compared prompts omitted important assertions; the longer prompt did not outperform the baseline. Read the report rather than treating a generated case count as evidence of quality.
+## How AI cases become executable tests
 
-## Create and run local AI cases
+1. Request bounded declarative proposals from local Ollama using selected written contracts.
+2. Inspect inputs, assertions, retrieved sources and independent reference checks. Wrong or incomplete expectations block approval.
+3. Explicitly review the snapshot. An edit, correction or reference replacement clears approval and requires fresh review.
+4. Execute approved cases against disposable SQLite databases, then compare healthy behavior with known fault seeds.
 
-1. Start your existing Ollama service with an installed allowed model (`qwen3.5:27b`, `qwen2.5-coder:3b` or `qwen2.5:3b`). Check it explicitly in AI Test Studio.
-2. Provide a synthetic requirement, select 1–6 written contracts and request 1–4 cases. Generation creates new declarative case proposals, not a prerecorded catalog selection.
-3. Inspect inputs, expectations, source IDs, completeness and independent reference checks. Use explicit Ollama correction (at most two attempts per history), inspect and confirm reference replacements, or edit expectations with a reviewer label and note. Every correction remains unapproved until fresh review; wrong values stay blocked.
-4. Select valid cases, attest that you checked their expectations, and save the review. Editing clears approval; stale fingerprints and mismatched hashes block execution.
-5. Execute the approved snapshot. Each case gets a fresh disposable SQLite database. Interactive claims are not used. Export evidence JSON or the fixed trusted pytest wrapper.
+The model has no shell, browser, database or arbitrary network tools. The case language permits only evaluate/submit/transition/read, with at most four cases and eight steps per case. Generated Python is not executed. Reviewer labels are local attestations, not authenticated human identities.
 
-Reviewer labels are local attestations, not authenticated human identity. The model has no shell, database, file, browser or arbitrary network tools. Cases allow only evaluate/submit/transition/read, at most four cases with eight steps each. They exercise Python services through HTTP-equivalent observations; authored Playwright tests exercise the real UI/HTTP path.
+## Scope and limitations
 
-## Release operations
+- The 20-task AI result is a development demonstration. The model and prompt both changed from earlier pilots; the result cannot be attributed to prompting alone.
+- Failed small-model pilots, incorrect drafts and surviving faults remain in the historical evidence.
+- Twelve known seeds and eleven scenario predicates define the measured scope. They do not prove general model accuracy or complete defect detection.
+- Demo actor headers and reviewer labels are not production authentication. Keep the runtime on loopback; do not expose it to the internet or enter real patient data.
+- Public source availability does not mean a publicly hosted application. No production deployment, healthcare compliance or accessibility certification is claimed.
 
-After a fresh successful verification:
+## Reports and release operations
+
+Read the [V5.8 report](docs/V5.8_REPORT.md), [current demo](docs/V5.8_DEMO.md), [case study](docs/CASE_STUDY.md), [architecture](docs/ARCHITECTURE.md), [operations guide](docs/OPERATIONS.md) and [publication review](docs/PUBLICATION_REVIEW.md).
+
+Historical reports: [V5.1](docs/V5.1_REPORT.md) · [V5.2](docs/V5.2_REPORT.md) · [V5.3](docs/V5.3_REPORT.md) · [V5.4](docs/V5.4_REPORT.md) · [V5.5](docs/V5.5_REPORT.md) · [V5.6](docs/V5.6_REPORT.md) · [V5.7](docs/V5.7_REPORT.md).
+
+After fresh verification, build and inspect a source package:
 
 ```sh
 .venv/bin/python -m tools.release build
-.venv/bin/python -m tools.release inspect releases/v5.6.0-source.zip
-.venv/bin/python -m tools.release stage releases/v5.6.0-source.zip
-.venv/bin/python -m tools.release activate RELEASE_ID_FROM_STAGE
-.venv/bin/python -m tools.release serve --port 8896
+.venv/bin/python -m tools.release inspect releases/v5.8.0-source.zip
 ```
 
-Stop the server before activating another release, then restart it. `python -m tools.release rollback` switches the pointer to the previous verified release. Each release ID has its own persistent synthetic state directory. Rollback is a local release/state demonstration, not a database schema migration or a hot swap. Checksums establish consistency with a manifest, not a signed publisher identity.
+The operations guide covers staging, activation and rollback. Packages exclude local databases, environments, browser binaries and caches. Checksums establish integrity, not a signed publisher identity.
 
-Source packages exclude local databases, environments, browser binaries and caches. Builds refuse stale verification and existing output filenames. Use a different explicit output directory for a release candidate. See OPERATIONS.md before staging an archive.
+## AI provenance
 
-## GitHub and CI
+Codex built the implementation. Ollama performed the recorded local generation experiments. Optional ChatGPT, Copilot and Claude Code exercises are described in the [AI tools playbook](docs/AI_TOOLS_PLAYBOOK.md); they are not represented as integrations that ran.
 
-The project has its own new private repository: [kilicerdal/healthcare-quality-lab](https://github.com/kilicerdal/healthcare-quality-lab). Existing projects and repositories are independent.
+## Contributing and maintenance
 
-GitHub Actions installs dependencies and Chromium, runs regression and known-fault checks, builds and inspects a checksummed source archive, starts its staged Waitress runtime for an actual HTTP journey, and uploads evidence. Current remote execution results are recorded in the V5.6 report and `artifacts/v5.6/github-ci.json`. Earlier version evidence remains preserved. The hosted runtime target for this delivery is local loopback; the GitHub repository is private and is not a public website.
+[Contributing](CONTRIBUTING.md) · [Security reporting](SECURITY.md) · [Dependency maintenance](docs/DEPENDENCY_MAINTENANCE.md).
 
-## AI tools and learning
+## License
 
-Codex built this implementation. Ollama actually generated and explained local test data. ChatGPT, Copilot and Claude Code have optional exercises in the [AI tools playbook](docs/AI_TOOLS_PLAYBOOK.md) and [V5 learning guide](docs/LESSON_05.md); they are not represented as integrations that ran. VS Code workspace trust was not changed automatically.
+This project's original code is licensed under the [MIT License](LICENSE), copyright (c) 2026 Erdal Kilic. Third-party dependencies and separately attributed materials retain their own licenses.
+
+## Compatibility and maintenance
+
+[Supported versions, quick/full checks, dependency decisions and upgrade policy](docs/MAINTENANCE.md). Historical evidence stays dated; current CI status is linked above.

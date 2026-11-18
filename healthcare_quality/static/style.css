@@ -18,3 +18,16 @@ textarea{width:100%;border:1px solid #dce3d3;border-radius:6px;background:#fcfdf
 #page-research :focus-visible{outline:3px solid #15583e;outline-offset:3px}
 
 .ai-review-card .form-actions{flex-wrap:wrap}#ai-transport{max-width:100%;min-width:0;flex-basis:100%;box-sizing:border-box}
+
+
+/* Evidence stays readable in the compact engineering walkthrough. */
+#page-proof .workspace-grid{align-items:start}
+.proof-check-table{width:100%;border-collapse:collapse;font-size:.9rem;table-layout:fixed}
+.proof-check-table th,.proof-check-table td{padding:12px 8px;text-align:left;border-bottom:1px solid #e1e7d8;vertical-align:top;overflow-wrap:anywhere}
+.proof-check-table th:first-child,.proof-check-table td:first-child{width:48%}
+.proof-check-table th{color:#526443;font-size:.78rem}
+#proof-comparison table{width:100%;border-collapse:collapse;font-size:.85rem}
+#proof-comparison th,#proof-comparison td{padding:10px 8px;text-align:left;border-bottom:1px solid #e1e7d8;overflow-wrap:anywhere}
+#proof-comparison label{display:block;margin-top:20px}
+#proof-comparison select{width:100%}
+@media(max-width:600px){#proof-comparison table{font-size:.68rem;table-layout:fixed}#proof-comparison th,#proof-comparison td{padding:8px 3px}.proof-check-table{font-size:.76rem}.proof-check-table th,.proof-check-table td{padding:8px 4px}}

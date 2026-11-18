@@ -1,5 +1,5 @@
 {
-  "status": "passed",
+  "status": "stale",
   "version": "6.2.0",
   "recorded_at": "2026-11-18T02:59:29.459132-05:00",
   "recorded_date": "2026-11-18",
@@ -36,5 +36,6 @@
   "command": "python -m tools.verify",
   "subprocess_returncode": 0,
   "ci_executed": false,
-  "scope": "Local V6.2 regression: reserved-model job contracts, grounded triage, advanced line benefits and independent Fraction properties, concurrent ledger/recovery, shared identity/CSRF/audit, reproducible demos, actual HTTP adapter, layout contracts, release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification."
+  "scope": "Local V6.2 regression: reserved-model job contracts, grounded triage, advanced line benefits and independent Fraction properties, concurrent ledger/recovery, shared identity/CSRF/audit, reproducible demos, actual HTTP adapter, layout contracts, release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live Ollama demonstrations are recorded separately. Not production or Medicare compliance certification.",
+  "integration_note": "New upstream work and pinned dependency upgrades integrated; fresh verification required."
 }

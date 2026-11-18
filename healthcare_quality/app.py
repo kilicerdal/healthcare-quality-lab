@@ -69,6 +69,35 @@ def create_app(config=None):
     @app.get("/")
     def index():return render_template("index.html",version=__version__)
 
+    from healthcare_quality.showcase_lab import SCENARIOS, run as run_proof
+    import threading
+    proof_lock = threading.BoundedSemaphore(1)
+
+    @app.get("/api/showcase-lab")
+    def proof_catalog():
+        return jsonify(scenarios=[{"id":key,"title":value} for key,value in SCENARIOS.items()],
+                       provenance="Authored demonstrations; no inference or writes to your saved claims.",
+                       comparison_available=(ROOT/"artifacts/showcase/provider-comparison.json").is_file())
+
+    @app.get("/api/showcase-lab/comparison")
+    def proof_comparison():
+        path=ROOT/"artifacts/showcase/provider-comparison.json"
+        if not path.is_file():return jsonify(status="not_recorded"),404
+        return send_file(path,mimetype="application/json")
+
+    @app.post("/api/showcase-lab/run")
+    def proof_run():
+        from urllib.parse import urlsplit
+        origin=request.headers.get("Origin")
+        if origin and urlsplit(origin).netloc != request.host:
+            return jsonify(error="CROSS_ORIGIN_REJECTED"),403
+        data=request.get_json(silent=True)
+        if not request.is_json or not isinstance(data,dict) or set(data)!={"scenario"} or not isinstance(data["scenario"],str) or data["scenario"] not in SCENARIOS:
+            return jsonify(error="INVALID_SCENARIO"),400
+        if not proof_lock.acquire(blocking=False):return jsonify(error="DEMO_BUSY"),429
+        try:return jsonify(run_proof(data["scenario"]))
+        finally:proof_lock.release()
+
     @app.get("/api/health")
     def health():return jsonify(status="ok",version=__version__)
 
@@ -228,7 +257,7 @@ def create_app(config=None):
     @app.get("/report")
     @app.get("/reports/<version>")
     def report(version="v6.2"):
-        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7","v5.8","v5.9","v6.0","v6.1","v6.2"):return jsonify(error="Report not found"),404
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7","v5.8","v5.8_reliability","v5.9","v6.0","v6.1","v6.2"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)
