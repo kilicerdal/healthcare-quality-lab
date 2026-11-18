@@ -47,6 +47,14 @@ jobs:
           python-version: '3.13'
           cache: pip
       - run: python -m pip install -r requirements-dev.txt
+      - name: Configure Ubuntu package downloads
+        run: |
+          # Avoid the regional mirror that stalled browser dependencies in V6.2 CI.
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::Retries "1";\nAcquire::http::Timeout "15";\nAcquire::https::Timeout "15";\n' | sudo tee /etc/apt/apt.conf.d/zzzz-hql-downloads
+          apt-config dump Acquire::Retries Acquire::http::Timeout Acquire::https::Timeout
       - run: python -m playwright install --with-deps chromium
       - name: Full regression and known faults
         run: python -m tools.verify
@@ -84,6 +92,14 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -m pip install -r requirements-dev.txt
+      - name: Configure Ubuntu package downloads
+        run: |
+          # Avoid the regional mirror that stalled browser dependencies in V6.2 CI.
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::Retries "1";\nAcquire::http::Timeout "15";\nAcquire::https::Timeout "15";\n' | sudo tee /etc/apt/apt.conf.d/zzzz-hql-downloads
+          apt-config dump Acquire::Retries Acquire::http::Timeout Acquire::https::Timeout
       - run: python -m playwright install --with-deps ${{ matrix.browser }}
       - name: Cross-browser core and advanced journeys
         run: python -m pytest tests/e2e/test_browser.py tests/e2e/test_workflow_browser.py tests/e2e/test_research_browser.py --browser ${{ matrix.browser }} -q --junitxml artifacts/v6.2/${{ matrix.browser }}-results.xml
@@ -107,6 +123,14 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -m pip install -r requirements-dev.txt
+      - name: Configure Ubuntu package downloads
+        run: |
+          # Avoid the regional mirror that stalled browser dependencies in V6.2 CI.
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::Retries "1";\nAcquire::http::Timeout "15";\nAcquire::https::Timeout "15";\n' | sudo tee /etc/apt/apt.conf.d/zzzz-hql-downloads
+          apt-config dump Acquire::Retries Acquire::http::Timeout Acquire::https::Timeout
       - run: python -m playwright install --with-deps chromium firefox webkit
       - run: python -m pytest tests/e2e --browser chromium --browser firefox --browser webkit -q --junitxml artifacts/v6.2/scheduled-browser-results.xml
       - uses: actions/upload-artifact@v4
