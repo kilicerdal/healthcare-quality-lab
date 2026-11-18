@@ -1,0 +1,49 @@
+name: Python compatibility
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: python-compatibility-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  deterministic:
+    name: Deterministic Python ${{ matrix.python }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.11', '3.12']
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: .browsers
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned development requirements
+        run: python -m pip install -r requirements-dev.txt
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
+      - name: Verify full deterministic suite and known faults
+        run: python -m tools.verify
+      - name: Retain per-runtime verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-${{ matrix.python }}-verification
+          path: |
+            artifacts/verification.json
+            artifacts/pytest-results.xml
+            artifacts/pytest-output.txt
+            artifacts/defect-benchmark.json
+            artifacts/workflow-benchmark.json
+            test-results/
+          retention-days: 7
