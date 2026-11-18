@@ -1,0 +1,122 @@
+{
+  "version": "reserved-v58-1",
+  "scope": "New literal outcomes frozen before V5.8 inference. Inputs/expectations excluded from prompt tuning. First batch is reserved; subsequent exposures are labeled repeated evaluation. No corrections or approvals in this benchmark.",
+  "tasks": [
+    {
+      "id": "R01",
+      "data": {
+        "plan_id": "commercial_hmo",
+        "service": "outpatient",
+        "amount_cents": 43871
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 33871
+      }
+    },
+    {
+      "id": "R02",
+      "data": {
+        "plan_id": "medicare_a",
+        "service": "hospital",
+        "amount_cents": 218901
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 200000
+      }
+    },
+    {
+      "id": "R03",
+      "data": {
+        "plan_id": "medicare_b",
+        "service": "vision",
+        "amount_cents": 87123
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "SERVICE_NOT_COVERED",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "R04",
+      "data": {
+        "plan_id": "medicare_advantage",
+        "service": "hospital",
+        "amount_cents": 52719,
+        "authorized": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "AUTH_REQUIRED",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "R05",
+      "data": {
+        "plan_id": "medicare_d",
+        "service": "prescription",
+        "amount_cents": 9017
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "R06",
+      "data": {
+        "plan_id": "commercial_ppo",
+        "service": "medical",
+        "amount_cents": 10003
+      },
+      "expect": {
+        "status": 200,
+        "decision": "approved",
+        "reason": "COVERED",
+        "payout_cents": 3
+      }
+    },
+    {
+      "id": "R07",
+      "data": {
+        "plan_id": "medicare_advantage",
+        "service": "hospital",
+        "amount_cents": 62317,
+        "in_network": false,
+        "authorized": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "OUT_OF_NETWORK",
+        "payout_cents": 0
+      }
+    },
+    {
+      "id": "R08",
+      "data": {
+        "plan_id": "medicare_b",
+        "service": "dental",
+        "amount_cents": 31289,
+        "active": false
+      },
+      "expect": {
+        "status": 200,
+        "decision": "denied",
+        "reason": "INACTIVE_POLICY",
+        "payout_cents": 0
+      }
+    }
+  ]
+}

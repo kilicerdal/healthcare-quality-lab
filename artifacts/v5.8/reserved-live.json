@@ -1,0 +1,240 @@
+{
+  "id": "4ff1f2597ecb41fa977bae7e6f422aa8",
+  "kind": "reliability",
+  "created_at": "2026-11-18T06:49:41.427506+00:00",
+  "state": "completed",
+  "dataset_version": "reserved-v58-1",
+  "dataset_hash": "965808bd73f17bab3ec5563e12080b670b0565830fb190fe2e0881ad737a6d13",
+  "first_exposure": true,
+  "models": [
+    "qwen3.5:27b",
+    "qwen2.5-coder:3b"
+  ],
+  "task_ids": [
+    "R01",
+    "R02",
+    "R03",
+    "R04"
+  ],
+  "repeats": 2,
+  "rows": [
+    {
+      "task_id": "R01",
+      "model": "qwen3.5:27b",
+      "repeat": 1,
+      "prompt_hash": "b243cae6e61a16625dc6dfec24e94531f53ee024aa92815f89dc08d0e4e96e77",
+      "schema_hash": "a317b9b6de5079ea749950b09191da49542fb641b5f3110ae0b36a5e24f7e11d",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 12.93
+    },
+    {
+      "task_id": "R02",
+      "model": "qwen3.5:27b",
+      "repeat": 1,
+      "prompt_hash": "bebf7638596f28882b8c68596d83704ab80eda730b12fe16d5b4df5cacf904c7",
+      "schema_hash": "ca1ea76db9ac535b24d1decb5d71bff2e727adc04e7dd17509d5baeeb6d39197",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.25
+    },
+    {
+      "task_id": "R03",
+      "model": "qwen3.5:27b",
+      "repeat": 1,
+      "prompt_hash": "0c5c01b3597eeccddeebcdef6dd8e970a2611ef5d3915c94159213480c0c9cc0",
+      "schema_hash": "aadcc002ab632b2d25ef3c3f6d0956609894188c130fd31f5caef38cef3abdc2",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.25
+    },
+    {
+      "task_id": "R04",
+      "model": "qwen3.5:27b",
+      "repeat": 1,
+      "prompt_hash": "011d46008c423508e448f62abebe37b5696ed353512880ae34351ab5b9efb5d1",
+      "schema_hash": "d8135bc603a833f5daaf4f0e676c825315038593ff5527042f4e30746ef7ba38",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.24
+    },
+    {
+      "task_id": "R01",
+      "model": "qwen3.5:27b",
+      "repeat": 2,
+      "prompt_hash": "b243cae6e61a16625dc6dfec24e94531f53ee024aa92815f89dc08d0e4e96e77",
+      "schema_hash": "a317b9b6de5079ea749950b09191da49542fb641b5f3110ae0b36a5e24f7e11d",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.22
+    },
+    {
+      "task_id": "R02",
+      "model": "qwen3.5:27b",
+      "repeat": 2,
+      "prompt_hash": "bebf7638596f28882b8c68596d83704ab80eda730b12fe16d5b4df5cacf904c7",
+      "schema_hash": "ca1ea76db9ac535b24d1decb5d71bff2e727adc04e7dd17509d5baeeb6d39197",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.18
+    },
+    {
+      "task_id": "R03",
+      "model": "qwen3.5:27b",
+      "repeat": 2,
+      "prompt_hash": "0c5c01b3597eeccddeebcdef6dd8e970a2611ef5d3915c94159213480c0c9cc0",
+      "schema_hash": "aadcc002ab632b2d25ef3c3f6d0956609894188c130fd31f5caef38cef3abdc2",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.18
+    },
+    {
+      "task_id": "R04",
+      "model": "qwen3.5:27b",
+      "repeat": 2,
+      "prompt_hash": "011d46008c423508e448f62abebe37b5696ed353512880ae34351ab5b9efb5d1",
+      "schema_hash": "d8135bc603a833f5daaf4f0e676c825315038593ff5527042f4e30746ef7ba38",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.19
+    },
+    {
+      "task_id": "R01",
+      "model": "qwen2.5-coder:3b",
+      "repeat": 1,
+      "prompt_hash": "b243cae6e61a16625dc6dfec24e94531f53ee024aa92815f89dc08d0e4e96e77",
+      "schema_hash": "a317b9b6de5079ea749950b09191da49542fb641b5f3110ae0b36a5e24f7e11d",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.16
+    },
+    {
+      "task_id": "R02",
+      "model": "qwen2.5-coder:3b",
+      "repeat": 1,
+      "prompt_hash": "bebf7638596f28882b8c68596d83704ab80eda730b12fe16d5b4df5cacf904c7",
+      "schema_hash": "ca1ea76db9ac535b24d1decb5d71bff2e727adc04e7dd17509d5baeeb6d39197",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.18
+    },
+    {
+      "task_id": "R03",
+      "model": "qwen2.5-coder:3b",
+      "repeat": 1,
+      "prompt_hash": "0c5c01b3597eeccddeebcdef6dd8e970a2611ef5d3915c94159213480c0c9cc0",
+      "schema_hash": "aadcc002ab632b2d25ef3c3f6d0956609894188c130fd31f5caef38cef3abdc2",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.17
+    },
+    {
+      "task_id": "R04",
+      "model": "qwen2.5-coder:3b",
+      "repeat": 1,
+      "prompt_hash": "011d46008c423508e448f62abebe37b5696ed353512880ae34351ab5b9efb5d1",
+      "schema_hash": "d8135bc603a833f5daaf4f0e676c825315038593ff5527042f4e30746ef7ba38",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.17
+    },
+    {
+      "task_id": "R01",
+      "model": "qwen2.5-coder:3b",
+      "repeat": 2,
+      "prompt_hash": "b243cae6e61a16625dc6dfec24e94531f53ee024aa92815f89dc08d0e4e96e77",
+      "schema_hash": "a317b9b6de5079ea749950b09191da49542fb641b5f3110ae0b36a5e24f7e11d",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.15
+    },
+    {
+      "task_id": "R02",
+      "model": "qwen2.5-coder:3b",
+      "repeat": 2,
+      "prompt_hash": "bebf7638596f28882b8c68596d83704ab80eda730b12fe16d5b4df5cacf904c7",
+      "schema_hash": "ca1ea76db9ac535b24d1decb5d71bff2e727adc04e7dd17509d5baeeb6d39197",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.17
+    },
+    {
+      "task_id": "R03",
+      "model": "qwen2.5-coder:3b",
+      "repeat": 2,
+      "prompt_hash": "0c5c01b3597eeccddeebcdef6dd8e970a2611ef5d3915c94159213480c0c9cc0",
+      "schema_hash": "aadcc002ab632b2d25ef3c3f6d0956609894188c130fd31f5caef38cef3abdc2",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.16
+    },
+    {
+      "task_id": "R04",
+      "model": "qwen2.5-coder:3b",
+      "repeat": 2,
+      "prompt_hash": "011d46008c423508e448f62abebe37b5696ed353512880ae34351ab5b9efb5d1",
+      "schema_hash": "d8135bc603a833f5daaf4f0e676c825315038593ff5527042f4e30746ef7ba38",
+      "correct": false,
+      "error": "ProviderError: Local model request failed: URLError",
+      "raw": null,
+      "latency_ms": 0.16
+    }
+  ],
+  "summary": {
+    "qwen3.5:27b": {
+      "requests": 8,
+      "correct": 0,
+      "errors": 8,
+      "rate": 0.0,
+      "latency_median_ms": 0.22999999999999998,
+      "latency_p95_ms": 12.93,
+      "stable_tasks": 4,
+      "tasks": 4,
+      "wilson_95": [
+        0,
+        0.3244156195108769
+      ],
+      "interval_limit": "Descriptive only; repeated tasks and deterministic seeds are correlated."
+    },
+    "qwen2.5-coder:3b": {
+      "requests": 8,
+      "correct": 0,
+      "errors": 8,
+      "rate": 0.0,
+      "latency_median_ms": 0.165,
+      "latency_p95_ms": 0.18,
+      "stable_tasks": 4,
+      "tasks": 4,
+      "wilson_95": [
+        0,
+        0.3244156195108769
+      ],
+      "interval_limit": "Descriptive only; repeated tasks and deterministic seeds are correlated."
+    }
+  },
+  "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+  "protocol_hash": "908646bc669efe7af6e581ed3ca9e569c70fbe77eaa0bcaf661934ef5de2cf92",
+  "settings": {
+    "temperature": 0,
+    "seed": 7,
+    "num_predict": 2600,
+    "num_ctx": 12288
+  },
+  "scope": "New literal outcomes frozen before V5.8 inference. Inputs/expectations excluded from prompt tuning. First batch is reserved; subsequent exposures are labeled repeated evaluation. No corrections or approvals in this benchmark.",
+  "finished_at": "2026-11-18T06:49:41.533279+00:00"
+}
