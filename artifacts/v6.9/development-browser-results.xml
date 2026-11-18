@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="6" time="5.597" timestamp="2026-11-18T16:47:57.398599+00:00" hostname="7139216e8991"><testcase classname="tests.e2e.test_investigation_browser" name="test_known_payment_fault_and_restored_result_are_visible[chromium]" time="1.113"><failure message="AssertionError: Locator expected to contain text 'Restored healthy execution: passed'&#10;Actual value: None&#10;Error: strict mode violation: locator(&quot;#investigation-status&quot;) resolved to 2 elements:&#10;    1) &lt;div role=&quot;status&quot; aria-live=&quot;polite&quot; id=&quot;investigation-status&quot;&gt;&lt;/div&gt; aka locator(&quot;#page-evaluation #investigation-status&quot;)&#10;    2) &lt;p role=&quot;status&quot; id=&quot;investigation-status&quot;&gt;No inference on page load.&lt;/p&gt; aka get_by_text(&quot;No inference on page load.&quot;)&#10; &#10;Call log:&#10;[+2 more lines; full report in element text]">page = &lt;Page url='http://127.0.0.1:35983/#research'&gt;
+live_url = 'http://127.0.0.1:35983'
+
+    def test_known_payment_fault_and_restored_result_are_visible(page,live_url):
+&gt;       page.goto(live_url+'/#research');page.get_by_role('button',name='Run known-defect investigation').click();expect(page.locator('#investigation-status')).to_contain_text('Restored healthy execution: passed',timeout=20000);expect(page.locator('#investigation-facts')).to_contain_text('expected 71200; observed 71201');expect(page.locator('#investigation-status')).to_contain_text('No AI explanation requested')
+                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Locator expected to contain text 'Restored healthy execution: passed'
+E       Actual value: None
+E       Error: strict mode violation: locator("#investigation-status") resolved to 2 elements:
+E           1) &lt;div role="status" aria-live="polite" id="investigation-status"&gt;&lt;/div&gt; aka locator("#page-evaluation #investigation-status")
+E           2) &lt;p role="status" id="investigation-status"&gt;No inference on page load.&lt;/p&gt; aka get_by_text("No inference on page load.")
+E        
+E       Call log:
+E         - Expect "to_contain_text" locator("#investigation-status") with timeout 20000ms
+E         - waiting for locator("#investigation-status")
+
+tests/e2e/test_investigation_browser.py:5: AssertionError</failure></testcase><testcase classname="tests.e2e.test_design_browser" name="test_design_modes_and_no_inference_on_navigation[chromium]" time="0.195" /><testcase classname="tests.e2e.test_design_browser" name="test_design_errors_are_visible_without_inference[chromium]" time="0.750" /><testcase classname="tests.e2e.test_advanced_browser" name="test_authored_advanced_control_review_and_http_execution[chromium]" time="1.417" /><testcase classname="tests.e2e.test_advanced_browser" name="test_advanced_mobile_form_remains_inside_viewport[chromium]" time="0.164" /><testcase classname="tests.e2e.test_advanced_browser" name="test_actual_lost_ack_peer_rehearsal[chromium]" time="1.920" /></testsuite></testsuites>

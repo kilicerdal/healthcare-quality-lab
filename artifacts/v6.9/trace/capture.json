@@ -1,0 +1,6 @@
+{
+  "source_hash": "7c5aee3009aa1584ed5afe6c50a3f68ee08bcf8b979fbf92c3c6829f7043e7ea",
+  "passed": true,
+  "live_model_calls": 0,
+  "scope": "Actual isolated synthetic known-defect UI, including request/response browser trace; no new model inference"
+}

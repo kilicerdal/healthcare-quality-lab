@@ -279,6 +279,8 @@ def create_app(config=None):
     register(app,body,actor_id)
     from healthcare_quality.design_api import register as register_design
     register_design(app,body)
+    from healthcare_quality.investigation_api import register as register_investigations
+    register_investigations(app,body)
     from healthcare_quality.auth import configure
     configure(app)
     return app

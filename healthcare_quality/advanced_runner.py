@@ -34,7 +34,7 @@ def run(cases,transport='service',fault=None):
             try:
                 for n,s in enumerate(case['steps'],1):
                     if time.monotonic()-started>60:raise TimeoutError('Advanced execution time budget exceeded')
-                    d=deepcopy(s['data']);id=d.pop('claim_id');a=s['action'];status=201 if a=='submit' else 200
+                    d=deepcopy(s['data']);id=d.pop('claim_id');a=s['action'];status=201 if a=='submit' else 200;request_id=None
                     if a=='submit':d['id']=id
                     if transport=='service':
                         try:raw=service.get(s['actor'],id) if a=='read' else service.operate(s['actor'],d,a,None if a=='submit' else id);observed=project(raw,status)
@@ -47,12 +47,12 @@ def run(cases,transport='service',fault=None):
                         with response:
                             data=response.read(262145)
                             if len(data)>262144:raise ValueError('Response budget exceeded')
-                            raw=json.loads(data);status=response.status
+                            raw=json.loads(data);status=response.status;request_id=response.headers.get('X-Request-ID')
                         observed=project(raw,status) if status in (200,201) else dict(status=status,error=raw['error'])
                     if fault and fault in observed:observed[fault]+=1
                     expected=s['expect'];assertions=[dict(field=k,expected=v,observed=observed.get(k),passed=k in observed and type(v) is type(observed[k]) and v==observed[k]) for k,v in expected.items()]
                     passed=all(x['passed'] for x in assertions);actions+=1
-                    steps.append(dict(step=n,action=a,expected=expected,observed=observed,passed=passed,assertions=assertions))
+                    steps.append(dict(step=n,action=a,expected=expected,observed=observed,passed=passed,assertions=assertions,request=dict(action=a,actor=s['actor'],data=deepcopy(s['data'])),response=deepcopy(raw),request_id=request_id))
                     if not passed:break
                 results.append(dict(case_id=case['id'],passed=len(steps)==len(case['steps']) and all(s['passed'] for s in steps),steps=steps))
             finally:
