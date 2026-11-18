@@ -1,0 +1,20 @@
+{
+  "page_uri": "page://page_8e1be93742c0819197931d5d62025a55",
+  "artifact_ref": "artifact_external_daf54471-8094-4533-8cb2-58d4ce53aba5",
+  "state_version": 4,
+  "slides": 8,
+  "all_slides_visually_reviewed": true,
+  "native_editable_diagram_and_tables": true,
+  "speaker_notes": true,
+  "scope": "Separate personal V7 deck; V6.7 deck preserved. Public previews do not publicly share the personal editable deck.",
+  "files": {
+    "slide-1.png": "a0065ac87cfee905a8a2660a615bc0a731e84315474b8d6e82f5f9d17fddcd2e",
+    "slide-2.png": "a8327d2070408928513a5831b5cea8e898f84c3c361c37d091e7a75943fa3a19",
+    "slide-3.png": "6d99525c75571c6f08509f388ad7cf4fc39dd83bc266caf0b18e4d4b71f459ec",
+    "slide-4.png": "d1f64c0b62638f30a6a74c87068ccdec23fbd194ff460b8eee32741feb3d8061",
+    "slide-5.png": "8f098a9bf167a88de0f50d921fce6ca38787b7e96e2f2bda66aea3247db261bf",
+    "slide-6.png": "e4e2aad474ca5d5fd2f6c4cbe6baefe9b9902cc18407ffc5674510c0386c63df",
+    "slide-7.png": "f89443e95f59985c85ae281b5eb1c81467edba0b0f7eab93817d9505ebac7681",
+    "slide-8.png": "cc04e66b9ca51911be706e2747ac0d190426ed3f78454e1c6af6e8bcdb14d40a"
+  }
+}

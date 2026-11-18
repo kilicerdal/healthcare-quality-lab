@@ -45,7 +45,9 @@ def explain(provider,model,analysis):
     prompt='Explain these observed synthetic test failures. Return hypotheses with category, statement and evidence_ids plus uncertainty. Cite only supplied F identifiers. Distinguish expected-value errors, possible application defects, stale evidence, infrastructure and harness injection. Do not assert a proven root cause or invent file/line citations. Do not propose executable code. Evidence: '+json.dumps(analysis,sort_keys=True)
     raw=provider.generate(model,prompt,EXPLANATION_SCHEMA)
     from healthcare_quality.advanced_schema import parse_model_json
-    answer=parse_model_json(raw['text']);Draft202012Validator(EXPLANATION_SCHEMA).validate(answer)
+    try:
+        answer=parse_model_json(raw['text']);Draft202012Validator(EXPLANATION_SCHEMA).validate(answer)
+    except Exception as error:return dict(raw=raw,answer=None,rubric=dict(citations_exist=False,category_agreement=False),accepted=False,error=type(error).__name__,label='Invalid AI hypothesis retained; no automatic fix or execution')
     ids={f['id'] for f in analysis['facts']};unknown=sorted({i for h in answer['hypotheses'] for i in h['evidence_ids'] if i not in ids});expected={f['category'] for f in analysis['findings']}
     rubric=dict(citations_exist=not unknown,unknown_citations=unknown,category_agreement=all(h['category'] in expected for h in answer['hypotheses']),uncertainty_supplied=True,scope='Citation existence and category agreement are scored; this does not verify the truth of every natural-language statement.')
     return dict(raw=raw,answer=answer,rubric=rubric,accepted=bool(rubric['citations_exist'] and rubric['category_agreement']),label='AI hypothesis; no automatic fix, approval or execution')

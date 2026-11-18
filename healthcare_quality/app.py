@@ -46,7 +46,7 @@ def create_app(config=None):
 
     @app.get("/api/ready")
     def ready():
-        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments"),("coverage",coverage.store.path,"ai_experiments"),("reliability",app.extensions["reliability"].store.path,"ai_experiments"),("research",app.extensions["research"].path,"ai_experiments"),("benefits",app.extensions["benefits"].path,"benefit_claims"),("audit",app.extensions["audit"].path,"review_audit"),("advanced",app.extensions["advanced"].store.path,"ai_experiments"),("advanced_evaluations",app.extensions["advanced_evaluations"].path,"ai_experiments"),("integrations",app.extensions["integrations"].path,"ai_experiments")])
+        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments"),("coverage",coverage.store.path,"ai_experiments"),("reliability",app.extensions["reliability"].store.path,"ai_experiments"),("research",app.extensions["research"].path,"ai_experiments"),("benefits",app.extensions["benefits"].path,"benefit_claims"),("audit",app.extensions["audit"].path,"review_audit"),("advanced",app.extensions["advanced"].store.path,"ai_experiments"),("advanced_evaluations",app.extensions["advanced_evaluations"].path,"ai_experiments"),("integrations",app.extensions["integrations"].path,"ai_experiments"),("designs",app.extensions["designs"].store.path,"ai_experiments"),("advanced_investigations",app.extensions["advanced_investigations"].path,"ai_experiments"),("traceability",app.extensions["traceability"].path,"ai_experiments"),("experiments",app.extensions["experiments"].store.path,"ai_experiments")])
         return jsonify(result),200 if result["status"]=="ready" else 503
 
     @app.get("/api/showcase")
@@ -287,6 +287,8 @@ def create_app(config=None):
     register_effectiveness(app)
     from healthcare_quality.experiment_api import register as register_experiments
     register_experiments(app,body)
+    from healthcare_quality.portfolio_api import register as register_portfolio
+    register_portfolio(app,body)
     from healthcare_quality.auth import configure
     configure(app)
     return app

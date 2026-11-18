@@ -10,4 +10,4 @@ bind('advanced-control',async()=>{const d=await api('/controls');const r=await a
 bind('advanced-review',async()=>{if(!current)throw Error('Select a proposal');render(await api('/'+current.id+'/review',{reviewer:el('advanced-reviewer').value,note:el('advanced-note').value,revision:current.revision}));message('Inspected snapshot approved. Execution remains a separate action.');});
 bind('advanced-execute',async()=>{if(!current)throw Error('Select a proposal');render(await api('/'+current.id+'/execute',{transport:'http'}));const r=current.runs.at(-1);message(`Execution: ${r.passed} passed, ${r.failed} failed. Fresh isolated HTTP state.`);});
 bind('advanced-correct',async()=>{if(!current)throw Error('Select a proposal');const r=await api('/'+current.id+'/correct',{model:el('advanced-model').value});await refresh(r.id);message('Separate AI-corrected proposal saved with reference assistance disclosed. Original evidence retained; no approval granted.');});
-window.hqlAdvancedReady=refresh().catch(e=>message(e.message));})();
+window.hqlSelectAdvanced=id=>refresh(id);window.hqlAdvancedReady=refresh().catch(e=>message(e.message));})();

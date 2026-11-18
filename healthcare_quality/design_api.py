@@ -8,9 +8,13 @@ from healthcare_quality.ollama_provider import OllamaProvider
 def register(app,body):
     lab=DesignLab(Path(app.config['DATABASE']).with_name('designs-v68.sqlite'),OllamaProvider('advanced'),app.extensions['studio'].generation_lock);app.extensions['designs']=lab
     @app.get('/api/advanced/designs')
-    def designs():return jsonify(modes=MODES,records=lab.records(),scope='Plans and cases remain unapproved. Calculator expectations are not AI-authored expected values.')
+    def designs():return jsonify(modes=MODES,records=[{k:r.get(k) for k in ('id','created_at','state','phase','mode','expectation_author')} for r in lab.records()],scope='Plans and cases remain unapproved. Calculator expectations are not AI-authored expected values.')
     @app.get('/api/advanced/designs/<id>')
-    def design_get(id):return jsonify(lab.get(id))
+    def design_get(id):
+        r=lab.get(id)
+        from tools.fingerprints import source_hash
+        from healthcare_quality.advanced_lab import contract_hash
+        r['matches_current_source']=r['source_hash']==source_hash() and r['contract_hash']==contract_hash();return jsonify(r)
     @app.post('/api/advanced/designs/generate')
     def design_generate():
         b=body()

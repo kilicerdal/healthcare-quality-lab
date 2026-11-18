@@ -41,6 +41,15 @@ def seed(state,output):
         if saved.get('kind')=='advanced_evaluation':
             saved['demo_source']=dict(path=str(path.relative_to(ROOT)),live_inference=False,label='Replay of earlier actual local-model measurement')
             app.extensions['advanced_evaluations'].create(saved);measurements+=1
+    for file in sorted((ROOT/'artifacts/v6.8').glob('live-*.json')):
+        saved=json.loads(file.read_text());saved['demo_source']=dict(path=str(file.relative_to(ROOT)),live_inference=False,label='Historical actual AI design replay; original source fingerprint retained')
+        app.extensions['designs'].store.create(saved)
+    file=ROOT/'artifacts/v6.12/live-model-prompt-comparison.json'
+    if file.exists():
+        saved=json.loads(file.read_text());saved['demo_source']=dict(path=str(file.relative_to(ROOT)),live_inference=False,label='Historical frozen model comparison; no new inference')
+        app.extensions['experiments'].store.create(saved)
+    from healthcare_quality.traceability import graph
+    traces=graph(advanced.records())
     result=dict(status='passed',advanced_control=proposal['id'],advanced_measurement_replays=measurements,demo=True,live_model_requests=0,source_hash=source_hash(),state_dir=str(state),experiments=ids,before_score=before['id'],after_score=after['id'],comparison=comparison['id'],before_detected=before['detected'],after_detected=after['detected'],missing_gaps=coverage.dashboard()['counts']['missing_gaps'],investigation=investigation['id'],fault_run=fault['id'],benefit_claim=b['id'],scope='Fresh replay state with copied saved evidence, current checks and explicit scripted approvals. Original source artifacts and interactive databases remain unchanged.')
     output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(result,indent=2)+'\n');return result
 if __name__=='__main__':

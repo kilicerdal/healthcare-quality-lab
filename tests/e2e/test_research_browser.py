@@ -35,7 +35,7 @@ def test_selected_visual_layout_contracts(page,research_url,layout):
     assert contract['heading_width'][0]<=box['width']<=contract['heading_width'][1]
     if 'heading_y' in contract:assert contract['heading_y'][0]<=box['y']<=contract['heading_y'][1]
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-    page.screenshot(path=str(Path(__file__).resolve().parents[2]/('artifacts/v6.7/layout-'+layout+'.png')),animations='disabled')
+    page.screenshot(path=str(Path(__file__).resolve().parents[2]/('artifacts/v7.0/layout-'+layout+'.png')),animations='disabled')
 
 def test_reviewed_snapshot_can_use_real_http_from_studio(page,research_url):
     from tests.support.studio_page import StudioPage

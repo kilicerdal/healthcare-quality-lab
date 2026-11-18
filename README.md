@@ -1,9 +1,9 @@
-# Healthcare Quality Lab — V6.7
+# Healthcare Quality Lab — V7.0
 
 [![Quality and release checks](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml)
 ![Tested Python 3.11, 3.12 and 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?logo=python) ![Tests: pytest and Playwright](https://img.shields.io/badge/Tests-pytest%20%2B%20Playwright-2EAD33) [![MIT license](https://img.shields.io/github/license/kilicerdal/healthcare-quality-lab)](LICENSE)
 
-**Review V6.7:** [Advanced AI and external-service demo](docs/V6.7_DEMO.md) · [Combined report](docs/V6.7_REPORT.md) · [AI learning guide](docs/AI_LEARNING_GUIDE.md).
+**Review V7.0:** [Fresh-start guided demo](docs/V7.0_DEMO.md) · [Detailed final report](docs/V7.0_REPORT.md) · [Architecture](docs/V7.0_ARCHITECTURE.md) · [AI learning guide](docs/AI_LEARNING_GUIDE.md).
 
 **Earlier review in five minutes:** [What to run, which failure to inspect, and what it proves](docs/REVIEWER_GUIDE.md) · [Evidence provenance](docs/EVIDENCE.md).
 
@@ -16,6 +16,27 @@ The central question is simple: **does a test detect the wrong business result, 
 **Start here:** [Current advanced demo](docs/V6.7_DEMO.md) · [Earlier two-minute engineering demo](docs/V5.8_DEMO.md) · [Case study](docs/CASE_STUDY.md) · [Historical V5.7 guided demo](docs/V5.7_DEMO.md) · [Code examples](#review-the-code) · [Run locally](#run-locally)
 
 **How this differs from [Healthcare Quality Platform](https://github.com/kilicerdal/ai-healthcare-quality-platform):** this lab focuses on business-rule correctness, independent checking of AI expectations, review gates, and payment concurrency/recovery. The platform focuses on API contracts, PostgreSQL persistence, and simulated S3/SQS message processing.
+
+## V6.8–V7.0: design, investigate, trace and measure
+
+Start a fresh local replay with `python3 -m tools.launch_demo --state-dir .local/v7-fresh --port 8897`, then open `http://127.0.0.1:8897/#journey`. The launcher refuses existing state and makes no model request.
+
+| Milestone | Engineering purpose | Detailed report |
+| --- | --- | --- |
+| V6.8 | Separate AI planning, AI expectations and independent calculator authorship | [Report](docs/V6.8_REPORT.md) |
+| V6.9 | Capture sealed failure evidence and score cited AI hypotheses | [Report](docs/V6.9_REPORT.md) |
+| V6.10 | Link versioned requirements, scenarios, assertions and current executions | [Report](docs/V6.10_REPORT.md) |
+| V6.11 | Measure actual pricing mutations, properties and failing-prefix reduction | [Report](docs/V6.11_REPORT.md) |
+| V6.12 | Freeze model/prompt comparisons, budgets and original raw answers | [Report](docs/V6.12_REPORT.md) |
+| V7.0 | Reproduce the connected workflow, inspect reports and verify the release | [Report](docs/V7.0_REPORT.md) |
+
+**Observed AI limits:** the four raw model/prompt answers on one selected frozen XP-03 input were all ineligible; the focused prompt did not improve raw accuracy in that sample. Four calculator controls compiled without model calls. The actual small-model scenario from V6.8 passed independent checks with calculator-authored expectations. Original outputs, failures, digests and token/runtime metadata remain available.
+
+**Observed test effectiveness:** original authored controls detected 25/27 pricing variants; two new authored boundaries bring their union to 27/27. The historical AI scenario with calculator values detected 19/27. Wrong raw AI has no score because its healthy baseline failed. Seeded property checks detected 14/27, with survivors retained. Different budgets prevent an equal-budget model ranking.
+
+The release includes a captioned actual UI demonstration, public previews of an eight-slide presentation, six reports, source-linked verification and archived upgrade/rollback receipts. [Run and inspect the complete workflow](docs/V7.0_DEMO.md). A green model job is not proof of a correct answer, and calculator-generated values are not model reasoning.
+
+![Editable V7 architecture preview](artifacts/v7.0/interview/slide-2.png)
 
 ## V6.3–V6.7: advanced AI cases and external-service recovery
 

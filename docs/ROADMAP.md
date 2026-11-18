@@ -49,3 +49,15 @@ Codex: implement, explain and review. Ollama: local review in V1 and generation 
 ## V6.3–V6.7 combined delivery
 
 V6.3 extends bounded AI cases into advanced benefits with a separate lifecycle oracle and explicit review. V6.4 freezes raw/corrected evaluation and scenario-preservation controls. V6.5 adds an owner-only ephemeral local-model CI runner. V6.6 supplies the interview narrative, editable personal deck, recorded UI demonstration and tagged release assets. V6.7 adds real HTTP synthetic eligibility/payments, durable outbox/inbox and reconciliation faults. These are milestones in one combined V6.7 release. Each has a detailed report; previous public releases and archives remain unchanged.
+
+
+## V6.8–V7.0 completed implementation milestones
+
+- V6.8: plan-first test design, focused retrieval and separate AI/calculator expectation authorship. [Report](V6.8_REPORT.md).
+- V6.9: sealed advanced failure evidence, actual pricing-fault restoration and citation-scored optional AI hypotheses. [Report](V6.9_REPORT.md).
+- V6.10: versioned requirement/assertion/execution graph and non-mutating what-if maintenance impact. [Report](V6.10_REPORT.md).
+- V6.11: actual production-pricing AST mutation comparison, seeded properties, lifecycle metamorphic relations and bounded prefix reduction. [Report](V6.11_REPORT.md).
+- V6.12: frozen model/prompt matrices with request budgets, exposure history, interruption/cancellation fencing and original answers. [Report](V6.12_REPORT.md).
+- V7.0: fresh guided showcase, six reports, separate editable interview presentation, captioned actual browser capture and verified combined release. [Guide](V7.0_DEMO.md), [report](V7.0_REPORT.md).
+
+These are six implementation milestones delivered in one combined V7.0 release. We do not invent six independently deployed runtimes or claim that the observed prompt experiment improved raw model accuracy.

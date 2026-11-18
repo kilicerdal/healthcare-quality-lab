@@ -17,7 +17,7 @@ def register(app,body):
     @app.post('/api/advanced/investigations')
     def investigation_create():
         b=body()
-        if not isinstance(b,dict) or set(b)!={'proposal_id','run_id'}:raise StudioError('INVALID_REQUEST','Select a saved advanced proposal and run')
+        if not isinstance(b,dict) or set(b)!={'proposal_id','run_id'} or any(type(b[k]) is not str or not 1<=len(b[k])<=64 for k in ('proposal_id','run_id')):raise StudioError('INVALID_REQUEST','Select a saved advanced proposal and run')
         p=app.extensions['advanced'].get(b['proposal_id']);run=next((x for x in p['runs'] if x['id']==b['run_id']),None)
         if not run:raise StudioError('NOT_FOUND','Saved run not found',404)
         bundle=seal(p['cases'],run);bundle['source_hash']=p['source_hash'];bundle['contract_hash']=p['contract_hash']
@@ -31,8 +31,11 @@ def register(app,body):
         if not app.extensions['studio'].generation_lock.acquire(False):raise StudioError('MODEL_BUSY','Another inference is active',429)
         try:
             r=store.get(id)
-            if r.get('ai'):raise StudioError('ALREADY_EXPLAINED','Use the saved explanation; no silent repeated inference',409)
-            r['analysis']=inspect(r['bundle']);r['ai']=explain(OllamaProvider('advanced'),b['model'],r['analysis'])
+            if r.get('ai') or r.get('ai_attempt'):raise StudioError('ALREADY_EXPLAINED','A saved or unresolved request exists; create a separate investigation for another explicit attempt',409)
+            r['analysis']=inspect(r['bundle']);r['ai_attempt']=dict(model=b['model'],requested_at=now(),state='request_running')
+            with store.transaction() as db:store.save(db,r)
+            try:r['ai']=explain(OllamaProvider('advanced'),b['model'],r['analysis']);r['ai_attempt']['state']='completed'
+            except Exception as error:r['ai']=dict(accepted=False,error=type(error).__name__,label='Provider failure; not a confirmed defect explanation');r['ai_attempt']['state']='failed'
             with store.transaction() as db:store.save(db,r)
         finally:app.extensions['studio'].generation_lock.release()
         return jsonify(r)

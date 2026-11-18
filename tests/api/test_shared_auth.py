@@ -52,3 +52,11 @@ def test_new_advanced_and_integration_routes_keep_identity_and_review_gates(shar
     assert c.post('/api/advanced/'+record['id']+'/review',json=review).status_code==403
     result=c.post('/api/advanced/'+record['id']+'/review',json=review,headers={'X-CSRF-Token':csrf})
     assert result.status_code==200 and result.json['approval']['reviewer']=='reviewer'
+
+def test_v7_new_workbenches_preserve_shared_role_and_csrf_boundaries(shared):
+    paths=['designs','experiments','investigations','traceability','effectiveness','portfolio'];c=shared.test_client()
+    for path in paths:assert c.get('/api/advanced/'+path).status_code==401
+    login(c,'customer')
+    for path in paths:assert c.get('/api/advanced/'+path).status_code==403
+    token=login(c,'analyst');assert c.post('/api/advanced/portfolio/control',json={}).status_code==403
+    r=c.post('/api/advanced/portfolio/control',json={},headers={'X-CSRF-Token':token});assert r.status_code==201 and r.json['approval'] is None

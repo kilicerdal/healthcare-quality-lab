@@ -24,7 +24,7 @@ def test_evaluate_covered_claim_in_browser(page,live_url):
     expect(page.locator(".trace-row")).to_have_count(7)
     (ROOT/"artifacts").mkdir(exist_ok=True)
     page.evaluate("window.scrollTo(0, 0)")
-    page.screenshot(path=str(ROOT/"artifacts/v6.7-workspace.png"),full_page=True)
+    page.screenshot(path=str(ROOT/"artifacts/v7.0/workspace.png"),full_page=True)
 
 
 @pytest.mark.sanity
@@ -91,7 +91,7 @@ def test_mobile_layout_and_evaluation(page,live_url):
     assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
     (ROOT/"artifacts").mkdir(exist_ok=True)
     page.evaluate("window.scrollTo(0, 0)")
-    page.screenshot(path=str(ROOT/"artifacts/v6.7-mobile.png"),full_page=True)
+    page.screenshot(path=str(ROOT/"artifacts/v7.0/mobile.png"),full_page=True)
 
 
 def test_report_link_opens_the_local_engineering_report(page,live_url):
