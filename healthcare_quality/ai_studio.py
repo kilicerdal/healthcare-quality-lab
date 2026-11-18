@@ -414,7 +414,7 @@ class StudioService:
             record["history"].append({"previous_expectation_origin":previous_origin,"event":"case_edited","at":now(),"revision":record["revision"],"reviewer_label":body["reviewer_label"],"note":body["review_note"],"before":before,"after":body["case"]})
             self.store.save(db,record);return record
 
-    def review(self,id,body):
+    def review(self,id,body,*,_identity=None):
         self.recover_interrupted()
         required={"expected_revision","approved_ids","reviewer_label","review_note","expectations_checked"}
         if not isinstance(body,dict) or set(body)!=required:raise StudioError("INVALID_REQUEST","Invalid review request")
@@ -437,6 +437,9 @@ class StudioService:
             record["revision"]+=1
             record["proposals"]=checked;record["approved_ids"]=ids
             record["approval"]={"revision":record["revision"],"at":now(),"reviewer_label":body["reviewer_label"],"note":body["review_note"],"expectations_checked":True,"hashes":{id:valid[id]["hash"] for id in ids},"assertion_policy_fingerprint":policy_fingerprint(),"reference_fingerprint":reference.fingerprint(),"identity_mode":"Local attestation label, not authenticated human identity"}
+            if _identity:
+                record["approval"]["authenticated_identity"]=deepcopy(_identity)
+                record["approval"]["identity_mode"]="Authenticated configured account; credential identity is server supplied"
             if record.get("focused_source"):record["approval"]["focused_hash"]=focused.approval_hash(record)
             record["state"]="approved" if ids else "reviewed_no_approval"
             record["history"].append({"event":record["state"],**deepcopy(record["approval"])})
@@ -492,7 +495,7 @@ class StudioService:
 
     def execute(self,id,body):
         self.recover_interrupted()
-        if not isinstance(body,dict) or set(body)!={"expected_revision"}:raise StudioError("INVALID_REQUEST","Provide expected_revision only")
+        if not isinstance(body,dict) or set(body) not in ({"expected_revision"},{"expected_revision","transport"}) or body.get("transport","service") not in ("service","http"):raise StudioError("INVALID_REQUEST","Provide expected_revision and optional service/http transport")
         with self.store.transaction() as db:
             operations.recover(db)
             record=self.store.load(db,id);self._revision(record,body)
@@ -504,7 +507,8 @@ class StudioService:
         with operations.keepalive(self.store.path,token,self.lease_seconds,self.heartbeat_interval):
             try:
                 run["source_hash"]=source_hash()
-                run.update(run_cases(cases))
+                run.update(run_cases(cases) if body.get("transport","service")=="service" else run_cases(cases,transport="http"))
+                run["transport"]=body.get("transport","service")
                 run["status"]="passed" if not run["failed"] else "failed"
             except Exception as error:run.update(status="execution_error",error=f"{type(error).__name__}: {error}"[:1000])
             self.recover_interrupted()

@@ -7,7 +7,7 @@ from urllib.parse import quote
 from healthcare_quality import __version__
 from tools.fingerprints import source_hash
 ROOT=Path(__file__).resolve().parents[1]
-EVIDENCE={"verification":"artifacts/verification.json","development":"artifacts/v4/development-comparison.json","reserved":"artifacts/v4/held_out-comparison.json","investigation":"artifacts/v4/live-investigation.json","sensitivity":"artifacts/v4/assertion-sensitivity.json","rehearsal":"artifacts/v5/deployment-rehearsal.json"}
+EVIDENCE={"verification":"artifacts/verification.json","development":"artifacts/v4/development-comparison.json","reserved":"artifacts/v4/held_out-comparison.json","investigation":"artifacts/v4/live-investigation.json","sensitivity":"artifacts/v4/assertion-sensitivity.json","rehearsal":"artifacts/v5/deployment-rehearsal.json","reliability":"artifacts/v5.8/reserved-live-online.json","assistant":"artifacts/v5.9/live-ai-investigation.json","mutations":"artifacts/v6.1/mutation-sweep.json","resilience":"artifacts/v6.1/resilience-rehearsal.json","reproducibility":"artifacts/v6.2/demo-rehearsal.json"}
 
 def verification():
     try:
@@ -33,5 +33,6 @@ def summary():
         {"version":"V3","title":"Local AI test creation","outcome":"Ollama proposals, explicit review, isolated execution and trusted pytest export","page":"ai"},
         {"version":"V4","title":"Measure AI quality","outcome":"16 saved live proposals; scoring exposes missing assertions and wrong oracles","page":"evaluation"},
         {"version":"V5","title":"Repeatable showcase release","outcome":"Validated packages, local activation/rollback, readiness and request tracing","page":"showcase"}],
+        "extensions":[{"version":"V5.8","title":"Reserved AI evaluations","outcome":"Repeated raw model measurements; no repairs or approvals"},{"version":"V5.9","title":"Grounded investigation","outcome":"Facts, rule citations, triage and separate AI hypotheses"},{"version":"V6.0","title":"Versioned benefit lifecycle","outcome":"Lines, family accumulators, adjustments, appeals and reversals"},{"version":"V6.1","title":"Prove resilience","outcome":"HTTP parity, concurrency, rollback and broader mutation checks"},{"version":"V6.2","title":"Reproducible showcase","outcome":"Fresh demo, authenticated review option and multi-browser CI"}],
         "evidence":[{"id":key,"available":(ROOT/path).is_file(),"url":"/api/showcase/evidence/"+key} for key,path in EVIDENCE.items()],
         "repository":"https://github.com/kilicerdal/healthcare-quality-lab","repository_visibility":"private","deployment_scope":"Loopback local demonstration. GitHub CI status is recorded separately; no public healthcare service is deployed."}

@@ -1,0 +1,33 @@
+name: Opt-in local Ollama evaluation
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: Installed allowlisted local model
+        type: choice
+        options: [qwen3.5:27b, 'qwen2.5-coder:3b', 'qwen2.5:3b']
+        default: qwen3.5:27b
+      repeats:
+        type: choice
+        options: ['1', '2', '3']
+        default: '2'
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    runs-on: [self-hosted, hql-ollama]
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create isolated environment
+        run: python3 -m tools.bootstrap
+      - name: Explicit reserved-model evaluation without repairs
+        env:
+          HQL_EVAL_MODEL: ${{ inputs.model }}
+          HQL_EVAL_REPEATS: ${{ inputs.repeats }}
+        run: .venv/bin/python -m tools.reliability --models "$HQL_EVAL_MODEL" --repeats "$HQL_EVAL_REPEATS" --state .local/live-${{ github.run_id }}.sqlite --output artifacts/v5.8/live-${{ github.run_id }}.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-ai-${{ github.run_id }}
+          path: artifacts/v5.8/live-${{ github.run_id }}.json

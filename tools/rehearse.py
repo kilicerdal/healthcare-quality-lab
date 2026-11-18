@@ -47,7 +47,7 @@ def running(target):
 def journey(base):
     claim_id="REL-"+uuid4().hex[:12]
     status,health,headers=request(base,"/api/health");assert status==200
-    if health["version"].startswith("5."):
+    if int(health["version"].split(".")[0])>=5:
         assert request(base,"/api/ready")[1]["status"]=="ready"
         assert len(headers["x-request-id"])==32
     status,result,_=request(base,"/api/evaluate",{"plan_id":"commercial_ppo","service":"medical","amount_cents":100000});assert status==200 and result["payout_cents"]==90000

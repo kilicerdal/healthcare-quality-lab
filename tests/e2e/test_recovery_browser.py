@@ -42,7 +42,7 @@ def test_browser_requires_fresh_review_after_interrupted_execution(page,recovery
     page.locator('.ai-approve-case').check();page.locator('#ai-reviewer').fill('Browser recovery operator');page.locator('#ai-review-note').fill('Reviewed preserved expectations again after interruption');page.locator('#ai-attest').check();page.locator('#ai-save-review').click()
     expect(page.locator('#ai-execute')).to_be_enabled();page.locator('#ai-execute').click()
     expect(page.locator('#ai-message')).to_contain_text('Run passed')
-    page.screenshot(path=str(ROOT/'artifacts/v5.7/recovered-execution-browser.png'),full_page=True)
+    page.screenshot(path=str(ROOT/'artifacts/v6.2/recovered-execution-browser.png'),full_page=True)
     assert studio.store.get(record['id'])['runs'][-1]['status']=='passed'
 
 

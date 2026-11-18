@@ -46,7 +46,7 @@ def create_app(config=None):
 
     @app.get("/api/ready")
     def ready():
-        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments"),("coverage",coverage.store.path,"ai_experiments")])
+        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments"),("coverage",coverage.store.path,"ai_experiments"),("reliability",app.extensions["reliability"].store.path,"ai_experiments"),("research",app.extensions["research"].path,"ai_experiments"),("benefits",app.extensions["benefits"].path,"benefit_claims"),("audit",app.extensions["audit"].path,"review_audit")])
         return jsonify(result),200 if result["status"]=="ready" else 503
 
     @app.get("/api/showcase")
@@ -58,9 +58,13 @@ def create_app(config=None):
         if path is None or not path.is_file():return jsonify(error="Evidence not available"),404
         return send_file(path,mimetype="application/json",as_attachment=True,download_name=key+".json")
 
+    def actor_id():return g.identity["actor_id"] if getattr(g,"identity",None) else request.headers.get("X-Demo-Actor")
+
     def body():
         if not request.is_json:raise WorkflowError("INVALID_CONTENT_TYPE","Content-Type must be application/json",415,"HC-001")
-        return request.get_json(silent=True)
+        value=request.get_json(silent=True)
+        if isinstance(value,dict) and "reviewer_label" in value and getattr(g,"identity",None):value["reviewer_label"]=g.identity["username"]
+        return value
 
     @app.get("/")
     def index():return render_template("index.html",version=__version__)
@@ -81,17 +85,17 @@ def create_app(config=None):
         return jsonify(actors=ACTORS,members=MEMBERS,synthetic=True,identity_mode="demo selector; not authentication",workflow_contract_hash=WORKFLOW_HASH)
 
     @app.get("/api/claims")
-    def claims():return jsonify(service.list(request.headers.get("X-Demo-Actor")))
+    def claims():return jsonify(service.list(actor_id()))
 
     @app.post("/api/claims")
-    def submit():return jsonify(service.submit(request.headers.get("X-Demo-Actor"),body())),201
+    def submit():return jsonify(service.submit(actor_id(),body())),201
 
     @app.get("/api/claims/<claim_id>")
     @app.get("/api/claims/<claim_id>/evidence")
-    def detail(claim_id):return jsonify(service.get(request.headers.get("X-Demo-Actor"),claim_id))
+    def detail(claim_id):return jsonify(service.get(actor_id(),claim_id))
 
     @app.post("/api/claims/<claim_id>/transitions")
-    def transition(claim_id):return jsonify(service.transition(request.headers.get("X-Demo-Actor"),claim_id,body()))
+    def transition(claim_id):return jsonify(service.transition(actor_id(),claim_id,body()))
 
     @app.errorhandler(WorkflowError)
     def workflow_error(error):
@@ -131,7 +135,7 @@ def create_app(config=None):
     def ai_edit(id,case_id):return jsonify(studio.edit(id,case_id,body()))
 
     @app.post("/api/ai/experiments/<id>/review")
-    def ai_review(id):return jsonify(studio.review(id,body()))
+    def ai_review(id):return jsonify(studio.review(id,body(),_identity=getattr(g,"identity",None)))
 
     @app.get("/api/ai/experiments/<id>/reference-preview")
     def ai_reference_preview(id):return jsonify(studio.reference_preview(id))
@@ -223,8 +227,8 @@ def create_app(config=None):
 
     @app.get("/report")
     @app.get("/reports/<version>")
-    def report(version="v5.7"):
-        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7"):return jsonify(error="Report not found"),404
+    def report(version="v6.2"):
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7","v5.8","v5.9","v6.0","v6.1","v6.2"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)
@@ -241,4 +245,8 @@ def create_app(config=None):
         response.headers["X-Content-Type-Options"]="nosniff"
         response.headers["Cache-Control"]="no-store"
         return response
+    from healthcare_quality.research_api import register
+    register(app,body,actor_id)
+    from healthcare_quality.auth import configure
+    configure(app)
     return app

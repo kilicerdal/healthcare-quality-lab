@@ -1,17 +1,43 @@
-name: V5.7 quality and release checks
+name: V6.2 quality and release checks
 on:
   push:
   pull_request:
   workflow_dispatch:
+    inputs:
+      full_browsers:
+        description: Run every browser test in Chromium, Firefox and WebKit
+        type: boolean
+        default: false
+  schedule:
+    - cron: '17 7 * * 1'
 permissions:
   contents: read
 concurrency:
   group: quality-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  verify:
+  fast:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m pip check
+      - name: Fast unit and API gate
+        run: python -m pytest tests/unit tests/api -q --junitxml artifacts/v6.2/fast-results.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v6.2-fast-evidence
+          path: artifacts/v6.2/fast-results.xml
+  verify:
+    if: github.event_name != 'pull_request'
+    needs: fast
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     env:
       PLAYWRIGHT_BROWSERS_PATH: .browsers
     steps:
@@ -20,29 +46,71 @@ jobs:
         with:
           python-version: '3.13'
           cache: pip
-          cache-dependency-path: |
-            requirements.txt
-            requirements-dev.txt
-      - name: Install Python dependencies
-        run: python -m pip install -r requirements-dev.txt
-      - name: Install Chromium and Linux dependencies
-        run: python -m playwright install --with-deps chromium
-      - name: Verify tests and known fault detection
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m playwright install --with-deps chromium
+      - name: Full regression and known faults
         run: python -m tools.verify
-      - name: Build and inspect a checksummed source release
+      - name: Broader mutation and resilience evidence
+        run: |
+          python -m tools.mutations > artifacts/v6.1/ci-mutations.json
+          python -m tools.resilience --output artifacts/v6.1/ci-resilience.json
+      - name: Build, inspect and rehearse release
         run: |
           python -m tools.release build --output releases/ci
-          python -m tools.release inspect releases/ci/v5.7.0-source.zip
-      - name: Rehearse the staged release through actual HTTP
-        run: python -m tools.rehearse releases/ci/v5.7.0-source.zip --output artifacts/v5.7/ci-runtime-rehearsal.json
-      - name: Save checksummed release and execution evidence
+          python -m tools.release inspect releases/ci/v6.2.0-source.zip
+          python -m tools.rehearse releases/ci/v6.2.0-source.zip --output artifacts/v6.2/ci-runtime-rehearsal.json
+      - uses: actions/upload-artifact@v4
         if: always()
-        uses: actions/upload-artifact@v4
         with:
-          name: healthcare-quality-lab-v5.7-evidence
+          name: healthcare-quality-lab-v6.2-evidence
           path: |
-            releases/ci/v5.7.0-source.zip
-            releases/ci/v5.7.0-manifest.json
+            releases/ci/v6.2.0-source.zip
+            releases/ci/v6.2.0-manifest.json
             artifacts/
+  browsers:
+    if: github.event_name != 'pull_request'
+    needs: fast
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [firefox, webkit]
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: .browsers
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Cross-browser core and advanced journeys
+        run: python -m pytest tests/e2e/test_browser.py tests/e2e/test_workflow_browser.py tests/e2e/test_research_browser.py --browser ${{ matrix.browser }} -q --junitxml artifacts/v6.2/${{ matrix.browser }}-results.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v6.2-${{ matrix.browser }}-evidence
+          path: |
+            artifacts/v6.2/
             test-results/
-          retention-days: 14
+  scheduled_browsers:
+    if: github.event_name == 'schedule' || inputs.full_browsers
+    needs: fast
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: .browsers
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m playwright install --with-deps chromium firefox webkit
+      - run: python -m pytest tests/e2e --browser chromium --browser firefox --browser webkit -q --junitxml artifacts/v6.2/scheduled-browser-results.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v6.2-scheduled-browser-evidence
+          path: artifacts/v6.2/

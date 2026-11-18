@@ -1,0 +1,31 @@
+{
+  "scope": "Portable geometric visual contracts, not cross-platform pixel goldens. Screenshot artifacts accompany checks.",
+  "desktop": {
+    "width": 1440,
+    "height": 1000,
+    "heading_x": [
+      240,
+      310
+    ],
+    "heading_y": [
+      110,
+      210
+    ],
+    "heading_width": [
+      500,
+      1200
+    ]
+  },
+  "mobile": {
+    "width": 390,
+    "height": 844,
+    "heading_x": [
+      15,
+      60
+    ],
+    "heading_width": [
+      250,
+      360
+    ]
+  }
+}
