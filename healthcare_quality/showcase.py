@@ -3,6 +3,7 @@ from contextlib import closing
 import json
 from pathlib import Path
 import sqlite3
+import time
 from urllib.parse import quote
 from healthcare_quality import __version__
 from tools.fingerprints import source_hash
@@ -18,9 +19,12 @@ def verification():
 
 def readiness(stores):
     checks={}
+    # One shared budget tolerates brief writer contention without multiplying
+    # the maximum probe wait by the number of databases.
+    deadline=time.monotonic()+1.0
     for label,path,table in stores:
         try:
-            with closing(sqlite3.connect("file:"+quote(str(Path(path).resolve()))+"?mode=rw",uri=True,timeout=.2)) as db:
+            with closing(sqlite3.connect("file:"+quote(str(Path(path).resolve()))+"?mode=rw",uri=True,timeout=max(0.0,deadline-time.monotonic()))) as db:
                 db.execute("SELECT 1 FROM "+table+" LIMIT 1").fetchall()
             checks[label]="ready"
         except sqlite3.Error:checks[label]="unavailable"
