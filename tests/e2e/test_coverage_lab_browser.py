@@ -64,3 +64,15 @@ def test_focused_form_generates_visible_unapproved_calculation(page,coverage_url
     expect(page.locator('#ai-summary')).to_contain_text('102345')
     expect(page.locator('#ai-execute')).to_be_disabled()
     assert len(provider.calls)==1 and not errors
+
+
+def test_gap_actions_wait_for_model_configuration(page,coverage_url):
+    url,provider=coverage_url;held=[]
+    page.route('**/api/ai/focused-evaluator/config',lambda route:held.append(route))
+    with page.expect_request('**/api/ai/focused-evaluator/config'):
+        page.goto(url+'/#test-coverage')
+    expect(page.get_by_role('button',name='Analyze gaps with Ollama')).to_be_disabled()
+    assert held and not provider.calls;held[0].continue_()
+    expect(page.get_by_role('button',name='Analyze gaps with Ollama')).to_be_enabled()
+    page.get_by_role('button',name='Analyze gaps with Ollama').click()
+    expect(page.locator('#coverage-suggestions')).to_contain_text('invalid-zero')
