@@ -1,19 +1,19 @@
 {
-  "version": "7.0.1",
+  "version": "7.0.2",
   "status": "passed",
-  "source_hash": "4175ba30ccfb41cb3bbda5426d0ff1603d3f2ce47e056fc422dff533e70721b7",
-  "total": 1043,
-  "passed": 1043,
+  "source_hash": "4f0d6252c37f0584caee758fce4696043e6071b595887069bfc09401a08a3e99",
+  "total": 1046,
+  "passed": 1046,
   "failed": 0,
   "skipped": 0,
   "browsers": {
-    "chromium": 68,
-    "firefox": 68,
-    "webkit": 68
+    "chromium": 69,
+    "firefox": 69,
+    "webkit": 69
   },
   "unit": 712,
   "api": 127,
-  "e2e": 204,
+  "e2e": 207,
   "ci_executed": false,
-  "scope": "Complete patch regression; overlaps standard 907 checks. Earlier 906/1040 results and failed hosted WebKit sweep are preserved as pre-patch evidence."
+  "scope": "Complete combined-readiness regression; overlaps standard 908 checks. Earlier source snapshots and both failed hosted sweeps remain preserved."
 }

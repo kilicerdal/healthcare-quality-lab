@@ -10,7 +10,7 @@
 ........................................................................ [ 79%]
 ........................................................................ [ 87%]
 ........................................................................ [ 95%]
-...........................................                              [100%]
+............................................                             [100%]
 =============================== warnings summary ===============================
 tests/e2e/test_advanced_browser.py::test_authored_advanced_control_review_and_http_execution[chromium]
   /usr/local/lib/python3.13/site-packages/_pytest/fixtures.py:1392: PytestRemovedIn10Warning: Session-scoped fixtures defined as instance methods are deprecated.
@@ -21,4 +21,4 @@ tests/e2e/test_advanced_browser.py::test_authored_advanced_control_review_and_ht
     fixturefunc = resolve_fixture_function(fixturedef, request)
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-907 passed, 1 warning in 126.80s (0:02:06)
+908 passed, 1 warning in 119.93s (0:01:59)
