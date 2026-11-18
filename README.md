@@ -21,7 +21,7 @@ V5.8–V6.2 additions are implemented locally: reserved repeated AI measurements
 
 **Current local validation:** 736 release-verification tests (591 unit, 93 API, 52 Chromium) and a separate overlapping 840-test Linux run with all browser tests in Chromium, Firefox and WebKit. Original known seeds: 12/12; bounded advanced-pricing AST mutations: 26/26. Live reserved evaluation: 8/8 strict correct for the installed 27B model and 0/8 for the 3B coding model on four inputs repeated twice; failures and limits remain visible.
 
-**Publication status:** this local extension has not been pushed publicly. The repository is now public, while the originating chat requested private delivery; publication is awaiting an explicit privacy choice. The existing CI badge refers to published main, not proof that the unpushed V6.2 workflows ran remotely.
+**Publication status:** the owner authorized public V6.2 publication on November 18, 2026. GitHub Actions is being run against the published commit; the detailed local report distinguishes earlier local evidence from remote results.
 
 - [Complete V6.2 report](docs/V6.2_REPORT.md) and [guided demonstration](docs/V6.2_DEMO.md)
 - [V5.8 reliability addendum](docs/V5.8_RELIABILITY_REPORT.md) · [V5.9 assistant](docs/V5.9_REPORT.md) · [V6.0 benefits](docs/V6.0_REPORT.md) · [V6.1 resilience](docs/V6.1_REPORT.md)
