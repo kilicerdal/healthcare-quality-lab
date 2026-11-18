@@ -104,7 +104,9 @@ class QualityLab:
             for step in case.get("steps",[]):
                 for assertion in step["assertions"]:
                     if not assertion["passed"]:facts.append({"id":f"E{len(facts)+1}","case_id":case["case_id"],"step":step["number"],"action":step["action"],"data":step["data"],"assertion":assertion,"rule_ids":case["rule_ids"]})
-        rules=retrieve(" ".join(id for f in facts for id in f["rule_ids"])) if facts else []
+        priorities={"payout_cents":"HC-007","payment_cents":"WF-004","revision":"WF-005","event_count":"WF-005"}
+        selected=list(dict.fromkeys([priorities[f["assertion"]["field"]] for f in facts if f["assertion"]["field"] in priorities]+[id for f in facts for id in f["rule_ids"]]))
+        rules=retrieve(" ".join(selected),limit=6) if facts else []
         record={"id":uuid4().hex,"kind":"investigation","retrieval_version":RETRIEVAL_VERSION,"created_at":now(),"experiment_id":experiment["id"],"run_id":run["id"],"facts":facts,"sources":rules,"model":body["model"],"state":"abstained","hypotheses":[],"raw_generation":None,
                 "scope":"Runner assertions are facts about this execution. Model explanations are hypotheses; citation validation does not prove semantic support."}
         if not facts:record["reason"]="No failed assertions in this stored run"

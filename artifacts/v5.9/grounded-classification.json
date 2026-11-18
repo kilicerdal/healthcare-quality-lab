@@ -1,0 +1,111 @@
+{
+  "experiment_id": "df033cd366704b729c9de532d7accae2",
+  "run_id": "49ffe9e5e5ef479c93f0bf120d203924",
+  "findings": [
+    {
+      "category": "test_oracle_error",
+      "case_id": "AI-AUTHORED-WRONG-ORACLE",
+      "reason": "Declared expectations disagree with independent written-rule calculation",
+      "facts": [
+        {
+          "id": "F1-1",
+          "step": 1,
+          "action": "evaluate",
+          "assertion": {
+            "field": "payout_cents",
+            "expected": 91000,
+            "observed": 90000,
+            "passed": false
+          }
+        }
+      ],
+      "reference": {
+        "status": "mismatch",
+        "reference_version": "independent-reference-v1",
+        "reference_fingerprint": "0271f70cf99766ccad19129f0bbe82d6e786cbef6155bb0efdad1e8ddf2fe9be",
+        "steps": [
+          {
+            "step": 1,
+            "expected": {
+              "status": 200,
+              "decision": "approved",
+              "reason": "COVERED",
+              "payout_cents": 90000
+            },
+            "derivation": "100000 - deductible 10000 = 90000; below payout cap 200000",
+            "mismatches": [
+              {
+                "step": 1,
+                "field": "payout_cents",
+                "proposed": 91000,
+                "reference": 90000,
+                "observable": true,
+                "explanation": "100000 - deductible 10000 = 90000; below payout cap 200000"
+              }
+            ]
+          }
+        ],
+        "mismatches": [
+          {
+            "step": 1,
+            "field": "payout_cents",
+            "proposed": 91000,
+            "reference": 90000,
+            "observable": true,
+            "explanation": "100000 - deductible 10000 = 90000; below payout cap 200000"
+          }
+        ],
+        "scope": "Compares declared expectations against an independently implemented synthetic reference; shared fixture mistakes remain possible. Completeness and reviewer approval are separate."
+      },
+      "quality": {
+        "policy_version": "business-observations-v1",
+        "policy_fingerprint": "e5280e96161fa7f6fa48c100937e2a6431e42e01ec1888c44f3ca4e72fe3a2fa",
+        "complete": true,
+        "issues": [],
+        "steps": [
+          {
+            "step": 1,
+            "action": "evaluate",
+            "status": 200,
+            "required_fields": [
+              "decision",
+              "payout_cents",
+              "status"
+            ],
+            "missing_fields": [],
+            "unsupported_fields": []
+          }
+        ],
+        "rejected_mutation_guards": [],
+        "scope": "Presence, response observability and declared readback consistency. Does not prove payout arithmetic, correct actors or oracle correctness."
+      },
+      "rule_ids": [
+        "HC-007"
+      ],
+      "next_checks": [
+        "Inspect frozen inputs and independent derivation",
+        "Reproduce through the HTTP adapter",
+        "Propose a separate reviewed correction or follow-up test; never edit the recorded run"
+      ]
+    }
+  ],
+  "traceability": [
+    {
+      "requirement_id": "HC-007",
+      "rule": {
+        "id": "HC-007",
+        "name": "Payout calculation",
+        "risk": "Overpayment, negative payout, or policy-limit bypass.",
+        "contract": "For an otherwise accepted request, payout_cents = min(max(amount_cents - deductible_cents, 0), limit_cents). Read deductible and limit from plans.json. All V1 plans deliberately use a synthetic 10000-cent deductible and 200000-cent cap per evaluation. At or below the deductible, return approved / COVERED with zero payout. This is not an annual accumulator, actual Medicare deductible, allowed-amount calculation, or real benefit payment."
+      },
+      "rule_version": "9f2745ef5e6f1869570f5435e7654c77ff8d9e4eae3bf36764ba915895126aa5",
+      "case_id": "AI-AUTHORED-WRONG-ORACLE",
+      "case_hash": "cca869f0d9e8327839565ec5532727d27c644de5301638144b791e8059e9f389",
+      "run_id": "49ffe9e5e5ef479c93f0bf120d203924",
+      "experiment_id": "df033cd366704b729c9de532d7accae2",
+      "observed_pass": false
+    }
+  ],
+  "contract_current": true,
+  "scope": "Deterministic triage, not automatic defect confirmation. AI explanations remain hypotheses; no correction, approval or execution occurs here."
+}
