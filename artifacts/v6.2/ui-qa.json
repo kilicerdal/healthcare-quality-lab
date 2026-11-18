@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "environment": "Isolated Linux Chromium using consistent copies of populated local stores",
+  "desktop": "1440x1000",
+  "mobile": "390x844",
+  "page_errors": [],
+  "model_request_buttons_invoked": false,
+  "advanced_ledger_balance": 0,
+  "member_accumulators_restored": true,
+  "preserved_proof": "passed",
+  "report": "736/736 and 840/840 rendered",
+  "scope": "Financial QA writes affected only the copied sandbox. No original interactive claim or provider endpoint was exercised."
+}

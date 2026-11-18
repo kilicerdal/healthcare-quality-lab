@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "total": 840,
+  "passed": 840,
+  "failed": 0,
+  "skipped": 0,
+  "browser_cases": {
+    "chromium": 52,
+    "firefox": 52,
+    "webkit": 52
+  },
+  "source_hash": "94ee78a2e21cecc29fdcd559f84c49184b136970724e132e3500683f20d92365",
+  "environment": "Private local Linux ARM64 container, Python 3.13, pinned dependencies; not GitHub CI",
+  "command": "python -m pytest tests/unit tests/api tests/e2e --browser chromium --browser firefox --browser webkit -q",
+  "scope": "Includes shared unit/API tests once and complete browser tests per engine; overlaps core release verification. One pytest-playwright deprecation warning retained."
+}

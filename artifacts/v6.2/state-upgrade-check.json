@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "stores": {
+    "claims-v2.sqlite": {
+      "claims": {
+        "before": 0,
+        "after": 0,
+        "all_original_rows_preserved": true
+      },
+      "events": {
+        "before": 0,
+        "after": 0,
+        "all_original_rows_preserved": true
+      },
+      "payments": {
+        "before": 0,
+        "after": 0,
+        "all_original_rows_preserved": true
+      }
+    },
+    "ai-v3.sqlite": {
+      "ai_experiments": {
+        "before": 52,
+        "after": 52,
+        "all_original_rows_preserved": true
+      },
+      "studio_operations": {
+        "before": 0,
+        "after": 0,
+        "all_original_rows_preserved": true
+      }
+    },
+    "evaluation-v4.sqlite": {
+      "ai_experiments": {
+        "before": 3,
+        "after": 3,
+        "all_original_rows_preserved": true
+      },
+      "studio_operations": {
+        "before": 0,
+        "after": 0,
+        "all_original_rows_preserved": true
+      }
+    },
+    "coverage-v55.sqlite": {
+      "ai_experiments": {
+        "before": 13,
+        "after": 19,
+        "all_original_rows_preserved": true
+      },
+      "studio_operations": {
+        "before": 0,
+        "after": 0,
+        "all_original_rows_preserved": true
+      }
+    }
+  },
+  "preexisting_report_preserved": true,
+  "backup": ".local/backup-before-v62",
+  "imported_reliability": [],
+  "investigation_id": "04aedde5d15d40b68d1abf416cf12aa5",
+  "comparison_id": "d6abaa4d1edf4ba784b1747af6b63ed2",
+  "score_id": "a658890e7e6448c9be8425f72a79c16b"
+}

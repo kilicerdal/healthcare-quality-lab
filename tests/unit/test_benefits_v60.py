@@ -53,3 +53,10 @@ def test_family_cap_binds_for_third_member_before_individual_deductible(tmp_path
     s=BenefitClaims(tmp_path/'b.sqlite');submit(s,'FAM-100','M100');submit(s,'FAM-200','M200');r=submit(s,'FAM-300','M300')
     assert r['calculation']['allocation']['deductible']==0
     assert r['current_family_accumulators']['deductible']==20000 and r['current_family_accumulators']['oop']==60000
+
+
+def test_adjustment_uses_frozen_effective_policy_not_changed_current_facts(tmp_path,monkeypatch):
+    from healthcare_quality.benefits import FACTS
+    s=BenefitClaims(tmp_path/'b.sqlite');r=action(s,submit(s),'pay');original_hash=r['policy_hash'];monkeypatch.setitem(FACTS['policies'][0],'payer_bps',5000)
+    r=action(s,r,'adjust',lines=[line(50000)],note='Preserve original adjudication policy')
+    assert r['calculation']['totals']['payout_cents']==31200 and r['policy_hash']==original_hash

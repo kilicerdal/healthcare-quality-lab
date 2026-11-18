@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "demo": true,
+  "live_model_requests": 0,
+  "source_hash": "0c2768946178d244130b0036a0bd2bfe5bed2c3b7ee20493cbc1c5b064238d64",
+  "state_dir": ".local/demo-v62",
+  "experiments": {
+    "assembly": "3db709ef634b4d83a3cfa8270dc15729",
+    "workflow": "441cb15abdfc40bcba3e3cb1a8b87c15",
+    "zero": "379e17e84ccf4dbeb602e70aa3de5d84",
+    "replay": "106cc88a0952453b9f62a1d7588d264e",
+    "baseline-eval": "8e878e656a5541028d38fb4586e54d46",
+    "baseline-flow": "b2e00dfef55f4dd69d05cb327370d1ac"
+  },
+  "before_score": "20792947b0d846d5aad1285b0c430f51",
+  "after_score": "bdf778a3c30a4098861bba4ad93458df",
+  "comparison": "98aaeae95389490ea017a30887f93ff9",
+  "before_detected": 2,
+  "after_detected": 12,
+  "missing_gaps": 0,
+  "investigation": "ab94440f186a430f85ca06d8611b031f",
+  "fault_run": "92672d9d5fb54037879f716e7526e766",
+  "benefit_claim": "DEMO-BENEFIT",
+  "scope": "Fresh replay state with copied saved evidence, current checks and explicit scripted approvals. Original source artifacts and interactive databases remain unchanged."
+}

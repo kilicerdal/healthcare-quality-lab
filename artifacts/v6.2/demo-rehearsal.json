@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "demo": true,
+  "live_model_requests": 0,
+  "source_hash": "94ee78a2e21cecc29fdcd559f84c49184b136970724e132e3500683f20d92365",
+  "state_dir": ".local/demo-v62-final",
+  "experiments": {
+    "assembly": "3f4daea557b94daeaa4e8f1cc811ff70",
+    "workflow": "08859314cb5f4fdf9c6af199079d8138",
+    "zero": "8064d8e0a4bd4ef4b8f38afb1f9849b0",
+    "replay": "12e1ddc5a2bf4868b9c5c5708221ccc9",
+    "baseline-eval": "668ecb7fb74848039de9ce546a695867",
+    "baseline-flow": "a5fcbbc57d94461e928029f244ce2d36"
+  },
+  "before_score": "bd2674804bcd44b0b38583c6b74125b0",
+  "after_score": "dca8d80f3f0c475885b7761a6890ec27",
+  "comparison": "76973a5c9d3d4e41a6b10bbb4c3bafeb",
+  "before_detected": 2,
+  "after_detected": 12,
+  "missing_gaps": 0,
+  "investigation": "81905b0c3621437ea32ae5e11c83a316",
+  "fault_run": "f80851f73e5f4df19e024c8ee9c9d057",
+  "benefit_claim": "DEMO-BENEFIT",
+  "scope": "Fresh replay state with copied saved evidence, current checks and explicit scripted approvals. Original source artifacts and interactive databases remain unchanged."
+}

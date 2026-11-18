@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "source_hash": "94ee78a2e21cecc29fdcd559f84c49184b136970724e132e3500683f20d92365",
+  "claim_id": "ADV-8abda9120f44",
+  "initial_payout": 71200,
+  "adjusted_payout": 31200,
+  "final_ledger_balance": 0,
+  "revision": 4,
+  "events": 4,
+  "original_policy_preserved": true,
+  "ownership_rejected": true,
+  "payment_idempotent": true,
+  "paid_replay_rejected": true,
+  "process_restart_preserved": true,
+  "scope": "Actual staged V6.2 candidate archive and fresh Waitress processes over loopback HTTP, separate deployment state. No provider call or original-store write."
+}

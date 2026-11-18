@@ -1,4 +1,4 @@
-# Healthcare Quality Lab — V5.8
+# Healthcare Quality Lab — V6.2
 
 [![Quality and release checks](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml)
 ![Tested Python 3.11, 3.12 and 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?logo=python) ![Tests: pytest and Playwright](https://img.shields.io/badge/Tests-pytest%20%2B%20Playwright-2EAD33) [![MIT license](https://img.shields.io/github/license/kilicerdal/healthcare-quality-lab)](LICENSE)
@@ -14,6 +14,26 @@ The central question is simple: **does a test detect the wrong business result, 
 **Start here:** [Two-minute engineering demo](docs/V5.8_DEMO.md) · [Case study](docs/CASE_STUDY.md) · [Historical V5.7 guided demo](docs/V5.7_DEMO.md) · [Code examples](#review-the-code) · [Run locally](#run-locally)
 
 **How this differs from [Healthcare Quality Platform](https://github.com/kilicerdal/ai-healthcare-quality-platform):** this lab focuses on business-rule correctness, independent checking of AI expectations, review gates, and payment concurrency/recovery. The platform focuses on API contracts, PostgreSQL persistence, and simulated S3/SQS message processing.
+
+## V6.2 extension — complete engineering evidence hub
+
+V5.8–V6.2 additions are implemented locally: reserved repeated AI measurements, grounded investigation and rule traceability, effective-dated line benefits, family accumulators, coordination, appeals/adjustments/reversals, real HTTP execution, concurrency/rollback/property checks, authenticated-review mode, maintenance recommendations and a fresh replay launcher. The existing V5.8 proof page, provider spending controls, reports and maintenance work remain intact.
+
+**Current local validation:** 736 release-verification tests (591 unit, 93 API, 52 Chromium) and a separate overlapping 840-test Linux run with all browser tests in Chromium, Firefox and WebKit. Original known seeds: 12/12; bounded advanced-pricing AST mutations: 26/26. Live reserved evaluation: 8/8 strict correct for the installed 27B model and 0/8 for the 3B coding model on four inputs repeated twice; failures and limits remain visible.
+
+**Publication status:** this local extension has not been pushed publicly. The repository is now public, while the originating chat requested private delivery; publication is awaiting an explicit privacy choice. The existing CI badge refers to published main, not proof that the unpushed V6.2 workflows ran remotely.
+
+- [Complete V6.2 report](docs/V6.2_REPORT.md) and [guided demonstration](docs/V6.2_DEMO.md)
+- [V5.8 reliability addendum](docs/V5.8_RELIABILITY_REPORT.md) · [V5.9 assistant](docs/V5.9_REPORT.md) · [V6.0 benefits](docs/V6.0_REPORT.md) · [V6.1 resilience](docs/V6.1_REPORT.md)
+- [Extension architecture and operating guide](docs/V6.2_GUIDE.md)
+
+One command from a fresh checkout with Python installed:
+
+```sh
+python3 -m tools.launch_demo --state-dir .local/demo-v62-fresh --port 8897
+```
+
+This creates project-local runtime dependencies and fresh labeled synthetic replay state. It never resets existing data, downloads models or calls a provider. Use an unused port for additional instances. The upstream `tools.demo` command below remains available unchanged.
 
 ## V5.8: inspect the engineering proof
 

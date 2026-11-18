@@ -40,7 +40,9 @@ class BenefitClaims:
             for a in (ind,fam):
                 for k,v in r['calculation']['allocation'].items():a[k]-=v
         else:
-            c=calculate(policy_for(r['service_date'],r['plan_id']),lines,ind,fam);r['calculation']=c;ind=c['individual'];fam=c['family']
+            policy=r.get('policy_snapshot') or policy_for(r['service_date'],r['plan_id'])
+            if r.get('policy_hash') and digest(policy)!=r['policy_hash']:raise WorkflowError('POLICY_SNAPSHOT_MISMATCH','Stored policy snapshot changed',409)
+            c=calculate(policy,lines,ind,fam);r['calculation']=c;ind=c['individual'];fam=c['family']
         self.put_account(db,'member',r['member_id'],r['year'],ind);self.put_account(db,'family',r['family_id'],r['year'],fam)
     def operate(self,actor_id,body,action,id=None):
         actor=self.actor(actor_id)
@@ -60,7 +62,7 @@ class BenefitClaims:
                 if type(id) is not str or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{2,47}',id):invalid('Invalid claim ID')
                 if actor['role']!='customer' or actor['member_id']!=body['member_id'] or body['member_id'] not in FAMILIES:raise WorkflowError('FORBIDDEN','Submit only supported own-member teaching claims',403)
                 if db.execute('SELECT 1 FROM benefit_claims WHERE id=?',(id,)).fetchone():raise WorkflowError('DUPLICATE_CLAIM','Claim already exists',409)
-                p=policy_for(body['service_date'],body['plan_id']);r=dict(id=id,member_id=body['member_id'],family_id=FAMILIES[body['member_id']],plan_id=body['plan_id'],service_date=body['service_date'],year=p['year'],lines=deepcopy(body['lines']),revision=1,state='adjudicated',events=[])
+                p=policy_for(body['service_date'],body['plan_id']);r=dict(id=id,member_id=body['member_id'],family_id=FAMILIES[body['member_id']],plan_id=body['plan_id'],service_date=body['service_date'],year=p['year'],policy_snapshot=deepcopy(p),policy_hash=digest(p),lines=deepcopy(body['lines']),revision=1,state='adjudicated',events=[])
                 self.apply(db,r,r['lines']);db.execute('INSERT INTO benefit_claims VALUES(?,?,?,?,?)',(id,r['member_id'],r['family_id'],r['year'],json.dumps(r)))
             else:
                 r=self.load(db,id);self.visible(actor,r)

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="6" time="167.551" timestamp="2026-11-18T03:08:09.459099-05:00" hostname="MacBookPro"><testcase classname="tests.e2e.test_research_browser" name="test_research_readonly_accessible_and_mobile[chromium]" time="0.961" /><testcase classname="tests.e2e.test_research_browser" name="test_advanced_benefits_browser_payment_adjustment_reversal[chromium]" time="30.176"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.&#10;Call log:&#10;  - waiting for get_by_role(&quot;button&quot;, name=&quot;Adjudicate synthetic lines&quot;)&#10;    - locator resolved to &lt;button class=&quot;primary&quot;&gt;Adjudicate synthetic lines&lt;/button&gt;&#10;  - attempting click action&#10;    - waiting for element to be visible, enabled and stable">page = &lt;Page url='http://127.0.0.1:54001/#research'&gt;
+research_url = ('http://127.0.0.1:54001', &lt;tests.support.ai_fixtures.FixtureProvider object at 0x107f74e10&gt;)
+
+    def test_advanced_benefits_browser_payment_adjustment_reversal(page,research_url):
+&gt;       url,provider=research_url;page.goto(url+'/#research');page.get_by_role('button',name='Adjudicate synthetic lines').click();expect(page.locator('#benefit-result')).to_contain_text('71200')
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/e2e/test_research_browser.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py:11045: in click
+    self._sync(
+.venv/lib/python3.13/site-packages/playwright/_impl/locator.py:222: in click
+    return await self._frame.click(
+.venv/lib/python3.13/site-packages/playwright/_impl/frame.py:587: in click
+    return await self._channel.click(
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:387: in finish
+    raise e from None
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;playwright._impl.utils.zones.Zone object at 0x107c89be0&gt;
+func = &lt;function ChannelOwner._wrap_api_call.&lt;locals&gt;.finish.&lt;locals&gt;.&lt;lambda&gt; at 0x107f3c400&gt;
+
+    async def run_async(self, func: Callable[[], Awaitable[R]]) -&gt; R:
+        # Python: run() of an async function. The coroutine runs when it is awaited,
+        # so the zone must be current while it is awaited, not while it is created.
+        token = _async_local_storage.set(self)
+        try:
+&gt;           return await func()
+                   ^^^^^^^^^^^^
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for get_by_role("button", name="Adjudicate synthetic lines")
+E               - locator resolved to &lt;button class="primary"&gt;Adjudicate synthetic lines&lt;/button&gt;
+E             - attempting click action
+E               - waiting for element to be visible, enabled and stable
+
+.venv/lib/python3.13/site-packages/playwright/_impl/utils/zones.py:58: TimeoutError</failure></testcase><testcase classname="tests.e2e.test_research_browser" name="test_changed_rule_followup_is_unapproved[chromium]" time="30.160"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.&#10;Call log:&#10;  - waiting for get_by_role(&quot;button&quot;, name=&quot;Inspect linked tests&quot;)&#10;    - locator resolved to &lt;button class=&quot;secondary&quot; id=&quot;research-impact&quot;&gt;Inspect linked tests&lt;/button&gt;&#10;  - attempting click action&#10;    - waiting for element to be visible, enabled and stable">page = &lt;Page url='http://127.0.0.1:54032/#research'&gt;
+research_url = ('http://127.0.0.1:54032', &lt;tests.support.ai_fixtures.FixtureProvider object at 0x108008910&gt;)
+
+    def test_changed_rule_followup_is_unapproved(page,research_url):
+&gt;       url,provider=research_url;page.goto(url+'/#research');page.get_by_role('button',name='Inspect linked tests').click();expect(page.locator('#research-impact-result')).to_contain_text('HC-007');page.get_by_role('button',name='Ask Ollama for an unapproved follow-up test').click();expect(page.locator('#ai-summary')).to_contain_text('Approved cases: 0');expect(page.locator('#ai-execute')).to_be_disabled();assert len(provider.calls)==1
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/e2e/test_research_browser.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py:11045: in click
+    self._sync(
+.venv/lib/python3.13/site-packages/playwright/_impl/locator.py:222: in click
+    return await self._frame.click(
+.venv/lib/python3.13/site-packages/playwright/_impl/frame.py:587: in click
+    return await self._channel.click(
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:387: in finish
+    raise e from None
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;playwright._impl.utils.zones.Zone object at 0x1083054f0&gt;
+func = &lt;function ChannelOwner._wrap_api_call.&lt;locals&gt;.finish.&lt;locals&gt;.&lt;lambda&gt; at 0x108376e80&gt;
+
+    async def run_async(self, func: Callable[[], Awaitable[R]]) -&gt; R:
+        # Python: run() of an async function. The coroutine runs when it is awaited,
+        # so the zone must be current while it is awaited, not while it is created.
+        token = _async_local_storage.set(self)
+        try:
+&gt;           return await func()
+                   ^^^^^^^^^^^^
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for get_by_role("button", name="Inspect linked tests")
+E               - locator resolved to &lt;button class="secondary" id="research-impact"&gt;Inspect linked tests&lt;/button&gt;
+E             - attempting click action
+E               - waiting for element to be visible, enabled and stable
+
+.venv/lib/python3.13/site-packages/playwright/_impl/utils/zones.py:58: TimeoutError</failure></testcase><testcase classname="tests.e2e.test_research_browser" name="test_selected_visual_layout_contracts[chromium-desktop]" time="30.687"><failure message="playwright._impl._errors.TimeoutError: Page.screenshot: Timeout 30000ms exceeded.&#10;Call log:&#10;  - taking page screenshot&#10;    - disabled all CSS animations&#10;  - waiting for fonts to load...&#10;  - fonts loaded">page = &lt;Page url='http://127.0.0.1:54068/#research'&gt;
+research_url = ('http://127.0.0.1:54068', &lt;tests.support.ai_fixtures.FixtureProvider object at 0x107eeac40&gt;)
+layout = 'desktop'
+
+    @pytest.mark.parametrize('layout',['desktop','mobile'])
+    def test_selected_visual_layout_contracts(page,research_url,layout):
+        from pathlib import Path
+        contract=json.loads((Path(__file__).resolve().parents[1]/'data/layout_v62.json').read_text())[layout];url,_=research_url;page.set_viewport_size(dict(width=contract['width'],height=contract['height']));page.goto(url+'/#research');heading=page.get_by_role('heading',name='Engineering evidence hub.');expect(heading).to_be_visible();box=heading.bounding_box()
+        assert contract['heading_x'][0]&lt;=box['x']&lt;=contract['heading_x'][1]
+        assert contract['heading_width'][0]&lt;=box['width']&lt;=contract['heading_width'][1]
+        if 'heading_y' in contract:assert contract['heading_y'][0]&lt;=box['y']&lt;=contract['heading_y'][1]
+        assert page.evaluate('document.documentElement.scrollWidth&lt;=innerWidth')
+&gt;       page.screenshot(path=str(Path(__file__).resolve().parents[2]/('artifacts/v6.2/layout-'+layout+'.png')),animations='disabled')
+
+tests/e2e/test_research_browser.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py:20272: in screenshot
+    self._sync(
+.venv/lib/python3.13/site-packages/playwright/_impl/page.py:1056: in screenshot
+    result = await self._channel.screenshot(
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:398: in _mapped
+    return mapper(await awaitable)
+                  ^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:387: in finish
+    raise e from None
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;playwright._impl.utils.zones.Zone object at 0x10825fbb0&gt;
+func = &lt;function ChannelOwner._wrap_api_call.&lt;locals&gt;.finish.&lt;locals&gt;.&lt;lambda&gt; at 0x108310ae0&gt;
+
+    async def run_async(self, func: Callable[[], Awaitable[R]]) -&gt; R:
+        # Python: run() of an async function. The coroutine runs when it is awaited,
+        # so the zone must be current while it is awaited, not while it is created.
+        token = _async_local_storage.set(self)
+        try:
+&gt;           return await func()
+                   ^^^^^^^^^^^^
+E           playwright._impl._errors.TimeoutError: Page.screenshot: Timeout 30000ms exceeded.
+E           Call log:
+E             - taking page screenshot
+E               - disabled all CSS animations
+E             - waiting for fonts to load...
+E             - fonts loaded
+
+.venv/lib/python3.13/site-packages/playwright/_impl/utils/zones.py:58: TimeoutError</failure></testcase><testcase classname="tests.e2e.test_research_browser" name="test_selected_visual_layout_contracts[chromium-mobile]" time="30.188"><failure message="playwright._impl._errors.TimeoutError: Page.screenshot: Timeout 30000ms exceeded.&#10;Call log:&#10;  - taking page screenshot&#10;    - disabled all CSS animations&#10;  - waiting for fonts to load...&#10;  - fonts loaded">page = &lt;Page url='http://127.0.0.1:54104/#research'&gt;
+research_url = ('http://127.0.0.1:54104', &lt;tests.support.ai_fixtures.FixtureProvider object at 0x108356780&gt;)
+layout = 'mobile'
+
+    @pytest.mark.parametrize('layout',['desktop','mobile'])
+    def test_selected_visual_layout_contracts(page,research_url,layout):
+        from pathlib import Path
+        contract=json.loads((Path(__file__).resolve().parents[1]/'data/layout_v62.json').read_text())[layout];url,_=research_url;page.set_viewport_size(dict(width=contract['width'],height=contract['height']));page.goto(url+'/#research');heading=page.get_by_role('heading',name='Engineering evidence hub.');expect(heading).to_be_visible();box=heading.bounding_box()
+        assert contract['heading_x'][0]&lt;=box['x']&lt;=contract['heading_x'][1]
+        assert contract['heading_width'][0]&lt;=box['width']&lt;=contract['heading_width'][1]
+        if 'heading_y' in contract:assert contract['heading_y'][0]&lt;=box['y']&lt;=contract['heading_y'][1]
+        assert page.evaluate('document.documentElement.scrollWidth&lt;=innerWidth')
+&gt;       page.screenshot(path=str(Path(__file__).resolve().parents[2]/('artifacts/v6.2/layout-'+layout+'.png')),animations='disabled')
+
+tests/e2e/test_research_browser.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py:20272: in screenshot
+    self._sync(
+.venv/lib/python3.13/site-packages/playwright/_impl/page.py:1056: in screenshot
+    result = await self._channel.screenshot(
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:398: in _mapped
+    return mapper(await awaitable)
+                  ^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:387: in finish
+    raise e from None
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;playwright._impl.utils.zones.Zone object at 0x107ef3cf0&gt;
+func = &lt;function ChannelOwner._wrap_api_call.&lt;locals&gt;.finish.&lt;locals&gt;.&lt;lambda&gt; at 0x1083122a0&gt;
+
+    async def run_async(self, func: Callable[[], Awaitable[R]]) -&gt; R:
+        # Python: run() of an async function. The coroutine runs when it is awaited,
+        # so the zone must be current while it is awaited, not while it is created.
+        token = _async_local_storage.set(self)
+        try:
+&gt;           return await func()
+                   ^^^^^^^^^^^^
+E           playwright._impl._errors.TimeoutError: Page.screenshot: Timeout 30000ms exceeded.
+E           Call log:
+E             - taking page screenshot
+E               - disabled all CSS animations
+E             - waiting for fonts to load...
+E             - fonts loaded
+
+.venv/lib/python3.13/site-packages/playwright/_impl/utils/zones.py:58: TimeoutError</failure></testcase><testcase classname="tests.e2e.test_research_browser" name="test_reviewed_snapshot_can_use_real_http_from_studio[chromium]" time="30.227"><failure message="playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.&#10;Call log:&#10;  - waiting for get_by_role(&quot;button&quot;, name=&quot;Generate with Ollama&quot;)&#10;    - locator resolved to &lt;button type=&quot;submit&quot; class=&quot;primary&quot; id=&quot;ai-generate&quot;&gt;Generate with Ollama ✧&lt;/button&gt;&#10;  - attempting click action&#10;    - waiting for element to be visible, enabled and stable">page = &lt;Page url='http://127.0.0.1:54138/#ai'&gt;
+research_url = ('http://127.0.0.1:54138', &lt;tests.support.ai_fixtures.FixtureProvider object at 0x107ee6b10&gt;)
+
+    def test_reviewed_snapshot_can_use_real_http_from_studio(page,research_url):
+        from tests.support.studio_page import StudioPage
+&gt;       url,_=research_url;studio=StudioPage(page,url).open().generate().approve();page.locator('#ai-transport').select_option('http');studio.execute();expect(page.locator('#ai-results')).to_contain_text('loopback HTTP listener')
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/e2e/test_research_browser.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/support/studio_page.py:13: in generate
+    self.page.get_by_role('button',name='Generate with Ollama').click()
+.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py:11045: in click
+    self._sync(
+.venv/lib/python3.13/site-packages/playwright/_impl/locator.py:222: in click
+    return await self._frame.click(
+.venv/lib/python3.13/site-packages/playwright/_impl/frame.py:587: in click
+    return await self._channel.click(
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:387: in finish
+    raise e from None
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;playwright._impl.utils.zones.Zone object at 0x1083bd4f0&gt;
+func = &lt;function ChannelOwner._wrap_api_call.&lt;locals&gt;.finish.&lt;locals&gt;.&lt;lambda&gt; at 0x107efef20&gt;
+
+    async def run_async(self, func: Callable[[], Awaitable[R]]) -&gt; R:
+        # Python: run() of an async function. The coroutine runs when it is awaited,
+        # so the zone must be current while it is awaited, not while it is created.
+        token = _async_local_storage.set(self)
+        try:
+&gt;           return await func()
+                   ^^^^^^^^^^^^
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for get_by_role("button", name="Generate with Ollama")
+E               - locator resolved to &lt;button type="submit" class="primary" id="ai-generate"&gt;Generate with Ollama ✧&lt;/button&gt;
+E             - attempting click action
+E               - waiting for element to be visible, enabled and stable
+
+.venv/lib/python3.13/site-packages/playwright/_impl/utils/zones.py:58: TimeoutError</failure></testcase><testcase time="0.058" /></testsuite></testsuites>

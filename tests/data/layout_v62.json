@@ -1,5 +1,5 @@
 {
-  "scope": "Portable geometric visual contracts, not cross-platform pixel goldens. Screenshot artifacts accompany checks.",
+  "scope": "Portable geometric visual contracts, not cross-platform pixel goldens. Heading width permits normal Linux/macOS font-metric variation; screenshots accompany bounds and overflow checks.",
   "desktop": {
     "width": 1440,
     "height": 1000,
@@ -12,7 +12,7 @@
       210
     ],
     "heading_width": [
-      500,
+      450,
       1200
     ]
   },

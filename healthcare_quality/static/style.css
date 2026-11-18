@@ -31,3 +31,7 @@ textarea{width:100%;border:1px solid #dce3d3;border-radius:6px;background:#fcfdf
 #proof-comparison label{display:block;margin-top:20px}
 #proof-comparison select{width:100%}
 @media(max-width:600px){#proof-comparison table{font-size:.68rem;table-layout:fixed}#proof-comparison th,#proof-comparison td{padding:8px 3px}.proof-check-table{font-size:.76rem}.proof-check-table th,.proof-check-table td{padding:8px 4px}}
+
+/* Keep every navigation item reachable when the expanded desktop sidebar is short. */
+@media(min-width:631px){.sidebar{overflow:hidden}.sidebar nav{min-height:0;overflow-y:auto;flex:1;align-content:start}.sidebar .brand,.sidebar .workspace-label,.sidebar-bottom{flex-shrink:0}.sidebar-bottom{padding-top:18px}}
+@media(min-width:631px) and (max-height:800px){.sidebar-bottom p,.sidebar-bottom>.eyebrow{display:none}}

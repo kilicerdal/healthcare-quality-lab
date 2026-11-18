@@ -1,0 +1,27 @@
+{
+  "status": "fixed_under_revalidation",
+  "findings": [
+    {
+      "kind": "mobile_layout",
+      "detail": "Transport selector overflow fixed with wrapping/min-width constraints"
+    },
+    {
+      "kind": "history",
+      "detail": "Research summaries no longer use Studio-only required fields"
+    },
+    {
+      "kind": "policy_version",
+      "detail": "Historical adjustments bind frozen policy snapshots"
+    },
+    {
+      "kind": "font_metrics",
+      "detail": "Portable heading geometry permits legitimate Linux font metrics"
+    },
+    {
+      "kind": "navigation",
+      "detail": "Expanded fixed sidebar now scrolls and preserves all actions in shorter desktop viewports"
+    }
+  ],
+  "upstream_preserved": true,
+  "public_publication": "awaiting privacy choice"
+}

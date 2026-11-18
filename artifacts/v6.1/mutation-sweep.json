@@ -1,7 +1,7 @@
 {
-  "source_hash": "8e2144be4220fdc513df80e468962e6aac9eabf0aaee19eeb39d52c90648edf8",
-  "total": 26,
-  "detected": 26,
+  "source_hash": "94ee78a2e21cecc29fdcd559f84c49184b136970724e132e3500683f20d92365",
+  "total": 27,
+  "detected": 27,
   "survived": [],
   "mutants": [
     {
@@ -16,7 +16,7 @@
       }
     },
     {
-      "site": 148,
+      "site": 149,
       "original": "min(eligible, max(0, policy['individual_deductible'] - ind['deductible']), max(0, policy['family_deductible'] - fam['deductible']))",
       "mutated": "max(eligible, max(0, policy['individual_deductible'] - ind['deductible']), max(0, policy['family_deductible'] - fam['deductible']))",
       "detected": true,
@@ -27,7 +27,7 @@
       }
     },
     {
-      "site": 150,
+      "site": 151,
       "original": "min(eligible - ded, policy['copay'])",
       "mutated": "max(eligible - ded, policy['copay'])",
       "detected": true,
@@ -38,7 +38,7 @@
       }
     },
     {
-      "site": 152,
+      "site": 153,
       "original": "eligible - ded - copay",
       "mutated": "eligible - ded + copay",
       "detected": true,
@@ -49,7 +49,7 @@
       }
     },
     {
-      "site": 154,
+      "site": 155,
       "original": "remaining * policy['payer_bps'] // 10000",
       "mutated": "remaining * policy['payer_bps'] * 10000",
       "detected": true,
@@ -60,7 +60,7 @@
       }
     },
     {
-      "site": 156,
+      "site": 157,
       "original": "min(eligible - preliminary, max(0, policy['individual_oop'] - ind['oop']), max(0, policy['family_oop'] - fam['oop']))",
       "mutated": "max(eligible - preliminary, max(0, policy['individual_oop'] - ind['oop']), max(0, policy['family_oop'] - fam['oop']))",
       "detected": true,
@@ -71,7 +71,7 @@
       }
     },
     {
-      "site": 158,
+      "site": 159,
       "original": "min(eligible - member, max(0, policy['annual_benefit'] - ind['benefit']))",
       "mutated": "max(eligible - member, max(0, policy['annual_benefit'] - ind['benefit']))",
       "detected": true,
@@ -82,7 +82,7 @@
       }
     },
     {
-      "site": 160,
+      "site": 161,
       "original": "eligible - member - payout",
       "mutated": "eligible - member + payout",
       "detected": true,
@@ -93,7 +93,7 @@
       }
     },
     {
-      "site": 162,
+      "site": 163,
       "original": "min(ded, member)",
       "mutated": "max(ded, member)",
       "detected": true,
@@ -104,7 +104,16 @@
       }
     },
     {
-      "site": 212,
+      "site": 177,
+      "original": "[dict(rule_id='BN-002', line_id=x['id'], outcome=x['reason']) for x in rows] + [dict(rule_id='BN-004', outcome='Integer cost sharing and caps calculated'), dict(rule_id='BN-005', outcome='Annual allocation reserved')]",
+      "mutated": "[dict(rule_id='BN-002', line_id=x['id'], outcome=x['reason']) for x in rows] - [dict(rule_id='BN-004', outcome='Integer cost sharing and caps calculated'), dict(rule_id='BN-005', outcome='Annual allocation reserved')]",
+      "detected": true,
+      "witness": {
+        "valid_input_exception": "TypeError"
+      }
+    },
+    {
+      "site": 214,
       "original": "max(0, policy['individual_deductible'] - ind['deductible'])",
       "mutated": "min(0, policy['individual_deductible'] - ind['deductible'])",
       "detected": true,
@@ -115,7 +124,7 @@
       }
     },
     {
-      "site": 213,
+      "site": 215,
       "original": "max(0, policy['family_deductible'] - fam['deductible'])",
       "mutated": "min(0, policy['family_deductible'] - fam['deductible'])",
       "detected": true,
@@ -126,7 +135,7 @@
       }
     },
     {
-      "site": 216,
+      "site": 218,
       "original": "eligible - ded",
       "mutated": "eligible + ded",
       "detected": true,
@@ -137,7 +146,7 @@
       }
     },
     {
-      "site": 219,
+      "site": 221,
       "original": "eligible - ded",
       "mutated": "eligible + ded",
       "detected": true,
@@ -148,7 +157,7 @@
       }
     },
     {
-      "site": 223,
+      "site": 225,
       "original": "remaining * policy['payer_bps']",
       "mutated": "remaining + policy['payer_bps']",
       "detected": true,
@@ -159,7 +168,7 @@
       }
     },
     {
-      "site": 228,
+      "site": 230,
       "original": "eligible - preliminary",
       "mutated": "eligible + preliminary",
       "detected": true,
@@ -170,7 +179,7 @@
       }
     },
     {
-      "site": 229,
+      "site": 231,
       "original": "max(0, policy['individual_oop'] - ind['oop'])",
       "mutated": "min(0, policy['individual_oop'] - ind['oop'])",
       "detected": true,
@@ -181,7 +190,7 @@
       }
     },
     {
-      "site": 230,
+      "site": 232,
       "original": "max(0, policy['family_oop'] - fam['oop'])",
       "mutated": "min(0, policy['family_oop'] - fam['oop'])",
       "detected": true,
@@ -192,7 +201,7 @@
       }
     },
     {
-      "site": 233,
+      "site": 235,
       "original": "eligible - member",
       "mutated": "eligible + member",
       "detected": true,
@@ -203,7 +212,7 @@
       }
     },
     {
-      "site": 234,
+      "site": 236,
       "original": "max(0, policy['annual_benefit'] - ind['benefit'])",
       "mutated": "min(0, policy['annual_benefit'] - ind['benefit'])",
       "detected": true,
@@ -214,7 +223,7 @@
       }
     },
     {
-      "site": 236,
+      "site": 238,
       "original": "eligible - member",
       "mutated": "eligible + member",
       "detected": true,
@@ -225,7 +234,7 @@
       }
     },
     {
-      "site": 289,
+      "site": 294,
       "original": "ind[k] - start[k]",
       "mutated": "ind[k] + start[k]",
       "detected": true,
@@ -236,7 +245,7 @@
       }
     },
     {
-      "site": 316,
+      "site": 321,
       "original": "policy['individual_deductible'] - ind['deductible']",
       "mutated": "policy['individual_deductible'] + ind['deductible']",
       "detected": true,
@@ -247,7 +256,7 @@
       }
     },
     {
-      "site": 319,
+      "site": 324,
       "original": "policy['family_deductible'] - fam['deductible']",
       "mutated": "policy['family_deductible'] + fam['deductible']",
       "detected": true,
@@ -258,7 +267,7 @@
       }
     },
     {
-      "site": 340,
+      "site": 345,
       "original": "policy['individual_oop'] - ind['oop']",
       "mutated": "policy['individual_oop'] + ind['oop']",
       "detected": true,
@@ -269,7 +278,7 @@
       }
     },
     {
-      "site": 343,
+      "site": 348,
       "original": "policy['family_oop'] - fam['oop']",
       "mutated": "policy['family_oop'] + fam['oop']",
       "detected": true,
@@ -280,7 +289,7 @@
       }
     },
     {
-      "site": 350,
+      "site": 355,
       "original": "policy['annual_benefit'] - ind['benefit']",
       "mutated": "policy['annual_benefit'] + ind['benefit']",
       "detected": true,

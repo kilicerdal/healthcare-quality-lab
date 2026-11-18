@@ -50,3 +50,8 @@ V4 compares drafts to authored reference data without executing them. It freezes
 V5 verifies implementation/configuration fingerprints, packages source and portable synthetic evidence, validates payload digests and paths, and stages isolated releases. Activation/rollback changes an atomic pointer, with state separated per release. Waitress serves the selected payload on loopback. There is no distributed queue, hot deployment or database migration. GitHub Actions verifies the same code on Ubuntu and rehearses the newly built package over actual HTTP.
 
 All five versions are learning milestones in one independent project. Earlier archives preserve earlier implementations; the current checkout contains V5. Public healthcare eligibility, real claims processing, patient data, external payments and production access control remain outside the system.
+
+
+## V6.2 extension
+
+The original V1–V5 narrative above is preserved as history. The current local V6.2 checkout adds a separate advanced-benefit engine and Fraction oracle, persistent reliability jobs, deterministic investigation/traceability, actual HTTP execution, optional configured-account review/audit and a fresh labeled replay. See [the extension architecture and operating guide](V6.2_GUIDE.md) and [complete report](V6.2_REPORT.md). The newer upstream V5.8 proof page, provider spending controls and maintenance work remain intact.

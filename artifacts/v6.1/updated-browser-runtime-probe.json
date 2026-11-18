@@ -1,0 +1,15 @@
+[
+  {
+    "browser": "chromium",
+    "status": "passed"
+  },
+  {
+    "browser": "firefox",
+    "status": "launch_error",
+    "reason": "BrowserType.launch: Failed to launch the browser process.\nBrowser logs:\n\n<launching> /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-fwhJdW -juggler-pipe -silent\n<launched> pid=79459\n[pid=79459][err] *** You are running in headless mode.\n[pid=79459][err] Could not find profile folder.\n[pid=79459] <process did exit: exitCode=1, signal=null>\n[pid=79459] starting temporary directories cleanup\nCall log:\n  - <launching> /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-fwhJdW -juggler-pipe -silent\n  - <launched> pid=79459\n  - [pid=79459][err] *** You are running in headless mode.\n  - [pid=79459][err] Could not find profile folder.\n  - [pid=794"
+  },
+  {
+    "browser": "webkit",
+    "status": "passed"
+  }
+]
