@@ -1,0 +1,191 @@
+{
+  "origin": "Authored mutation-gap controls; independent calculator expectations, not AI-generated",
+  "cases": [
+    {
+      "id": "AB-GAP-LOW",
+      "title": "Amount entirely below remaining deductible",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "submit-CLM-100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 5003
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 0,
+            "member_cents": 5003,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 5003,
+            "individual_oop": 5003,
+            "individual_benefit": 0,
+            "family_deductible": 5003,
+            "family_oop": 5003,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-GAP-FAMILY",
+      "title": "Family deductible remaining one cent before third member",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "GAP-M100",
+            "operation_key": "gap-submit-M100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 9999
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 0,
+            "member_cents": 9999,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 9999,
+            "individual_oop": 9999,
+            "individual_benefit": 0,
+            "family_deductible": 9999,
+            "family_oop": 9999,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "GAP-M200",
+            "operation_key": "gap-submit-M200",
+            "member_id": "M200",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 10000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 0,
+            "member_cents": 10000,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 10000,
+            "individual_benefit": 0,
+            "family_deductible": 19999,
+            "family_oop": 19999,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m300",
+          "data": {
+            "claim_id": "GAP-M300",
+            "operation_key": "gap-submit-M300",
+            "member_id": "M300",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 50000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 39199,
+            "member_cents": 10801,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 1,
+            "individual_oop": 10801,
+            "individual_benefit": 39199,
+            "family_deductible": 20000,
+            "family_oop": 30800,
+            "family_benefit": 39199,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    }
+  ]
+}
