@@ -3,13 +3,15 @@
 [![Quality and release checks](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml)
 ![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python) ![Tests: pytest and Playwright](https://img.shields.io/badge/Tests-pytest%20%2B%20Playwright-2EAD33) [![MIT license](https://img.shields.io/github/license/kilicerdal/healthcare-quality-lab)](LICENSE)
 
+**Review in five minutes:** [What to run, which failure to inspect, and what it proves](docs/REVIEWER_GUIDE.md) · [Evidence provenance](docs/EVIDENCE.md).
+
 A quality engineering portfolio built with **Python, Flask, SQLite, pytest, Playwright, local Ollama and an explicit OpenAI evaluation CLI**.
 
 The central question is simple: **does a test detect the wrong business result, or does it only pass?** This lab follows synthetic claims from evaluation through approval and payment, checks AI-created expectations against an independent reference model, and measures reviewed tests against known defects.
 
 **Synthetic data only.** Plan amounts, demo identities and payments are invented. This is a local teaching application, not a real payer system or a compliance certification.
 
-**Start here:** [Two-minute engineering demo](docs/V5.8_DEMO.md) · [Case study](docs/CASE_STUDY.md) · [Guided demo](docs/V5.7_DEMO.md) · [Code examples](#review-the-code) · [Run locally](#run-locally)
+**Start here:** [Two-minute engineering demo](docs/V5.8_DEMO.md) · [Case study](docs/CASE_STUDY.md) · [Historical V5.7 guided demo](docs/V5.7_DEMO.md) · [Code examples](#review-the-code) · [Run locally](#run-locally)
 
 **How this differs from [Healthcare Quality Platform](https://github.com/kilicerdal/ai-healthcare-quality-platform):** this lab focuses on business-rule correctness, independent checking of AI expectations, review gates, and payment concurrency/recovery. The platform focuses on API contracts, PostgreSQL persistence, and simulated S3/SQS message processing.
 
@@ -24,11 +26,13 @@ python3 -m tools.bootstrap --browser
 
 Open [Engineering proof](http://127.0.0.1:8895/#proof). The launcher refuses nonempty directories and never resets your existing work. Historical experiment IDs are unnecessary.
 
-[Current engineering report](docs/V5.8_REPORT.md) · [Actual captioned walkthrough](https://github.com/kilicerdal/healthcare-quality-lab/releases/tag/v5.8.0) · [Observed authored scenario evidence](artifacts/showcase/deterministic-evidence.json)
+[Recorded V5.8 engineering report](docs/V5.8_REPORT.md) · [Recorded V5.8 captioned walkthrough](https://github.com/kilicerdal/healthcare-quality-lab/releases/tag/v5.8.0) · [Observed authored scenario evidence](artifacts/showcase/deterministic-evidence.json)
 
-![Actual concurrent payment demonstration](docs/images/engineering-proof-desktop.png)
+![Recorded V5.8 concurrent payment demonstration](docs/images/engineering-proof-desktop.png)
 
-## Recorded provider comparison
+*Recorded local V5.8 authored demonstration, November 17, 2026; not a live execution or provider result. [Source evidence and limits](docs/EVIDENCE.md).*
+
+## Recorded V5.8 local provider comparison — November 17, 2026
 
 Sixteen newly authored inputs, three trials each. Providers generate expectations and compact calculations inside an authored wrapper. Both receive the same base prompt/schema and synthetic rules; transport, decoding, hardware and model size differ.
 
@@ -47,7 +51,7 @@ The separate pilot plus comparison made 49 OpenAI requests: **$0.04218 usage-der
 
 | Evidence | Recorded result | What it means |
 | --- | --- | --- |
-| Deterministic regression | **665 passed:** 538 unit, 81 API, 46 Chromium | Offline provider doubles; actual browser flows. [Current verification](artifacts/verification.json) |
+| Deterministic regression | **665 passed:** 538 unit, 81 API, 46 Chromium | Offline provider doubles; actual browser flows. [Recorded local verification, November 17, 2026](artifacts/verification.json) |
 | Focused local AI generation | **20/20** correct first-attempt assertions/calculations | A frozen development cohort using local `qwen3.5:27b`; zero corrections or reference replacements. [Measurement](artifacts/v5.7/focused-measurement.json) |
 | Reviewed AI-derived core suite | **12/12** known fault seeds detected | One original AI workflow plus an evaluator assembled from seven reviewed model outputs. Known seeds, not exhaustive defect coverage. [Report](docs/V5.7_REPORT.md) |
 | Final guided showcase | **0 remaining gaps** among 11 defined scenario predicates | The four-case final suite closes this particular gap map. It does not establish complete application coverage. |
@@ -59,6 +63,8 @@ The separate pilot plus comparison made 49 OpenAI requests: **$0.04218 usage-der
 *Recorded V5.7 local experiment. These are observed development results, not a fresh model run or a blind benchmark.*
 
 ![Recorded final showcase with known-fault detection and the defined gap map](artifacts/v5.7/showcase-desktop.png)
+
+*Historical V5.7 local showcase; its gap map is bounded to eleven defined predicates. It is not the current CI result.*
 
 ## Review the code
 
@@ -74,7 +80,7 @@ The separate pilot plus comparison made 49 OpenAI requests: **$0.04218 usage-der
 
 ## Run locally
 
-Requires **Python 3.11+**; the recorded delivery used Python 3.13.
+Requires **Python 3.11–3.13** for the documented hosted matrix; the recorded delivery used Python 3.13. [Runtime and test matrix](docs/MAINTENANCE.md). Newer Python versions are not yet verified.
 
 ```sh
 git clone https://github.com/kilicerdal/healthcare-quality-lab.git

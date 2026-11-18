@@ -2,7 +2,18 @@
 
 ## Supported setup
 
-Python 3.11+; CI uses Python 3.13. Bootstrap installs the pinned pytest/Playwright dependencies and matching Chromium. SQLite is bundled with Python; no external database, Docker, paid provider or model runtime is needed for deterministic verification.
+Python 3.11 is the minimum accepted runtime. Hosted verification is defined for 3.11, 3.12 and 3.13; newer versions are unverified rather than implied by the minimum-version check.
+
+| Runtime | Hosted check | Scope |
+|---|---|---|
+| Python 3.11 | [Python compatibility](../.github/workflows/python-compatibility.yml) | Full deterministic verification, Chromium and both known-fault benchmarks |
+| Python 3.12 | [Python compatibility](../.github/workflows/python-compatibility.yml) | Same deterministic scope |
+| Python 3.13 | [Quality and release](../.github/workflows/ci.yml) | Deterministic verification plus source package inspection and HTTP release rehearsal |
+| Python 3.14+ / other operating systems | Not in this hosted matrix | No equivalent compatibility claim |
+
+The workflow links define checks, not their outcome; inspect the run for the revision being reviewed. Historical delivery records retain their original environment. The additional matrix does not rerun paid model experiments.
+
+Bootstrap installs the pinned pytest/Playwright dependencies and matching Chromium. SQLite is bundled with Python; no external database, Docker, paid provider or model runtime is needed for deterministic verification.
 
 From a fresh checkout at the repository root, after installing those prerequisites:
 
