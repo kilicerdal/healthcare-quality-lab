@@ -1,0 +1,793 @@
+{
+  "source_hash": "66fce54299ecd507ed1211701357729e196df126120a88c3e6f9b900f7dc559b",
+  "passed": true,
+  "results": [
+    {
+      "id": "05a213a29862406092df2882e4ba8d12",
+      "scenario": "normal",
+      "passed": true,
+      "assertions": [
+        {
+          "name": "peer same-key replay returns same receipt",
+          "observed": {
+            "amount_cents": 71200,
+            "claim_id": "INT-CLAIM",
+            "operation_key": "intent-edde31ff8b294a6a91f7e7834fa01eb8",
+            "receipt_id": "PEER-intent-edde31ff8b294a6a91f7e7834fa01eb8",
+            "status": "paid"
+          },
+          "expected": {
+            "amount_cents": 71200,
+            "claim_id": "INT-CLAIM",
+            "operation_key": "intent-edde31ff8b294a6a91f7e7834fa01eb8",
+            "receipt_id": "PEER-intent-edde31ff8b294a6a91f7e7834fa01eb8",
+            "status": "paid"
+          },
+          "passed": true
+        },
+        {
+          "name": "peer changed-key input rejected",
+          "observed": 409,
+          "expected": 409,
+          "passed": true
+        },
+        {
+          "name": "outbox outcome",
+          "observed": "settled",
+          "expected": "settled",
+          "passed": true
+        },
+        {
+          "name": "remote payment count",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger entries",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger balance",
+          "observed": 71200,
+          "expected": 71200,
+          "passed": true
+        },
+        {
+          "name": "local history events",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "local revision",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "attempt budget respected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        }
+      ],
+      "outbox": {
+        "key": "intent-edde31ff8b294a6a91f7e7834fa01eb8",
+        "binding": {
+          "claim_id": "INT-CLAIM",
+          "amount_cents": 71200,
+          "member_id": "M100",
+          "revision": 1,
+          "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726"
+        },
+        "state": "settled",
+        "attempts": 1,
+        "events": [],
+        "last_sequence": 0,
+        "receipt": {
+          "amount_cents": 71200,
+          "claim_id": "INT-CLAIM",
+          "operation_key": "intent-edde31ff8b294a6a91f7e7834fa01eb8",
+          "receipt_id": "PEER-intent-edde31ff8b294a6a91f7e7834fa01eb8",
+          "status": "paid"
+        },
+        "local_revision": 2
+      },
+      "remote_payments": 1,
+      "local_ledger": [
+        {
+          "seq": 1,
+          "operation": "local-intent-edde31ff8b294a6a91f7e7834fa01eb8",
+          "amount": 71200
+        }
+      ],
+      "duration_ms": 558.36,
+      "scope": "Actual isolated HTTP eligibility/payment peer, new stores and scripted faults. Synthetic money only. An outbox is eventually reconciled; no atomic cross-service transaction or production payment integration is claimed."
+    },
+    {
+      "id": "288b840b0a904d819eeaa7b75ab3de52",
+      "scenario": "lost_ack",
+      "passed": true,
+      "assertions": [
+        {
+          "name": "outbox outcome",
+          "observed": "settled",
+          "expected": "settled",
+          "passed": true
+        },
+        {
+          "name": "remote payment count",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger entries",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger balance",
+          "observed": 71200,
+          "expected": 71200,
+          "passed": true
+        },
+        {
+          "name": "local history events",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "local revision",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "attempt budget respected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        }
+      ],
+      "outbox": {
+        "key": "intent-9f8ec6ae413344fa87e4ee53db280a59",
+        "binding": {
+          "claim_id": "INT-CLAIM",
+          "amount_cents": 71200,
+          "member_id": "M100",
+          "revision": 1,
+          "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726"
+        },
+        "state": "settled",
+        "attempts": 2,
+        "events": [
+          {
+            "event": "ambiguous_peer_outcome",
+            "error_type": "TimeoutError"
+          }
+        ],
+        "last_sequence": 0,
+        "receipt": {
+          "amount_cents": 71200,
+          "claim_id": "INT-CLAIM",
+          "operation_key": "intent-9f8ec6ae413344fa87e4ee53db280a59",
+          "receipt_id": "PEER-intent-9f8ec6ae413344fa87e4ee53db280a59",
+          "status": "paid"
+        },
+        "local_revision": 2
+      },
+      "remote_payments": 1,
+      "local_ledger": [
+        {
+          "seq": 1,
+          "operation": "local-intent-9f8ec6ae413344fa87e4ee53db280a59",
+          "amount": 71200
+        }
+      ],
+      "duration_ms": 860.39,
+      "scope": "Actual isolated HTTP eligibility/payment peer, new stores and scripted faults. Synthetic money only. An outbox is eventually reconciled; no atomic cross-service transaction or production payment integration is claimed."
+    },
+    {
+      "id": "cf0046762e814316bec6d06f637e49f2",
+      "scenario": "temporary_unavailable",
+      "passed": true,
+      "assertions": [
+        {
+          "name": "outbox outcome",
+          "observed": "settled",
+          "expected": "settled",
+          "passed": true
+        },
+        {
+          "name": "remote payment count",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger entries",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger balance",
+          "observed": 71200,
+          "expected": 71200,
+          "passed": true
+        },
+        {
+          "name": "local history events",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "local revision",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "attempt budget respected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        }
+      ],
+      "outbox": {
+        "key": "intent-89399b35a3784754ba905b27ed530072",
+        "binding": {
+          "claim_id": "INT-CLAIM",
+          "amount_cents": 71200,
+          "member_id": "M100",
+          "revision": 1,
+          "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726"
+        },
+        "state": "settled",
+        "attempts": 2,
+        "events": [
+          {
+            "event": "retryable_response",
+            "status": 503
+          }
+        ],
+        "last_sequence": 0,
+        "receipt": {
+          "amount_cents": 71200,
+          "claim_id": "INT-CLAIM",
+          "operation_key": "intent-89399b35a3784754ba905b27ed530072",
+          "receipt_id": "PEER-intent-89399b35a3784754ba905b27ed530072",
+          "status": "paid"
+        },
+        "local_revision": 2
+      },
+      "remote_payments": 1,
+      "local_ledger": [
+        {
+          "seq": 1,
+          "operation": "local-intent-89399b35a3784754ba905b27ed530072",
+          "amount": 71200
+        }
+      ],
+      "duration_ms": 576.01,
+      "scope": "Actual isolated HTTP eligibility/payment peer, new stores and scripted faults. Synthetic money only. An outbox is eventually reconciled; no atomic cross-service transaction or production payment integration is claimed."
+    },
+    {
+      "id": "a0487632a4224f8a849fbd15b22a00b1",
+      "scenario": "permanent_timeout",
+      "passed": true,
+      "assertions": [
+        {
+          "name": "outbox outcome",
+          "observed": "pending",
+          "expected": "pending",
+          "passed": true
+        },
+        {
+          "name": "remote payment count",
+          "observed": 0,
+          "expected": 0,
+          "passed": true
+        },
+        {
+          "name": "local ledger entries",
+          "observed": 0,
+          "expected": 0,
+          "passed": true
+        },
+        {
+          "name": "local ledger balance",
+          "observed": 0,
+          "expected": 0,
+          "passed": true
+        },
+        {
+          "name": "local history events",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local revision",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "attempt budget respected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        }
+      ],
+      "outbox": {
+        "key": "intent-52e71d82a28e4b35a698ff3e89435d93",
+        "binding": {
+          "claim_id": "INT-CLAIM",
+          "amount_cents": 71200,
+          "member_id": "M100",
+          "revision": 1,
+          "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726"
+        },
+        "state": "pending",
+        "attempts": 3,
+        "events": [
+          {
+            "event": "ambiguous_peer_outcome",
+            "error_type": "TimeoutError"
+          },
+          {
+            "event": "ambiguous_peer_outcome",
+            "error_type": "TimeoutError"
+          },
+          {
+            "event": "ambiguous_peer_outcome",
+            "error_type": "TimeoutError"
+          }
+        ],
+        "last_sequence": 0,
+        "receipt": null
+      },
+      "remote_payments": 0,
+      "local_ledger": [],
+      "duration_ms": 1222.3,
+      "scope": "Actual isolated HTTP eligibility/payment peer, new stores and scripted faults. Synthetic money only. An outbox is eventually reconciled; no atomic cross-service transaction or production payment integration is claimed."
+    },
+    {
+      "id": "5857dcd55dc547a8b93d07fb99af00e8",
+      "scenario": "wrong_receipt",
+      "passed": true,
+      "assertions": [
+        {
+          "name": "outbox outcome",
+          "observed": "quarantined",
+          "expected": "quarantined",
+          "passed": true
+        },
+        {
+          "name": "remote payment count",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger entries",
+          "observed": 0,
+          "expected": 0,
+          "passed": true
+        },
+        {
+          "name": "local ledger balance",
+          "observed": 0,
+          "expected": 0,
+          "passed": true
+        },
+        {
+          "name": "local history events",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local revision",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "attempt budget respected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        }
+      ],
+      "outbox": {
+        "key": "intent-baf5733ea6904402812d8b7b204e2216",
+        "binding": {
+          "claim_id": "INT-CLAIM",
+          "amount_cents": 71200,
+          "member_id": "M100",
+          "revision": 1,
+          "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726"
+        },
+        "state": "quarantined",
+        "attempts": 1,
+        "events": [],
+        "last_sequence": 0,
+        "receipt": null,
+        "error": "Peer receipt does not match frozen payment intent"
+      },
+      "remote_payments": 1,
+      "local_ledger": [],
+      "duration_ms": 548.48,
+      "scope": "Actual isolated HTTP eligibility/payment peer, new stores and scripted faults. Synthetic money only. An outbox is eventually reconciled; no atomic cross-service transaction or production payment integration is claimed."
+    },
+    {
+      "id": "911c30cc83f14ad5b4023062924a677a",
+      "scenario": "ineligible",
+      "passed": true,
+      "assertions": [
+        {
+          "name": "outbox outcome",
+          "observed": "ineligible",
+          "expected": "ineligible",
+          "passed": true
+        },
+        {
+          "name": "remote payment count",
+          "observed": 0,
+          "expected": 0,
+          "passed": true
+        },
+        {
+          "name": "local ledger entries",
+          "observed": 0,
+          "expected": 0,
+          "passed": true
+        },
+        {
+          "name": "local ledger balance",
+          "observed": 0,
+          "expected": 0,
+          "passed": true
+        },
+        {
+          "name": "local history events",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local revision",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "attempt budget respected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        }
+      ],
+      "outbox": {
+        "key": "intent-e784c5087f4a4d04a4706ae0b5de3876",
+        "binding": {
+          "claim_id": "INT-CLAIM",
+          "amount_cents": 71200,
+          "member_id": "M400",
+          "revision": 1,
+          "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726"
+        },
+        "state": "ineligible",
+        "attempts": 1,
+        "events": [],
+        "last_sequence": 0,
+        "receipt": null,
+        "error": "Synthetic eligibility not active"
+      },
+      "remote_payments": 0,
+      "local_ledger": [],
+      "duration_ms": 529.8,
+      "scope": "Actual isolated HTTP eligibility/payment peer, new stores and scripted faults. Synthetic money only. An outbox is eventually reconciled; no atomic cross-service transaction or production payment integration is claimed."
+    },
+    {
+      "id": "d78a415e9538411d9867432600ad741a",
+      "scenario": "stale_claim",
+      "passed": true,
+      "assertions": [
+        {
+          "name": "outbox outcome",
+          "observed": "quarantined",
+          "expected": "quarantined",
+          "passed": true
+        },
+        {
+          "name": "remote payment count",
+          "observed": 0,
+          "expected": 0,
+          "passed": true
+        },
+        {
+          "name": "local ledger entries",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger balance",
+          "observed": 71200,
+          "expected": 71200,
+          "passed": true
+        },
+        {
+          "name": "local history events",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "local revision",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "attempt budget respected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        }
+      ],
+      "outbox": {
+        "key": "intent-3bba02104539474f82ce01edd3b9e62a",
+        "binding": {
+          "claim_id": "INT-CLAIM",
+          "amount_cents": 71200,
+          "member_id": "M100",
+          "revision": 1,
+          "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726"
+        },
+        "state": "quarantined",
+        "attempts": 0,
+        "events": [],
+        "last_sequence": 0,
+        "receipt": null,
+        "error": "Claim snapshot changed before delivery"
+      },
+      "remote_payments": 0,
+      "local_ledger": [
+        {
+          "seq": 1,
+          "operation": "other-local-payment",
+          "amount": 71200
+        }
+      ],
+      "duration_ms": 507.67,
+      "scope": "Actual isolated HTTP eligibility/payment peer, new stores and scripted faults. Synthetic money only. An outbox is eventually reconciled; no atomic cross-service transaction or production payment integration is claimed."
+    },
+    {
+      "id": "cdea86544b6649bb8f3cb90d3dfd2a06",
+      "scenario": "crash_recovery",
+      "passed": true,
+      "assertions": [
+        {
+          "name": "worker really exited after local commit",
+          "observed": 23,
+          "expected": 23,
+          "passed": true
+        },
+        {
+          "name": "outbox remained pending",
+          "observed": "pending",
+          "expected": "pending",
+          "passed": true
+        },
+        {
+          "name": "outbox outcome",
+          "observed": "settled",
+          "expected": "settled",
+          "passed": true
+        },
+        {
+          "name": "remote payment count",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger entries",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger balance",
+          "observed": 71200,
+          "expected": 71200,
+          "passed": true
+        },
+        {
+          "name": "local history events",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "local revision",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "attempt budget respected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        }
+      ],
+      "outbox": {
+        "key": "intent-bea231b1192145878a31896761b3fff9",
+        "binding": {
+          "claim_id": "INT-CLAIM",
+          "amount_cents": 71200,
+          "member_id": "M100",
+          "revision": 1,
+          "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726"
+        },
+        "state": "settled",
+        "attempts": 2,
+        "events": [],
+        "last_sequence": 0,
+        "receipt": {
+          "amount_cents": 71200,
+          "claim_id": "INT-CLAIM",
+          "operation_key": "intent-bea231b1192145878a31896761b3fff9",
+          "receipt_id": "PEER-intent-bea231b1192145878a31896761b3fff9",
+          "status": "paid"
+        },
+        "local_revision": 2
+      },
+      "remote_payments": 1,
+      "local_ledger": [
+        {
+          "seq": 1,
+          "operation": "local-intent-bea231b1192145878a31896761b3fff9",
+          "amount": 71200
+        }
+      ],
+      "duration_ms": 683.69,
+      "scope": "Actual isolated HTTP eligibility/payment peer, new stores and scripted faults. Synthetic money only. An outbox is eventually reconciled; no atomic cross-service transaction or production payment integration is claimed."
+    },
+    {
+      "id": "8fa3a0271f81460b8b2a810dd7cb49ef",
+      "scenario": "webhook_replay",
+      "passed": true,
+      "assertions": [
+        {
+          "name": "new webhook is only a signal",
+          "observed": "signalled",
+          "expected": "signalled",
+          "passed": true
+        },
+        {
+          "name": "duplicate webhook is deduplicated",
+          "observed": "duplicate",
+          "expected": "duplicate",
+          "passed": true
+        },
+        {
+          "name": "older webhook ignored",
+          "observed": "stale",
+          "expected": "stale",
+          "passed": true
+        },
+        {
+          "name": "changed replay payload rejected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        },
+        {
+          "name": "webhook never creates extra payment",
+          "observed": "settled",
+          "expected": "settled",
+          "passed": true
+        },
+        {
+          "name": "outbox outcome",
+          "observed": "settled",
+          "expected": "settled",
+          "passed": true
+        },
+        {
+          "name": "remote payment count",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger entries",
+          "observed": 1,
+          "expected": 1,
+          "passed": true
+        },
+        {
+          "name": "local ledger balance",
+          "observed": 71200,
+          "expected": 71200,
+          "passed": true
+        },
+        {
+          "name": "local history events",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "local revision",
+          "observed": 2,
+          "expected": 2,
+          "passed": true
+        },
+        {
+          "name": "attempt budget respected",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        }
+      ],
+      "outbox": {
+        "key": "intent-c1df292ff2934a6f81c141d942bc928a",
+        "binding": {
+          "claim_id": "INT-CLAIM",
+          "amount_cents": 71200,
+          "member_id": "M100",
+          "revision": 1,
+          "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726"
+        },
+        "state": "settled",
+        "attempts": 1,
+        "events": [
+          {
+            "event": "webhook",
+            "outcome": "signalled",
+            "event_id": "event-payment-002"
+          },
+          {
+            "event": "webhook",
+            "outcome": "stale",
+            "event_id": "event-payment-001"
+          }
+        ],
+        "last_sequence": 2,
+        "receipt": {
+          "amount_cents": 71200,
+          "claim_id": "INT-CLAIM",
+          "operation_key": "intent-c1df292ff2934a6f81c141d942bc928a",
+          "receipt_id": "PEER-intent-c1df292ff2934a6f81c141d942bc928a",
+          "status": "paid"
+        },
+        "local_revision": 2
+      },
+      "remote_payments": 1,
+      "local_ledger": [
+        {
+          "seq": 1,
+          "operation": "local-intent-c1df292ff2934a6f81c141d942bc928a",
+          "amount": 71200
+        }
+      ],
+      "duration_ms": 546.3,
+      "scope": "Actual isolated HTTP eligibility/payment peer, new stores and scripted faults. Synthetic money only. An outbox is eventually reconciled; no atomic cross-service transaction or production payment integration is claimed."
+    }
+  ],
+  "live_model_calls": 0
+}

@@ -1,0 +1,20 @@
+{
+  "source_hash": "66fce54299ecd507ed1211701357729e196df126120a88c3e6f9b900f7dc559b",
+  "scenes": [
+    {
+      "scene": "authored_advanced_http",
+      "passed": true
+    },
+    {
+      "scene": "lost_ack_reconciliation",
+      "passed": true
+    },
+    {
+      "scene": "webhook_replay",
+      "passed": true
+    }
+  ],
+  "duration_seconds": 71.54,
+  "live_model_calls": 0,
+  "scope": "Actual headless Chromium authored UI execution. Captions distinguish authored controls from historical live model measurements. No voice narration or new AI generation in this capture."
+}

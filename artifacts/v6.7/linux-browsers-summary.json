@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "source_hash": "66fce54299ecd507ed1211701357729e196df126120a88c3e6f9b900f7dc559b",
+  "total": 929,
+  "passed": 929,
+  "failed": 0,
+  "skipped": 0,
+  "browsers": {
+    "chromium": 58,
+    "firefox": 58,
+    "webkit": 58
+  },
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux-6.8.0-117-generic-aarch64-with-glibc2.36",
+    "pytest": "9.2.0",
+    "playwright": "1.65.2",
+    "flask": "3.1.3",
+    "waitress": "3.0.2",
+    "browser": "Chromium only"
+  },
+  "ci_executed": false,
+  "scope": "Complete isolated Linux unit/API/all-browser run; counts overlap canonical verification. One upstream pytest-playwright fixture deprecation warning retained."
+}

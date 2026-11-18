@@ -1,0 +1,13 @@
+{
+  "source_hash": "66fce54299ecd507ed1211701357729e196df126120a88c3e6f9b900f7dc559b",
+  "reviewed": [
+    "desktop engineering hub",
+    "mobile engineering hub",
+    "desktop report",
+    "mobile report",
+    "eight-slide interview presentation",
+    "actual recorded browser frame"
+  ],
+  "model_calls_during_visual_review": 0,
+  "scope": "Visual presentation review, not an accessibility certification."
+}

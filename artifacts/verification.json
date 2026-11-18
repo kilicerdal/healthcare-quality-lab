@@ -1,21 +1,21 @@
 {
   "status": "passed",
-  "version": "6.2.0",
-  "recorded_at": "2026-11-18T03:30:35.971919-05:00",
+  "version": "6.7.0",
+  "recorded_at": "2026-11-18T11:07:48.047140-05:00",
   "recorded_date": "2026-11-18",
-  "source_hash": "94ee78a2e21cecc29fdcd559f84c49184b136970724e132e3500683f20d92365",
+  "source_hash": "66fce54299ecd507ed1211701357729e196df126120a88c3e6f9b900f7dc559b",
   "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
   "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
-  "tests_total": 736,
-  "tests_passed": 736,
+  "tests_total": 813,
+  "tests_passed": 813,
   "tests_failed": 0,
   "tests_skipped": 0,
   "categories": {
-    "unit": 591,
-    "api": 93,
-    "e2e": 52
+    "unit": 657,
+    "api": 98,
+    "e2e": 58
   },
-  "e2e_tests": 52,
+  "e2e_tests": 58,
   "seeded_defects_detected": 7,
   "seeded_defects_total": 7,
   "workflow_seeded_defects_detected": 5,
@@ -23,7 +23,7 @@
   "ai_case_language": "declarative DSL 1.0",
   "live_model_in_core_tests": false,
   "reference_examples": 28,
-  "duration_seconds": 74.99,
+  "duration_seconds": 108.27,
   "environment": {
     "python": "3.13.18",
     "platform": "Linux-6.8.0-117-generic-aarch64-with-glibc2.36",
@@ -36,5 +36,5 @@
   "command": "python -m tools.verify",
   "subprocess_returncode": 0,
   "ci_executed": false,
-  "scope": "Local V6.2 regression: reserved-model job contracts, grounded triage, advanced line benefits and independent Fraction properties, concurrent ledger/recovery, shared identity/CSRF/audit, reproducible demos, actual HTTP adapter, layout contracts, release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live provider demonstrations are recorded separately; ordinary CI makes no paid API calls. Upstream proof scenarios, reference invariants and spending controls are preserved. Not production or Medicare compliance certification."
+  "scope": "Local V6.7 regression: advanced AI DSL and independent lifecycle oracle, frozen raw/corrected evaluation, identity-bound review and actual external peer/outbox/inbox recovery; reserved-model job contracts, grounded triage, advanced line benefits and independent Fraction properties, concurrent ledger/recovery, shared identity/CSRF/audit, reproducible demos, actual HTTP adapter, layout contracts, release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live provider demonstrations are recorded separately; ordinary CI makes no paid API calls. Upstream proof scenarios, reference invariants and spending controls are preserved. Not production or Medicare compliance certification."
 }

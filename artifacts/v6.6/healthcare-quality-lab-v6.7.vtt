@@ -1,0 +1,25 @@
+WEBVTT
+
+00:00:00.133 --> 00:00:07.162
+Healthcare Quality Lab: bounded AI proposals, independent financial checks and explicit review. Synthetic insurance rules only. No model is called during this recording.
+
+00:00:07.242 --> 00:00:14.252
+This is an authored control, not a new AI answer. It submits, pays, adjusts and reverses a claim, checking money, ledger, history and accumulators.
+
+00:00:14.330 --> 00:00:21.341
+Approval binds the inspected case, rule contract and source hashes. A later code or scenario change invalidates the approval.
+
+00:00:22.175 --> 00:00:29.180
+The approved case passed through actual HTTP in fresh isolated stores. It did not change the interactive claim ledger.
+
+00:00:29.227 --> 00:00:39.239
+These are earlier actual local-model measurements, labeled separately. Raw eligibility and reference-assisted correction are different results; a completed job does not imply a correct model.
+
+00:00:40.626 --> 00:00:50.640
+The peer committed a synthetic payment but its acknowledgement timed out. Reconciliation queried the original key: one peer payment, one local ledger entry.
+
+00:00:51.507 --> 00:01:01.523
+Duplicate and out-of-order webhooks are deduplicated or ignored. A changed payload is rejected. Webhooks signal reconciliation; they never authorize extra money.
+
+00:01:01.535 --> 00:01:11.539
+Inspect the verified release, checksummed source archive and GitHub Actions receipts. This portfolio is a synthetic engineering lab, not a production payer or a healthcare compliance certification.

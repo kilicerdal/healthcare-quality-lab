@@ -27,6 +27,10 @@ The evaluation scorecard separates raw model answers from one reference-assisted
 - [Reproduce the complete demonstration](docs/V6.7_DEMO.md), including explicit Ollama and ephemeral-runner commands.
 - Verification, live model outcomes, video and exact CI/release provenance are attached as release evidence. Model-job completion is distinct from proposal eligibility; inspect failures as well as successes.
 
+**Final local validation:** 813/813 standard checks; a separate complete 929/929 run across Chromium, Firefox and WebKit (overlapping totals). Nine HTTP integration scenarios passed, and the bounded pricing experiment detected 27/27 mutants. Current 27B ADV-05 measurement: 0/1 raw eligible, 1/1 after one actual reference-assisted correction. The repeated 3B comparison remained 0/4 raw and 0/4 assisted. These small samples are retained as evidence, not general model accuracy.
+
+[Captioned V6.7 recording](artifacts/v6.6/healthcare-quality-lab-v6.7.webm) · [Captions](artifacts/v6.6/healthcare-quality-lab-v6.7.vtt) · [Recording provenance](artifacts/v6.6/capture.json)
+
 ## Prior V6.2 engineering evidence hub
 
 V5.8–V6.2 additions are implemented locally: reserved repeated AI measurements, grounded investigation and rule traceability, effective-dated line benefits, family accumulators, coordination, appeals/adjustments/reversals, real HTTP execution, concurrency/rollback/property checks, authenticated-review mode, maintenance recommendations and a fresh replay launcher. The existing V5.8 proof page, provider spending controls, reports and maintenance work remain intact.

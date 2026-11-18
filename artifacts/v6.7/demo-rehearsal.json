@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "advanced_control": "fb24dca6ad2543ecb5480645fed6b9ca",
+  "advanced_measurement_replays": 2,
+  "demo": true,
+  "live_model_requests": 0,
+  "source_hash": "66fce54299ecd507ed1211701357729e196df126120a88c3e6f9b900f7dc559b",
+  "state_dir": ".local/demo-v67-final",
+  "experiments": {
+    "assembly": "e39886795cc04d60b74783cce1c6829d",
+    "workflow": "4d759d076e444a30ab5598c4dd53f3e8",
+    "zero": "8ebc3ca30cc84db1b145b590accdebcf",
+    "replay": "faaf946d0488411fbe63c7f4021a89d9",
+    "baseline-eval": "ad71d4b79d794620997f39be4dc51eb3",
+    "baseline-flow": "6f7b657a68284012a15b84bab21ecd77"
+  },
+  "before_score": "015e31496e93426598895c029c899d45",
+  "after_score": "c69add18dd494677a2d7c3c324b70a75",
+  "comparison": "7134d1529ce8424aa4af3de94c12ca46",
+  "before_detected": 2,
+  "after_detected": 12,
+  "missing_gaps": 0,
+  "investigation": "00773223bc3c4561a981597a7bbe6126",
+  "fault_run": "817499f3304b4cdd8a13ed81afc804ab",
+  "benefit_claim": "DEMO-BENEFIT",
+  "scope": "Fresh replay state with copied saved evidence, current checks and explicit scripted approvals. Original source artifacts and interactive databases remain unchanged."
+}
