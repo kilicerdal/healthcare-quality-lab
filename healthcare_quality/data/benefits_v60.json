@@ -1,0 +1,72 @@
+{
+  "version": "synthetic-benefits-1",
+  "scope": "Invented rules for every plan, not actual Medicare or commercial policy. Quotes reserve allocated accumulators at adjudication. Reversal/adjustment credits only the original allocation; later claims are never repriced. Other-payer money is applied before deductible/copay. Benefit-cap excess is noncovered and does not increase OOP. Coinsurance uses floor integer cents. Policy dates are half-open intervals; accumulators reset by service calendar year.",
+  "policies": [
+    {
+      "id": "SYN-2026-H1",
+      "start": "2026-01-01",
+      "end": "2026-07-01",
+      "individual_deductible": 10000,
+      "family_deductible": 20000,
+      "copay": 1000,
+      "payer_bps": 8000,
+      "individual_oop": 30000,
+      "family_oop": 60000,
+      "annual_benefit": 200000
+    },
+    {
+      "id": "SYN-2026-H2",
+      "start": "2026-07-01",
+      "end": "2027-01-01",
+      "individual_deductible": 10000,
+      "family_deductible": 20000,
+      "copay": 1500,
+      "payer_bps": 8000,
+      "individual_oop": 30000,
+      "family_oop": 60000,
+      "annual_benefit": 200000
+    },
+    {
+      "id": "SYN-2027",
+      "start": "2027-01-01",
+      "end": "2028-01-01",
+      "individual_deductible": 12000,
+      "family_deductible": 24000,
+      "copay": 1500,
+      "payer_bps": 7500,
+      "individual_oop": 32000,
+      "family_oop": 64000,
+      "annual_benefit": 220000
+    }
+  ],
+  "rules": [
+    {
+      "id": "BN-001",
+      "contract": "Canonical service date selects a half-open effective policy interval; only bounded integer cents and unique lines are accepted."
+    },
+    {
+      "id": "BN-002",
+      "contract": "Adjudicate each line against the chosen synthetic plan service, network, authorization and formulary facts; retain partial denials."
+    },
+    {
+      "id": "BN-003",
+      "contract": "Apply other-payer payment first; it cannot exceed the line allowed amount."
+    },
+    {
+      "id": "BN-004",
+      "contract": "Apply remaining member/family deductible, nominal copay, then floor payer coinsurance; cap actual member charge at member/family OOP and payout at remaining annual benefit. Benefit excess is noncovered, not OOP."
+    },
+    {
+      "id": "BN-005",
+      "contract": "Reserve allocations at adjudication by service year. Credits reverse only that claim allocation; later claims are not repriced. Family F100 has three members so embedded caps can bind."
+    },
+    {
+      "id": "BN-006",
+      "contract": "Finance pays or reverses once from the required state; idempotency keys bind actor/action/input and revisions serialize changes. Adjustments atomically credit old allocations and record debit/credit ledger entries."
+    },
+    {
+      "id": "BN-007",
+      "contract": "Owners may appeal adjudicated claims; adjusters resolve by reprocessing corrected lines under the same policy. Appeal resolution cannot invent coverage exceptions."
+    }
+  ]
+}

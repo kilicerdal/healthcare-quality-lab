@@ -1,0 +1,90 @@
+{
+  "synthetic": true,
+  "cases": [
+    {
+      "service_date": "2026-03-01",
+      "policy": "SYN-2026-H1",
+      "totals": {
+        "allowed_cents": 100000,
+        "other_payer_cents": 0,
+        "deductible_cents": 10000,
+        "copay_cents": 1000,
+        "member_cents": 28800,
+        "noncovered_cents": 0,
+        "payout_cents": 71200
+      },
+      "trace": [
+        {
+          "rule_id": "BN-002",
+          "line_id": "L1",
+          "outcome": "COVERED"
+        },
+        {
+          "rule_id": "BN-004",
+          "outcome": "Integer cost sharing and caps calculated"
+        },
+        {
+          "rule_id": "BN-005",
+          "outcome": "Annual allocation reserved"
+        }
+      ]
+    },
+    {
+      "service_date": "2026-07-01",
+      "policy": "SYN-2026-H2",
+      "totals": {
+        "allowed_cents": 100000,
+        "other_payer_cents": 0,
+        "deductible_cents": 10000,
+        "copay_cents": 1500,
+        "member_cents": 29200,
+        "noncovered_cents": 0,
+        "payout_cents": 70800
+      },
+      "trace": [
+        {
+          "rule_id": "BN-002",
+          "line_id": "L1",
+          "outcome": "COVERED"
+        },
+        {
+          "rule_id": "BN-004",
+          "outcome": "Integer cost sharing and caps calculated"
+        },
+        {
+          "rule_id": "BN-005",
+          "outcome": "Annual allocation reserved"
+        }
+      ]
+    },
+    {
+      "service_date": "2027-01-01",
+      "policy": "SYN-2027",
+      "totals": {
+        "allowed_cents": 100000,
+        "other_payer_cents": 0,
+        "deductible_cents": 12000,
+        "copay_cents": 1500,
+        "member_cents": 32000,
+        "noncovered_cents": 0,
+        "payout_cents": 68000
+      },
+      "trace": [
+        {
+          "rule_id": "BN-002",
+          "line_id": "L1",
+          "outcome": "COVERED"
+        },
+        {
+          "rule_id": "BN-004",
+          "outcome": "Integer cost sharing and caps calculated"
+        },
+        {
+          "rule_id": "BN-005",
+          "outcome": "Annual allocation reserved"
+        }
+      ]
+    }
+  ],
+  "scope": "Captured runtime results; literal assertions and independent Fraction comparison are in tests/unit/test_benefits_v60.py."
+}
