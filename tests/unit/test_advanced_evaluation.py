@@ -89,3 +89,41 @@ def test_duplicate_json_keys_and_float_money_are_rejected():
     assert not assessment(task,dict(text='{"cases":[],"cases":[]}'))['eligible']
     c=deepcopy(CASES[7]);c['steps'][0]['data']['lines'][0]['allowed_cents']=5000.0
     assert not check([c])['review_ready']
+
+
+def test_interruption_during_correction_retains_completed_raw_response(tmp_path):
+    from healthcare_quality.ai_studio import ExperimentStore
+    from healthcare_quality.advanced_evaluation import recover
+    task=cohort()['tasks'][0];bad=deepcopy(task['case']);bad['steps'][0]['expect']['payout_cents']+=1
+    class Provider:
+        calls=0
+        def generate(self,*args):
+            self.calls+=1
+            if self.calls==2:raise KeyboardInterrupt('Injected worker interruption during correction')
+            return dict(text=json.dumps({'cases':[bad]}),input_tokens=10,output_tokens=20)
+    state=tmp_path/'evaluation.sqlite'
+    with pytest.raises(KeyboardInterrupt):measure(Provider(),'qwen3.5:27b',['ADV-01'],1,state,tmp_path/'partial.json',True)
+    store=ExperimentStore(state)
+    with store.transaction() as db:
+        db.execute('UPDATE studio_operations SET expires_at=0')
+        id=db.execute('SELECT id FROM ai_experiments').fetchone()[0]
+    recover(store);r=store.get(id)
+    assert r['state']=='interrupted' and len(r['rows'])==1
+    assert r['rows'][0]['raw']['text']==json.dumps({'cases':[bad]})
+    assert r['rows'][0]['correction_requested'] and r['rows'][0]['phase']=='interrupted'
+    assert not r['rows'][0]['raw_assessment']['eligible']
+
+
+def test_interrupted_raw_attempt_is_counted_without_inventing_an_answer(tmp_path):
+    from healthcare_quality.ai_studio import ExperimentStore
+    from healthcare_quality.advanced_evaluation import recover
+    class Provider:
+        def generate(self,*args):raise KeyboardInterrupt('Injected interruption before response')
+    state=tmp_path/'evaluation.sqlite'
+    with pytest.raises(KeyboardInterrupt):measure(Provider(),'qwen3.5:27b',['ADV-03'],1,state,tmp_path/'partial.json')
+    store=ExperimentStore(state)
+    with store.transaction() as db:
+        db.execute('UPDATE studio_operations SET expires_at=0');id=db.execute('SELECT id FROM ai_experiments').fetchone()[0]
+    recover(store);r=store.get(id);s=r['summary']['qwen3.5:27b']
+    assert r['state']=='interrupted' and s['requested']==1 and s['raw_completed']==0
+    assert s['unknown_outcomes']==1 and s['provider_errors']==s['raw_eligible']==0

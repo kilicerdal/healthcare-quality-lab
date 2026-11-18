@@ -29,9 +29,9 @@ def summarize(rows):
     result={}
     for model in sorted({r['model'] for r in rows}):
         items=[r for r in rows if r['model']==model];raw=[r.get('raw_assessment',{}) for r in items];corrected=[r.get('corrected_assessment') for r in items if r.get('corrected_assessment') is not None]
-        lat=[r['latency_ms'] for r in items];groups={}
+        lat=[r['latency_ms'] for r in items if r.get('latency_ms') is not None];groups={}
         for r in items:groups.setdefault(r['task_id'],[]).append(digest([(semantic_key(c),[s['expect'] for s in c['steps']]) for c in r['raw_assessment']['cases']]) if r.get('raw_assessment',{}).get('fixed_inputs') else None)
-        result[model]=dict(requested=len(items),raw_eligible=sum(bool(x.get('eligible')) for x in raw),raw_schema_valid=sum(bool(x.get('valid')) for x in raw),wrong_or_incomplete=sum(not x.get('eligible',False) for x in raw if x),provider_errors=sum('error' in r for r in items),correction_requests=sum(bool(r.get('correction_requested')) for r in items),assisted_eligible=sum(bool(x.get('eligible')) for x in corrected),stable_tasks=sum(len(v)>1 and None not in v and len(set(v))==1 for v in groups.values()),repeated_tasks=sum(len(v)>1 for v in groups.values()),latency_median_ms=statistics.median(lat),raw_latency_median_ms=statistics.median([r['raw_latency_ms'] for r in items if 'raw_latency_ms' in r]) if any('raw_latency_ms' in r for r in items) else None,correction_provider_errors=sum(bool(r.get('correction_requested')) and not r.get('corrected') for r in items),assisted_input_tokens=sum((r.get('corrected') or {}).get('input_tokens') or 0 for r in items),assisted_output_tokens=sum((r.get('corrected') or {}).get('output_tokens') or 0 for r in items),input_tokens=sum((r.get('raw') or {}).get('input_tokens') or 0 for r in items),output_tokens=sum((r.get('raw') or {}).get('output_tokens') or 0 for r in items),paid_api_calls=0)
+        result[model]=dict(requested=len(items),raw_completed=sum('raw_assessment' in r for r in items),unknown_outcomes=sum(r.get('phase') in ('raw_running','correction_running','interrupted') for r in items),raw_eligible=sum(bool(x.get('eligible')) for x in raw),raw_schema_valid=sum(bool(x.get('valid')) for x in raw),wrong_or_incomplete=sum(not x.get('eligible',False) for x in raw if x),provider_errors=sum('error' in r for r in items),correction_requests=sum(bool(r.get('correction_requested')) for r in items),assisted_eligible=sum(bool(x.get('eligible')) for x in corrected),stable_tasks=sum(len(v)>1 and None not in v and len(set(v))==1 for v in groups.values()),repeated_tasks=sum(len(v)>1 for v in groups.values()),latency_median_ms=statistics.median(lat) if lat else None,raw_latency_median_ms=statistics.median([r['raw_latency_ms'] for r in items if 'raw_latency_ms' in r]) if any('raw_latency_ms' in r for r in items) else None,correction_provider_errors=sum(bool(r.get('correction_requested')) and not r.get('corrected') for r in items),assisted_input_tokens=sum((r.get('corrected') or {}).get('input_tokens') or 0 for r in items),assisted_output_tokens=sum((r.get('corrected') or {}).get('output_tokens') or 0 for r in items),input_tokens=sum((r.get('raw') or {}).get('input_tokens') or 0 for r in items),output_tokens=sum((r.get('raw') or {}).get('output_tokens') or 0 for r in items),paid_api_calls=0)
     return result
 
 def recover(store):
@@ -42,6 +42,10 @@ def recover(store):
                 lease=db.execute('SELECT expires_at FROM studio_operations WHERE experiment_id=?',(r['id'],)).fetchone()
                 if not lease or lease[0]<=time.time():
                     r.update(state='interrupted',error='Evaluation lease expired; partial observations and exposure retained')
+                    for item in r['rows']:
+                        if item.get('phase') in ('raw_running','correction_running'):
+                            item['interrupted_phase']=item['phase'];item['phase']='interrupted'
+                    if all('model' in item for item in r['rows']):r['summary']=summarize(r['rows'])
                     db.execute('DELETE FROM studio_operations WHERE experiment_id=?',(r['id'],));store.save(db,r)
 
 def measure(provider,model,task_ids,repeats,state,output,correct=False):
@@ -75,18 +79,46 @@ def measure(provider,model,task_ids,repeats,state,output,correct=False):
         try:
             for repeat in range(repeats):
                 for task_id in task_ids:
-                    if source_hash()!=protocol['source_hash'] or digest(cohort())!=protocol['cohort_hash']:raise ValueError('Protocol/source changed; partial measurements retained')
-                    task=tasks[task_id];row=dict(task_id=task_id,split=task['split'],model=model,repeat=repeat+1);started=time.monotonic()
+                    if source_hash()!=protocol['source_hash'] or digest(cohort())!=protocol['cohort_hash']:
+                        raise ValueError('Protocol/source changed; partial measurements retained')
+                    task=tasks[task_id]
+                    row=dict(task_id=task_id,split=task['split'],model=model,repeat=repeat+1,
+                             phase='raw_running',latency_ms=None)
+                    record['rows'].append(row)
+                    save()  # Attempt is durable before starting the provider request.
+                    started=time.monotonic()
                     try:
-                        row['raw']=provider.generate(model,request_for(task),SCHEMA);row['raw_latency_ms']=round((time.monotonic()-started)*1000,2);row['raw_assessment']=assessment(task,row['raw'])
-                        if correct and not row['raw_assessment']['eligible']:
-                            prompt=request_for(task)+'\nONE REFERENCE-ASSISTED CORRECTION. Preserve fixed action/data inputs.\nORIGINAL OUTPUT: '+row['raw']['text']+'\nINDEPENDENT FEEDBACK: '+json.dumps(row['raw_assessment'])+'\nINDEPENDENT EXPECTATIONS: '+json.dumps([s['expect'] for s in task['case']['steps']])
-                            row['correction_requested']=True;row['corrected']=provider.generate(model,prompt,SCHEMA);row['corrected_assessment']=assessment(task,row['corrected']);row['reference_assisted']=True
+                        row['raw']=provider.generate(model,request_for(task),SCHEMA)
+                        row['raw_latency_ms']=round((time.monotonic()-started)*1000,2)
+                        row['raw_assessment']=assessment(task,row['raw'])
+                        row['phase']='raw_completed'
                     except Exception as error:
-                        row['error']=dict(type=type(error).__name__,message=str(error)[:500])
+                        row['error']=dict(stage='raw',type=type(error).__name__,message=str(error)[:500])
+                        row['phase']='failed'
                         if getattr(error,'raw_response',None) is not None:row['provider_error_raw']=error.raw_response
-                    row['latency_ms']=round((time.monotonic()-started)*1000,2);record['rows'].append(row);save()
-            if source_hash()!=protocol['source_hash'] or digest(cohort())!=protocol['cohort_hash']:raise ValueError('Protocol/source changed during final request; observations retained')
+                    row['latency_ms']=round((time.monotonic()-started)*1000,2)
+                    save()  # Completed raw output must survive an interrupted correction.
+                    if correct and row.get('raw_assessment') and not row['raw_assessment']['eligible']:
+                        if source_hash()!=protocol['source_hash']:
+                            raise ValueError('Source changed before correction; raw output retained')
+                        prompt=request_for(task)+'\nONE REFERENCE-ASSISTED CORRECTION. Preserve fixed action/data inputs.\nORIGINAL OUTPUT: '+row['raw']['text']+'\nINDEPENDENT FEEDBACK: '+json.dumps(row['raw_assessment'])+'\nINDEPENDENT EXPECTATIONS: '+json.dumps([s['expect'] for s in task['case']['steps']])
+                        row.update(correction_requested=True,phase='correction_running')
+                        save()
+                        try:
+                            row['corrected']=provider.generate(model,prompt,SCHEMA)
+                            row['corrected_assessment']=assessment(task,row['corrected'])
+                            row['reference_assisted']=True
+                        except Exception as error:
+                            row['error']=dict(stage='correction',type=type(error).__name__,message=str(error)[:500])
+                            if getattr(error,'raw_response',None) is not None:row['provider_error_raw']=error.raw_response
+                    row['phase']='failed' if row.get('error') else 'completed'
+                    row['latency_ms']=round((time.monotonic()-started)*1000,2)
+                    save()
+            if source_hash()!=protocol['source_hash'] or digest(cohort())!=protocol['cohort_hash']:
+                raise ValueError('Protocol/source changed during final request; observations retained')
             record['state']='completed'
-        except Exception as error:record.update(state='interrupted',error=str(error)[:500])
-    record['finished_at']=datetime.now(timezone.utc).isoformat();save(final=True);return record
+        except Exception as error:
+            record.update(state='interrupted',error=str(error)[:500])
+    record['finished_at']=datetime.now(timezone.utc).isoformat()
+    save(final=True)
+    return record
