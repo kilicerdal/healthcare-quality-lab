@@ -51,3 +51,12 @@ def test_benefit_submit_waits_for_hub_hydration(page,research_url):
     expect(page.get_by_role('button',name='Adjudicate synthetic lines')).to_be_enabled()
     page.get_by_role('button',name='Adjudicate synthetic lines').click()
     expect(page.locator('#benefit-result')).to_contain_text('71200')
+
+
+def test_rule_actions_wait_for_all_hub_metadata(page,research_url):
+    url,provider=research_url;held=[];posted=[];page.route('**/api/advanced/experiments',lambda route:held.append(route) if route.request.method=='GET' else route.continue_())
+    page.on('request',lambda r:posted.append(r.url) if r.method=='POST' and '/api/research/changes' in r.url else None)
+    with page.expect_request('**/api/advanced/experiments'):
+        page.goto(url+'/#research')
+    expect(page.get_by_role('button',name='Inspect linked tests')).to_be_disabled();expect(page.get_by_role('button',name='Ask Ollama for an unapproved follow-up test')).to_be_disabled();assert held and not posted
+    held[0].continue_();expect(page.get_by_role('button',name='Inspect linked tests')).to_be_enabled();page.get_by_role('button',name='Inspect linked tests').click();expect(page.locator('#research-impact-result')).to_contain_text('HC-007');assert len(posted)==1 and not provider.calls
