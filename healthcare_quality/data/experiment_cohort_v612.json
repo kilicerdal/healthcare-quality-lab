@@ -1,0 +1,430 @@
+{
+  "version": "experiment-cohort-1",
+  "scope": "New frozen authored input plans. No expected answers in this file. First-recorded exposure is local ledger evidence, not proof of globally unseen model data.",
+  "tasks": [
+    {
+      "id": "XP-01",
+      "split": "development",
+      "plan": {
+        "objective": "Check fixed financial, ledger, history and account observations without changing inputs",
+        "risk": "financial",
+        "case": {
+          "id": "AB-EXP-1",
+          "title": "Frozen experiment 1",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "EXP-1",
+                "operation_key": "exp-submit-1",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-03-01",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "medical",
+                    "allowed_cents": 97003,
+                    "other_payer_cents": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": "pay",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "EXP-1",
+                "operation_key": "exp-payment-1",
+                "expected_revision": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "XP-02",
+      "split": "development",
+      "plan": {
+        "objective": "Check fixed financial, ledger, history and account observations without changing inputs",
+        "risk": "financial",
+        "case": {
+          "id": "AB-EXP-2",
+          "title": "Frozen experiment 2",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "EXP-2",
+                "operation_key": "exp-submit-2",
+                "member_id": "M100",
+                "plan_id": "medicare_b",
+                "service_date": "2026-03-01",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "outpatient",
+                    "allowed_cents": 5003,
+                    "other_payer_cents": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": "pay",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "EXP-2",
+                "operation_key": "exp-payment-2",
+                "expected_revision": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "XP-03",
+      "split": "reserved_until_exposed",
+      "plan": {
+        "objective": "Check fixed financial, ledger, history and account observations without changing inputs",
+        "risk": "financial",
+        "case": {
+          "id": "AB-EXP-3",
+          "title": "Frozen experiment 3",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "EXP-3",
+                "operation_key": "exp-submit-3",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-03-01",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "medical",
+                    "allowed_cents": 84007,
+                    "other_payer_cents": 15111
+                  }
+                ]
+              }
+            },
+            {
+              "action": "pay",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "EXP-3",
+                "operation_key": "exp-payment-3",
+                "expected_revision": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "XP-04",
+      "split": "reserved_until_exposed",
+      "plan": {
+        "objective": "Check fixed financial, ledger, history and account observations without changing inputs",
+        "risk": "financial",
+        "case": {
+          "id": "AB-EXP-4",
+          "title": "Frozen experiment 4",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "EXP-4",
+                "operation_key": "exp-submit-4",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-07-01",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "medical",
+                    "allowed_cents": 10499,
+                    "other_payer_cents": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": "pay",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "EXP-4",
+                "operation_key": "exp-payment-4",
+                "expected_revision": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "XP-05",
+      "split": "reserved_until_exposed",
+      "plan": {
+        "objective": "Check fixed financial, ledger, history and account observations without changing inputs",
+        "risk": "financial",
+        "case": {
+          "id": "AB-EXP-5",
+          "title": "Frozen experiment 5",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "EXP-5",
+                "operation_key": "exp-submit-5",
+                "member_id": "M100",
+                "plan_id": "medicare_advantage",
+                "service_date": "2027-01-01",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "outpatient",
+                    "allowed_cents": 150031,
+                    "other_payer_cents": 23009
+                  }
+                ]
+              }
+            },
+            {
+              "action": "pay",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "EXP-5",
+                "operation_key": "exp-payment-5",
+                "expected_revision": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "XP-06",
+      "split": "reserved_until_exposed",
+      "plan": {
+        "objective": "Check fixed financial, ledger, history and account observations without changing inputs",
+        "risk": "financial",
+        "case": {
+          "id": "AB-EXP-6",
+          "title": "Frozen experiment 6",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "EXP-6",
+                "operation_key": "exp-submit-6",
+                "member_id": "M100",
+                "plan_id": "medicare_d",
+                "service_date": "2026-07-01",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "prescription",
+                    "allowed_cents": 199999,
+                    "other_payer_cents": 17003
+                  }
+                ]
+              }
+            },
+            {
+              "action": "pay",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "EXP-6",
+                "operation_key": "exp-payment-6",
+                "expected_revision": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "XP-07",
+      "split": "reserved_until_exposed",
+      "plan": {
+        "objective": "Check fixed financial, ledger, history and account observations without changing inputs",
+        "risk": "financial",
+        "case": {
+          "id": "AB-EXP-7",
+          "title": "Frozen experiment 7",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "EXP-7",
+                "operation_key": "exp-submit-7",
+                "member_id": "M100",
+                "plan_id": "dental",
+                "service_date": "2026-03-01",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "dental",
+                    "allowed_cents": 77777,
+                    "other_payer_cents": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": "pay",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "EXP-7",
+                "operation_key": "exp-payment-7",
+                "expected_revision": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "XP-08",
+      "split": "reserved_until_exposed",
+      "plan": {
+        "objective": "Check fixed financial, ledger, history and account observations without changing inputs",
+        "risk": "financial",
+        "case": {
+          "id": "AB-EXP-8",
+          "title": "Frozen experiment 8",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "EXP-8",
+                "operation_key": "exp-submit-8",
+                "member_id": "M100",
+                "plan_id": "vision",
+                "service_date": "2027-01-01",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "vision",
+                    "allowed_cents": 33331,
+                    "other_payer_cents": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": "pay",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "EXP-8",
+                "operation_key": "exp-payment-8",
+                "expected_revision": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

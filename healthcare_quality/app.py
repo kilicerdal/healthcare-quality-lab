@@ -285,6 +285,8 @@ def create_app(config=None):
     register_traceability(app,body)
     from healthcare_quality.effectiveness_api import register as register_effectiveness
     register_effectiveness(app)
+    from healthcare_quality.experiment_api import register as register_experiments
+    register_experiments(app,body)
     from healthcare_quality.auth import configure
     configure(app)
     return app
