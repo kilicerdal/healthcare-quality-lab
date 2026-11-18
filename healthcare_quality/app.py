@@ -46,7 +46,7 @@ def create_app(config=None):
 
     @app.get("/api/ready")
     def ready():
-        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments"),("coverage",coverage.store.path,"ai_experiments"),("reliability",app.extensions["reliability"].store.path,"ai_experiments"),("research",app.extensions["research"].path,"ai_experiments"),("benefits",app.extensions["benefits"].path,"benefit_claims"),("audit",app.extensions["audit"].path,"review_audit")])
+        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments"),("coverage",coverage.store.path,"ai_experiments"),("reliability",app.extensions["reliability"].store.path,"ai_experiments"),("research",app.extensions["research"].path,"ai_experiments"),("benefits",app.extensions["benefits"].path,"benefit_claims"),("audit",app.extensions["audit"].path,"review_audit"),("advanced",app.extensions["advanced"].store.path,"ai_experiments"),("advanced_evaluations",app.extensions["advanced_evaluations"].path,"ai_experiments"),("integrations",app.extensions["integrations"].path,"ai_experiments")])
         return jsonify(result),200 if result["status"]=="ready" else 503
 
     @app.get("/api/showcase")
@@ -256,8 +256,9 @@ def create_app(config=None):
 
     @app.get("/report")
     @app.get("/reports/<version>")
-    def report(version="v6.2"):
-        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7","v5.8","v5.8_reliability","v5.9","v6.0","v6.1","v6.2"):return jsonify(error="Report not found"),404
+    def report(version=None):
+        version=version or "v"+__version__.rsplit(".",1)[0]
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7","v5.8","v5.8_reliability","v5.9","v6.0","v6.1","v6.2","v6.3","v6.4","v6.5","v6.6","v6.7"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)

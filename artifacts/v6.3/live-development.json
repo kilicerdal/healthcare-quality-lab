@@ -1,0 +1,787 @@
+{
+  "id": "cef87e821512445c8fb0a43fe7f65aa5",
+  "created_at": "2026-11-18T14:53:03.470246+00:00",
+  "kind": "advanced",
+  "state": "failed",
+  "revision": 1,
+  "cases": [],
+  "assessment": {
+    "valid": false,
+    "matched": false,
+    "duplicates": [],
+    "review_ready": false,
+    "error": "[] should be non-empty\n\nFailed validating 'minItems' in schema['properties']['cases']:\n    {'type': 'array',\n     'minItems': 1,\n     'maxItems': 3,\n     'items': {'type': 'object',\n               'additionalProperties': False,\n               'properties': {'id': {'type': 'string',\n                                     'pattern': '^AB-[A-Za-z0-9_-]{1,40}$'},\n                              'title': {'type': 'string',\n                                        'minLength': 3,\n                                        'maxLength': 150},\n                              'rule_ids': {'type': 'array',\n                                           'minItems': 1,\n                                           'maxItems': 7,\n                                           'uniqueItems': True,\n                                           'items': {'enum': ['BN-001',\n                                                              'BN-002',\n                                                              'BN-003',\n                                                              'BN-004',\n                                                              'BN-005',\n                                                              'BN-006',\n                                                              'BN-007']}},\n                              'rationale': {'type': 'string',\n                                            'minLength': 5,\n                                            'maxLength': 1000},\n                              'ass",
+    "reference": []
+  },
+  "contract_hash": "f6302f7c8daa31ba66241a44e33cb5ed4c16902e945bdfd60a8939ad72dd2769",
+  "source_hash": "5fc969747f6d6b5e32099e0733d60bbad2abf920335ad70806f90aef24816e43",
+  "provenance": {
+    "origin": "local_ollama",
+    "model": "qwen3.5:27b",
+    "requirement": "Use commercial_ppo, M100, 2026-03-01. Submit a 100000-cent medical claim, pay it, adjust it to 50000 cents, then reverse and read back restored ledger and accumulators. At most six steps. Produce one case."
+  },
+  "raw": null,
+  "corrections": [],
+  "approval": null,
+  "runs": [],
+  "prompt": "Create one NEW advanced benefit test CASE as JSON matching the schema. Use only synthetic supplied facts, integer cents, exact fields, and no assumptions. Every successful step requires ALL observable fields. Submit success is 201, others 200. Calculate independent expected values, ledger amounts/counts, history/revision and member/family accumulators. Use a fresh case state. submit data has claim_id (not id), operation_key, member_id, plan_id, service_date, lines. pay/reverse/adjust/appeal/resolve data has claim_id,operation_key,expected_revision, and note where schema requires. Use unique operation keys except intentional identical replay. Allowed claim/line IDs have at least 3 characters. The first submit is revision 1/event count 1. Finance pays; adjuster adjusts/resolves; owner appeals. Other payer applies before deductible. Cap member charge at OOP. Annual benefit excess is noncovered. After adjustment retain paid state and add TWO ledger entries (credit old, debit new); reversal adds one credit. Appeal adds history without repricing; resolution reprices and returns adjudicated. After rejected writes on existing claims add an authorized unchanged-state readback. Do not call tools, generate code, invent endpoints or auto-approve. Maximum 6 steps for this request.\nREQUIREMENT: Use commercial_ppo, M100, 2026-03-01. Submit a 100000-cent medical claim, pay it, adjust it to 50000 cents, then reverse and read back restored ledger and accumulators. At most six steps. Produce one case.\nFACTS: {\"actors\": {\"adjuster-demo\": {\"id\": \"adjuster-demo\", \"label\": \"Adjuster / demo\", \"member_id\": null, \"role\": \"adjuster\"}, \"auditor-demo\": {\"id\": \"auditor-demo\", \"label\": \"Auditor / read only\", \"member_id\": null, \"role\": \"auditor\"}, \"customer-m100\": {\"id\": \"customer-m100\", \"label\": \"Customer / M100\", \"member_id\": \"M100\", \"role\": \"customer\"}, \"customer-m200\": {\"id\": \"customer-m200\", \"label\": \"Customer / M200\", \"member_id\": \"M200\", \"role\": \"customer\"}, \"customer-m300\": {\"id\": \"customer-m300\", \"label\": \"Customer / M300\", \"member_id\": \"M300\", \"role\": \"customer\"}, \"customer-m400\": {\"id\": \"customer-m400\", \"label\": \"Customer / M400\", \"member_id\": \"M400\", \"role\": \"customer\"}, \"customer-m500\": {\"id\": \"customer-m500\", \"label\": \"Customer / M500\", \"member_id\": \"M500\", \"role\": \"customer\"}, \"customer-m600\": {\"id\": \"customer-m600\", \"label\": \"Customer / M600\", \"member_id\": \"M600\", \"role\": \"customer\"}, \"customer-m700\": {\"id\": \"customer-m700\", \"label\": \"Customer / M700\", \"member_id\": \"M700\", \"role\": \"customer\"}, \"customer-m800\": {\"id\": \"customer-m800\", \"label\": \"Customer / M800\", \"member_id\": \"M800\", \"role\": \"customer\"}, \"customer-m900\": {\"id\": \"customer-m900\", \"label\": \"Customer / M900\", \"member_id\": \"M900\", \"role\": \"customer\"}, \"finance-demo\": {\"id\": \"finance-demo\", \"label\": \"Finance / demo\", \"member_id\": null, \"role\": \"finance\"}}, \"dsl\": \"benefit-cases-1\", \"families\": {\"M100\": \"F100\", \"M200\": \"F100\", \"M300\": \"F100\", \"M400\": \"F400\"}, \"plans\": {\"commercial_hmo\": {\"authorization_services\": [\"hospital\"], \"deductible_cents\": 10000, \"description\": \"Broad service coverage with network controls\", \"family\": \"Commercial\", \"id\": \"commercial_hmo\", \"limit_cents\": 200000, \"name\": \"Commercial HMO\", \"network_required\": true, \"services\": [\"hospital\", \"medical\", \"outpatient\", \"prescription\", \"preventive\", \"mental_health\", \"maternity\", \"rehabilitation\", \"emergency\", \"lab\"]}, \"commercial_ppo\": {\"authorization_services\": [\"hospital\"], \"deductible_cents\": 10000, \"description\": \"Broad service coverage with a relaxed network fixture\", \"family\": \"Commercial\", \"id\": \"commercial_ppo\", \"limit_cents\": 200000, \"name\": \"Commercial PPO\", \"network_required\": false, \"services\": [\"hospital\", \"medical\", \"outpatient\", \"prescription\", \"preventive\", \"mental_health\", \"maternity\", \"rehabilitation\", \"emergency\", \"lab\"]}, \"dental\": {\"authorization_services\": [], \"deductible_cents\": 10000, \"description\": \"Routine dental service fixture\", \"family\": \"Supplemental\", \"id\": \"dental\", \"limit_cents\": 200000, \"name\": \"Standalone dental\", \"network_required\": true, \"services\": [\"dental\"]}, \"medicare_a\": {\"authorization_services\": [\"skilled_nursing\"], \"deductible_cents\": 10000, \"description\": \"Hospital and facility services\", \"family\": \"Medicare\", \"id\": \"medicare_a\", \"limit_cents\": 200000, \"name\": \"Medicare Part A\", \"network_required\": false, \"services\": [\"hospital\", \"skilled_nursing\", \"hospice\", \"home_health\"]}, \"medicare_advantage\": {\"authorization_services\": [\"hospital\", \"dme\"], \"deductible_cents\": 10000, \"description\": \"A synthetic bundled HMO with extra benefits\", \"family\": \"Medicare\", \"id\": \"medicare_advantage\", \"limit_cents\": 200000, \"name\": \"Medicare Advantage / Part C\", \"network_required\": true, \"services\": [\"hospital\", \"medical\", \"outpatient\", \"preventive\", \"dme\", \"prescription\", \"dental\", \"vision\", \"hearing\", \"mental_health\", \"lab\"]}, \"medicare_b\": {\"authorization_services\": [], \"deductible_cents\": 10000, \"description\": \"Medical and outpatient services\", \"family\": \"Medicare\", \"id\": \"medicare_b\", \"limit_cents\": 200000, \"name\": \"Medicare Part B\", \"network_required\": false, \"services\": [\"medical\", \"outpatient\", \"preventive\", \"dme\", \"mental_health\", \"lab\", \"home_health\"]}, \"medicare_d\": {\"authorization_services\": [], \"deductible_cents\": 10000, \"description\": \"A synthetic prescription drug plan\", \"family\": \"Medicare\", \"id\": \"medicare_d\", \"limit_cents\": 200000, \"name\": \"Medicare Part D\", \"network_required\": true, \"services\": [\"prescription\"]}, \"vision\": {\"authorization_services\": [], \"deductible_cents\": 10000, \"description\": \"Routine vision service fixture\", \"family\": \"Supplemental\", \"id\": \"vision\", \"limit_cents\": 200000, \"name\": \"Standalone vision\", \"network_required\": true, \"services\": [\"vision\"]}}, \"rules\": {\"policies\": [{\"annual_benefit\": 200000, \"copay\": 1000, \"end\": \"2026-07-01\", \"family_deductible\": 20000, \"family_oop\": 60000, \"id\": \"SYN-2026-H1\", \"individual_deductible\": 10000, \"individual_oop\": 30000, \"payer_bps\": 8000, \"start\": \"2026-01-01\"}, {\"annual_benefit\": 200000, \"copay\": 1500, \"end\": \"2027-01-01\", \"family_deductible\": 20000, \"family_oop\": 60000, \"id\": \"SYN-2026-H2\", \"individual_deductible\": 10000, \"individual_oop\": 30000, \"payer_bps\": 8000, \"start\": \"2026-07-01\"}, {\"annual_benefit\": 220000, \"copay\": 1500, \"end\": \"2028-01-01\", \"family_deductible\": 24000, \"family_oop\": 64000, \"id\": \"SYN-2027\", \"individual_deductible\": 12000, \"individual_oop\": 32000, \"payer_bps\": 7500, \"start\": \"2027-01-01\"}], \"rules\": [{\"contract\": \"Canonical service date selects a half-open effective policy interval; only bounded integer cents and unique lines are accepted.\", \"id\": \"BN-001\"}, {\"contract\": \"Adjudicate each line against the chosen synthetic plan service, network, authorization and formulary facts; retain partial denials.\", \"id\": \"BN-002\"}, {\"contract\": \"Apply other-payer payment first; it cannot exceed the line allowed amount.\", \"id\": \"BN-003\"}, {\"contract\": \"Apply remaining member/family deductible, nominal copay, then floor payer coinsurance; cap actual member charge at member/family OOP and payout at remaining annual benefit. Benefit excess is noncovered, not OOP.\", \"id\": \"BN-004\"}, {\"contract\": \"Reserve allocations at adjudication by service year. Credits reverse only that claim allocation; later claims are not repriced. Family F100 has three members so embedded caps can bind.\", \"id\": \"BN-005\"}, {\"contract\": \"Finance pays or reverses once from the required state; idempotency keys bind actor/action/input and revisions serialize changes. Adjustments atomically credit old allocations and record debit/credit ledger entries.\", \"id\": \"BN-006\"}, {\"contract\": \"Owners may appeal adjudicated claims; adjusters resolve by reprocessing corrected lines under the same policy. Appeal resolution cannot invent coverage exceptions.\", \"id\": \"BN-007\"}], \"scope\": \"Invented rules for every plan, not actual Medicare or commercial policy. Quotes reserve allocated accumulators at adjudication. Reversal/adjustment credits only the original allocation; later claims are never repriced. Other-payer money is applied before deductible/copay. Benefit-cap excess is noncovered and does not increase OOP. Coinsurance uses floor integer cents. Policy dates are half-open intervals; accumulators reset by service calendar year.\", \"version\": \"synthetic-benefits-1\"}}",
+  "generation_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "cases": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^AB-[A-Za-z0-9_-]{1,40}$"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 150
+            },
+            "rule_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 7,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006",
+                  "BN-007"
+                ]
+              }
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 1000
+            },
+            "assumptions": {
+              "type": "array",
+              "maxItems": 0
+            },
+            "steps": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 16,
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "action": {
+                        "const": "submit"
+                      },
+                      "actor": {
+                        "type": "string",
+                        "enum": [
+                          "customer-m100",
+                          "customer-m200",
+                          "customer-m300",
+                          "customer-m400",
+                          "customer-m500",
+                          "customer-m600",
+                          "customer-m700",
+                          "customer-m800",
+                          "customer-m900",
+                          "adjuster-demo",
+                          "finance-demo",
+                          "auditor-demo"
+                        ]
+                      },
+                      "data": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "claim_id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+                          },
+                          "operation_key": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{8,80}$"
+                          },
+                          "member_id": {
+                            "type": "string",
+                            "enum": [
+                              "M100",
+                              "M200",
+                              "M300",
+                              "M400"
+                            ]
+                          },
+                          "plan_id": {
+                            "type": "string",
+                            "enum": [
+                              "medicare_a",
+                              "medicare_b",
+                              "medicare_advantage",
+                              "medicare_d",
+                              "commercial_ppo",
+                              "commercial_hmo",
+                              "dental",
+                              "vision"
+                            ]
+                          },
+                          "service_date": {
+                            "type": "string",
+                            "pattern": "^202[67]-[01][0-9]-[0-3][0-9]$"
+                          },
+                          "lines": {
+                            "$ref": "#/$defs/lines"
+                          }
+                        },
+                        "required": [
+                          "claim_id",
+                          "operation_key",
+                          "member_id",
+                          "plan_id",
+                          "service_date",
+                          "lines"
+                        ]
+                      },
+                      "expect": {
+                        "$ref": "#/$defs/expect"
+                      }
+                    },
+                    "required": [
+                      "action",
+                      "actor",
+                      "data",
+                      "expect"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "action": {
+                        "const": "pay"
+                      },
+                      "actor": {
+                        "type": "string",
+                        "enum": [
+                          "customer-m100",
+                          "customer-m200",
+                          "customer-m300",
+                          "customer-m400",
+                          "customer-m500",
+                          "customer-m600",
+                          "customer-m700",
+                          "customer-m800",
+                          "customer-m900",
+                          "adjuster-demo",
+                          "finance-demo",
+                          "auditor-demo"
+                        ]
+                      },
+                      "data": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "claim_id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+                          },
+                          "operation_key": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{8,80}$"
+                          },
+                          "expected_revision": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 32
+                          }
+                        },
+                        "required": [
+                          "claim_id",
+                          "operation_key",
+                          "expected_revision"
+                        ]
+                      },
+                      "expect": {
+                        "$ref": "#/$defs/expect"
+                      }
+                    },
+                    "required": [
+                      "action",
+                      "actor",
+                      "data",
+                      "expect"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "action": {
+                        "const": "adjust"
+                      },
+                      "actor": {
+                        "type": "string",
+                        "enum": [
+                          "customer-m100",
+                          "customer-m200",
+                          "customer-m300",
+                          "customer-m400",
+                          "customer-m500",
+                          "customer-m600",
+                          "customer-m700",
+                          "customer-m800",
+                          "customer-m900",
+                          "adjuster-demo",
+                          "finance-demo",
+                          "auditor-demo"
+                        ]
+                      },
+                      "data": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "claim_id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+                          },
+                          "operation_key": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{8,80}$"
+                          },
+                          "expected_revision": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 32
+                          },
+                          "lines": {
+                            "$ref": "#/$defs/lines"
+                          },
+                          "note": {
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 500
+                          }
+                        },
+                        "required": [
+                          "claim_id",
+                          "operation_key",
+                          "expected_revision",
+                          "lines",
+                          "note"
+                        ]
+                      },
+                      "expect": {
+                        "$ref": "#/$defs/expect"
+                      }
+                    },
+                    "required": [
+                      "action",
+                      "actor",
+                      "data",
+                      "expect"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "action": {
+                        "const": "reverse"
+                      },
+                      "actor": {
+                        "type": "string",
+                        "enum": [
+                          "customer-m100",
+                          "customer-m200",
+                          "customer-m300",
+                          "customer-m400",
+                          "customer-m500",
+                          "customer-m600",
+                          "customer-m700",
+                          "customer-m800",
+                          "customer-m900",
+                          "adjuster-demo",
+                          "finance-demo",
+                          "auditor-demo"
+                        ]
+                      },
+                      "data": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "claim_id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+                          },
+                          "operation_key": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{8,80}$"
+                          },
+                          "expected_revision": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 32
+                          },
+                          "note": {
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 500
+                          }
+                        },
+                        "required": [
+                          "claim_id",
+                          "operation_key",
+                          "expected_revision",
+                          "note"
+                        ]
+                      },
+                      "expect": {
+                        "$ref": "#/$defs/expect"
+                      }
+                    },
+                    "required": [
+                      "action",
+                      "actor",
+                      "data",
+                      "expect"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "action": {
+                        "const": "appeal"
+                      },
+                      "actor": {
+                        "type": "string",
+                        "enum": [
+                          "customer-m100",
+                          "customer-m200",
+                          "customer-m300",
+                          "customer-m400",
+                          "customer-m500",
+                          "customer-m600",
+                          "customer-m700",
+                          "customer-m800",
+                          "customer-m900",
+                          "adjuster-demo",
+                          "finance-demo",
+                          "auditor-demo"
+                        ]
+                      },
+                      "data": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "claim_id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+                          },
+                          "operation_key": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{8,80}$"
+                          },
+                          "expected_revision": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 32
+                          },
+                          "note": {
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 500
+                          }
+                        },
+                        "required": [
+                          "claim_id",
+                          "operation_key",
+                          "expected_revision",
+                          "note"
+                        ]
+                      },
+                      "expect": {
+                        "$ref": "#/$defs/expect"
+                      }
+                    },
+                    "required": [
+                      "action",
+                      "actor",
+                      "data",
+                      "expect"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "action": {
+                        "const": "resolve"
+                      },
+                      "actor": {
+                        "type": "string",
+                        "enum": [
+                          "customer-m100",
+                          "customer-m200",
+                          "customer-m300",
+                          "customer-m400",
+                          "customer-m500",
+                          "customer-m600",
+                          "customer-m700",
+                          "customer-m800",
+                          "customer-m900",
+                          "adjuster-demo",
+                          "finance-demo",
+                          "auditor-demo"
+                        ]
+                      },
+                      "data": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "claim_id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+                          },
+                          "operation_key": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{8,80}$"
+                          },
+                          "expected_revision": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 32
+                          },
+                          "lines": {
+                            "$ref": "#/$defs/lines"
+                          },
+                          "note": {
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 500
+                          }
+                        },
+                        "required": [
+                          "claim_id",
+                          "operation_key",
+                          "expected_revision",
+                          "lines",
+                          "note"
+                        ]
+                      },
+                      "expect": {
+                        "$ref": "#/$defs/expect"
+                      }
+                    },
+                    "required": [
+                      "action",
+                      "actor",
+                      "data",
+                      "expect"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "action": {
+                        "const": "read"
+                      },
+                      "actor": {
+                        "type": "string",
+                        "enum": [
+                          "customer-m100",
+                          "customer-m200",
+                          "customer-m300",
+                          "customer-m400",
+                          "customer-m500",
+                          "customer-m600",
+                          "customer-m700",
+                          "customer-m800",
+                          "customer-m900",
+                          "adjuster-demo",
+                          "finance-demo",
+                          "auditor-demo"
+                        ]
+                      },
+                      "data": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "claim_id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+                          }
+                        },
+                        "required": [
+                          "claim_id"
+                        ]
+                      },
+                      "expect": {
+                        "$ref": "#/$defs/expect"
+                      }
+                    },
+                    "required": [
+                      "action",
+                      "actor",
+                      "data",
+                      "expect"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "rule_ids",
+            "rationale",
+            "assumptions",
+            "steps"
+          ]
+        }
+      }
+    },
+    "required": [
+      "cases"
+    ],
+    "$defs": {
+      "expect": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "status": {
+                "type": "integer",
+                "enum": [
+                  200,
+                  201
+                ]
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "adjudicated",
+                  "paid",
+                  "appealed",
+                  "reversed"
+                ]
+              },
+              "revision": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "event_count": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "payout_cents": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "member_cents": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "other_payer_cents": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "noncovered_cents": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "ledger_cents": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "ledger_count": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "individual_deductible": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "individual_oop": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "individual_benefit": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "family_deductible": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "family_oop": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "family_benefit": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "policy_id": {
+                "type": "string",
+                "enum": [
+                  "SYN-2026-H1",
+                  "SYN-2026-H2",
+                  "SYN-2027"
+                ]
+              },
+              "partial": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "status",
+              "state",
+              "revision",
+              "event_count",
+              "payout_cents",
+              "member_cents",
+              "other_payer_cents",
+              "noncovered_cents",
+              "ledger_cents",
+              "ledger_count",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit",
+              "policy_id",
+              "partial"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "status": {
+                "type": "integer",
+                "enum": [
+                  400,
+                  403,
+                  404,
+                  409
+                ]
+              },
+              "error": {
+                "type": "string",
+                "enum": [
+                  "INVALID_BENEFITS_REQUEST",
+                  "FORBIDDEN",
+                  "NOT_FOUND",
+                  "DUPLICATE_CLAIM",
+                  "IDEMPOTENCY_CONFLICT",
+                  "REVISION_CONFLICT",
+                  "INVALID_TRANSITION"
+                ]
+              }
+            },
+            "required": [
+              "status",
+              "error"
+            ]
+          }
+        ]
+      },
+      "lines": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 5,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+            },
+            "service": {
+              "type": "string",
+              "enum": [
+                "medical",
+                "hospital",
+                "outpatient",
+                "dental",
+                "vision",
+                "prescription",
+                "preventive"
+              ]
+            },
+            "allowed_cents": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000000
+            },
+            "other_payer_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "in_network": {
+              "type": "boolean"
+            },
+            "authorized": {
+              "type": "boolean"
+            },
+            "formulary": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "service",
+            "allowed_cents"
+          ]
+        }
+      }
+    }
+  },
+  "error": "ProviderError: Local model request failed: TimeoutError",
+  "installed_models": [
+    {
+      "name": "qwen3.5:27b",
+      "digest": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+    },
+    {
+      "name": "qwen2.5:3b",
+      "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+    },
+    {
+      "name": "qwen2.5-coder:3b",
+      "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+    }
+  ]
+}

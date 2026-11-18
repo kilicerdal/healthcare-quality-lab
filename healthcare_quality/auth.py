@@ -45,10 +45,10 @@ def configure(app):
         if not g.identity:return jsonify(error='AUTHENTICATION_REQUIRED'),401
         roles=set(g.identity['roles'])
         if request.headers.get('X-Demo-Actor') and request.headers['X-Demo-Actor']!=g.identity['actor_id']:return jsonify(error='ACTOR_SPOOFING_REJECTED'),403
-        if request.path.startswith(('/api/ai','/api/quality','/api/coverage','/api/research')) and not roles&{'analyst','reviewer','auditor','admin'}:return jsonify(error='ROLE_REQUIRED'),403
+        if request.path.startswith(('/api/ai','/api/quality','/api/coverage','/api/research','/api/advanced','/api/integrations')) and not roles&{'analyst','reviewer','auditor','admin'}:return jsonify(error='ROLE_REQUIRED'),403
         if request.method not in ('GET','HEAD','OPTIONS'):
             if not hmac.compare_digest(request.headers.get('X-CSRF-Token',''),session.get('csrf','!')):return jsonify(error='CSRF_REQUIRED'),403
-            if request.path.startswith(('/api/ai','/api/quality','/api/coverage','/api/research')) and not roles&{'analyst','reviewer','admin'}:return jsonify(error='WRITE_ROLE_REQUIRED'),403
+            if request.path.startswith(('/api/ai','/api/quality','/api/coverage','/api/research','/api/advanced','/api/integrations')) and not roles&{'analyst','reviewer','admin'}:return jsonify(error='WRITE_ROLE_REQUIRED'),403
             if request.path.endswith('/review') and not roles&{'reviewer','admin'}:return jsonify(error='REVIEWER_ROLE_REQUIRED'),403
     @app.get('/api/auth/session')
     def who():return jsonify(mode=mode,identity=identity(),csrf_token=session.get('csrf') if mode=='shared' else None,scope='Local mode retains teaching selectors. Shared mode authenticates configured accounts; use TLS for any non-loopback deployment.')

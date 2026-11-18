@@ -45,3 +45,7 @@ Acceptance: required checks run on the remote repository; artifacts and release 
 ## AI learning across versions
 
 Codex: implement, explain and review. Ollama: local review in V1 and generation in V3. ChatGPT: requirements and test-design exercises. Copilot: editor-based test proposals. Claude Code: alternate review and repository reasoning. Document actual access and execution separately from exercises. Accounts, subscriptions and installed tools may differ; no paid service or new account is assumed.
+
+## V6.3–V6.7 combined delivery
+
+V6.3 extends bounded AI cases into advanced benefits with a separate lifecycle oracle and explicit review. V6.4 freezes raw/corrected evaluation and scenario-preservation controls. V6.5 adds an owner-only ephemeral local-model CI runner. V6.6 supplies the interview narrative, editable personal deck, recorded UI demonstration and tagged release assets. V6.7 adds real HTTP synthetic eligibility/payments, durable outbox/inbox and reconciliation faults. These are milestones in one combined V6.7 release. Each has a detailed report; previous public releases and archives remain unchanged.

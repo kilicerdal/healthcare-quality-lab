@@ -1,0 +1,1864 @@
+{
+  "version": "advanced-authored-1",
+  "scope": "Authored independent-reference controls, not AI generation or actual coverage rules.",
+  "cases": [
+    {
+      "id": "AB-ADJUST",
+      "title": "Paid adjustment and reversal",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "submit-CLM-100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "pay-CLM-100",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "adjust",
+          "actor": "adjuster-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "adjust-CLM-100",
+            "expected_revision": 2,
+            "note": "Synthetic authored scenario",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 50000
+              }
+            ]
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 3,
+            "event_count": 3,
+            "payout_cents": 31200,
+            "member_cents": 18800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 31200,
+            "ledger_count": 3,
+            "individual_deductible": 10000,
+            "individual_oop": 18800,
+            "individual_benefit": 31200,
+            "family_deductible": 10000,
+            "family_oop": 18800,
+            "family_benefit": 31200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "reverse",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "reverse-CLM-100",
+            "expected_revision": 3,
+            "note": "Synthetic authored scenario"
+          },
+          "expect": {
+            "status": 200,
+            "state": "reversed",
+            "revision": 4,
+            "event_count": 4,
+            "payout_cents": 31200,
+            "member_cents": 18800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 4,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 0,
+            "family_deductible": 0,
+            "family_oop": 0,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100"
+          },
+          "expect": {
+            "status": 200,
+            "state": "reversed",
+            "revision": 4,
+            "event_count": 4,
+            "payout_cents": 31200,
+            "member_cents": 18800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 4,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 0,
+            "family_deductible": 0,
+            "family_oop": 0,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-APPEAL",
+      "title": "Appeal and resolve partial coverage",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "submit-CLM-100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000
+              },
+              {
+                "id": "LINE-2",
+                "service": "dental",
+                "allowed_cents": 5000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 5000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": true
+          }
+        },
+        {
+          "action": "appeal",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "appeal-CLM-100",
+            "expected_revision": 1,
+            "note": "Synthetic authored scenario"
+          },
+          "expect": {
+            "status": 200,
+            "state": "appealed",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 5000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": true
+          }
+        },
+        {
+          "action": "resolve",
+          "actor": "adjuster-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "resolve-CLM-100",
+            "expected_revision": 2,
+            "note": "Synthetic authored scenario",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 50000
+              }
+            ]
+          },
+          "expect": {
+            "status": 200,
+            "state": "adjudicated",
+            "revision": 3,
+            "event_count": 3,
+            "payout_cents": 31200,
+            "member_cents": 18800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 18800,
+            "individual_benefit": 31200,
+            "family_deductible": 10000,
+            "family_oop": 18800,
+            "family_benefit": 31200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "pay-CLM-100",
+            "expected_revision": 3
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 4,
+            "event_count": 4,
+            "payout_cents": 31200,
+            "member_cents": 18800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 31200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 18800,
+            "individual_benefit": 31200,
+            "family_deductible": 10000,
+            "family_oop": 18800,
+            "family_benefit": 31200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-FAMILY",
+      "title": "Embedded family OOP and benefit caps",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "FAM-100",
+            "operation_key": "submit-FAM-100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 900000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 200000,
+            "member_cents": 30000,
+            "other_payer_cents": 0,
+            "noncovered_cents": 670000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 200000,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 200000,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m200",
+          "data": {
+            "claim_id": "FAM-200",
+            "operation_key": "submit-FAM-200",
+            "member_id": "M200",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 900000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 200000,
+            "member_cents": 30000,
+            "other_payer_cents": 0,
+            "noncovered_cents": 670000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 200000,
+            "family_deductible": 20000,
+            "family_oop": 60000,
+            "family_benefit": 400000,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m300",
+          "data": {
+            "claim_id": "FAM-300",
+            "operation_key": "submit-FAM-300",
+            "member_id": "M300",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 900000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 200000,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 700000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 200000,
+            "family_deductible": 20000,
+            "family_oop": 60000,
+            "family_benefit": 600000,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m300",
+          "data": {
+            "claim_id": "FAM-300"
+          },
+          "expect": {
+            "status": 200,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 200000,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 700000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 200000,
+            "family_deductible": 20000,
+            "family_oop": 60000,
+            "family_benefit": 600000,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-DATES",
+      "title": "Half-open policy dates and calendar reset",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "DATE-JUN",
+            "operation_key": "submit-DATE-JUN",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-06-30",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "DATE-JUL",
+            "operation_key": "submit-DATE-JUL",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-07-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 98800,
+            "member_cents": 1200,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 170000,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 170000,
+            "policy_id": "SYN-2026-H2",
+            "partial": false
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "DATE-JAN",
+            "operation_key": "submit-DATE-JAN",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2027-01-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 68000,
+            "member_cents": 32000,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 12000,
+            "individual_oop": 32000,
+            "individual_benefit": 68000,
+            "family_deductible": 12000,
+            "family_oop": 32000,
+            "family_benefit": 68000,
+            "policy_id": "SYN-2027",
+            "partial": false
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "DATE-JUN"
+          },
+          "expect": {
+            "status": 200,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 170000,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 170000,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-COORD",
+      "title": "Other payer first and partial denial",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "submit-CLM-100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000,
+                "other_payer_cents": 20000
+              },
+              {
+                "id": "LINE-2",
+                "service": "vision",
+                "allowed_cents": 5000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 55200,
+            "member_cents": 24800,
+            "other_payer_cents": 20000,
+            "noncovered_cents": 5000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 24800,
+            "individual_benefit": 55200,
+            "family_deductible": 10000,
+            "family_oop": 24800,
+            "family_benefit": 55200,
+            "policy_id": "SYN-2026-H1",
+            "partial": true
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "pay-CLM-100",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 55200,
+            "member_cents": 24800,
+            "other_payer_cents": 20000,
+            "noncovered_cents": 5000,
+            "ledger_cents": 55200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 24800,
+            "individual_benefit": 55200,
+            "family_deductible": 10000,
+            "family_oop": 24800,
+            "family_benefit": 55200,
+            "policy_id": "SYN-2026-H1",
+            "partial": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-REPLAY",
+      "title": "Rejected payment and identical replay",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "submit-CLM-100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "forbidden-payment",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 403,
+            "error": "FORBIDDEN"
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100"
+          },
+          "expect": {
+            "status": 200,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "pay-CLM-100",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "pay-CLM-100",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100"
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-CAP",
+      "title": "Annual benefit exhaustion and zero payment",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CAP-100",
+            "operation_key": "submit-CAP-100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 900000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 200000,
+            "member_cents": 30000,
+            "other_payer_cents": 0,
+            "noncovered_cents": 670000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 200000,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 200000,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CAP-200",
+            "operation_key": "submit-CAP-200",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 0,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 100000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 200000,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 200000,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CAP-200",
+            "operation_key": "pay-CAP-200",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 0,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 100000,
+            "ledger_cents": 0,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 200000,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 200000,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "reverse",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CAP-200",
+            "operation_key": "reverse-CAP-200",
+            "expected_revision": 2,
+            "note": "Synthetic authored scenario"
+          },
+          "expect": {
+            "status": 200,
+            "state": "reversed",
+            "revision": 3,
+            "event_count": 3,
+            "payout_cents": 0,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 100000,
+            "ledger_cents": 0,
+            "ledger_count": 2,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 200000,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 200000,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-DENIAL",
+      "title": "Fully noncovered claim stays noncovered",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "submit-CLM-100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "dental",
+                "allowed_cents": 5000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 0,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 5000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 0,
+            "family_deductible": 0,
+            "family_oop": 0,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "pay-CLM-100",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 0,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 5000,
+            "ledger_cents": 0,
+            "ledger_count": 1,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 0,
+            "family_deductible": 0,
+            "family_oop": 0,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "reverse",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "reverse-CLM-100",
+            "expected_revision": 2,
+            "note": "Synthetic authored scenario"
+          },
+          "expect": {
+            "status": 200,
+            "state": "reversed",
+            "revision": 3,
+            "event_count": 3,
+            "payout_cents": 0,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 5000,
+            "ledger_cents": 0,
+            "ledger_count": 2,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 0,
+            "family_deductible": 0,
+            "family_oop": 0,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-PLAN-medicare_a",
+      "title": "Medicare Part A synthetic benefit control",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "PLAN-medicare_a",
+            "operation_key": "submit-PLAN-medicare_a",
+            "member_id": "M100",
+            "plan_id": "medicare_a",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "hospital",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "PLAN-medicare_a",
+            "operation_key": "pay-PLAN-medicare_a",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-PLAN-medicare_b",
+      "title": "Medicare Part B synthetic benefit control",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "PLAN-medicare_b",
+            "operation_key": "submit-PLAN-medicare_b",
+            "member_id": "M100",
+            "plan_id": "medicare_b",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "PLAN-medicare_b",
+            "operation_key": "pay-PLAN-medicare_b",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-PLAN-medicare_advantage",
+      "title": "Medicare Advantage / Part C synthetic benefit control",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "PLAN-medicare_advantage",
+            "operation_key": "submit-PLAN-medicare_advantage",
+            "member_id": "M100",
+            "plan_id": "medicare_advantage",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "hospital",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "PLAN-medicare_advantage",
+            "operation_key": "pay-PLAN-medicare_advantage",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-PLAN-medicare_d",
+      "title": "Medicare Part D synthetic benefit control",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "PLAN-medicare_d",
+            "operation_key": "submit-PLAN-medicare_d",
+            "member_id": "M100",
+            "plan_id": "medicare_d",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "prescription",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "PLAN-medicare_d",
+            "operation_key": "pay-PLAN-medicare_d",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-PLAN-commercial_ppo",
+      "title": "Commercial PPO synthetic benefit control",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "PLAN-commercial_ppo",
+            "operation_key": "submit-PLAN-commercial_ppo",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "hospital",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "PLAN-commercial_ppo",
+            "operation_key": "pay-PLAN-commercial_ppo",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-PLAN-commercial_hmo",
+      "title": "Commercial HMO synthetic benefit control",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "PLAN-commercial_hmo",
+            "operation_key": "submit-PLAN-commercial_hmo",
+            "member_id": "M100",
+            "plan_id": "commercial_hmo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "hospital",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "PLAN-commercial_hmo",
+            "operation_key": "pay-PLAN-commercial_hmo",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-PLAN-dental",
+      "title": "Standalone dental synthetic benefit control",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "PLAN-dental",
+            "operation_key": "submit-PLAN-dental",
+            "member_id": "M100",
+            "plan_id": "dental",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "dental",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "PLAN-dental",
+            "operation_key": "pay-PLAN-dental",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-PLAN-vision",
+      "title": "Standalone vision synthetic benefit control",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "PLAN-vision",
+            "operation_key": "submit-PLAN-vision",
+            "member_id": "M100",
+            "plan_id": "vision",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "vision",
+                "allowed_cents": 100000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "PLAN-vision",
+            "operation_key": "pay-PLAN-vision",
+            "expected_revision": 1
+          },
+          "expect": {
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "payout_cents": 71200,
+            "member_cents": 28800,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "ledger_cents": 71200,
+            "ledger_count": 1,
+            "individual_deductible": 10000,
+            "individual_oop": 28800,
+            "individual_benefit": 71200,
+            "family_deductible": 10000,
+            "family_oop": 28800,
+            "family_benefit": 71200,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    }
+  ]
+}

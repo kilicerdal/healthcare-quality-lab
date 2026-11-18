@@ -1,0 +1,62 @@
+name: Opt-in isolated advanced Ollama evaluation
+on:
+  workflow_dispatch:
+    inputs:
+      runner_label:
+        description: Unique ephemeral runner label created by tools.ollama_ci
+        type: string
+        required: true
+      model:
+        type: choice
+        options: ['qwen3.5:27b', 'qwen2.5-coder:3b', 'qwen2.5:3b']
+        default: 'qwen2.5-coder:3b'
+      cohort:
+        type: choice
+        options: [development, reserved-smoke, reserved-full]
+        default: reserved-smoke
+      repeats:
+        type: choice
+        options: ['1', '2', '3']
+        default: '1'
+      correct:
+        description: One separately scored reference-assisted correction
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: advanced-local-ollama
+  cancel-in-progress: false
+jobs:
+  evaluate:
+    if: github.ref == 'refs/heads/main' && github.actor == github.repository_owner && github.repository == 'kilicerdal/healthcare-quality-lab' && startsWith(inputs.runner_label, 'hql-ollama-')
+    runs-on: [self-hosted, '${{ inputs.runner_label }}']
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Install runtime in project-local environment
+        run: python3 -m tools.bootstrap --runtime-only
+      - name: Evaluate fixed advanced scenarios without approval or execution
+        env:
+          HQL_MODEL: ${{ inputs.model }}
+          HQL_COHORT: ${{ inputs.cohort }}
+          HQL_REPEATS: ${{ inputs.repeats }}
+          HQL_CORRECT: ${{ inputs.correct }}
+        run: |
+          case "$HQL_COHORT" in
+            development) set -- ADV-01 ADV-02 ;;
+            reserved-smoke) set -- ADV-05 ADV-06 ;;
+            reserved-full) set -- ADV-03 ADV-04 ADV-05 ADV-06 ADV-07 ADV-08 ;;
+            *) exit 1 ;;
+          esac
+          correction=""
+          if [ "$HQL_CORRECT" = true ]; then correction="--correct"; fi
+          .venv/bin/python -m tools.advanced_evaluate --model "$HQL_MODEL" --tasks "$@" --repeats "$HQL_REPEATS" $correction --state .local/advanced-evaluation.sqlite --output artifacts/v6.5/live-${{ github.run_id }}.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: advanced-ollama-${{ github.run_id }}
+          path: artifacts/v6.5/live-${{ github.run_id }}.json
+          if-no-files-found: error

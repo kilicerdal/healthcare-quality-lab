@@ -55,3 +55,32 @@ All five versions are learning milestones in one independent project. Earlier ar
 ## V6.2 extension
 
 The original V1–V5 narrative above is preserved as history. The current local V6.2 checkout adds a separate advanced-benefit engine and Fraction oracle, persistent reliability jobs, deterministic investigation/traceability, actual HTTP execution, optional configured-account review/audit and a fresh labeled replay. See [the extension architecture and operating guide](V6.2_GUIDE.md) and [complete report](V6.2_REPORT.md). The newer upstream V5.8 proof page, provider spending controls and maintenance work remain intact.
+
+## V6.3–V6.7 advanced testing and external-service boundary
+
+```mermaid
+flowchart LR
+  Facts[Invented plan and policy facts] --> Prompt[Fixed prompt and bounded schema]
+  Prompt --> Model[Local Ollama]
+  Model --> Draft[Raw unapproved JSON proposal]
+  Facts --> Oracle[Independent Fraction pricing and lifecycle oracle]
+  Draft --> Gate[Schema, oracle and scenario-preservation checks]
+  Oracle --> Gate
+  Gate --> Review[Explicit case/source/contract snapshot review]
+  Review --> Runner[Fresh service or loopback HTTP execution]
+  Runner --> Evidence[Expected versus observed receipts]
+  Draft --> Correction[Optional separate reference-assisted AI call]
+  Correction --> Gate
+  Claim[Adjudicated synthetic claim] --> Outbox[Durable unique payment intent]
+  Outbox --> Peer[Separate HTTP eligibility/payment peer]
+  Peer --> Receipt[Frozen receipt reconciliation]
+  Receipt --> Local[Idempotent local payment]
+  Peer --> Inbox[Durable webhook deduplication and sequence tracking]
+  Inbox --> Receipt
+```
+
+The advanced schema is separate from the legacy four-action DSL. New proposal and evaluation stores are additive. Shared identities, CSRF and reviewer roles cover the new API prefixes. The reference never calls production BenefitClaims or pricing, but shares invented policy facts; common policy errors remain possible. Observed-contract mutants are distinct from pricing AST mutants.
+
+The one-job GitHub runner executes a trusted owner/main workflow in a non-root container on the dedicated temporary VM. It has no host mounts or Docker socket. A verified relay exposes only the intended local Ollama endpoint as loopback to the fixed provider. Runner registration tokens are not release evidence. The runner is removed afterward, not left as an always-on service.
+
+The external-service coordinator persists one intent per claim and binds the original amount/revision/policy. Remote and local commits are separate; matching receipt reconciliation and deterministic local idempotency handle ambiguity. Webhooks signal work but cannot create payments. Actual child-process exit verifies recovery after local commit. This is a bounded initial-payment teaching integration, not a general distributed transaction or settlement of every adjustment/refund.

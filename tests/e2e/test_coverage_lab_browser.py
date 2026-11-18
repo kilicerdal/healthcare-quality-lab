@@ -23,7 +23,7 @@ def test_dashboard_scores_reviewed_cases_and_exports_evidence(page,coverage_url)
     with page.expect_download() as info:page.get_by_role('button',name='Export coverage evidence JSON').click()
     r=json.loads(Path(info.value.path()).read_text());assert r['coverage_kind']=='defect_score' and r['baselines'][0]['result']['failed']==0
     assert not provider.calls
-    page.screenshot(path=str(Path(__file__).resolve().parents[2]/'artifacts/v6.2/coverage-dashboard.png'),full_page=True)
+    page.screenshot(path=str(Path(__file__).resolve().parents[2]/'artifacts/v6.7/coverage-dashboard.png'),full_page=True)
 
 def test_gap_analysis_explicit_generation_enters_unapproved_studio(page,coverage_url):
     url,provider=coverage_url;page.goto(url+'/#test-coverage');page.get_by_role('button',name='Analyze gaps with Ollama').click()

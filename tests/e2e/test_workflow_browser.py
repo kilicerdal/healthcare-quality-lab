@@ -25,7 +25,7 @@ def test_browser_customer_adjuster_finance_complete_workflow(page,live_url):
     expect(page.locator('.event-row')).to_have_count(3)
     expect(page.get_by_role('button',name='Record simulated payment',exact=True)).to_be_disabled()
     page.evaluate('window.scrollTo(0,0)')
-    page.screenshot(path=str(ROOT/'artifacts/v6.2-workflow.png'),full_page=True)
+    page.screenshot(path=str(ROOT/'artifacts/v6.7-workflow.png'),full_page=True)
 
 
 @pytest.mark.sanity
@@ -93,4 +93,4 @@ def test_mobile_workflow_submission_and_permissions(page,live_url):
     expect(desk.detail).to_contain_text('submitted / 1')
     assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
     page.evaluate('window.scrollTo(0,0)')
-    page.screenshot(path=str(ROOT/'artifacts/v6.2-workflow-mobile.png'),full_page=True)
+    page.screenshot(path=str(ROOT/'artifacts/v6.7-workflow-mobile.png'),full_page=True)

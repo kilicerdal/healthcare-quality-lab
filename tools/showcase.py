@@ -31,7 +31,17 @@ def seed(state,output):
         if p.exists():
             recorded=json.loads(p.read_text());recorded['demo_source']=dict(path=path,live_inference=False);app.extensions['reliability'].store.create(recorded)
     benefits=app.extensions['benefits'];b=benefits.operate('customer-m100',dict(operation_key='demo-benefit-submit',id='DEMO-BENEFIT',member_id='M100',plan_id='commercial_ppo',service_date='2026-03-01',lines=[dict(id='L1',service='medical',allowed_cents=100000),dict(id='L2',service='dental',allowed_cents=5000)]),'submit');b=benefits.operate('finance-demo',dict(operation_key='demo-benefit-pay',expected_revision=b['revision']),'pay',b['id'])
-    result=dict(status='passed',demo=True,live_model_requests=0,source_hash=source_hash(),state_dir=str(state),experiments=ids,before_score=before['id'],after_score=after['id'],comparison=comparison['id'],before_detected=before['detected'],after_detected=after['detected'],missing_gaps=coverage.dashboard()['counts']['missing_gaps'],investigation=investigation['id'],fault_run=fault['id'],benefit_claim=b['id'],scope='Fresh replay state with copied saved evidence, current checks and explicit scripted approvals. Original source artifacts and interactive databases remain unchanged.')
+    control=json.loads((ROOT/'healthcare_quality/data/advanced_cases_v63.json').read_text())['cases'][0]
+    advanced=app.extensions['advanced'];proposal=advanced.propose([control],dict(origin='authored_demo_control',live_inference=False))
+    advanced.review(proposal['id'],'Scripted authored-control demonstration','Independent money, ledger, history and account controls inspected; not a human or AI generation claim',1)
+    advanced.execute(proposal['id'],'service')
+    measurements=0
+    for path in sorted((ROOT/'artifacts/v6.4').glob('live-*.json')):
+        saved=json.loads(path.read_text())
+        if saved.get('kind')=='advanced_evaluation':
+            saved['demo_source']=dict(path=str(path.relative_to(ROOT)),live_inference=False,label='Replay of earlier actual local-model measurement')
+            app.extensions['advanced_evaluations'].create(saved);measurements+=1
+    result=dict(status='passed',advanced_control=proposal['id'],advanced_measurement_replays=measurements,demo=True,live_model_requests=0,source_hash=source_hash(),state_dir=str(state),experiments=ids,before_score=before['id'],after_score=after['id'],comparison=comparison['id'],before_detected=before['detected'],after_detected=after['detected'],missing_gaps=coverage.dashboard()['counts']['missing_gaps'],investigation=investigation['id'],fault_run=fault['id'],benefit_claim=b['id'],scope='Fresh replay state with copied saved evidence, current checks and explicit scripted approvals. Original source artifacts and interactive databases remain unchanged.')
     output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(result,indent=2)+'\n');return result
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--state-dir',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();print(json.dumps(seed(a.state_dir,a.output),indent=2))

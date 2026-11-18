@@ -13,6 +13,70 @@ from healthcare_quality.maintenance import recommend,instability
 
 def register(app,body,actor_id):
     root=Path(app.config['DATABASE']).parent;studio=app.extensions['studio'];coverage=app.extensions['coverage_lab'];reliability=ReliabilityLab(root/'reliability-v58.sqlite',studio.provider,generation_lock=studio.generation_lock);research=ExperimentStore(root/'research-v59.sqlite');benefits=BenefitClaims(root/'benefits-v60.sqlite');app.extensions.update(reliability=reliability,research=research,benefits=benefits)
+    from healthcare_quality.advanced_lab import AdvancedLab
+    advanced=AdvancedLab(root/'advanced-v63.sqlite',studio.provider,studio.generation_lock)
+    app.extensions['advanced']=advanced
+    @app.get('/api/advanced')
+    def advanced_list():
+        return jsonify(records=[{k:r.get(k) for k in ('id','created_at','state','revision','assessment','provenance')} for r in advanced.records()])
+    @app.get('/api/advanced/<id>')
+    def advanced_get(id):return jsonify(advanced.get(id))
+    @app.post('/api/advanced/generate')
+    def advanced_generate():return jsonify(advanced.generate(body())),202
+    @app.get('/api/advanced/controls')
+    def advanced_controls():
+        return jsonify(json.loads((Path(__file__).with_name('data')/'advanced_cases_v63.json').read_text()))
+    @app.post('/api/advanced/import')
+    def advanced_import():
+        b=body()
+        if not isinstance(b,dict) or set(b)!={'cases'}:raise StudioError('INVALID_REQUEST','Provide cases')
+        return jsonify(advanced.propose(b['cases'])),201
+    @app.post('/api/advanced/<id>/review')
+    def advanced_review(id):
+        b=body()
+        if not isinstance(b,dict) or set(b)!={'reviewer','note','revision'} or type(b['revision']) is not int:raise StudioError('INVALID_REQUEST','Provide reviewer, note and revision')
+        reviewer=g.identity['username'] if getattr(g,'identity',None) else b['reviewer']
+        return jsonify(advanced.review(id,reviewer,b['note'],b['revision']))
+    @app.post('/api/advanced/<id>/execute')
+    def advanced_execute(id):
+        b=body()
+        if not isinstance(b,dict) or set(b)!={'transport'} or b['transport'] not in ('service','http'):raise StudioError('INVALID_REQUEST','Choose service or http')
+        return jsonify(advanced.execute(id,b['transport']))
+    @app.post('/api/advanced/<id>/correct')
+    def advanced_correct(id):
+        b=body()
+        if not isinstance(b,dict) or set(b)!={'model'}:raise StudioError('INVALID_REQUEST','Provide a local model')
+        return jsonify(advanced.correct(id,b['model'])),201
+    @app.post('/api/advanced/<id>/score')
+    def advanced_score(id):
+        if body()!={}:raise StudioError('INVALID_REQUEST','Provide an empty object')
+        return jsonify(advanced.score(id))
+    evaluations=ExperimentStore(root/'advanced-evaluations-v64.sqlite')
+    integrations=ExperimentStore(root/'integrations-v67.sqlite')
+    app.extensions.update(advanced_evaluations=evaluations,integrations=integrations)
+    from healthcare_quality.integration_scenarios import SCENARIOS,rehearse
+    from healthcare_quality.advanced_evaluation import recover as recover_evaluations
+    import threading
+    integration_lock=threading.BoundedSemaphore(1)
+    def records(store):
+        with store.transaction() as db:return [json.loads(r[0]) for r in db.execute('SELECT record_json FROM ai_experiments ORDER BY created_at DESC LIMIT 50')]
+    @app.get('/api/advanced/evaluations')
+    def advanced_evaluations():
+        recover_evaluations(evaluations)
+        return jsonify(records=[{k:r.get(k) for k in ('id','created_at','state','protocol','summary','previously_exposed_tasks')} for r in records(evaluations)])
+    @app.get('/api/advanced/evaluations/<id>')
+    def advanced_evaluation(id):return jsonify(evaluations.get(id))
+    @app.get('/api/integrations')
+    def integration_records():return jsonify(scenarios=SCENARIOS,records=records(integrations))
+    @app.post('/api/integrations/rehearse')
+    def integration_rehearsal():
+        b=body()
+        if not isinstance(b,dict) or set(b)!={'scenario'} or b['scenario'] not in SCENARIOS:raise StudioError('INVALID_REQUEST','Select a known synthetic integration scenario')
+        if not integration_lock.acquire(False):raise StudioError('INTEGRATION_BUSY','Another isolated rehearsal is active',409)
+        try:r=rehearse(b['scenario'])
+        finally:integration_lock.release()
+        r.update(created_at=now(),kind='integration',state='completed' if r['passed'] else 'failed');integrations.create(r)
+        return jsonify(r),201
     @app.get('/api/research/overview')
     def overview():
         data=dataset();records=reliability.records()

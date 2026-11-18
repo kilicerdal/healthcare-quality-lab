@@ -1,9 +1,11 @@
-# Healthcare Quality Lab — V6.2
+# Healthcare Quality Lab — V6.7
 
 [![Quality and release checks](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml)
 ![Tested Python 3.11, 3.12 and 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?logo=python) ![Tests: pytest and Playwright](https://img.shields.io/badge/Tests-pytest%20%2B%20Playwright-2EAD33) [![MIT license](https://img.shields.io/github/license/kilicerdal/healthcare-quality-lab)](LICENSE)
 
-**Review in five minutes:** [What to run, which failure to inspect, and what it proves](docs/REVIEWER_GUIDE.md) · [Evidence provenance](docs/EVIDENCE.md).
+**Review V6.7:** [Advanced AI and external-service demo](docs/V6.7_DEMO.md) · [Combined report](docs/V6.7_REPORT.md) · [AI learning guide](docs/AI_LEARNING_GUIDE.md).
+
+**Earlier review in five minutes:** [What to run, which failure to inspect, and what it proves](docs/REVIEWER_GUIDE.md) · [Evidence provenance](docs/EVIDENCE.md).
 
 A quality engineering portfolio built with **Python, Flask, SQLite, pytest, Playwright, local Ollama and an explicit OpenAI evaluation CLI**.
 
@@ -11,17 +13,27 @@ The central question is simple: **does a test detect the wrong business result, 
 
 **Synthetic data only.** Plan amounts, demo identities and payments are invented. This is a local teaching application, not a real payer system or a compliance certification.
 
-**Start here:** [Two-minute engineering demo](docs/V5.8_DEMO.md) · [Case study](docs/CASE_STUDY.md) · [Historical V5.7 guided demo](docs/V5.7_DEMO.md) · [Code examples](#review-the-code) · [Run locally](#run-locally)
+**Start here:** [Current advanced demo](docs/V6.7_DEMO.md) · [Earlier two-minute engineering demo](docs/V5.8_DEMO.md) · [Case study](docs/CASE_STUDY.md) · [Historical V5.7 guided demo](docs/V5.7_DEMO.md) · [Code examples](#review-the-code) · [Run locally](#run-locally)
 
 **How this differs from [Healthcare Quality Platform](https://github.com/kilicerdal/ai-healthcare-quality-platform):** this lab focuses on business-rule correctness, independent checking of AI expectations, review gates, and payment concurrency/recovery. The platform focuses on API contracts, PostgreSQL persistence, and simulated S3/SQS message processing.
 
-## V6.2 extension — complete engineering evidence hub
+## V6.3–V6.7: advanced AI cases and external-service recovery
+
+The advanced Studio now accepts a separate bounded benefit DSL: payment, adjustment, reversal, appeal, resolution and readback, with full money/history/ledger/accumulator assertions. A separate lifecycle oracle checks proposals before explicit snapshot-bound review and actual isolated HTTP execution. The original Studio remains compatible.
+
+The evaluation scorecard separates raw model answers from one reference-assisted correction, freezes business inputs, detects semantic duplicates and retains provider failures. Local-model CI uses an owner-dispatched one-job container runner with no host mounts. The external-service lab rehearses real loopback HTTP eligibility/payment faults, durable intent reconciliation, duplicate/stale webhooks and actual worker-exit recovery. All data and money are synthetic.
+
+- Detailed reports: [V6.3](docs/V6.3_REPORT.md) · [V6.4](docs/V6.4_REPORT.md) · [V6.5](docs/V6.5_REPORT.md) · [V6.6](docs/V6.6_REPORT.md) · [V6.7](docs/V6.7_REPORT.md)
+- [Reproduce the complete demonstration](docs/V6.7_DEMO.md), including explicit Ollama and ephemeral-runner commands.
+- Verification, live model outcomes, video and exact CI/release provenance are attached as release evidence. Model-job completion is distinct from proposal eligibility; inspect failures as well as successes.
+
+## Prior V6.2 engineering evidence hub
 
 V5.8–V6.2 additions are implemented locally: reserved repeated AI measurements, grounded investigation and rule traceability, effective-dated line benefits, family accumulators, coordination, appeals/adjustments/reversals, real HTTP execution, concurrency/rollback/property checks, authenticated-review mode, maintenance recommendations and a fresh replay launcher. The existing V5.8 proof page, provider spending controls, reports and maintenance work remain intact.
 
-**Current local validation:** 736 release-verification tests (591 unit, 93 API, 52 Chromium) and a separate overlapping 840-test Linux run with all browser tests in Chromium, Firefox and WebKit. Original known seeds: 12/12; bounded advanced-pricing AST mutations: 26/26. Live reserved evaluation: 8/8 strict correct for the installed 27B model and 0/8 for the 3B coding model on four inputs repeated twice; failures and limits remain visible.
+**Recorded V6.2 development validation:** 736 release-verification tests (591 unit, 93 API, 52 Chromium) and a separate overlapping 840-test Linux run with all browser tests in Chromium, Firefox and WebKit. Original known seeds: 12/12; bounded advanced-pricing AST mutations: 26/26. Live reserved evaluation: 8/8 strict correct for the installed 27B model and 0/8 for the 3B coding model on four inputs repeated twice; failures and limits remain visible.
 
-**Publication status:** the owner authorized public V6.2 publication on November 18, 2026. GitHub Actions is being run against the published commit; the detailed local report distinguishes earlier local evidence from remote results.
+**Publication:** the repository remains public as authorized. V6.2 hosted checks passed on its final commit; current release checks and exact commits are shown in GitHub Actions and the release receipts.
 
 - [Complete V6.2 report](docs/V6.2_REPORT.md) and [guided demonstration](docs/V6.2_DEMO.md)
 - [V5.8 reliability addendum](docs/V5.8_RELIABILITY_REPORT.md) · [V5.9 assistant](docs/V5.9_REPORT.md) · [V6.0 benefits](docs/V6.0_REPORT.md) · [V6.1 resilience](docs/V6.1_REPORT.md)
@@ -30,7 +42,7 @@ V5.8–V6.2 additions are implemented locally: reserved repeated AI measurements
 One command from a fresh checkout with Python installed:
 
 ```sh
-python3 -m tools.launch_demo --state-dir .local/demo-v62-fresh --port 8897
+python3 -m tools.launch_demo --state-dir .local/demo-v67-fresh --port 8897
 ```
 
 This creates project-local runtime dependencies and fresh labeled synthetic replay state. It never resets existing data, downloads models or calls a provider. Use an unused port for additional instances. The upstream `tools.demo` command below remains available unchanged.

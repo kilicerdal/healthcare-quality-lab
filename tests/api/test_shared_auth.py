@@ -35,3 +35,20 @@ def test_review_identity_cannot_be_forged(shared):
     body=review_request(r);body['reviewer_label']='pretend admin'
     response=c.post('/api/ai/experiments/'+r['id']+'/review',json=body,headers={'X-CSRF-Token':csrf});assert response.status_code==200
     assert response.json['approval']['reviewer_label']=='reviewer' and response.json['approval']['authenticated_identity']['username']=='reviewer'
+
+
+def test_new_advanced_and_integration_routes_keep_identity_and_review_gates(shared):
+    from tests.unit.test_advanced_cases import CASES
+    c=shared.test_client()
+    assert c.get('/api/advanced').status_code==401
+    assert c.get('/api/integrations').status_code==401
+    login(c,'customer')
+    assert c.get('/api/advanced').status_code==403 and c.get('/api/integrations').status_code==403
+    csrf=login(c,'analyst')
+    record=c.post('/api/advanced/import',json={'cases':CASES[:1]},headers={'X-CSRF-Token':csrf}).json
+    review=dict(reviewer='forged-reviewer',note='Inspect independent money and ledger expectations',revision=1)
+    assert c.post('/api/advanced/'+record['id']+'/review',json=review,headers={'X-CSRF-Token':csrf}).json['error']=='REVIEWER_ROLE_REQUIRED'
+    csrf=login(c,'reviewer')
+    assert c.post('/api/advanced/'+record['id']+'/review',json=review).status_code==403
+    result=c.post('/api/advanced/'+record['id']+'/review',json=review,headers={'X-CSRF-Token':csrf})
+    assert result.status_code==200 and result.json['approval']['reviewer']=='reviewer'

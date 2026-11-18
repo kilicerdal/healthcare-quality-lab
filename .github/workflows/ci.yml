@@ -1,4 +1,4 @@
-name: V6.2 quality and release checks
+name: V6.7 quality and release checks
 on:
   push:
   pull_request:
@@ -27,12 +27,12 @@ jobs:
       - run: python -m pip install -r requirements-dev.txt
       - run: python -m pip check
       - name: Fast unit and API gate
-        run: python -m pytest tests/unit tests/api -q --junitxml artifacts/v6.2/fast-results.xml
+        run: python -m pytest tests/unit tests/api -q --junitxml artifacts/v6.7/fast-results.xml
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: v6.2-fast-evidence
-          path: artifacts/v6.2/fast-results.xml
+          name: v6.7-fast-evidence
+          path: artifacts/v6.7/fast-results.xml
   verify:
     if: github.event_name != 'pull_request'
     needs: fast
@@ -49,7 +49,7 @@ jobs:
       - run: python -m pip install -r requirements-dev.txt
       - name: Configure Ubuntu package downloads
         run: |
-          # Avoid the regional mirror that stalled browser dependencies in V6.2 CI.
+          # Avoid the regional mirror that stalled browser dependencies in V6.7 CI.
           if [ -f /etc/apt/apt-mirrors.txt ]; then
             printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
           fi
@@ -62,18 +62,19 @@ jobs:
         run: |
           python -m tools.mutations > artifacts/v6.1/ci-mutations.json
           python -m tools.resilience --output artifacts/v6.1/ci-resilience.json
+          python -m tools.integrations --output artifacts/v6.7/ci-integrations.json
       - name: Build, inspect and rehearse release
         run: |
           python -m tools.release build --output releases/ci
-          python -m tools.release inspect releases/ci/v6.2.0-source.zip
-          python -m tools.rehearse releases/ci/v6.2.0-source.zip --output artifacts/v6.2/ci-runtime-rehearsal.json
+          python -m tools.release inspect releases/ci/v6.7.0-source.zip
+          python -m tools.rehearse releases/ci/v6.7.0-source.zip --output artifacts/v6.7/ci-runtime-rehearsal.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: healthcare-quality-lab-v6.2-evidence
+          name: healthcare-quality-lab-v6.7-evidence
           path: |
-            releases/ci/v6.2.0-source.zip
-            releases/ci/v6.2.0-manifest.json
+            releases/ci/v6.7.0-source.zip
+            releases/ci/v6.7.0-manifest.json
             artifacts/
   browsers:
     if: github.event_name != 'pull_request'
@@ -94,7 +95,7 @@ jobs:
       - run: python -m pip install -r requirements-dev.txt
       - name: Configure Ubuntu package downloads
         run: |
-          # Avoid the regional mirror that stalled browser dependencies in V6.2 CI.
+          # Avoid the regional mirror that stalled browser dependencies in V6.7 CI.
           if [ -f /etc/apt/apt-mirrors.txt ]; then
             printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
           fi
@@ -102,13 +103,13 @@ jobs:
           apt-config dump Acquire::Retries Acquire::http::Timeout Acquire::https::Timeout
       - run: python -m playwright install --with-deps ${{ matrix.browser }}
       - name: Cross-browser core and advanced journeys
-        run: python -m pytest tests/e2e/test_browser.py tests/e2e/test_workflow_browser.py tests/e2e/test_research_browser.py --browser ${{ matrix.browser }} -q --junitxml artifacts/v6.2/${{ matrix.browser }}-results.xml
+        run: python -m pytest tests/e2e/test_browser.py tests/e2e/test_workflow_browser.py tests/e2e/test_research_browser.py tests/e2e/test_advanced_browser.py --browser ${{ matrix.browser }} -q --junitxml artifacts/v6.7/${{ matrix.browser }}-results.xml
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: v6.2-${{ matrix.browser }}-evidence
+          name: v6.7-${{ matrix.browser }}-evidence
           path: |
-            artifacts/v6.2/
+            artifacts/v6.7/
             test-results/
   scheduled_browsers:
     if: github.event_name == 'schedule' || inputs.full_browsers
@@ -125,16 +126,16 @@ jobs:
       - run: python -m pip install -r requirements-dev.txt
       - name: Configure Ubuntu package downloads
         run: |
-          # Avoid the regional mirror that stalled browser dependencies in V6.2 CI.
+          # Avoid the regional mirror that stalled browser dependencies in V6.7 CI.
           if [ -f /etc/apt/apt-mirrors.txt ]; then
             printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
           fi
           printf 'Acquire::Retries "1";\nAcquire::http::Timeout "15";\nAcquire::https::Timeout "15";\n' | sudo tee /etc/apt/apt.conf.d/zzzz-hql-downloads
           apt-config dump Acquire::Retries Acquire::http::Timeout Acquire::https::Timeout
       - run: python -m playwright install --with-deps chromium firefox webkit
-      - run: python -m pytest tests/e2e --browser chromium --browser firefox --browser webkit -q --junitxml artifacts/v6.2/scheduled-browser-results.xml
+      - run: python -m pytest tests/e2e --browser chromium --browser firefox --browser webkit -q --junitxml artifacts/v6.7/scheduled-browser-results.xml
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: v6.2-scheduled-browser-evidence
-          path: artifacts/v6.2/
+          name: v6.7-scheduled-browser-evidence
+          path: artifacts/v6.7/

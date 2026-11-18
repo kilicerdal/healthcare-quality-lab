@@ -1,3 +1,4 @@
+from healthcare_quality import __version__
 import pytest
 from healthcare_quality.catalog import CONTRACT_HASH
 
@@ -7,7 +8,7 @@ BASE = {"plan_id":"commercial_ppo","service":"medical","amount_cents":100000}
 
 @pytest.mark.smoke
 def test_health_and_home_are_available(client):
-    assert client.get("/api/health").json == {"status":"ok","version":"6.2.0"}
+    assert client.get("/api/health").json == {"status":"ok","version":__version__}
     assert client.get("/").status_code == 200
 
 
@@ -77,4 +78,4 @@ def test_engineering_report_is_served_as_html(client):
     response=client.get("/report")
     assert response.status_code==200
     assert response.mimetype=="text/html"
-    assert b"Healthcare Quality Lab V6.2 Engineering Report" in response.data
+    assert ("Healthcare Quality Lab V"+__version__.rsplit(".",1)[0]+" Engineering Report").encode() in response.data

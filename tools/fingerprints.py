@@ -11,6 +11,7 @@ def source_hash():
     paths.extend(ROOT/name for name in ("requirements.txt","requirements-dev.txt","pytest.ini"))
     paths.extend((ROOT/".github/workflows").glob("*.yml"))
     paths.extend((ROOT/".github/workflows").glob("*.yaml"))
+    paths.extend(p for p in (ROOT/".github/runner").rglob("*") if p.is_file() and "__pycache__" not in p.parts)
     digest = hashlib.sha256()
     for path in sorted(paths):
         digest.update(str(path.relative_to(ROOT)).encode())
