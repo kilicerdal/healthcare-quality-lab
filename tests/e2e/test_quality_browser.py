@@ -61,3 +61,15 @@ def test_quality_lab_mobile_view_has_no_page_overflow(page,quality_url):
     page.set_viewport_size({'width':390,'height':844});page.goto(quality_url+'/#evaluation')
     expect(page.locator('#quality-form')).to_be_visible()
     assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
+
+
+def test_comparison_waits_for_dataset_initialization(page,quality_url):
+    from playwright.sync_api import expect
+    held=[];page.route('**/api/quality/dataset',lambda route:held.append(route))
+    with page.expect_request('**/api/quality/dataset'):
+        page.goto(quality_url+'/#evaluation')
+    expect(page.locator('#quality-start')).to_be_disabled()
+    assert held;held[0].continue_()
+    expect(page.locator('#quality-start')).to_be_enabled()
+    page.get_by_role('button',name='Compare with local Ollama').click()
+    expect(page.locator('#quality-result')).to_contain_text('comparison · completed',timeout=15000)

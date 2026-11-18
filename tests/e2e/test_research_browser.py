@@ -40,3 +40,14 @@ def test_selected_visual_layout_contracts(page,research_url,layout):
 def test_reviewed_snapshot_can_use_real_http_from_studio(page,research_url):
     from tests.support.studio_page import StudioPage
     url,_=research_url;studio=StudioPage(page,url).open().generate().approve();page.locator('#ai-transport').select_option('http');studio.execute();expect(page.locator('#ai-results')).to_contain_text('loopback HTTP listener')
+
+
+def test_benefit_submit_waits_for_hub_hydration(page,research_url):
+    url,_=research_url;held=[];page.route('**/api/research/overview',lambda route:held.append(route))
+    with page.expect_request('**/api/research/overview'):
+        page.goto(url+'/#research')
+    expect(page.get_by_role('button',name='Adjudicate synthetic lines')).to_be_disabled()
+    assert held;held[0].continue_()
+    expect(page.get_by_role('button',name='Adjudicate synthetic lines')).to_be_enabled()
+    page.get_by_role('button',name='Adjudicate synthetic lines').click()
+    expect(page.locator('#benefit-result')).to_contain_text('71200')
