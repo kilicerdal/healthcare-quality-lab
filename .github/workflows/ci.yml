@@ -68,15 +68,15 @@ jobs:
       - name: Build, inspect and rehearse release
         run: |
           python -m tools.release build --output releases/ci
-          python -m tools.release inspect releases/ci/v7.0.0-source.zip
-          python -m tools.rehearse releases/ci/v7.0.0-source.zip --output artifacts/v7.0/ci-runtime-rehearsal.json
+          python -m tools.release inspect releases/ci/v7.0.1-source.zip
+          python -m tools.rehearse releases/ci/v7.0.1-source.zip --output artifacts/v7.0/ci-runtime-rehearsal.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: healthcare-quality-lab-v7.0-evidence
           path: |
-            releases/ci/v7.0.0-source.zip
-            releases/ci/v7.0.0-manifest.json
+            releases/ci/v7.0.1-source.zip
+            releases/ci/v7.0.1-manifest.json
             artifacts/
   browsers:
     if: github.event_name != 'pull_request'

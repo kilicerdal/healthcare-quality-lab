@@ -27,3 +27,14 @@ def test_browser_identifies_missing_payout_and_requires_explicit_correction_revi
     page.get_by_role('button',name='Save correction & invalidate approval').click();expect(page.locator('.ai-approve-case')).to_be_enabled()
     page.locator('.ai-approve-case').check();page.locator('#ai-attest').check();page.locator('#ai-save-review').click();expect(page.locator('#ai-execute')).to_be_enabled();page.locator('#ai-execute').click()
     expect(page.locator('#ai-message')).to_contain_text('Run passed');page.screenshot(path=str(ROOT/'artifacts/v7.0/assertion-checklist-browser.png'),full_page=True)
+
+
+def test_generation_waits_for_studio_configuration(page,incomplete_url):
+    held=[];posted=[];page.route('**/api/ai/config',lambda route:held.append(route))
+    page.on('request',lambda r:posted.append(r.post_data_json) if r.method=='POST' and r.url.endswith('/api/ai/experiments') else None)
+    with page.expect_request('**/api/ai/config'):
+        page.goto(incomplete_url+'/#ai')
+    expect(page.locator('#ai-generate')).to_be_disabled();assert held and not posted
+    page.get_by_role('button',name='AI Test Studio · V3').click();assert len(held)==1
+    held[0].continue_();expect(page.locator('#ai-generate')).to_be_enabled();page.locator('#ai-count').select_option('1');page.locator('#ai-generate').click()
+    expect(page.locator('#ai-cases')).to_contain_text('Approval blocked');assert len(posted)==1 and posted[0]['model'] and posted[0]['strategy'] and 'HC-007' in posted[0]['source_ids'] and posted[0]['count']==1
