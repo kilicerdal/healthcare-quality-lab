@@ -89,3 +89,12 @@ class ExpectationOllamaProvider(OllamaProvider):
         result['reasoning_requested']=model=='qwen3.5:27b' and self.reasoning_enabled
         result['internal_deliberation_retained']=False
         return result
+
+
+class CompactExpectationProvider(ExpectationOllamaProvider):
+    """Bounded compact output; legacy V8.1 settings remain unchanged."""
+    def __init__(self):
+        super().__init__(False)
+        self.settings=dict(temperature=0,seed=7,num_predict=2600,num_ctx=12288)
+        self.timeout=150
+        self.profile='compact-expectations-v82-direct'

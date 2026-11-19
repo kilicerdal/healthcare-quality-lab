@@ -1,0 +1,449 @@
+{
+  "origin": "Authored by engineering; reference-calculated expectations; not AI-generated tests",
+  "plans": [
+    {
+      "objective": "Predict complete financial and lifecycle observations using only raw synthetic rules",
+      "risk": "financial",
+      "case": {
+        "id": "AB-W82-IND-DED",
+        "title": "Frozen W82-IND-DED",
+        "rule_ids": [
+          "BN-001",
+          "BN-002",
+          "BN-003",
+          "BN-004",
+          "BN-005",
+          "BN-006",
+          "BN-007"
+        ],
+        "rationale": "Authored input-only scenario; all expected values are model-authored.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-IND-DED-1",
+              "operation_key": "submit-W82-IND-DED-1",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 5007
+                }
+              ]
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-IND-DED-2",
+              "operation_key": "submit-W82-IND-DED-2",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-2",
+                  "service": "medical",
+                  "allowed_cents": 60019
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "objective": "Predict complete financial and lifecycle observations using only raw synthetic rules",
+      "risk": "financial",
+      "case": {
+        "id": "AB-W82-FAM-DED",
+        "title": "Frozen W82-FAM-DED",
+        "rule_ids": [
+          "BN-001",
+          "BN-002",
+          "BN-003",
+          "BN-004",
+          "BN-005",
+          "BN-006",
+          "BN-007"
+        ],
+        "rationale": "Authored input-only scenario; all expected values are model-authored.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-FAM-DED-1",
+              "operation_key": "submit-W82-FAM-DED-1",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 7503
+                }
+              ]
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "C-W82-FAM-DED-2",
+              "operation_key": "submit-W82-FAM-DED-2",
+              "member_id": "M200",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-2",
+                  "service": "medical",
+                  "allowed_cents": 7601
+                }
+              ]
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m300",
+            "data": {
+              "claim_id": "C-W82-FAM-DED-3",
+              "operation_key": "submit-W82-FAM-DED-3",
+              "member_id": "M300",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-3",
+                  "service": "medical",
+                  "allowed_cents": 14003
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "objective": "Predict complete financial and lifecycle observations using only raw synthetic rules",
+      "risk": "financial",
+      "case": {
+        "id": "AB-W82-IND-OOP",
+        "title": "Frozen W82-IND-OOP",
+        "rule_ids": [
+          "BN-001",
+          "BN-002",
+          "BN-003",
+          "BN-004",
+          "BN-005",
+          "BN-006",
+          "BN-007"
+        ],
+        "rationale": "Authored input-only scenario; all expected values are model-authored.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-IND-OOP-1",
+              "operation_key": "submit-W82-IND-OOP-1",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 97003
+                }
+              ]
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-IND-OOP-2",
+              "operation_key": "submit-W82-IND-OOP-2",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-2",
+                  "service": "medical",
+                  "allowed_cents": 83009
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "objective": "Predict complete financial and lifecycle observations using only raw synthetic rules",
+      "risk": "financial",
+      "case": {
+        "id": "AB-W82-FAM-OOP",
+        "title": "Frozen W82-FAM-OOP",
+        "rule_ids": [
+          "BN-001",
+          "BN-002",
+          "BN-003",
+          "BN-004",
+          "BN-005",
+          "BN-006",
+          "BN-007"
+        ],
+        "rationale": "Authored input-only scenario; all expected values are model-authored.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-FAM-OOP-1",
+              "operation_key": "submit-W82-FAM-OOP-1",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 100003
+                }
+              ]
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "C-W82-FAM-OOP-2",
+              "operation_key": "submit-W82-FAM-OOP-2",
+              "member_id": "M200",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-2",
+                  "service": "medical",
+                  "allowed_cents": 100019
+                }
+              ]
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m300",
+            "data": {
+              "claim_id": "C-W82-FAM-OOP-3",
+              "operation_key": "submit-W82-FAM-OOP-3",
+              "member_id": "M300",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-3",
+                  "service": "medical",
+                  "allowed_cents": 100043
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "objective": "Predict complete financial and lifecycle observations using only raw synthetic rules",
+      "risk": "financial",
+      "case": {
+        "id": "AB-W82-BENEFIT",
+        "title": "Frozen W82-BENEFIT",
+        "rule_ids": [
+          "BN-001",
+          "BN-002",
+          "BN-003",
+          "BN-004",
+          "BN-005",
+          "BN-006",
+          "BN-007"
+        ],
+        "rationale": "Authored input-only scenario; all expected values are model-authored.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-BENEFIT-1",
+              "operation_key": "submit-W82-BENEFIT-1",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 260003
+                }
+              ]
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-BENEFIT-2",
+              "operation_key": "submit-W82-BENEFIT-2",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-2",
+                  "service": "medical",
+                  "allowed_cents": 17011
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "objective": "Predict complete financial and lifecycle observations using only raw synthetic rules",
+      "risk": "financial",
+      "case": {
+        "id": "AB-W82-ALLOCATION",
+        "title": "Frozen W82-ALLOCATION",
+        "rule_ids": [
+          "BN-001",
+          "BN-002",
+          "BN-003",
+          "BN-004",
+          "BN-005",
+          "BN-006",
+          "BN-007"
+        ],
+        "rationale": "Authored input-only scenario; all expected values are model-authored.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-ALLOCATION-1",
+              "operation_key": "submit-W82-ALLOCATION-1",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 5011
+                }
+              ]
+            }
+          },
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-ALLOCATION-2",
+              "operation_key": "submit-W82-ALLOCATION-2",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-2",
+                  "service": "medical",
+                  "allowed_cents": 61007
+                }
+              ]
+            }
+          },
+          {
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "C-W82-ALLOCATION-2",
+              "operation_key": "pay-W82-ALLOCATION-2",
+              "expected_revision": 1
+            }
+          },
+          {
+            "action": "reverse",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "C-W82-ALLOCATION-2",
+              "operation_key": "reverse-W82-ALLOCATION-2",
+              "expected_revision": 2,
+              "note": "Reverse only this claim allocation"
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-ALLOCATION-2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "objective": "Predict complete financial and lifecycle observations using only raw synthetic rules",
+      "risk": "financial",
+      "case": {
+        "id": "AB-W82-OTHERPAYER",
+        "title": "Other-payer control",
+        "rule_ids": [
+          "BN-001",
+          "BN-002",
+          "BN-003",
+          "BN-004",
+          "BN-005",
+          "BN-006",
+          "BN-007"
+        ],
+        "rationale": "Authored input-only scenario; all expected values are model-authored.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-W82-OTHERPAYER-1",
+              "operation_key": "submit-W82-OTHERPAYER-1",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 65009,
+                  "other_payer_cents": 7001
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

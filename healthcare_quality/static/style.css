@@ -44,3 +44,5 @@ textarea{width:100%;border:1px solid #dce3d3;border-radius:6px;background:#fcfdf
 @media(min-width:801px) and (max-width:1200px){.wb-packs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 #page-workbench input[type=checkbox]{width:auto;max-width:none;margin-right:8px}#expectations-v81 input[type=number]{padding:10px;border:1px solid #d7e2d8;border-radius:6px;background:#fcfdf8;font:inherit}
+
+.ev82-metrics{display:grid;gap:10px;margin:16px 0}.ev82-metric{padding:14px;border:1px solid #d4e2d1;background:#f1f6ed;border-radius:8px;line-height:1.6}.ev82-table{max-width:100%;overflow:auto}.ev82-table table{width:100%;border-collapse:collapse;min-width:580px}.ev82-table th,.ev82-table td{padding:12px;text-align:left;border-bottom:1px solid #dce4d4;font-size:12px}.ev82-table caption{text-align:left;padding:10px 0;font-size:12px}#expectations-v82 details{margin:20px 0}#ev82-faults p{overflow-wrap:anywhere}
