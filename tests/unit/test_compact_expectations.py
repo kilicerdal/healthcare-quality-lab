@@ -88,7 +88,7 @@ def test_request_budget_exposure_and_protocols_remain_separate(tmp_path):
 
 def test_compact_profile_does_not_change_v81_settings():
  from healthcare_quality.ollama_provider import CompactExpectationProvider,ExpectationOllamaProvider
- old=ExpectationOllamaProvider();new=CompactExpectationProvider();assert old.timeout==240 and old.settings['num_predict']==6000;assert new.timeout==150 and new.settings['num_predict']==2600
+ old=ExpectationOllamaProvider();new=CompactExpectationProvider();assert old.timeout==240 and old.settings['num_predict']==6000;assert new.timeout==240 and new.settings['num_predict']==2600
 
 def test_six_survivors_have_reproducible_authored_witnesses():
  from tools.fault_audit_v82 import audit

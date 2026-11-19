@@ -96,5 +96,5 @@ class CompactExpectationProvider(ExpectationOllamaProvider):
     def __init__(self):
         super().__init__(False)
         self.settings=dict(temperature=0,seed=7,num_predict=2600,num_ctx=12288)
-        self.timeout=150
+        self.timeout=240
         self.profile='compact-expectations-v82-direct'
