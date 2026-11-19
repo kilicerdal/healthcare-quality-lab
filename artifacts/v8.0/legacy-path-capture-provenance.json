@@ -1,0 +1,16 @@
+{
+  "source_hash": "d021f6f7e02b4a78a31f7df3ede9c7e978ea8b4cd85a5785f80317955cb11eae",
+  "kind": "current_v8_test_captures_in_legacy_paths",
+  "paths": [
+    "artifacts/v7.0/assertion-checklist-browser.png",
+    "artifacts/v7.0/workflow-mobile.png",
+    "artifacts/v7.0/layout-mobile.png",
+    "artifacts/v7.0/recovered-execution-browser.png",
+    "artifacts/v7.0/coverage-dashboard.png",
+    "artifacts/v7.0/workspace.png",
+    "artifacts/v7.0/layout-desktop.png",
+    "artifacts/v7.0/mobile.png",
+    "artifacts/v7.0/workflow.png"
+  ],
+  "scope": "Existing browser tests write these new V8 captures to inherited v7.0 filenames. They are not relabeled historical V7 runtime captures; prior release tags/assets remain unchanged."
+}

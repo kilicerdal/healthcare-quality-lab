@@ -1,5 +1,7 @@
 # Healthcare Quality Lab — V8.0
 
+[V8.0.0 release](https://github.com/kilicerdal/healthcare-quality-lab/releases/tag/v8.0.0) · [Observed hosted full acceptance](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/44454271666)
+
 **Local acceptance: 968/968 standard checks and 1112/1112 complete three-browser checks passed.** Totals overlap. [Detailed ten-version delivery report](docs/V7.1_TO_V8.0_DELIVERY_REPORT.md) · [Operating and AI learning guide](docs/V8_GUIDE.md) · [Architecture](docs/V8_ARCHITECTURE.md) · [Adapter contract](docs/V8_ADAPTER_CONTRACT.md).
 
 A standalone synthetic quality engineering lab: Python, Flask, SQLite, pytest, Playwright and optional local Ollama. V8 connects eight coverage packs, financial-readback gates, AI scenario design, a 31-input frozen evaluation cohort, evidence assistance, ownership routing, explicit review and actual HTTP execution.

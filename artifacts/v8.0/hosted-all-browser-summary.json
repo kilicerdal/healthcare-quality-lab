@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "run_id": 44454271666,
+  "commit": "d916bff3b1ecea5ac77dbbe24bfffa2d45282336",
+  "source_hash": "d021f6f7e02b4a78a31f7df3ede9c7e978ea8b4cd85a5785f80317955cb11eae",
+  "tests_passed": 216,
+  "failed": 0,
+  "skipped": 0,
+  "browsers": {
+    "chromium": 72,
+    "firefox": 72,
+    "webkit": 72
+  },
+  "scope": "Actual hosted complete E2E artifact scheduled-browser-results.xml from V8 implementation workflow; legacy v7.0 artifact labels do not indicate a V7 measurement."
+}

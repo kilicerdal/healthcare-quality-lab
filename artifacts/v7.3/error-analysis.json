@@ -1,0 +1,22 @@
+{
+  "trials": 16,
+  "schema_valid": 16,
+  "scenario_preserved": 8,
+  "eligible": 0,
+  "trials_with_field_mismatch": {
+    "individual_benefit": 16,
+    "payout_cents": 16,
+    "ledger_cents": 16,
+    "member_cents": 16,
+    "family_oop": 16,
+    "individual_oop": 16,
+    "family_benefit": 16,
+    "ledger_count": 12,
+    "family_deductible": 10,
+    "revision": 10,
+    "status": 8,
+    "state": 2,
+    "individual_deductible": 2
+  },
+  "scope": "Each field counts at most once per raw trial, even when multiple steps mismatch. Two related covered inputs; not general model accuracy. Original outputs and expected/reference differences remain in live-comparison.json."
+}

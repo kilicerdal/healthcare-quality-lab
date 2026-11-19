@@ -1,0 +1,42 @@
+{
+  "source_hash": "d021f6f7e02b4a78a31f7df3ede9c7e978ea8b4cd85a5785f80317955cb11eae",
+  "implementation_commit": "d916bff3b1ecea5ac77dbbe24bfffa2d45282336",
+  "required_runs": [
+    {
+      "conclusion": "success",
+      "databaseId": 44454271666,
+      "event": "workflow_dispatch",
+      "headSha": "d916bff3b1ecea5ac77dbbe24bfffa2d45282336",
+      "name": "V8.0 quality and release checks",
+      "status": "completed",
+      "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/44454271666"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44454183333,
+      "event": "push",
+      "headSha": "d916bff3b1ecea5ac77dbbe24bfffa2d45282336",
+      "name": "V8 portable workbench and adapter contracts",
+      "status": "completed",
+      "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/44454183333"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44454183227,
+      "event": "push",
+      "headSha": "d916bff3b1ecea5ac77dbbe24bfffa2d45282336",
+      "name": "Python compatibility",
+      "status": "completed",
+      "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/44454183227"
+    }
+  ],
+  "all_required_passed": true,
+  "superseded_runs": [
+    {
+      "id": 44454183188,
+      "conclusion": "cancelled",
+      "reason": "Superseded by owner-dispatched full-browser workflow on the same commit, not a passing run"
+    }
+  ],
+  "scope": "Observed hosted implementation acceptance. Final evidence-only commit/tag runs and exact published archive receipts are separate release assets."
+}

@@ -71,3 +71,21 @@ The default loopback runtime uses teaching attestations. Shared mode requires co
 ```
 
 Only explicitly selected public docs/artifacts are accepted; local state and credentials are excluded. A manifest covers every member. Checksums detect changes; they are not a publisher signature. A file comparison is not an equal-budget model-performance comparison.
+
+## Reproduce the actual UI demonstration
+
+For a fast diagnostic recording in disposable state:
+
+```sh
+.venv/bin/python -m tools.record_workbench --output artifacts/v8.0/my-fast-recording
+```
+
+For the readable presentation variant used in this delivery:
+
+```sh
+.venv/bin/python artifacts/v8.0/paced-driver.py --output artifacts/v8.0/my-paced-recording
+```
+
+The published driver is a copy of the trusted recording tool with explicit five-second reading holds and a final viewport reset. It records actual browser actions, screenshots, Playwright trace and captions; the holds are not application latency. Neither command invokes a model. Existing output directories are refused. The reviewer label accurately identifies scripted Codex engineering inspection, not a human reviewer.
+
+The running delivery demo contains separately labeled copies of the actual comparison and AI plan, with no inference on replay and no copied approval. See artifacts/v8.0/demo-replay.json for those instance-specific IDs; fresh clones can inspect the public JSON receipts or run their own explicit experiments.
