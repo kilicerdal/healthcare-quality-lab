@@ -1,4 +1,24 @@
-# Healthcare Quality Lab — V8.0
+# Healthcare Quality Lab — V8.1
+
+[Detailed V8.1 report](docs/V8.1_REPORT.md) · [Operator and AI learning guide](docs/V8.1_GUIDE.md) · [Architecture](docs/V8.1_ARCHITECTURE.md) · [Frozen actual model scorecard](artifacts/v8.1/heldout-scorecard.json)
+
+**Engineering acceptance: 1021/1021 standard and 1175/1175 complete local three-browser checks passed.** Totals overlap. Hosted frozen-source complete E2E: [231/231](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/44461847829).
+
+V8.1 adds experimental local Ollama expected-value generation: immutable claim inputs, model-authored monetary/state worksheets, optional blind self-review, durable experiments and separate review/HTTP execution. Independent calculators only check frozen answers; they never fill or correct the model's values in this path.
+
+**Actual ten-input qualification:** qwen2.5-coder:3b: 0/10 strict first-attempt passes; qwen3.5:27b: 5/10 strict first-attempt passes. Blind self-review is scored separately. Zero reference-assisted corrections. The mode remains experimental; the report explains failed targets, wrong worksheets and the limits of this sample. The prior 0/16 remains historical evidence from a different cohort, not a matched before/after comparison.
+
+**Actual execution:** 5 unique eligible unchanged model cases passed actual HTTP after scripted engineering inspection. Wrong answers remained blocked.
+
+```sh
+python3 -m tools.launch_demo --state-dir .local/v81-new-demo --port 8901
+```
+
+The already-running V8.1 showcase is at `http://127.0.0.1:8901/#workbench`, using fresh `.local/demo-v810` state. Load saved actual experiments without inference. All policies, identities and payments are synthetic.
+
+![Recorded V8.1 experimental expectations panel](docs/images/v81-expectations-desktop.png)
+
+# Archived V8.0 overview
 
 [V8.0.0 release](https://github.com/kilicerdal/healthcare-quality-lab/releases/tag/v8.0.0) · [Observed hosted full acceptance](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/44454271666)
 

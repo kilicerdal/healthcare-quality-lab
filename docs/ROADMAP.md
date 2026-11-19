@@ -65,3 +65,8 @@ These are six implementation milestones delivered in one combined V7.0 release. 
 ## V7.1–V8.0 implementation track
 
 Ten milestones extend the same standalone application: V7.1 installation diagnostics; V7.2 input-design quality; V7.3 family-separated frozen evaluation; V7.4 eight synthetic coverage packs; V7.5 seven complete lifecycle journeys; V7.6 two installed HTTP observation adapters; V7.7 authorization, dependency and resilience evidence; V7.8 bounded evidence assistant and explicit local AI planning; V7.9 ownership routing and portable evidence bundles; V8.0 integrated workbench, learning guide and reproducible delivery. Each has its own detailed report. Current measured outcomes and limitations are recorded in docs/V7.1_TO_V8.0_DELIVERY_REPORT.md; no milestone is a claim of healthcare compliance or production readiness.
+
+
+## V8.1 delivered: model-only expectations
+
+Immutable inputs, model-authored monetary/state worksheets, optional blind self-review before evaluation, durable bounded local experiments, frozen ten-input qualification per model and independent unapproved export. Actual results and limitations: [detailed report](V8.1_REPORT.md). No calculator-assisted corrections are counted as model performance; the mode remains experimental.

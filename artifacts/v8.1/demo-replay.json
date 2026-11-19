@@ -1,0 +1,17 @@
+{
+  "url": "http://127.0.0.1:8901/#workbench",
+  "state_dir": ".local/demo-v810",
+  "records": [
+    "b69e1a50605042a48ebb416f82af9e9d",
+    "bd493286b6174bb8a2f2afeb522965ca"
+  ],
+  "actual_local_records_replayed": true,
+  "approvals_copied": false,
+  "inference_calls_during_replay": 0,
+  "post_requests_during_readonly_capture": [],
+  "screenshots": [
+    "docs/images/v81-expectations-desktop.png",
+    "docs/images/v81-expectations-mobile.png"
+  ],
+  "scope": "Screenshots of actual completed experiment records. Ten-case qualification is in aggregate scorecard; each saved batch has five reserved inputs per model."
+}

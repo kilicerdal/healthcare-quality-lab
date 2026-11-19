@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "source_hash": "039fa265fd6b6e2fc8aac9c22f34ac03cba10edfa2a029e291b8f9107a182065",
+  "commit": "8ba1cad06fe8b1d94ef7d2357fb793c247d8efc0",
+  "run_id": 44461847829,
+  "passed": 231,
+  "failed": 0,
+  "skipped": 0,
+  "browsers": {
+    "chromium": 77,
+    "firefox": 77,
+    "webkit": 77
+  },
+  "scope": "Actual hosted complete E2E results from frozen candidate; inherited artifact labels retain v7.0 filenames."
+}

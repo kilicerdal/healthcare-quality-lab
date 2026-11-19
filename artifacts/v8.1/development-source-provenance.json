@@ -1,0 +1,38 @@
+[
+  {
+    "snapshot": "v81-development-source",
+    "source_hash": "21a9a7cf78f5ae1503ad703ce3fec2a80994e0edac2e969d1f7359edfebdc799",
+    "archive": "artifacts/v8.1/v81-development-source.zip",
+    "archive_sha256": "88844f811775237331ed3e773ce4110ab95bb1254fbc8947b6ab36ca37e33c38"
+  },
+  {
+    "snapshot": "v81-final-development-source",
+    "source_hash": "0a65de66363e5c2bcdf107be45a6cea8146891123001e86dc51011472fbe1ff8",
+    "archive": "artifacts/v8.1/v81-final-development-source.zip",
+    "archive_sha256": "01579efe5848522c61d186044287a2506144c503f9fd53bfb389a515397af430"
+  },
+  {
+    "snapshot": "v81-portable-development-source",
+    "source_hash": "ea1cda2258e7338cd7dd5a02de049b9cbe2f2f5f3b1dd5eecf0b920ceeb350eb",
+    "archive": "artifacts/v8.1/v81-portable-development-source.zip",
+    "archive_sha256": "454427cd4cb08051f9c207dcaacba42ac405495fc222a34843369556a4259307"
+  },
+  {
+    "snapshot": "v81-reasoning-development-source",
+    "source_hash": "a96241d5f4528e5a5ee9e5195334f27760717494d16f218e72c55081e02cc119",
+    "archive": "artifacts/v8.1/v81-reasoning-development-source.zip",
+    "archive_sha256": "3d6a9a3d31aca11e2384b1e8f33316352e376f2422df1564159c05e7a3297752"
+  },
+  {
+    "snapshot": "v81-state-development-source",
+    "source_hash": "039fa265fd6b6e2fc8aac9c22f34ac03cba10edfa2a029e291b8f9107a182065",
+    "archive": "artifacts/v8.1/v81-state-development-source.zip",
+    "archive_sha256": "f103d0323f5acec0a4789dd8bc05360b9439e56d6882e4f4e0eb20714664be67"
+  },
+  {
+    "snapshot": "v81-structured-development-source",
+    "source_hash": "b97fe5620b2db3351f57aa2216205bb9005a11881895c3931ff26b73db04571d",
+    "archive": "artifacts/v8.1/v81-structured-development-source.zip",
+    "archive_sha256": "d8b35d06cd991e8fdc0b4943ec8998dd79b264968ef74dc8f437ae122da230e4"
+  }
+]

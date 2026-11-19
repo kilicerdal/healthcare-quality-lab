@@ -1,0 +1,441 @@
+{
+  "kind": "explicit_schema_capability_probe",
+  "status": 400,
+  "response": "{\"error\":\"{\\\"error\\\":{\\\"code\\\":400,\\\"message\\\":\\\"Field 'json_schema': \\\\\\\"json_schema\\\\\\\": JSON schema conversion failed:\\\\nJSON schema error at #/properties/observations/items: schema must be an object\\\",\\\"type\\\":\\\"invalid_request_error\\\"}}\"}",
+  "latency_seconds": 0.024,
+  "request": {
+    "model": "qwen2.5-coder:3b",
+    "prompt": "Return one JSON observation.",
+    "format": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "observations": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "step_id": {
+                  "const": "S01"
+                },
+                "calculation": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "lines": {
+                      "type": "array",
+                      "maxItems": 5,
+                      "items": {
+                        "$ref": "#/$defs/worksheet_line"
+                      }
+                    },
+                    "accounting_note": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 500
+                    }
+                  },
+                  "required": [
+                    "lines",
+                    "accounting_note"
+                  ]
+                },
+                "expect": {
+                  "$ref": "#/$defs/expect"
+                }
+              },
+              "required": [
+                "step_id",
+                "calculation",
+                "expect"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "step_id": {
+                  "const": "S02"
+                },
+                "calculation": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "lines": {
+                      "type": "array",
+                      "maxItems": 0
+                    },
+                    "accounting_note": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 500
+                    }
+                  },
+                  "required": [
+                    "lines",
+                    "accounting_note"
+                  ]
+                },
+                "expect": {
+                  "$ref": "#/$defs/expect"
+                }
+              },
+              "required": [
+                "step_id",
+                "calculation",
+                "expect"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "step_id": {
+                  "const": "S03"
+                },
+                "calculation": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "lines": {
+                      "type": "array",
+                      "maxItems": 0
+                    },
+                    "accounting_note": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 500
+                    }
+                  },
+                  "required": [
+                    "lines",
+                    "accounting_note"
+                  ]
+                },
+                "expect": {
+                  "$ref": "#/$defs/expect"
+                }
+              },
+              "required": [
+                "step_id",
+                "calculation",
+                "expect"
+              ]
+            }
+          ],
+          "items": false
+        }
+      },
+      "required": [
+        "observations"
+      ],
+      "$defs": {
+        "expect": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "enum": [
+                    200,
+                    201
+                  ]
+                },
+                "state": {
+                  "type": "string",
+                  "enum": [
+                    "adjudicated",
+                    "paid",
+                    "appealed",
+                    "reversed"
+                  ]
+                },
+                "revision": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "event_count": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "payout_cents": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "member_cents": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "other_payer_cents": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "noncovered_cents": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "ledger_cents": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "ledger_count": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "individual_deductible": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "individual_oop": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "individual_benefit": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "family_deductible": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "family_oop": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "family_benefit": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 500000000
+                },
+                "policy_id": {
+                  "type": "string",
+                  "enum": [
+                    "SYN-2026-H1",
+                    "SYN-2026-H2",
+                    "SYN-2027"
+                  ]
+                },
+                "partial": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "status",
+                "state",
+                "revision",
+                "event_count",
+                "payout_cents",
+                "member_cents",
+                "other_payer_cents",
+                "noncovered_cents",
+                "ledger_cents",
+                "ledger_count",
+                "individual_deductible",
+                "individual_oop",
+                "individual_benefit",
+                "family_deductible",
+                "family_oop",
+                "family_benefit",
+                "policy_id",
+                "partial"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    403,
+                    404,
+                    409
+                  ]
+                },
+                "error": {
+                  "type": "string",
+                  "enum": [
+                    "INVALID_BENEFITS_REQUEST",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "DUPLICATE_CLAIM",
+                    "IDEMPOTENCY_CONFLICT",
+                    "REVISION_CONFLICT",
+                    "INVALID_TRANSITION"
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "error"
+              ]
+            }
+          ]
+        },
+        "lines": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+              },
+              "service": {
+                "type": "string",
+                "enum": [
+                  "dental",
+                  "dme",
+                  "emergency",
+                  "hearing",
+                  "home_health",
+                  "hospice",
+                  "hospital",
+                  "lab",
+                  "maternity",
+                  "medical",
+                  "mental_health",
+                  "outpatient",
+                  "prescription",
+                  "preventive",
+                  "rehabilitation",
+                  "skilled_nursing",
+                  "vision"
+                ]
+              },
+              "allowed_cents": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100000000
+              },
+              "other_payer_cents": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100000000
+              },
+              "in_network": {
+                "type": "boolean"
+              },
+              "authorized": {
+                "type": "boolean"
+              },
+              "formulary": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "service",
+              "allowed_cents"
+            ]
+          }
+        },
+        "worksheet_line": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "line_id": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 48
+            },
+            "eligible_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            },
+            "nominal_deductible_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            },
+            "copay_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            },
+            "coinsurance_base_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            },
+            "payer_before_caps_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            },
+            "member_before_oop_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            },
+            "payer_after_oop_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            },
+            "member_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            },
+            "payout_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            },
+            "noncovered_cents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500000000
+            }
+          },
+          "required": [
+            "line_id",
+            "eligible_cents",
+            "nominal_deductible_cents",
+            "copay_cents",
+            "coinsurance_base_cents",
+            "payer_before_caps_cents",
+            "member_before_oop_cents",
+            "payer_after_oop_cents",
+            "member_cents",
+            "payout_cents",
+            "noncovered_cents"
+          ]
+        }
+      }
+    },
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 1,
+      "num_ctx": 16384,
+      "seed": 7
+    }
+  },
+  "scope": "One explicit one-token runtime/schema compatibility probe, not a test-accuracy trial, no calculator or reference data."
+}

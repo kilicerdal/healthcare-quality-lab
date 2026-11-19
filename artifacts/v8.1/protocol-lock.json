@@ -1,0 +1,959 @@
+{
+  "frozen_at": "2026-11-19T04:56:27.864734+00:00",
+  "commit": "8ba1cad06fe8b1d94ef7d2357fb793c247d8efc0",
+  "source_hash": "039fa265fd6b6e2fc8aac9c22f34ac03cba10edfa2a029e291b8f9107a182065",
+  "version": "expectations-only-v81-6",
+  "cohort": {
+    "version": "expectation-cohort-v81-1",
+    "scope": "New authored input-only plans. Development inspected during prompt development; held-out scenarios reserved until first model request in the ledger. No claim of globally unseen training data.",
+    "target": {
+      "strict_first_attempt_percent": 80,
+      "denominator": "all selected trial rows per model, including provider/schema failures",
+      "self_review_reported_separately": true,
+      "minimum_unique_heldout_tasks": 10
+    },
+    "tasks": [
+      {
+        "id": "D81-01",
+        "split": "development",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-D81-01",
+            "title": "Frozen D81-01",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-D81-01",
+                  "operation_key": "submit-D81-01",
+                  "member_id": "M100",
+                  "plan_id": "commercial_ppo",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "medical",
+                      "allowed_cents": 84317,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-D81-01",
+                  "operation_key": "pay-key-D81-01",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-D81-01"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "D81-02",
+        "split": "development",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-D81-02",
+            "title": "Frozen D81-02",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-D81-02",
+                  "operation_key": "submit-D81-02",
+                  "member_id": "M100",
+                  "plan_id": "medicare_b",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "outpatient",
+                      "allowed_cents": 4931,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-D81-02",
+                  "operation_key": "pay-key-D81-02",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-D81-02"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "D81-03",
+        "split": "development",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-D81-03",
+            "title": "Frozen D81-03",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-D81-03",
+                  "operation_key": "submit-D81-03",
+                  "member_id": "M100",
+                  "plan_id": "dental",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "dental",
+                      "allowed_cents": 76329,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-D81-03",
+                  "operation_key": "pay-key-D81-03",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-D81-03"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "D81-04",
+        "split": "development",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-D81-04",
+            "title": "Frozen D81-04",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-D81-04",
+                  "operation_key": "submit-D81-04",
+                  "member_id": "M100",
+                  "plan_id": "medicare_advantage",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "hospital",
+                      "allowed_cents": 116437,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-D81-04",
+                  "operation_key": "pay-key-D81-04",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-D81-04"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-01",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-01",
+            "title": "Frozen H81-01",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-01",
+                  "operation_key": "submit-H81-01",
+                  "member_id": "M100",
+                  "plan_id": "medicare_b",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "outpatient",
+                      "allowed_cents": 93671,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-01",
+                  "operation_key": "pay-key-H81-01",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-01"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-02",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-02",
+            "title": "Frozen H81-02",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-02",
+                  "operation_key": "submit-H81-02",
+                  "member_id": "M100",
+                  "plan_id": "medicare_a",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "hospital",
+                      "allowed_cents": 108513,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-02",
+                  "operation_key": "pay-key-H81-02",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-02"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-03",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-03",
+            "title": "Frozen H81-03",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-03",
+                  "operation_key": "submit-H81-03",
+                  "member_id": "M100",
+                  "plan_id": "medicare_d",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "prescription",
+                      "allowed_cents": 41279,
+                      "other_payer_cents": 6721
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-03",
+                  "operation_key": "pay-key-H81-03",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-03"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-04",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-04",
+            "title": "Frozen H81-04",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-04",
+                  "operation_key": "submit-H81-04",
+                  "member_id": "M100",
+                  "plan_id": "dental",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "dental",
+                      "allowed_cents": 5007,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-04",
+                  "operation_key": "pay-key-H81-04",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-04"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-05",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-05",
+            "title": "Frozen H81-05",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-05",
+                  "operation_key": "submit-H81-05",
+                  "member_id": "M100",
+                  "plan_id": "vision",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "vision",
+                      "allowed_cents": 32983,
+                      "other_payer_cents": 0,
+                      "in_network": false
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-05",
+                  "operation_key": "pay-key-H81-05",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-05"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-06",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-06",
+            "title": "Frozen H81-06",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-06",
+                  "operation_key": "submit-H81-06",
+                  "member_id": "M100",
+                  "plan_id": "commercial_ppo",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "medical",
+                      "allowed_cents": 56317,
+                      "other_payer_cents": 0
+                    },
+                    {
+                      "id": "LINE-TWO",
+                      "service": "dental",
+                      "allowed_cents": 7289
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-06",
+                  "operation_key": "pay-key-H81-06",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-06"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-07",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-07",
+            "title": "Frozen H81-07",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-07",
+                  "operation_key": "submit-H81-07",
+                  "member_id": "M100",
+                  "plan_id": "medicare_advantage",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "hospital",
+                      "allowed_cents": 46231,
+                      "other_payer_cents": 0,
+                      "authorized": false
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-07",
+                  "operation_key": "pay-key-H81-07",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-07"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-08",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-08",
+            "title": "Frozen H81-08",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-08",
+                  "operation_key": "submit-H81-08",
+                  "member_id": "M100",
+                  "plan_id": "commercial_hmo",
+                  "service_date": "2026-07-01",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "outpatient",
+                      "allowed_cents": 76743,
+                      "other_payer_cents": 11017
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-08",
+                  "operation_key": "pay-key-H81-08",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-08"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-09",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-09",
+            "title": "Frozen H81-09",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-09",
+                  "operation_key": "submit-H81-09",
+                  "member_id": "M100",
+                  "plan_id": "commercial_ppo",
+                  "service_date": "2026-12-31",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "medical",
+                      "allowed_cents": 68391,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-09",
+                  "operation_key": "pay-key-H81-09",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-09"
+                }
+              },
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "YEAR-H81-09",
+                  "operation_key": "year-H81-09",
+                  "member_id": "M100",
+                  "plan_id": "commercial_ppo",
+                  "service_date": "2027-01-01",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "medical",
+                      "allowed_cents": 68391,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "YEAR-H81-09"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "H81-10",
+        "split": "reserved_until_exposed",
+        "plan": {
+          "objective": "Predict complete synthetic financial and lifecycle observations without reference feedback",
+          "risk": "financial",
+          "case": {
+            "id": "AB-H81-10",
+            "title": "Frozen H81-10",
+            "rule_ids": [
+              "BN-001",
+              "BN-002",
+              "BN-003",
+              "BN-004",
+              "BN-005",
+              "BN-006",
+              "BN-007"
+            ],
+            "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+            "assumptions": [],
+            "steps": [
+              {
+                "action": "submit",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-10",
+                  "operation_key": "submit-H81-10",
+                  "member_id": "M100",
+                  "plan_id": "medicare_b",
+                  "service_date": "2026-03-17",
+                  "lines": [
+                    {
+                      "id": "LINE-ONE",
+                      "service": "outpatient",
+                      "allowed_cents": 88317,
+                      "other_payer_cents": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-10",
+                  "operation_key": "pay-key-H81-10",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-10"
+                }
+              },
+              {
+                "action": "pay",
+                "actor": "finance-demo",
+                "data": {
+                  "claim_id": "CLAIM-H81-10",
+                  "operation_key": "pay-key-H81-10",
+                  "expected_revision": 1
+                }
+              },
+              {
+                "action": "read",
+                "actor": "customer-m100",
+                "data": {
+                  "claim_id": "CLAIM-H81-10"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "batches": [
+    {
+      "models": [
+        "qwen2.5-coder:3b",
+        "qwen3.5:27b"
+      ],
+      "tasks": [
+        "H81-01",
+        "H81-02",
+        "H81-03",
+        "H81-04",
+        "H81-05"
+      ],
+      "repeats": 1,
+      "strategy": "whole_case",
+      "self_review": true,
+      "request_budget": 20
+    },
+    {
+      "models": [
+        "qwen2.5-coder:3b",
+        "qwen3.5:27b"
+      ],
+      "tasks": [
+        "H81-06",
+        "H81-07",
+        "H81-08",
+        "H81-09",
+        "H81-10"
+      ],
+      "repeats": 1,
+      "strategy": "whole_case",
+      "self_review": true,
+      "request_budget": 20
+    }
+  ],
+  "total_request_budget": 40,
+  "profile": "expectations-v81-direct",
+  "provider_settings": {
+    "temperature": 0,
+    "seed": 7,
+    "num_predict": 6000,
+    "num_ctx": 16384
+  },
+  "native_reasoning": false,
+  "target": {
+    "strict_first_attempt_percent": 80,
+    "denominator": "all selected trial rows per model, including provider/schema failures",
+    "self_review_reported_separately": true,
+    "minimum_unique_heldout_tasks": 10
+  },
+  "scope": "Frozen before any reserved model call. All ten reserved inputs per model; no post-result prompt tuning or calculator feedback. First and blind review scored separately; all planned trials including failures remain denominators."
+}

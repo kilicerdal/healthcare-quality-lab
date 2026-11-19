@@ -1,0 +1,497 @@
+{
+  "id": "97bc510423a14ba3a79d32e153e2f53f",
+  "created_at": "2026-11-19T04:43:22.777766+00:00",
+  "kind": "model_expectations_v81",
+  "state": "completed",
+  "protocol": {
+    "version": "expectations-only-v81-5",
+    "selection": {
+      "models": [
+        "qwen3.5:27b"
+      ],
+      "tasks": [
+        "D81-01"
+      ],
+      "strategy": "whole_case",
+      "repeats": 1,
+      "self_review": true,
+      "request_budget": 2
+    },
+    "source_hash": "a96241d5f4528e5a5ee9e5195334f27760717494d16f218e72c55081e02cc119",
+    "contract_hash": "22ca3d505a32df5774fee05e7301aa68f92f8b2c74e70080ba0f0e91ccc6a42e",
+    "cohort_hash": "bad700bed61eaf5852c3fc6ea6a12a1c96951e4a0963d896fc1294ee08bbc3e6",
+    "installed_models": [
+      {
+        "name": "qwen3.5:27b",
+        "digest": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+      },
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "model_digests": {
+      "qwen3.5:27b": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+    },
+    "provider_settings": {
+      "temperature": 0,
+      "seed": 7,
+      "num_predict": 10000,
+      "num_ctx": 24576
+    },
+    "provider_profile": "expectations-v81-reasoning",
+    "native_reasoning": true,
+    "target": {
+      "strict_first_attempt_percent": 80,
+      "denominator": "all selected trial rows per model, including provider/schema failures",
+      "self_review_reported_separately": true,
+      "minimum_unique_heldout_tasks": 10
+    },
+    "prompt_hashes": {
+      "D81-01": "b9f3d734e2590e250dd04fba22d8981d3d9b3131bbe2c97ddf8bd982eabc9350"
+    },
+    "answer_schema_hash": "ae5d2dbd42e07217d41e0102d529ac7502a7b7c49d3dc964ff9e15f364ed7338",
+    "evaluation_timing": "Only after original and optional blind self-review responses are frozen",
+    "scope": "No expected values, reference feedback, SUT responses or arithmetic tools supplied. First and self review scored separately; immutable input assembly does not measure model input-following skill."
+  },
+  "rows": [
+    {
+      "model": "qwen3.5:27b",
+      "task_id": "D81-01",
+      "split": "development",
+      "repeat": 1,
+      "calls": [
+        {
+          "stage": "first",
+          "prompt": "You author ALL expected values. Return observations only, keyed by supplied step_id. No action, actor, inputs, code, tool calls or URLs. No numeric answers, calculator results or application responses are available.\nEmit calculation BEFORE expect for each step. Complete the numeric worksheet first, then copy the final monetary values into expect. All accumulator fields mean USED SO FAR, never policy limits or remaining balances. A policy cap is not an account balance. Do not convert cents to dollars in any field or note. All money is integer cents. For EACH line in order:\nother = other_payer_cents or zero; eligible = allowed - other.\nIf service/network/authorization/formulary rejects coverage: payout=0, member=0, noncovered=eligible, all deductible/copay/coinsurance worksheet fields=0. Other-payer money is still counted. Do not allocate accounts.\nOtherwise nominal_deductible=min(eligible,max(0,individual_limit-individual_used),max(0,family_limit-family_used)).\ncopay=min(eligible-nominal_deductible,policy.copay).\ncoinsurance_base=eligible-nominal_deductible-copay.\npayer_before_caps=(coinsurance_base * payer_bps) // 10000. The remainder stays with the member; never round to nearest cent.\nmember_before_oop=eligible-payer_before_caps.\nmember=min(member_before_oop,max(0,individual_oop_limit-individual_oop_used),max(0,family_oop_limit-family_oop_used)).\npayer_after_oop=eligible-member.\npayout=min(payer_after_oop,max(0,annual_benefit-individual_benefit_used)); noncovered=eligible-member-payout.\nAllocate deductible by min(nominal_deductible,member), OOP by member, benefit by payout to BOTH member and family accounts. OOP includes deductible/copay/member coinsurance, not other-payer or noncovered. Repeat per line with updated accounts.\nWorksheet nominal_deductible_cents is BEFORE OOP clipping; deductible ACCUMULATOR increments may be smaller.\nWhen neither OOP nor benefit cap binds, payout must equal payer_before_caps. Do not invent an OOP cap or change the preliminary payment without a binding cap. Independently verify the integer subtraction eligible-payer_before_caps in member_before_oop_cents.\nInitial accounts are zero per member/family/service calendar year; do not reset for a second claim in the same year. Service dates select half-open policy intervals, not the current date.\nSubmit returns status=201,state=adjudicated,revision=1,event_count=1,ledger_cents=0,ledger_count=0. Adjudication reserves accounts BEFORE payment.\nOnly submit success is HTTP status 201. EVERY successful pay, read, reverse, adjust, appeal or resolve has HTTP status 200. Copying a prior quote does NOT copy its HTTP status. Successful nonreplayed mutations increment revision and event_count once. Reads return status=200, do not increment revision/events, and preserve current ledger/accounts.\nPay: finance, adjudicated -> paid, one debit of payout, ledger_count +1 even for zero payout. Keep prior quote/account observations unchanged.\nReverse: finance, paid -> reversed, credit payout once, ledger_count +1, undo only original allocations; keep original quote payout/member, not zero quotes.\nAdjustment: adjuster, paid -> paid, undo original allocation then reprice replacement lines, credit old/debit new payout (ledger_count +2).\nAppeal: owner, adjudicated -> appealed, no price/ledger changes. Resolve: adjuster, appealed -> adjudicated, credit old allocations then reprice; ledger unchanged.\nIdentical actor/action/input idempotency replay returns the ORIGINAL response snapshot, without new events/ledger or account changes. A later read sees current state.\nRejections have ONLY status,error; do not include successful observation fields. For a known claim add no state changes on rejection. New missing claim read is 404 NOT_FOUND; wrong role/owner 403 FORBIDDEN; changed key payload 409 IDEMPOTENCY_CONFLICT; stale revision 409 REVISION_CONFLICT; wrong state 409 INVALID_TRANSITION.\nSuccessful expect must include ALL 18 fields: status,state,revision,event_count,payout_cents,member_cents,other_payer_cents,noncovered_cents,ledger_cents,ledger_count,individual_deductible,individual_oop,individual_benefit,family_deductible,family_oop,family_benefit,policy_id,partial.\npartial means at least one covered and at least one noncovered line, not a cap excess on covered lines.\nProvide line worksheets for successful submit/adjust/resolve; for read/pay/reverse/appeal/rejection use an empty lines array and a short accounting note. Do not provide private chain-of-thought; provide only auditable numeric records and a concise state/ledger note.\nSYNTHETIC FACTS: {\"actors\": [{\"id\": \"customer-m100\", \"label\": \"Customer / M100\", \"member_id\": \"M100\", \"role\": \"customer\"}, {\"id\": \"customer-m200\", \"label\": \"Customer / M200\", \"member_id\": \"M200\", \"role\": \"customer\"}, {\"id\": \"customer-m300\", \"label\": \"Customer / M300\", \"member_id\": \"M300\", \"role\": \"customer\"}, {\"id\": \"customer-m400\", \"label\": \"Customer / M400\", \"member_id\": \"M400\", \"role\": \"customer\"}, {\"id\": \"customer-m500\", \"label\": \"Customer / M500\", \"member_id\": \"M500\", \"role\": \"customer\"}, {\"id\": \"customer-m600\", \"label\": \"Customer / M600\", \"member_id\": \"M600\", \"role\": \"customer\"}, {\"id\": \"customer-m700\", \"label\": \"Customer / M700\", \"member_id\": \"M700\", \"role\": \"customer\"}, {\"id\": \"customer-m800\", \"label\": \"Customer / M800\", \"member_id\": \"M800\", \"role\": \"customer\"}, {\"id\": \"customer-m900\", \"label\": \"Customer / M900\", \"member_id\": \"M900\", \"role\": \"customer\"}, {\"id\": \"adjuster-demo\", \"label\": \"Adjuster / demo\", \"member_id\": null, \"role\": \"adjuster\"}, {\"id\": \"finance-demo\", \"label\": \"Finance / demo\", \"member_id\": null, \"role\": \"finance\"}, {\"id\": \"auditor-demo\", \"label\": \"Auditor / read only\", \"member_id\": null, \"role\": \"auditor\"}], \"families\": {\"M100\": \"F100\", \"M200\": \"F100\", \"M300\": \"F100\", \"M400\": \"F400\"}, \"plans\": [{\"authorization_services\": [\"hospital\"], \"deductible_cents\": 10000, \"description\": \"Broad service coverage with a relaxed network fixture\", \"family\": \"Commercial\", \"id\": \"commercial_ppo\", \"limit_cents\": 200000, \"name\": \"Commercial PPO\", \"network_required\": false, \"services\": [\"hospital\", \"medical\", \"outpatient\", \"prescription\", \"preventive\", \"mental_health\", \"maternity\", \"rehabilitation\", \"emergency\", \"lab\"]}], \"policies\": [{\"annual_benefit\": 200000, \"copay\": 1000, \"end\": \"2026-07-01\", \"family_deductible\": 20000, \"family_oop\": 60000, \"id\": \"SYN-2026-H1\", \"individual_deductible\": 10000, \"individual_oop\": 30000, \"payer_bps\": 8000, \"start\": \"2026-01-01\"}], \"rules\": [{\"contract\": \"Canonical service date selects a half-open effective policy interval; only bounded integer cents and unique lines are accepted.\", \"id\": \"BN-001\"}, {\"contract\": \"Adjudicate each line against the chosen synthetic plan service, network, authorization and formulary facts; retain partial denials.\", \"id\": \"BN-002\"}, {\"contract\": \"Apply other-payer payment first; it cannot exceed the line allowed amount.\", \"id\": \"BN-003\"}, {\"contract\": \"Apply remaining member/family deductible, nominal copay, then floor payer coinsurance; cap actual member charge at member/family OOP and payout at remaining annual benefit. Benefit excess is noncovered, not OOP.\", \"id\": \"BN-004\"}, {\"contract\": \"Reserve allocations at adjudication by service year. Credits reverse only that claim allocation; later claims are not repriced. Family F100 has three members so embedded caps can bind.\", \"id\": \"BN-005\"}, {\"contract\": \"Finance pays or reverses once from the required state; idempotency keys bind actor/action/input and revisions serialize changes. Adjustments atomically credit old allocations and record debit/credit ledger entries.\", \"id\": \"BN-006\"}, {\"contract\": \"Owners may appeal adjudicated claims; adjusters resolve by reprocessing corrected lines under the same policy. Appeal resolution cannot invent coverage exceptions.\", \"id\": \"BN-007\"}], \"scope\": \"Invented rules for every plan, not actual Medicare or commercial policy. Quotes reserve allocated accumulators at adjudication. Reversal/adjustment credits only the original allocation; later claims are never repriced. Other-payer money is applied before deductible/copay. Benefit-cap excess is noncovered and does not increase OOP. Coinsurance uses floor integer cents. Policy dates are half-open intervals; accumulators reset by service calendar year.\"}\nIMMUTABLE INPUTS: {\"case_id\": \"AB-D81-01\", \"steps\": [{\"action\": \"submit\", \"actor\": \"customer-m100\", \"data\": {\"claim_id\": \"CLAIM-D81-01\", \"lines\": [{\"allowed_cents\": 84317, \"id\": \"LINE-ONE\", \"other_payer_cents\": 0, \"service\": \"medical\"}], \"member_id\": \"M100\", \"operation_key\": \"submit-D81-01\", \"plan_id\": \"commercial_ppo\", \"service_date\": \"2026-03-17\"}, \"step_id\": \"S01\"}, {\"action\": \"pay\", \"actor\": \"finance-demo\", \"data\": {\"claim_id\": \"CLAIM-D81-01\", \"expected_revision\": 1, \"operation_key\": \"pay-key-D81-01\"}, \"step_id\": \"S02\"}, {\"action\": \"read\", \"actor\": \"customer-m100\", \"data\": {\"claim_id\": \"CLAIM-D81-01\"}, \"step_id\": \"S03\"}]}",
+          "prompt_hash": "b9f3d734e2590e250dd04fba22d8981d3d9b3131bbe2c97ddf8bd982eabc9350",
+          "generation_schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "observations": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "step_id": {
+                      "enum": [
+                        "S01",
+                        "S02",
+                        "S03"
+                      ]
+                    },
+                    "calculation": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "lines": {
+                          "type": "array",
+                          "maxItems": 5,
+                          "items": {
+                            "$ref": "#/$defs/worksheet_line"
+                          }
+                        },
+                        "accounting_note": {
+                          "type": "string",
+                          "minLength": 3,
+                          "maxLength": 500
+                        }
+                      },
+                      "required": [
+                        "lines",
+                        "accounting_note"
+                      ]
+                    },
+                    "expect": {
+                      "$ref": "#/$defs/expect"
+                    }
+                  },
+                  "required": [
+                    "step_id",
+                    "calculation",
+                    "expect"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "observations"
+            ],
+            "$defs": {
+              "expect": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "status": {
+                        "type": "integer",
+                        "enum": [
+                          200,
+                          201
+                        ]
+                      },
+                      "state": {
+                        "type": "string",
+                        "enum": [
+                          "adjudicated",
+                          "paid",
+                          "appealed",
+                          "reversed"
+                        ]
+                      },
+                      "revision": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "event_count": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "payout_cents": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "member_cents": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "other_payer_cents": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "noncovered_cents": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "ledger_cents": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "ledger_count": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "individual_deductible": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "individual_oop": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "individual_benefit": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "family_deductible": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "family_oop": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "family_benefit": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 500000000
+                      },
+                      "policy_id": {
+                        "type": "string",
+                        "enum": [
+                          "SYN-2026-H1",
+                          "SYN-2026-H2",
+                          "SYN-2027"
+                        ]
+                      },
+                      "partial": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "state",
+                      "revision",
+                      "event_count",
+                      "payout_cents",
+                      "member_cents",
+                      "other_payer_cents",
+                      "noncovered_cents",
+                      "ledger_cents",
+                      "ledger_count",
+                      "individual_deductible",
+                      "individual_oop",
+                      "individual_benefit",
+                      "family_deductible",
+                      "family_oop",
+                      "family_benefit",
+                      "policy_id",
+                      "partial"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "status": {
+                        "type": "integer",
+                        "enum": [
+                          400,
+                          403,
+                          404,
+                          409
+                        ]
+                      },
+                      "error": {
+                        "type": "string",
+                        "enum": [
+                          "INVALID_BENEFITS_REQUEST",
+                          "FORBIDDEN",
+                          "NOT_FOUND",
+                          "DUPLICATE_CLAIM",
+                          "IDEMPOTENCY_CONFLICT",
+                          "REVISION_CONFLICT",
+                          "INVALID_TRANSITION"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "error"
+                    ]
+                  }
+                ]
+              },
+              "lines": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 5,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,47}$"
+                    },
+                    "service": {
+                      "type": "string",
+                      "enum": [
+                        "dental",
+                        "dme",
+                        "emergency",
+                        "hearing",
+                        "home_health",
+                        "hospice",
+                        "hospital",
+                        "lab",
+                        "maternity",
+                        "medical",
+                        "mental_health",
+                        "outpatient",
+                        "prescription",
+                        "preventive",
+                        "rehabilitation",
+                        "skilled_nursing",
+                        "vision"
+                      ]
+                    },
+                    "allowed_cents": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 100000000
+                    },
+                    "other_payer_cents": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000000
+                    },
+                    "in_network": {
+                      "type": "boolean"
+                    },
+                    "authorized": {
+                      "type": "boolean"
+                    },
+                    "formulary": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "service",
+                    "allowed_cents"
+                  ]
+                }
+              },
+              "worksheet_line": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "line_id": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 48
+                  },
+                  "eligible_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  },
+                  "nominal_deductible_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  },
+                  "copay_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  },
+                  "coinsurance_base_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  },
+                  "payer_before_caps_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  },
+                  "member_before_oop_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  },
+                  "payer_after_oop_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  },
+                  "member_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  },
+                  "payout_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  },
+                  "noncovered_cents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500000000
+                  }
+                },
+                "required": [
+                  "line_id",
+                  "eligible_cents",
+                  "nominal_deductible_cents",
+                  "copay_cents",
+                  "coinsurance_base_cents",
+                  "payer_before_caps_cents",
+                  "member_before_oop_cents",
+                  "payer_after_oop_cents",
+                  "member_cents",
+                  "payout_cents",
+                  "noncovered_cents"
+                ]
+              }
+            }
+          },
+          "schema_hash": "c26a7cb3b5428f961b5f01ac23804e4634620055cb83d7142d2abf94704c49a3",
+          "phase": "provider_error",
+          "error": "ProviderError: Local model request failed: TimeoutError"
+        }
+      ],
+      "self_review_requested": true,
+      "phase": "assessed",
+      "first": {
+        "answer": {
+          "observations": []
+        },
+        "error": "provider_error"
+      }
+    }
+  ],
+  "summary": [
+    {
+      "model": "qwen3.5:27b",
+      "stage": "first",
+      "trials": 1,
+      "unique_tasks": 1,
+      "unique_heldout_tasks": 0,
+      "assessed": 0,
+      "not_assessed": 1,
+      "eligible": 0,
+      "strict_percent": 0.0,
+      "schema_valid": 0,
+      "observations_correct": 0,
+      "calculations_correct": 0,
+      "input_preservation": "immutable server assembly; model cannot supply inputs",
+      "provider_errors": 1,
+      "unknown_requests": 0,
+      "model_calls": 1,
+      "latency_median_ms": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "stable_repeated_tasks": 0,
+      "repeated_tasks": 0,
+      "target_percent": 80,
+      "target_met": false,
+      "mode": "experimental",
+      "reference_assisted_corrections": 0
+    },
+    {
+      "model": "qwen3.5:27b",
+      "stage": "self_review",
+      "trials": 1,
+      "unique_tasks": 1,
+      "unique_heldout_tasks": 0,
+      "assessed": 0,
+      "not_assessed": 1,
+      "eligible": 0,
+      "strict_percent": 0.0,
+      "schema_valid": 0,
+      "observations_correct": 0,
+      "calculations_correct": 0,
+      "input_preservation": "immutable server assembly; model cannot supply inputs",
+      "provider_errors": 0,
+      "unknown_requests": 0,
+      "model_calls": 0,
+      "latency_median_ms": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "stable_repeated_tasks": 0,
+      "repeated_tasks": 0,
+      "target_percent": 80,
+      "target_met": false,
+      "mode": "experimental",
+      "reference_assisted_corrections": 0
+    }
+  ],
+  "approval": null,
+  "previously_exposed_tasks": []
+}

@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "source_hash": "039fa265fd6b6e2fc8aac9c22f34ac03cba10edfa2a029e291b8f9107a182065",
+  "passed": 1175,
+  "failed": 0,
+  "skipped": 0,
+  "browsers": {
+    "chromium": 77,
+    "firefox": 77,
+    "webkit": 77
+  },
+  "scope": "Full isolated Linux unit/API and 231 E2E checks. Overlaps 1021-check standard run. One upstream pytest-playwright fixture deprecation warning."
+}

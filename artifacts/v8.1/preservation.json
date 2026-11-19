@@ -1,0 +1,188 @@
+{
+  "original_stores_preserved": true,
+  "tables": [
+    {
+      "database": "advanced-v63.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 1,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "advanced-v63.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "claims-v2.sqlite",
+      "table": "claims",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "claims-v2.sqlite",
+      "table": "events",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "claims-v2.sqlite",
+      "table": "payments",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "integrations-v67.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "integrations-v67.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "ai-v3.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 52,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "ai-v3.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "v58-reserved.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 2,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "v58-reserved.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "benefits-v60.sqlite",
+      "table": "benefit_claims",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "benefits-v60.sqlite",
+      "table": "accumulators",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "benefits-v60.sqlite",
+      "table": "benefit_ledger",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "benefits-v60.sqlite",
+      "table": "benefit_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "advanced-evaluations-v64.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 4,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "advanced-evaluations-v64.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "coverage-v55.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 19,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "coverage-v55.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "evaluation-v4.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 3,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "evaluation-v4.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "research-v59.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 1,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "research-v59.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "advanced-reviewed-v67.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 2,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "advanced-reviewed-v67.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "v63-development.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 1,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "v63-development.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "review-audit.sqlite",
+      "table": "review_audit",
+      "original_rows": 4,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "reliability-v58.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 2,
+      "all_original_multiplicities_present": true
+    },
+    {
+      "database": "reliability-v58.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "all_original_multiplicities_present": true
+    }
+  ],
+  "unrelated_v4_sha256": "26f7f5bf44d5ee30843e821ce7cdb07e22f273f7bc1d73ac9c43d34a5eaa7801",
+  "vs_code_opened": false,
+  "scope": "Read-only row-hash multiplicity audit of original application stores. No sibling-project writes were performed. Unrelated V4 draft retained and excluded from staging."
+}

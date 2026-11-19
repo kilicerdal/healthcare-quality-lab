@@ -1,0 +1,297 @@
+{
+  "kind": "reviewable_v81_delivery_scope",
+  "publication_status": "pending explicit approval; no final main/tag push or public release",
+  "public_repo": "kilicerdal/healthcare-quality-lab",
+  "frozen_code_commit": "8ba1cad06fe8b1d94ef7d2357fb793c247d8efc0",
+  "source_hash": "039fa265fd6b6e2fc8aac9c22f34ac03cba10edfa2a029e291b8f9107a182065",
+  "implementation_paths": [
+    ".github/workflows/ci.yml",
+    "docs/V8.1_REPORT.html",
+    "docs/V8.1_REPORT.md",
+    "healthcare_quality/__init__.py",
+    "healthcare_quality/app.py",
+    "healthcare_quality/data/expectation_cohort_v81.json",
+    "healthcare_quality/expectation_api.py",
+    "healthcare_quality/expectation_evaluator.py",
+    "healthcare_quality/expectation_lab.py",
+    "healthcare_quality/expectation_protocol.py",
+    "healthcare_quality/ollama_provider.py",
+    "healthcare_quality/static/expectations.js",
+    "healthcare_quality/static/style.css",
+    "healthcare_quality/templates/index.html",
+    "tests/api/test_expectation_api.py",
+    "tests/e2e/test_expectations_browser.py",
+    "tests/unit/test_expectation_lab.py",
+    "tests/unit/test_expectation_protocol.py",
+    "tests/unit/test_expectation_provider.py",
+    "tools/expectation_report.py",
+    "tools/expectations.py",
+    "tools/render_report.py",
+    "tools/verify.py"
+  ],
+  "delivery_files": [
+    {
+      "path": "README.md",
+      "bytes": 24120,
+      "sha256": "26ad5a41876524e092cd571d0de74bc0a6421721bb2c5636134bdede2dd4386c"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "bytes": 7873,
+      "sha256": "845d86f571637f6dacde733215d33af1be84f5ffd9d5df621d7c5c7bc8e98ce9"
+    },
+    {
+      "path": "docs/V8.1_REPORT.md",
+      "bytes": 22841,
+      "sha256": "ae2a9963f129aebc78eea34145b50e60b180942427ac42636ba2ab58c6d3f9e6"
+    },
+    {
+      "path": "docs/V8.1_REPORT.html",
+      "bytes": 30191,
+      "sha256": "a9b90bc467633a8265969035d648aaa62782e654b4796d13196a839a6a4b7f19"
+    },
+    {
+      "path": "docs/V8.1_GUIDE.md",
+      "bytes": 7042,
+      "sha256": "3a7ff79ab4f90ba72d13f16f17b3cb01590c9ac716bfa97c6817f9c88e948c99"
+    },
+    {
+      "path": "docs/V8.1_ARCHITECTURE.md",
+      "bytes": 2089,
+      "sha256": "c16f90d88ada1e43b3226d678cf4d2bbb412995f1ed40b1d4a8c7913d18d7c4d"
+    },
+    {
+      "path": "docs/images/v81-expectations-desktop.png",
+      "bytes": 208510,
+      "sha256": "8c1e340c8766bcd42aeb660743d0e04735b672389e6d221e10001413106adf12"
+    },
+    {
+      "path": "docs/images/v81-expectations-mobile.png",
+      "bytes": 184041,
+      "sha256": "8b017cbd39c3b5361ff786dac06d48fe8a928f072a147810df2a41df1a509d9e"
+    },
+    {
+      "path": "artifacts/verification.json",
+      "bytes": 2376,
+      "sha256": "6bda754a42227bf5cd0309b4f9e9b92ebd2e497a4f4e2e09e185b0986ca43660"
+    },
+    {
+      "path": "artifacts/pytest-output.txt",
+      "bytes": 1233,
+      "sha256": "edeb84bec41c10ad27720f0490ca829be5be375b320eaa8bbbc22b9b27177fbc"
+    },
+    {
+      "path": "artifacts/pytest-results.xml",
+      "bytes": 134820,
+      "sha256": "cd257dee3f5a41bc9744ff2df86a2c4c447c9aace1ccfccaea1fb42e809b7b31"
+    },
+    {
+      "path": "artifacts/v8.1/all-browsers-summary.json",
+      "bytes": 393,
+      "sha256": "e8bf348a0d26d6acefe7f98459de22559c670650068b75324edbc265b1dfef63"
+    },
+    {
+      "path": "artifacts/v8.1/browser-flow.xml",
+      "bytes": 1016,
+      "sha256": "e79cf45dad341e2d7f12215427cfb26854b6de3e29a7482481c70a347f3e0b20"
+    },
+    {
+      "path": "artifacts/v8.1/checkpoint-all-browsers.xml",
+      "bytes": 156071,
+      "sha256": "0831fd1028dbc3012c22134e39c271607829a30cb1a592f2c2d20bd90da82b01"
+    },
+    {
+      "path": "artifacts/v8.1/demo-replay.json",
+      "bytes": 624,
+      "sha256": "18a3393cb5e27bb64d6db8eb94a35026ba1f142aea602f871affdb5f6e856c48"
+    },
+    {
+      "path": "artifacts/v8.1/development-final-candidate.json",
+      "bytes": 338380,
+      "sha256": "3a21c44a5d7449e5744f36fc4f87157cb584b4329ab31374fe34ab57527ba2bd"
+    },
+    {
+      "path": "artifacts/v8.1/development-model-http.json",
+      "bytes": 43018,
+      "sha256": "0749ad75e3027c13b5f78f8e5e4610f04f0014fe5ec5ef4f8ffd0ef0e4c82b5c"
+    },
+    {
+      "path": "artifacts/v8.1/development-pilot.json",
+      "bytes": 598151,
+      "sha256": "7270dca94bbe76bb01cdf049ad15d8d7741c6e05ca6c34e99a5c5c7f335d253d"
+    },
+    {
+      "path": "artifacts/v8.1/development-reasoning.json",
+      "bytes": 26187,
+      "sha256": "ba34b743cbc214cedbaa5a55083e1ff4ef70329d6fb6f5039c5c8416fa4490f6"
+    },
+    {
+      "path": "artifacts/v8.1/development-source-provenance.json",
+      "bytes": 1809,
+      "sha256": "3d205d968d82da83afe6afa8cc56d6b7570aebe1333283c44483c21650cdcdd8"
+    },
+    {
+      "path": "artifacts/v8.1/development-state.json",
+      "bytes": 179485,
+      "sha256": "d61da166d4814e6bc59a7bf2f96913a46c197bad976bd2342aa6ba859a02c443"
+    },
+    {
+      "path": "artifacts/v8.1/development-stepwise.json",
+      "bytes": 400591,
+      "sha256": "8006f0216024214580057696d1642f11308e4cac45e6813fa6d8cc209b20bcd1"
+    },
+    {
+      "path": "artifacts/v8.1/development-structured.json",
+      "bytes": 332409,
+      "sha256": "149207f51686bac20cf3139bc1453cb2eeb78425642341da2b85c234d467c209"
+    },
+    {
+      "path": "artifacts/v8.1/final-all-browsers.xml",
+      "bytes": 156071,
+      "sha256": "e3602e03b35059ea15dbb5e3cbc4dbf9439b481085d7bd5b50d06e4151ba9938"
+    },
+    {
+      "path": "artifacts/v8.1/final-targeted.xml",
+      "bytes": 7509,
+      "sha256": "be8a7292917d7d180348f9213d4af10421d2b94d23e867ef542e0ba5a9266954"
+    },
+    {
+      "path": "artifacts/v8.1/freeze-tests.xml",
+      "bytes": 7508,
+      "sha256": "00ec24b7450bf5988107fd52a647b1f1ffe715f22d8413aab09fc81316912158"
+    },
+    {
+      "path": "artifacts/v8.1/heldout-diagnostics.json",
+      "bytes": 20682,
+      "sha256": "f27ce9ccb2c889b4e00635a8b6c8c4d11e8f699c7238615ae52566f59736b0ef"
+    },
+    {
+      "path": "artifacts/v8.1/heldout-effectiveness.json",
+      "bytes": 32371,
+      "sha256": "8725ca690aede655526c8399984f596af1dd097fe9f40187ee897ca9a95b6d4d"
+    },
+    {
+      "path": "artifacts/v8.1/heldout-model-http.json",
+      "bytes": 271192,
+      "sha256": "477316f430a498f6bdea08d2e947c62c13c56b0035983803bca674d6a5c3c083"
+    },
+    {
+      "path": "artifacts/v8.1/heldout-part-one.json",
+      "bytes": 3615220,
+      "sha256": "979d75f29d0e2a460f9c64129152820b41c19fba84a7cc71954fa9ec8fc441a0"
+    },
+    {
+      "path": "artifacts/v8.1/heldout-part-two.json",
+      "bytes": 3319852,
+      "sha256": "a7717fe2d583a1b11871afa9e6277cde3e248c9e95a9acefa3367154970cf59d"
+    },
+    {
+      "path": "artifacts/v8.1/heldout-scorecard.json",
+      "bytes": 5385,
+      "sha256": "8bce554434d433b646671f2facd6c5f75bdc7144538bf06aa2859c154ba97d43"
+    },
+    {
+      "path": "artifacts/v8.1/hosted-all-browser-summary.json",
+      "bytes": 437,
+      "sha256": "7856a200514baf7a8a7adcfc5240236650128b1038215b26a3efc3fa23d583d9"
+    },
+    {
+      "path": "artifacts/v8.1/initial-targeted.xml",
+      "bytes": 5968,
+      "sha256": "4877493d405c09ec529e3932aa2b89b31eaad0b0aac4ad636644a87009aa5e8d"
+    },
+    {
+      "path": "artifacts/v8.1/local-verification.json",
+      "bytes": 2376,
+      "sha256": "6bda754a42227bf5cd0309b4f9e9b92ebd2e497a4f4e2e09e185b0986ca43660"
+    },
+    {
+      "path": "artifacts/v8.1/portable-schema-tests.xml",
+      "bytes": 7454,
+      "sha256": "0dff98dfb749c29211980d80f64902eefd432234cfbb4acd425b837f2a384821"
+    },
+    {
+      "path": "artifacts/v8.1/preservation.json",
+      "bytes": 5303,
+      "sha256": "fe1040eb52371321b3606488a465c3f13e1f0df413c38053d5bf0582248f8b3c"
+    },
+    {
+      "path": "artifacts/v8.1/protocol-lock.json",
+      "bytes": 30130,
+      "sha256": "9fe8e75a46ef214efff50288882b094debfd4cf93413135b1cffccf7c09b85fb"
+    },
+    {
+      "path": "artifacts/v8.1/reasoning-profile-tests.xml",
+      "bytes": 7993,
+      "sha256": "ddb316098af55ff5698889fed509a73e8a6e92d42b4799464ffd52395f4d181d"
+    },
+    {
+      "path": "artifacts/v8.1/report-desktop.png",
+      "bytes": 157693,
+      "sha256": "a007ef2008b41edd9b0dfd8681809bc3e7108dc80493d105a6b3f5d35e7cc789"
+    },
+    {
+      "path": "artifacts/v8.1/schema-capability-probe.json",
+      "bytes": 13053,
+      "sha256": "15bb679b046036c430bc2ae869e495461c4faaf3984713c7533b5bd8f3c36197"
+    },
+    {
+      "path": "artifacts/v8.1/state-worksheet-tests.xml",
+      "bytes": 7657,
+      "sha256": "b7657da2804196a80806776351a670b8978c5187dd703d4f61b3a5ec8819cb13"
+    },
+    {
+      "path": "artifacts/v8.1/structured-v2-tests.xml",
+      "bytes": 6348,
+      "sha256": "3fd57186c43237dca2ad7ccea07acc53d59e55663a2a980842ef8830258894b1"
+    },
+    {
+      "path": "artifacts/v8.1/targeted.xml",
+      "bytes": 6810,
+      "sha256": "ad0c208d8e45822bdf4f2e213c57ab08bb9b208bdc6a1633d4894f9cd610459e"
+    },
+    {
+      "path": "artifacts/v8.1/unit-api.xml",
+      "bytes": 123539,
+      "sha256": "fc4b91a7fca9a81d1bcef15d154ce9846ab88f0314aa8e5d97dad319ac02704e"
+    },
+    {
+      "path": "artifacts/v8.1/v81-development-source.zip",
+      "bytes": 458268,
+      "sha256": "88844f811775237331ed3e773ce4110ab95bb1254fbc8947b6ab36ca37e33c38"
+    },
+    {
+      "path": "artifacts/v8.1/v81-final-development-source.zip",
+      "bytes": 470578,
+      "sha256": "01579efe5848522c61d186044287a2506144c503f9fd53bfb389a515397af430"
+    },
+    {
+      "path": "artifacts/v8.1/v81-portable-development-source.zip",
+      "bytes": 469608,
+      "sha256": "454427cd4cb08051f9c207dcaacba42ac405495fc222a34843369556a4259307"
+    },
+    {
+      "path": "artifacts/v8.1/v81-reasoning-development-source.zip",
+      "bytes": 472299,
+      "sha256": "3d6a9a3d31aca11e2384b1e8f33316352e376f2422df1564159c05e7a3297752"
+    },
+    {
+      "path": "artifacts/v8.1/v81-state-development-source.zip",
+      "bytes": 472984,
+      "sha256": "f103d0323f5acec0a4789dd8bc05360b9439e56d6882e4f4e0eb20714664be67"
+    },
+    {
+      "path": "artifacts/v8.1/v81-structured-development-source.zip",
+      "bytes": 468695,
+      "sha256": "d8b35d06cd991e8fdc0b4943ec8998dd79b264968ef74dc8f437ae122da230e4"
+    }
+  ],
+  "total_delivery_bytes": 13326253,
+  "excluded": [
+    "docs/V4_REPORT.md",
+    "task-regenerated V7 screenshots restored to committed versions",
+    ".local stores/caches/credentials",
+    "all sibling projects"
+  ],
+  "scope": "Only V8.1 implementation, documentation, synthetic model experiment evidence, test receipts and screenshots. No public mutation performed by this scope check."
+}

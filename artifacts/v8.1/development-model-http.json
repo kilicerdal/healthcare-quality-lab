@@ -1,0 +1,1210 @@
+{
+  "source_hash": "039fa265fd6b6e2fc8aac9c22f34ac03cba10edfa2a029e291b8f9107a182065",
+  "kind": "actual_development_model_expected_values_http",
+  "experiment": "478ad4000a684688ba12cf0a525b5af3",
+  "model": "qwen3.5:27b",
+  "stage": "first",
+  "model_expected_values_unchanged": true,
+  "calculator_assistance_during_generation": false,
+  "reference_assisted_corrections": 0,
+  "unapproved_execution_blocked": true,
+  "engineering_review": true,
+  "execution": {
+    "approval": {
+      "at": "2026-11-19T05:02:07.626939+00:00",
+      "cases_hash": "786886caf82da1ad397d273c85c4a22d49e7925b72230c2895785f644bb20fac",
+      "contract_hash": "22ca3d505a32df5774fee05e7301aa68f92f8b2c74e70080ba0f0e91ccc6a42e",
+      "note": "Scripted engineering inspection of unchanged model-authored 58653 payout, 25664 member charge and revision/history/ledger worksheets. Development evidence, not human review or held-out qualification.",
+      "reviewer": "Codex V8.1 engineering inspection",
+      "source_hash": "039fa265fd6b6e2fc8aac9c22f34ac03cba10edfa2a029e291b8f9107a182065"
+    },
+    "assessment": {
+      "duplicates": [],
+      "matched": true,
+      "reference": [
+        {
+          "case_id": "AB-D81-01",
+          "matched": true,
+          "steps": [
+            {
+              "expected": {
+                "event_count": 1,
+                "family_benefit": 58653,
+                "family_deductible": 10000,
+                "family_oop": 25664,
+                "individual_benefit": 58653,
+                "individual_deductible": 10000,
+                "individual_oop": 25664,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "member_cents": 25664,
+                "noncovered_cents": 0,
+                "other_payer_cents": 0,
+                "partial": false,
+                "payout_cents": 58653,
+                "policy_id": "SYN-2026-H1",
+                "revision": 1,
+                "state": "adjudicated",
+                "status": 201
+              },
+              "mismatches": [],
+              "step": 1
+            },
+            {
+              "expected": {
+                "event_count": 2,
+                "family_benefit": 58653,
+                "family_deductible": 10000,
+                "family_oop": 25664,
+                "individual_benefit": 58653,
+                "individual_deductible": 10000,
+                "individual_oop": 25664,
+                "ledger_cents": 58653,
+                "ledger_count": 1,
+                "member_cents": 25664,
+                "noncovered_cents": 0,
+                "other_payer_cents": 0,
+                "partial": false,
+                "payout_cents": 58653,
+                "policy_id": "SYN-2026-H1",
+                "revision": 2,
+                "state": "paid",
+                "status": 200
+              },
+              "mismatches": [],
+              "step": 2
+            },
+            {
+              "expected": {
+                "event_count": 2,
+                "family_benefit": 58653,
+                "family_deductible": 10000,
+                "family_oop": 25664,
+                "individual_benefit": 58653,
+                "individual_deductible": 10000,
+                "individual_oop": 25664,
+                "ledger_cents": 58653,
+                "ledger_count": 1,
+                "member_cents": 25664,
+                "noncovered_cents": 0,
+                "other_payer_cents": 0,
+                "partial": false,
+                "payout_cents": 58653,
+                "policy_id": "SYN-2026-H1",
+                "revision": 2,
+                "state": "paid",
+                "status": 200
+              },
+              "mismatches": [],
+              "step": 3
+            }
+          ]
+        }
+      ],
+      "review_ready": true,
+      "valid": true
+    },
+    "cases": [
+      {
+        "assumptions": [],
+        "id": "AB-D81-01",
+        "rationale": "New authored input-only expectation evaluation; model must author all observations.",
+        "rule_ids": [
+          "BN-001",
+          "BN-002",
+          "BN-003",
+          "BN-004",
+          "BN-005",
+          "BN-006",
+          "BN-007"
+        ],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-D81-01",
+              "lines": [
+                {
+                  "allowed_cents": 84317,
+                  "id": "LINE-ONE",
+                  "other_payer_cents": 0,
+                  "service": "medical"
+                }
+              ],
+              "member_id": "M100",
+              "operation_key": "submit-D81-01",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-17"
+            },
+            "expect": {
+              "event_count": 1,
+              "family_benefit": 58653,
+              "family_deductible": 10000,
+              "family_oop": 25664,
+              "individual_benefit": 58653,
+              "individual_deductible": 10000,
+              "individual_oop": 25664,
+              "ledger_cents": 0,
+              "ledger_count": 0,
+              "member_cents": 25664,
+              "noncovered_cents": 0,
+              "other_payer_cents": 0,
+              "partial": false,
+              "payout_cents": 58653,
+              "policy_id": "SYN-2026-H1",
+              "revision": 1,
+              "state": "adjudicated",
+              "status": 201
+            }
+          },
+          {
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-D81-01",
+              "expected_revision": 1,
+              "operation_key": "pay-key-D81-01"
+            },
+            "expect": {
+              "event_count": 2,
+              "family_benefit": 58653,
+              "family_deductible": 10000,
+              "family_oop": 25664,
+              "individual_benefit": 58653,
+              "individual_deductible": 10000,
+              "individual_oop": 25664,
+              "ledger_cents": 58653,
+              "ledger_count": 1,
+              "member_cents": 25664,
+              "noncovered_cents": 0,
+              "other_payer_cents": 0,
+              "partial": false,
+              "payout_cents": 58653,
+              "policy_id": "SYN-2026-H1",
+              "revision": 2,
+              "state": "paid",
+              "status": 200
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-D81-01"
+            },
+            "expect": {
+              "event_count": 2,
+              "family_benefit": 58653,
+              "family_deductible": 10000,
+              "family_oop": 25664,
+              "individual_benefit": 58653,
+              "individual_deductible": 10000,
+              "individual_oop": 25664,
+              "ledger_cents": 58653,
+              "ledger_count": 1,
+              "member_cents": 25664,
+              "noncovered_cents": 0,
+              "other_payer_cents": 0,
+              "partial": false,
+              "payout_cents": 58653,
+              "policy_id": "SYN-2026-H1",
+              "revision": 2,
+              "state": "paid",
+              "status": 200
+            }
+          }
+        ],
+        "title": "Frozen D81-01"
+      }
+    ],
+    "contract_hash": "22ca3d505a32df5774fee05e7301aa68f92f8b2c74e70080ba0f0e91ccc6a42e",
+    "corrections": [],
+    "created_at": "2026-11-19T05:02:07.576517+00:00",
+    "id": "c0c85c895104412ca6033847f054e91b",
+    "kind": "advanced",
+    "provenance": {
+      "blind_self_review": false,
+      "expectation_author": "local model; no calculator assistance",
+      "experiment_id": "478ad4000a684688ba12cf0a525b5af3",
+      "experimental": true,
+      "model": "qwen3.5:27b",
+      "origin": "v81_model_expectations_first",
+      "reference_assisted": false,
+      "row": 0,
+      "stage": "first"
+    },
+    "raw": null,
+    "revision": 1,
+    "runs": [
+      {
+        "actions": 3,
+        "at": "2026-11-19T05:02:08.312130+00:00",
+        "duration_ms": 624.82,
+        "failed": 0,
+        "id": "c353d482fb3e4bf5b1c8400815826524",
+        "isolation": "Fresh synthetic state per case. Fixed actions only; no generated code or interactive-store writes.",
+        "observation_fault": null,
+        "passed": 1,
+        "results": [
+          {
+            "case_id": "AB-D81-01",
+            "passed": true,
+            "steps": [
+              {
+                "action": "submit",
+                "assertions": [
+                  {
+                    "expected": 201,
+                    "field": "status",
+                    "observed": 201,
+                    "passed": true
+                  },
+                  {
+                    "expected": "adjudicated",
+                    "field": "state",
+                    "observed": "adjudicated",
+                    "passed": true
+                  },
+                  {
+                    "expected": 1,
+                    "field": "revision",
+                    "observed": 1,
+                    "passed": true
+                  },
+                  {
+                    "expected": 1,
+                    "field": "event_count",
+                    "observed": 1,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "payout_cents",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": 25664,
+                    "field": "member_cents",
+                    "observed": 25664,
+                    "passed": true
+                  },
+                  {
+                    "expected": 0,
+                    "field": "other_payer_cents",
+                    "observed": 0,
+                    "passed": true
+                  },
+                  {
+                    "expected": 0,
+                    "field": "noncovered_cents",
+                    "observed": 0,
+                    "passed": true
+                  },
+                  {
+                    "expected": 0,
+                    "field": "ledger_cents",
+                    "observed": 0,
+                    "passed": true
+                  },
+                  {
+                    "expected": 0,
+                    "field": "ledger_count",
+                    "observed": 0,
+                    "passed": true
+                  },
+                  {
+                    "expected": 10000,
+                    "field": "individual_deductible",
+                    "observed": 10000,
+                    "passed": true
+                  },
+                  {
+                    "expected": 25664,
+                    "field": "individual_oop",
+                    "observed": 25664,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "individual_benefit",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": 10000,
+                    "field": "family_deductible",
+                    "observed": 10000,
+                    "passed": true
+                  },
+                  {
+                    "expected": 25664,
+                    "field": "family_oop",
+                    "observed": 25664,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "family_benefit",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": "SYN-2026-H1",
+                    "field": "policy_id",
+                    "observed": "SYN-2026-H1",
+                    "passed": true
+                  },
+                  {
+                    "expected": false,
+                    "field": "partial",
+                    "observed": false,
+                    "passed": true
+                  }
+                ],
+                "expected": {
+                  "event_count": 1,
+                  "family_benefit": 58653,
+                  "family_deductible": 10000,
+                  "family_oop": 25664,
+                  "individual_benefit": 58653,
+                  "individual_deductible": 10000,
+                  "individual_oop": 25664,
+                  "ledger_cents": 0,
+                  "ledger_count": 0,
+                  "member_cents": 25664,
+                  "noncovered_cents": 0,
+                  "other_payer_cents": 0,
+                  "partial": false,
+                  "payout_cents": 58653,
+                  "policy_id": "SYN-2026-H1",
+                  "revision": 1,
+                  "state": "adjudicated",
+                  "status": 201
+                },
+                "observed": {
+                  "event_count": 1,
+                  "family_benefit": 58653,
+                  "family_deductible": 10000,
+                  "family_oop": 25664,
+                  "individual_benefit": 58653,
+                  "individual_deductible": 10000,
+                  "individual_oop": 25664,
+                  "ledger_cents": 0,
+                  "ledger_count": 0,
+                  "member_cents": 25664,
+                  "noncovered_cents": 0,
+                  "other_payer_cents": 0,
+                  "partial": false,
+                  "payout_cents": 58653,
+                  "policy_id": "SYN-2026-H1",
+                  "revision": 1,
+                  "state": "adjudicated",
+                  "status": 201
+                },
+                "passed": true,
+                "request": {
+                  "action": "submit",
+                  "actor": "customer-m100",
+                  "data": {
+                    "claim_id": "CLAIM-D81-01",
+                    "lines": [
+                      {
+                        "allowed_cents": 84317,
+                        "id": "LINE-ONE",
+                        "other_payer_cents": 0,
+                        "service": "medical"
+                      }
+                    ],
+                    "member_id": "M100",
+                    "operation_key": "submit-D81-01",
+                    "plan_id": "commercial_ppo",
+                    "service_date": "2026-03-17"
+                  }
+                },
+                "request_id": "94ba277e1f5142079f54ce44780cb54e",
+                "response": {
+                  "calculation": {
+                    "allocation": {
+                      "benefit": 58653,
+                      "deductible": 10000,
+                      "oop": 25664
+                    },
+                    "family": {
+                      "benefit": 58653,
+                      "deductible": 10000,
+                      "oop": 25664
+                    },
+                    "individual": {
+                      "benefit": 58653,
+                      "deductible": 10000,
+                      "oop": 25664
+                    },
+                    "lines": [
+                      {
+                        "allowed_cents": 84317,
+                        "copay_cents": 1000,
+                        "deductible_cents": 10000,
+                        "id": "LINE-ONE",
+                        "member_cents": 25664,
+                        "noncovered_cents": 0,
+                        "other_payer_cents": 0,
+                        "payout_cents": 58653,
+                        "reason": "COVERED"
+                      }
+                    ],
+                    "partial": false,
+                    "policy_id": "SYN-2026-H1",
+                    "rule_trace": [
+                      {
+                        "line_id": "LINE-ONE",
+                        "outcome": "COVERED",
+                        "rule_id": "BN-002"
+                      },
+                      {
+                        "outcome": "Integer cost sharing and caps calculated",
+                        "rule_id": "BN-004"
+                      },
+                      {
+                        "outcome": "Annual allocation reserved",
+                        "rule_id": "BN-005"
+                      }
+                    ],
+                    "totals": {
+                      "allowed_cents": 84317,
+                      "copay_cents": 1000,
+                      "deductible_cents": 10000,
+                      "member_cents": 25664,
+                      "noncovered_cents": 0,
+                      "other_payer_cents": 0,
+                      "payout_cents": 58653
+                    },
+                    "year": 2026
+                  },
+                  "current_family_accumulators": {
+                    "benefit": 58653,
+                    "deductible": 10000,
+                    "oop": 25664
+                  },
+                  "current_member_accumulators": {
+                    "benefit": 58653,
+                    "deductible": 10000,
+                    "oop": 25664
+                  },
+                  "events": [
+                    {
+                      "action": "submit",
+                      "actor": "customer-m100",
+                      "note": null,
+                      "operation_key": "submit-D81-01",
+                      "revision": 1,
+                      "rule_ids": [
+                        "BN-001",
+                        "BN-005"
+                      ]
+                    }
+                  ],
+                  "family_id": "F100",
+                  "id": "CLAIM-D81-01",
+                  "ledger": [],
+                  "lines": [
+                    {
+                      "allowed_cents": 84317,
+                      "id": "LINE-ONE",
+                      "other_payer_cents": 0,
+                      "service": "medical"
+                    }
+                  ],
+                  "member_id": "M100",
+                  "plan_id": "commercial_ppo",
+                  "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726",
+                  "policy_snapshot": {
+                    "annual_benefit": 200000,
+                    "copay": 1000,
+                    "end": "2026-07-01",
+                    "family_deductible": 20000,
+                    "family_oop": 60000,
+                    "id": "SYN-2026-H1",
+                    "individual_deductible": 10000,
+                    "individual_oop": 30000,
+                    "payer_bps": 8000,
+                    "plan": {
+                      "authorization_services": [
+                        "hospital"
+                      ],
+                      "deductible_cents": 10000,
+                      "description": "Broad service coverage with a relaxed network fixture",
+                      "family": "Commercial",
+                      "id": "commercial_ppo",
+                      "limit_cents": 200000,
+                      "name": "Commercial PPO",
+                      "network_required": false,
+                      "services": [
+                        "hospital",
+                        "medical",
+                        "outpatient",
+                        "prescription",
+                        "preventive",
+                        "mental_health",
+                        "maternity",
+                        "rehabilitation",
+                        "emergency",
+                        "lab"
+                      ]
+                    },
+                    "start": "2026-01-01",
+                    "year": 2026
+                  },
+                  "revision": 1,
+                  "service_date": "2026-03-17",
+                  "state": "adjudicated",
+                  "year": 2026
+                },
+                "step": 1
+              },
+              {
+                "action": "pay",
+                "assertions": [
+                  {
+                    "expected": 200,
+                    "field": "status",
+                    "observed": 200,
+                    "passed": true
+                  },
+                  {
+                    "expected": "paid",
+                    "field": "state",
+                    "observed": "paid",
+                    "passed": true
+                  },
+                  {
+                    "expected": 2,
+                    "field": "revision",
+                    "observed": 2,
+                    "passed": true
+                  },
+                  {
+                    "expected": 2,
+                    "field": "event_count",
+                    "observed": 2,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "payout_cents",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": 25664,
+                    "field": "member_cents",
+                    "observed": 25664,
+                    "passed": true
+                  },
+                  {
+                    "expected": 0,
+                    "field": "other_payer_cents",
+                    "observed": 0,
+                    "passed": true
+                  },
+                  {
+                    "expected": 0,
+                    "field": "noncovered_cents",
+                    "observed": 0,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "ledger_cents",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": 1,
+                    "field": "ledger_count",
+                    "observed": 1,
+                    "passed": true
+                  },
+                  {
+                    "expected": 10000,
+                    "field": "individual_deductible",
+                    "observed": 10000,
+                    "passed": true
+                  },
+                  {
+                    "expected": 25664,
+                    "field": "individual_oop",
+                    "observed": 25664,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "individual_benefit",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": 10000,
+                    "field": "family_deductible",
+                    "observed": 10000,
+                    "passed": true
+                  },
+                  {
+                    "expected": 25664,
+                    "field": "family_oop",
+                    "observed": 25664,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "family_benefit",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": "SYN-2026-H1",
+                    "field": "policy_id",
+                    "observed": "SYN-2026-H1",
+                    "passed": true
+                  },
+                  {
+                    "expected": false,
+                    "field": "partial",
+                    "observed": false,
+                    "passed": true
+                  }
+                ],
+                "expected": {
+                  "event_count": 2,
+                  "family_benefit": 58653,
+                  "family_deductible": 10000,
+                  "family_oop": 25664,
+                  "individual_benefit": 58653,
+                  "individual_deductible": 10000,
+                  "individual_oop": 25664,
+                  "ledger_cents": 58653,
+                  "ledger_count": 1,
+                  "member_cents": 25664,
+                  "noncovered_cents": 0,
+                  "other_payer_cents": 0,
+                  "partial": false,
+                  "payout_cents": 58653,
+                  "policy_id": "SYN-2026-H1",
+                  "revision": 2,
+                  "state": "paid",
+                  "status": 200
+                },
+                "observed": {
+                  "event_count": 2,
+                  "family_benefit": 58653,
+                  "family_deductible": 10000,
+                  "family_oop": 25664,
+                  "individual_benefit": 58653,
+                  "individual_deductible": 10000,
+                  "individual_oop": 25664,
+                  "ledger_cents": 58653,
+                  "ledger_count": 1,
+                  "member_cents": 25664,
+                  "noncovered_cents": 0,
+                  "other_payer_cents": 0,
+                  "partial": false,
+                  "payout_cents": 58653,
+                  "policy_id": "SYN-2026-H1",
+                  "revision": 2,
+                  "state": "paid",
+                  "status": 200
+                },
+                "passed": true,
+                "request": {
+                  "action": "pay",
+                  "actor": "finance-demo",
+                  "data": {
+                    "claim_id": "CLAIM-D81-01",
+                    "expected_revision": 1,
+                    "operation_key": "pay-key-D81-01"
+                  }
+                },
+                "request_id": "c704e3f3b22e4970bc7870209ec143f4",
+                "response": {
+                  "calculation": {
+                    "allocation": {
+                      "benefit": 58653,
+                      "deductible": 10000,
+                      "oop": 25664
+                    },
+                    "family": {
+                      "benefit": 58653,
+                      "deductible": 10000,
+                      "oop": 25664
+                    },
+                    "individual": {
+                      "benefit": 58653,
+                      "deductible": 10000,
+                      "oop": 25664
+                    },
+                    "lines": [
+                      {
+                        "allowed_cents": 84317,
+                        "copay_cents": 1000,
+                        "deductible_cents": 10000,
+                        "id": "LINE-ONE",
+                        "member_cents": 25664,
+                        "noncovered_cents": 0,
+                        "other_payer_cents": 0,
+                        "payout_cents": 58653,
+                        "reason": "COVERED"
+                      }
+                    ],
+                    "partial": false,
+                    "policy_id": "SYN-2026-H1",
+                    "rule_trace": [
+                      {
+                        "line_id": "LINE-ONE",
+                        "outcome": "COVERED",
+                        "rule_id": "BN-002"
+                      },
+                      {
+                        "outcome": "Integer cost sharing and caps calculated",
+                        "rule_id": "BN-004"
+                      },
+                      {
+                        "outcome": "Annual allocation reserved",
+                        "rule_id": "BN-005"
+                      }
+                    ],
+                    "totals": {
+                      "allowed_cents": 84317,
+                      "copay_cents": 1000,
+                      "deductible_cents": 10000,
+                      "member_cents": 25664,
+                      "noncovered_cents": 0,
+                      "other_payer_cents": 0,
+                      "payout_cents": 58653
+                    },
+                    "year": 2026
+                  },
+                  "current_family_accumulators": {
+                    "benefit": 58653,
+                    "deductible": 10000,
+                    "oop": 25664
+                  },
+                  "current_member_accumulators": {
+                    "benefit": 58653,
+                    "deductible": 10000,
+                    "oop": 25664
+                  },
+                  "events": [
+                    {
+                      "action": "submit",
+                      "actor": "customer-m100",
+                      "note": null,
+                      "operation_key": "submit-D81-01",
+                      "revision": 1,
+                      "rule_ids": [
+                        "BN-001",
+                        "BN-005"
+                      ]
+                    },
+                    {
+                      "action": "pay",
+                      "actor": "finance-demo",
+                      "note": null,
+                      "operation_key": "pay-key-D81-01",
+                      "revision": 2,
+                      "rule_ids": [
+                        "BN-006"
+                      ]
+                    }
+                  ],
+                  "family_id": "F100",
+                  "id": "CLAIM-D81-01",
+                  "ledger": [
+                    {
+                      "amount": 58653,
+                      "operation": "pay-key-D81-01",
+                      "seq": 1
+                    }
+                  ],
+                  "lines": [
+                    {
+                      "allowed_cents": 84317,
+                      "id": "LINE-ONE",
+                      "other_payer_cents": 0,
+                      "service": "medical"
+                    }
+                  ],
+                  "member_id": "M100",
+                  "plan_id": "commercial_ppo",
+                  "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726",
+                  "policy_snapshot": {
+                    "annual_benefit": 200000,
+                    "copay": 1000,
+                    "end": "2026-07-01",
+                    "family_deductible": 20000,
+                    "family_oop": 60000,
+                    "id": "SYN-2026-H1",
+                    "individual_deductible": 10000,
+                    "individual_oop": 30000,
+                    "payer_bps": 8000,
+                    "plan": {
+                      "authorization_services": [
+                        "hospital"
+                      ],
+                      "deductible_cents": 10000,
+                      "description": "Broad service coverage with a relaxed network fixture",
+                      "family": "Commercial",
+                      "id": "commercial_ppo",
+                      "limit_cents": 200000,
+                      "name": "Commercial PPO",
+                      "network_required": false,
+                      "services": [
+                        "hospital",
+                        "medical",
+                        "outpatient",
+                        "prescription",
+                        "preventive",
+                        "mental_health",
+                        "maternity",
+                        "rehabilitation",
+                        "emergency",
+                        "lab"
+                      ]
+                    },
+                    "start": "2026-01-01",
+                    "year": 2026
+                  },
+                  "revision": 2,
+                  "service_date": "2026-03-17",
+                  "state": "paid",
+                  "year": 2026
+                },
+                "step": 2
+              },
+              {
+                "action": "read",
+                "assertions": [
+                  {
+                    "expected": 200,
+                    "field": "status",
+                    "observed": 200,
+                    "passed": true
+                  },
+                  {
+                    "expected": "paid",
+                    "field": "state",
+                    "observed": "paid",
+                    "passed": true
+                  },
+                  {
+                    "expected": 2,
+                    "field": "revision",
+                    "observed": 2,
+                    "passed": true
+                  },
+                  {
+                    "expected": 2,
+                    "field": "event_count",
+                    "observed": 2,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "payout_cents",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": 25664,
+                    "field": "member_cents",
+                    "observed": 25664,
+                    "passed": true
+                  },
+                  {
+                    "expected": 0,
+                    "field": "other_payer_cents",
+                    "observed": 0,
+                    "passed": true
+                  },
+                  {
+                    "expected": 0,
+                    "field": "noncovered_cents",
+                    "observed": 0,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "ledger_cents",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": 1,
+                    "field": "ledger_count",
+                    "observed": 1,
+                    "passed": true
+                  },
+                  {
+                    "expected": 10000,
+                    "field": "individual_deductible",
+                    "observed": 10000,
+                    "passed": true
+                  },
+                  {
+                    "expected": 25664,
+                    "field": "individual_oop",
+                    "observed": 25664,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "individual_benefit",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": 10000,
+                    "field": "family_deductible",
+                    "observed": 10000,
+                    "passed": true
+                  },
+                  {
+                    "expected": 25664,
+                    "field": "family_oop",
+                    "observed": 25664,
+                    "passed": true
+                  },
+                  {
+                    "expected": 58653,
+                    "field": "family_benefit",
+                    "observed": 58653,
+                    "passed": true
+                  },
+                  {
+                    "expected": "SYN-2026-H1",
+                    "field": "policy_id",
+                    "observed": "SYN-2026-H1",
+                    "passed": true
+                  },
+                  {
+                    "expected": false,
+                    "field": "partial",
+                    "observed": false,
+                    "passed": true
+                  }
+                ],
+                "expected": {
+                  "event_count": 2,
+                  "family_benefit": 58653,
+                  "family_deductible": 10000,
+                  "family_oop": 25664,
+                  "individual_benefit": 58653,
+                  "individual_deductible": 10000,
+                  "individual_oop": 25664,
+                  "ledger_cents": 58653,
+                  "ledger_count": 1,
+                  "member_cents": 25664,
+                  "noncovered_cents": 0,
+                  "other_payer_cents": 0,
+                  "partial": false,
+                  "payout_cents": 58653,
+                  "policy_id": "SYN-2026-H1",
+                  "revision": 2,
+                  "state": "paid",
+                  "status": 200
+                },
+                "observed": {
+                  "event_count": 2,
+                  "family_benefit": 58653,
+                  "family_deductible": 10000,
+                  "family_oop": 25664,
+                  "individual_benefit": 58653,
+                  "individual_deductible": 10000,
+                  "individual_oop": 25664,
+                  "ledger_cents": 58653,
+                  "ledger_count": 1,
+                  "member_cents": 25664,
+                  "noncovered_cents": 0,
+                  "other_payer_cents": 0,
+                  "partial": false,
+                  "payout_cents": 58653,
+                  "policy_id": "SYN-2026-H1",
+                  "revision": 2,
+                  "state": "paid",
+                  "status": 200
+                },
+                "passed": true,
+                "request": {
+                  "action": "read",
+                  "actor": "customer-m100",
+                  "data": {
+                    "claim_id": "CLAIM-D81-01"
+                  }
+                },
+                "request_id": "d51a145d9e174f4dab22580168e3973f",
+                "response": {
+                  "calculation": {
+                    "allocation": {
+                      "benefit": 58653,
+                      "deductible": 10000,
+                      "oop": 25664
+                    },
+                    "family": {
+                      "benefit": 58653,
+                      "deductible": 10000,
+                      "oop": 25664
+                    },
+                    "individual": {
+                      "benefit": 58653,
+                      "deductible": 10000,
+                      "oop": 25664
+                    },
+                    "lines": [
+                      {
+                        "allowed_cents": 84317,
+                        "copay_cents": 1000,
+                        "deductible_cents": 10000,
+                        "id": "LINE-ONE",
+                        "member_cents": 25664,
+                        "noncovered_cents": 0,
+                        "other_payer_cents": 0,
+                        "payout_cents": 58653,
+                        "reason": "COVERED"
+                      }
+                    ],
+                    "partial": false,
+                    "policy_id": "SYN-2026-H1",
+                    "rule_trace": [
+                      {
+                        "line_id": "LINE-ONE",
+                        "outcome": "COVERED",
+                        "rule_id": "BN-002"
+                      },
+                      {
+                        "outcome": "Integer cost sharing and caps calculated",
+                        "rule_id": "BN-004"
+                      },
+                      {
+                        "outcome": "Annual allocation reserved",
+                        "rule_id": "BN-005"
+                      }
+                    ],
+                    "totals": {
+                      "allowed_cents": 84317,
+                      "copay_cents": 1000,
+                      "deductible_cents": 10000,
+                      "member_cents": 25664,
+                      "noncovered_cents": 0,
+                      "other_payer_cents": 0,
+                      "payout_cents": 58653
+                    },
+                    "year": 2026
+                  },
+                  "current_family_accumulators": {
+                    "benefit": 58653,
+                    "deductible": 10000,
+                    "oop": 25664
+                  },
+                  "current_member_accumulators": {
+                    "benefit": 58653,
+                    "deductible": 10000,
+                    "oop": 25664
+                  },
+                  "events": [
+                    {
+                      "action": "submit",
+                      "actor": "customer-m100",
+                      "note": null,
+                      "operation_key": "submit-D81-01",
+                      "revision": 1,
+                      "rule_ids": [
+                        "BN-001",
+                        "BN-005"
+                      ]
+                    },
+                    {
+                      "action": "pay",
+                      "actor": "finance-demo",
+                      "note": null,
+                      "operation_key": "pay-key-D81-01",
+                      "revision": 2,
+                      "rule_ids": [
+                        "BN-006"
+                      ]
+                    }
+                  ],
+                  "family_id": "F100",
+                  "id": "CLAIM-D81-01",
+                  "ledger": [
+                    {
+                      "amount": 58653,
+                      "operation": "pay-key-D81-01",
+                      "seq": 1
+                    }
+                  ],
+                  "lines": [
+                    {
+                      "allowed_cents": 84317,
+                      "id": "LINE-ONE",
+                      "other_payer_cents": 0,
+                      "service": "medical"
+                    }
+                  ],
+                  "member_id": "M100",
+                  "plan_id": "commercial_ppo",
+                  "policy_hash": "70dc80d77bde8720312705b0768b852aac710ab588236c7084dc09c7cdf13726",
+                  "policy_snapshot": {
+                    "annual_benefit": 200000,
+                    "copay": 1000,
+                    "end": "2026-07-01",
+                    "family_deductible": 20000,
+                    "family_oop": 60000,
+                    "id": "SYN-2026-H1",
+                    "individual_deductible": 10000,
+                    "individual_oop": 30000,
+                    "payer_bps": 8000,
+                    "plan": {
+                      "authorization_services": [
+                        "hospital"
+                      ],
+                      "deductible_cents": 10000,
+                      "description": "Broad service coverage with a relaxed network fixture",
+                      "family": "Commercial",
+                      "id": "commercial_ppo",
+                      "limit_cents": 200000,
+                      "name": "Commercial PPO",
+                      "network_required": false,
+                      "services": [
+                        "hospital",
+                        "medical",
+                        "outpatient",
+                        "prescription",
+                        "preventive",
+                        "mental_health",
+                        "maternity",
+                        "rehabilitation",
+                        "emergency",
+                        "lab"
+                      ]
+                    },
+                    "start": "2026-01-01",
+                    "year": 2026
+                  },
+                  "revision": 2,
+                  "service_date": "2026-03-17",
+                  "state": "paid",
+                  "year": 2026
+                },
+                "step": 3
+              }
+            ]
+          }
+        ],
+        "transport": "http"
+      }
+    ],
+    "source_hash": "039fa265fd6b6e2fc8aac9c22f34ac03cba10edfa2a029e291b8f9107a182065",
+    "state": "reviewed"
+  },
+  "scope": "One development case, all expected values and numeric/state worksheets authored by the actual model. Independent checking occurred only after its answer froze. No held-out accuracy claim."
+}

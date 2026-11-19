@@ -1,0 +1,801 @@
+{
+  "rows": [
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-01",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents",
+          "revision"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents",
+          "revision"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-02",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-03",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-04",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_deductible",
+          "family_oop",
+          "individual_deductible",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_deductible",
+          "family_oop",
+          "individual_deductible",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-05",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_deductible",
+          "family_oop",
+          "individual_deductible",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "noncovered_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_deductible",
+          "family_oop",
+          "individual_deductible",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "noncovered_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-01",
+      "first": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      },
+      "self_review": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-02",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "member_cents",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "member_cents",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-03",
+      "first": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      },
+      "self_review": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-04",
+      "first": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      },
+      "self_review": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-05",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": true,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [],
+        "failed_categories": [
+          "numeric_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": true,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [],
+        "failed_categories": [
+          "numeric_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-06",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "noncovered_cents",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "noncovered_cents",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-07",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_deductible",
+          "family_oop",
+          "individual_deductible",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "noncovered_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_deductible",
+          "family_oop",
+          "individual_deductible",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "noncovered_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-08",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-09",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "event_count",
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_deductible",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents",
+          "policy_id",
+          "revision",
+          "state"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "event_count",
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_deductible",
+          "individual_oop",
+          "ledger_cents",
+          "ledger_count",
+          "member_cents",
+          "partial",
+          "payout_cents",
+          "policy_id",
+          "revision",
+          "state"
+        ],
+        "failed_categories": [
+          "money",
+          "lifecycle",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "task": "H81-10",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "family_benefit",
+          "family_deductible",
+          "family_oop",
+          "individual_benefit",
+          "individual_oop",
+          "ledger_cents",
+          "member_cents",
+          "partial",
+          "payout_cents"
+        ],
+        "failed_categories": [
+          "money",
+          "accumulators",
+          "ledger_money",
+          "numeric_worksheet",
+          "state_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-06",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-07",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "partial"
+        ],
+        "failed_categories": [
+          "numeric_worksheet"
+        ]
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [
+          "partial"
+        ],
+        "failed_categories": [
+          "numeric_worksheet"
+        ]
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-08",
+      "first": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      },
+      "self_review": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-09",
+      "first": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      },
+      "self_review": {
+        "strict_correct": true,
+        "observations_correct": true,
+        "calculations_correct": true,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      }
+    },
+    {
+      "model": "qwen3.5:27b",
+      "task": "H81-10",
+      "first": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      },
+      "self_review": {
+        "strict_correct": false,
+        "observations_correct": false,
+        "calculations_correct": false,
+        "observation_mismatch_fields": [],
+        "failed_categories": []
+      }
+    }
+  ],
+  "trials_with_error_category": {
+    "qwen2.5-coder:3b:first": {
+      "money": 10,
+      "lifecycle": 9,
+      "accumulators": 10,
+      "ledger_money": 10,
+      "numeric_worksheet": 10,
+      "state_worksheet": 10
+    },
+    "qwen2.5-coder:3b:self_review": {
+      "money": 10,
+      "lifecycle": 9,
+      "accumulators": 10,
+      "ledger_money": 10,
+      "numeric_worksheet": 10,
+      "state_worksheet": 10
+    },
+    "qwen3.5:27b:first": {
+      "money": 1,
+      "accumulators": 1,
+      "ledger_money": 1,
+      "numeric_worksheet": 3,
+      "state_worksheet": 1
+    },
+    "qwen3.5:27b:self_review": {
+      "money": 1,
+      "accumulators": 1,
+      "ledger_money": 1,
+      "numeric_worksheet": 3,
+      "state_worksheet": 1
+    }
+  },
+  "scope": "Post-freeze descriptive analysis only; categories overlap, never correction feedback. Money and ledger categories refer to wrong final observation fields; worksheets reported separately."
+}
