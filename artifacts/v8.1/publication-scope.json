@@ -1,6 +1,6 @@
 {
   "kind": "reviewable_v81_delivery_scope",
-  "publication_status": "pending explicit approval; no final main/tag push or public release",
+  "publication_status": "Explicit user approval received for scoped V8.1 publication through reviewed commit6f91796, final main/tag checks and release v8.1.0",
   "public_repo": "kilicerdal/healthcare-quality-lab",
   "frozen_code_commit": "8ba1cad06fe8b1d94ef7d2357fb793c247d8efc0",
   "source_hash": "039fa265fd6b6e2fc8aac9c22f34ac03cba10edfa2a029e291b8f9107a182065",
@@ -42,13 +42,13 @@
     },
     {
       "path": "docs/V8.1_REPORT.md",
-      "bytes": 22841,
-      "sha256": "ae2a9963f129aebc78eea34145b50e60b180942427ac42636ba2ab58c6d3f9e6"
+      "bytes": 23017,
+      "sha256": "2213908a978dae9c1115d1065c18f6fea6f78b21d09d67f6bfe4e0e897c67a44"
     },
     {
       "path": "docs/V8.1_REPORT.html",
-      "bytes": 30191,
-      "sha256": "a9b90bc467633a8265969035d648aaa62782e654b4796d13196a839a6a4b7f19"
+      "bytes": 30367,
+      "sha256": "f109eca3edde001385f6da52cb270d20934c510599da1bc82c6a43de0d183ec0"
     },
     {
       "path": "docs/V8.1_GUIDE.md",
@@ -286,12 +286,13 @@
       "sha256": "d8b35d06cd991e8fdc0b4943ec8998dd79b264968ef74dc8f437ae122da230e4"
     }
   ],
-  "total_delivery_bytes": 13326253,
+  "total_delivery_bytes": 13326605,
   "excluded": [
     "docs/V4_REPORT.md",
     "task-regenerated V7 screenshots restored to committed versions",
     ".local stores/caches/credentials",
     "all sibling projects"
   ],
-  "scope": "Only V8.1 implementation, documentation, synthetic model experiment evidence, test receipts and screenshots. No public mutation performed by this scope check."
+  "scope": "Only V8.1 implementation, documentation, synthetic model experiment evidence, test receipts and screenshots. No public mutation performed by this scope check.",
+  "approved_review_commit": "6f91796"
 }
