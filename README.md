@@ -1,11 +1,46 @@
-# Healthcare Quality Lab — V7.0
+# Healthcare Quality Lab — V8.0
+
+**Local acceptance: 968/968 standard checks and 1112/1112 complete three-browser checks passed.** Totals overlap. [Detailed ten-version delivery report](docs/V7.1_TO_V8.0_DELIVERY_REPORT.md) · [Operating and AI learning guide](docs/V8_GUIDE.md) · [Architecture](docs/V8_ARCHITECTURE.md) · [Adapter contract](docs/V8_ADAPTER_CONTRACT.md).
+
+A standalone synthetic quality engineering lab: Python, Flask, SQLite, pytest, Playwright and optional local Ollama. V8 connects eight coverage packs, financial-readback gates, AI scenario design, a 31-input frozen evaluation cohort, evidence assistance, ownership routing, explicit review and actual HTTP execution.
+
+```sh
+python3 -m tools.launch_demo --state-dir .local/v8-new-demo --port 8899
+```
+
+Open `http://127.0.0.1:8899/#workbench`. Existing state is never reset; choose a fresh directory and unused port. Run `python -m tools.doctor` from the installed project environment for read-only diagnostics. See the guide for developer/browser setup and Windows interpreter paths.
+
+**Honest AI result:** 0/16 raw expectation answers were eligible in the selected two-model/two-prompt repeated sample. The focused prompt did not improve strict correctness. Separately, one actual AI-designed Part B outpatient case with calculator-authored expectations passed actual HTTP and detected 19/27 pricing variants without reference-assisted correction. Calculator values are not model reasoning. [Original comparison](artifacts/v7.3/live-comparison.json) · [Actual AI plan and execution](artifacts/v7.8/live-ai-planner.json).
+
+**Engineering result:** 44 authored coverage/lifecycle scenarios passed 88 executions across two HTTP targets. The second is a reference-backed sample, not an external payer. New authored journeys detected 22/27 pricing mutations; the disclosed authored union remains 27/27. Security, dependency and load receipts state their limits. All policies, identities and payments are synthetic.
+
+![Recorded V8 workbench](docs/images/v8-workbench-desktop.png)
+
+[Actual captioned walkthrough](artifacts/v8.0/showcase-recording/healthcare-quality-lab-v8.webm) · [Captions](artifacts/v8.0/showcase-recording/healthcare-quality-lab-v8.vtt) · [Recording provenance](artifacts/v8.0/showcase-recording/capture.json). Five-second presentation holds aid reading; they are not application latency. No inference is made by the recording.
+
+## V7.1–V8.0 detailed reports
+
+| Milestone | Purpose | Report |
+| --- | --- | --- |
+| V7.1 | Installation | [Detailed report](docs/V7.1_REPORT.md) |
+| V7.2 | Scenario quality | [Detailed report](docs/V7.2_REPORT.md) |
+| V7.3 | Frozen AI evaluation | [Detailed report](docs/V7.3_REPORT.md) |
+| V7.4 | Coverage packs | [Detailed report](docs/V7.4_REPORT.md) |
+| V7.5 | Claim journeys | [Detailed report](docs/V7.5_REPORT.md) |
+| V7.6 | HTTP adapters | [Detailed report](docs/V7.6_REPORT.md) |
+| V7.7 | Security and resilience | [Detailed report](docs/V7.7_REPORT.md) |
+| V7.8 | Governed assistance | [Detailed report](docs/V7.8_REPORT.md) |
+| V7.9 | Team and evidence workflow | [Detailed report](docs/V7.9_REPORT.md) |
+| V8.0 | Integrated showcase | [Detailed report](docs/V8.0_REPORT.md) |
+
+# Archived V7.0 overview
 
 [![Quality and release checks](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kilicerdal/healthcare-quality-lab/actions/workflows/ci.yml)
 ![Tested Python 3.11, 3.12 and 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?logo=python) ![Tests: pytest and Playwright](https://img.shields.io/badge/Tests-pytest%20%2B%20Playwright-2EAD33) [![MIT license](https://img.shields.io/github/license/kilicerdal/healthcare-quality-lab)](LICENSE)
 
-**Final local checks:** 908/908 standard and 1046/1046 complete three-browser checks passed (overlapping totals). [Complete delivery report](docs/V6.8_TO_V7.0_DELIVERY_REPORT.md).
+**Archived V7.0 local checks:** 908/908 standard and 1046/1046 complete three-browser checks passed (overlapping totals). [Complete delivery report](docs/V6.8_TO_V7.0_DELIVERY_REPORT.md).
 
-**Accepted release: V7.0.2.** Complete hosted sweeps exposed Studio and research-hub readiness races. Both fixes have deterministic held-response browser controls; the earlier unreleased tags remain preserved. [Captioned accepted recording](artifacts/v7.0/video-patch-two/healthcare-quality-lab-v7.webm).
+**Archived accepted release: V7.0.2.** Complete hosted sweeps exposed Studio and research-hub readiness races. Both fixes have deterministic held-response browser controls; the earlier unreleased tags remain preserved. [Captioned accepted recording](artifacts/v7.0/video-patch-two/healthcare-quality-lab-v7.webm).
 
 **Review V7.0:** [Fresh-start guided demo](docs/V7.0_DEMO.md) · [Detailed final report](docs/V7.0_REPORT.md) · [Architecture](docs/V7.0_ARCHITECTURE.md) · [AI learning guide](docs/AI_LEARNING_GUIDE.md).
 

@@ -1,0 +1,44 @@
+{
+  "source_hash": "d021f6f7e02b4a78a31f7df3ede9c7e978ea8b4cd85a5785f80317955cb11eae",
+  "kind": "actual_browser_recording",
+  "steps": [
+    {
+      "at": 0.895,
+      "text": "Eight versioned synthetic coverage packs. No inference on page load."
+    },
+    {
+      "at": 6.138,
+      "text": "Create an authored Medicare Advantage proposal with independently calculated expectations. It remains unapproved."
+    },
+    {
+      "at": 11.252,
+      "text": "The evidence assistant cites saved facts. It cannot approve or execute."
+    },
+    {
+      "at": 16.323,
+      "text": "Assign an owner and route for review. Routing is distinct from approval."
+    },
+    {
+      "at": 21.544,
+      "text": "Explicit engineering inspection approves the current snapshot. No automatic or human review is claimed."
+    },
+    {
+      "at": 27.971,
+      "text": "Run the approved case through actual HTTP with fresh disposable state. Full observations match."
+    },
+    {
+      "at": 33.343,
+      "text": "A frozen calculator control makes zero model calls. Raw local AI requires its own explicit selection."
+    },
+    {
+      "at": 38.499,
+      "text": "The same workbench is available on a phone-width layout."
+    }
+  ],
+  "model_calls": 0,
+  "presentation_hold_seconds": 5,
+  "recording_driver": "artifacts/v8.0/paced-driver.py",
+  "scope": "Actual Chromium interactions in disposable synthetic state; engineering inspection is explicitly labeled, not a human review.",
+  "presentation_holds_not_application_latency": true,
+  "recording_driver_sha256": "bc7a8762e0c2f4329ab2a5bae15fe4bd0a0a1791b66b8900538d00f2d08b66c0"
+}

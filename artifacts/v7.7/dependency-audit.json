@@ -1,0 +1,264 @@
+{
+  "status": "no_known_findings",
+  "recorded_at": "2026-11-19T03:16:05.404913+00:00",
+  "endpoint": "https://api.osv.dev/v1/querybatch",
+  "packages": [
+    {
+      "package": {
+        "name": "attrs",
+        "ecosystem": "PyPI"
+      },
+      "version": "26.1.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "blinker",
+        "ecosystem": "PyPI"
+      },
+      "version": "1.9.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "certifi",
+        "ecosystem": "PyPI"
+      },
+      "version": "2026.10.23",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "charset-normalizer",
+        "ecosystem": "PyPI"
+      },
+      "version": "3.5.2",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "click",
+        "ecosystem": "PyPI"
+      },
+      "version": "8.5.1",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "Flask",
+        "ecosystem": "PyPI"
+      },
+      "version": "3.1.3",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "greenlet",
+        "ecosystem": "PyPI"
+      },
+      "version": "3.5.6",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "idna",
+        "ecosystem": "PyPI"
+      },
+      "version": "3.20",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "iniconfig",
+        "ecosystem": "PyPI"
+      },
+      "version": "2.3.1",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "itsdangerous",
+        "ecosystem": "PyPI"
+      },
+      "version": "2.2.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "Jinja2",
+        "ecosystem": "PyPI"
+      },
+      "version": "3.1.6",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "jsonschema",
+        "ecosystem": "PyPI"
+      },
+      "version": "4.25.1",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "jsonschema-specifications",
+        "ecosystem": "PyPI"
+      },
+      "version": "2025.9.1",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "MarkupSafe",
+        "ecosystem": "PyPI"
+      },
+      "version": "3.0.4",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "packaging",
+        "ecosystem": "PyPI"
+      },
+      "version": "26.3",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "pip",
+        "ecosystem": "PyPI"
+      },
+      "version": "26.2.2",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "playwright",
+        "ecosystem": "PyPI"
+      },
+      "version": "1.65.2",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "pluggy",
+        "ecosystem": "PyPI"
+      },
+      "version": "1.7.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "pyee",
+        "ecosystem": "PyPI"
+      },
+      "version": "13.0.1",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "Pygments",
+        "ecosystem": "PyPI"
+      },
+      "version": "2.21.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "pytest",
+        "ecosystem": "PyPI"
+      },
+      "version": "9.2.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "pytest-base-url",
+        "ecosystem": "PyPI"
+      },
+      "version": "2.1.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "pytest-playwright",
+        "ecosystem": "PyPI"
+      },
+      "version": "0.10.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "python-slugify",
+        "ecosystem": "PyPI"
+      },
+      "version": "8.0.4",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "referencing",
+        "ecosystem": "PyPI"
+      },
+      "version": "0.37.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "requests",
+        "ecosystem": "PyPI"
+      },
+      "version": "2.34.2",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "rpds-py",
+        "ecosystem": "PyPI"
+      },
+      "version": "2026.9.1",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "text-unidecode",
+        "ecosystem": "PyPI"
+      },
+      "version": "1.3",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "typing_extensions",
+        "ecosystem": "PyPI"
+      },
+      "version": "4.16.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "urllib3",
+        "ecosystem": "PyPI"
+      },
+      "version": "2.8.0",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "waitress",
+        "ecosystem": "PyPI"
+      },
+      "version": "3.0.2",
+      "vulnerability_ids": []
+    },
+    {
+      "package": {
+        "name": "Werkzeug",
+        "ecosystem": "PyPI"
+      },
+      "version": "3.1.9",
+      "vulnerability_ids": []
+    }
+  ],
+  "scope": "Known OSV advisories for this installed environment at lookup time; not proof of no vulnerabilities or a full security audit."
+}

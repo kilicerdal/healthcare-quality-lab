@@ -1,0 +1,10 @@
+{
+  "source_hash": "d021f6f7e02b4a78a31f7df3ede9c7e978ea8b4cd85a5785f80317955cb11eae",
+  "state_directory": ".local/demo-v800",
+  "raw_experiment_id": "298f64dc5365490c9e081d5184a51f7d",
+  "raw_original_source": "ab3bb5d20a1a93bd7ada9469708702ecf0b24d9a57f686ff14dcbe44ba1a090d",
+  "actual_ai_design_id": "226d103c9be0440eac5b0360f9a1f5f9",
+  "unapproved_replay_proposal_id": "45f5f66ad4ff48f7a470677c2510d1bd",
+  "inference_calls_on_replay": 0,
+  "scope": "Fresh V8 demo appends explicitly labeled historical measurements and an unapproved proposal copied from actual final-source AI planning. Original responses, source fingerprints and timestamps remain; no approval or execution is replayed."
+}

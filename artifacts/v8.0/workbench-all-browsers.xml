@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="3" failures="0" skipped="0" tests="9" time="9.681" timestamp="2026-11-18T22:18:46.026883-05:00" hostname="MacBookPro"><testcase classname="tests.e2e.test_v8_workbench_browser" name="test_workbench_proposal_routing_and_evidence[chromium-390]" time="1.477" /><testcase classname="tests.e2e.test_v8_workbench_browser" name="test_workbench_proposal_routing_and_evidence[chromium-1440]" time="1.199" /><testcase classname="tests.e2e.test_v8_workbench_browser" name="test_workbench_initialization_blocks_writes_and_calculator_control_never_calls_model[chromium]" time="1.209" /><testcase classname="tests.e2e.test_v8_workbench_browser" name="test_workbench_proposal_routing_and_evidence[firefox-390]" time="0.514"><error message="failed on setup with &quot;playwright._impl._errors.Error: BrowserType.launch: Failed to launch the browser process.&#10;Browser logs:&#10;&#10;&lt;launching&gt; /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-SgUDec -juggler-pipe -silent&#10;&lt;launched&gt; pid=35525&#10;[pid=35525][err] *** You are running in headless mode.&#10;[+15 more lines; full report in element text]">launch_browser = &lt;function launch_browser.&lt;locals&gt;.launch at 0x10a436e80&gt;
+
+    @pytest.fixture(scope="session")
+    def browser(launch_browser: Callable[[], Browser]) -&gt; Generator[Browser, None, None]:
+&gt;       browser = launch_browser()
+                  ^^^^^^^^^^^^^^^^
+
+.venv/lib/python3.13/site-packages/pytest_playwright/pytest_playwright.py:534: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.13/site-packages/pytest_playwright/pytest_playwright.py:526: in launch
+    browser = browser_type.launch(**launch_options)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py:4113: in launch
+    self._sync(
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:387: in finish
+    raise e from None
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/_impl/utils/zones.py:58: in run_async
+    return await func()
+           ^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/_impl/browser_type.py:176: in launch
+    await self._channel.launch(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+awaitable = &lt;Future finished exception=Error('Failed to launch the browser process.\nBrowser logs:\n\n&lt;launching&gt; /Users/erdalkili...rocessClosed=true&gt;\n  - [pid=35525] finished temporary directories cleanup\n  - [pid=35525] &lt;gracefully close end&gt;\n')&gt;
+mapper = &lt;function BrowserTypeChannel.launch.&lt;locals&gt;.&lt;lambda&gt; at 0x10a4377e0&gt;
+
+    async def _mapped(awaitable: Awaitable[Any], mapper: Callable[[Any], Any]) -&gt; Any:
+        # Python: the result of a channel call, mapped by the generated channel method.
+&gt;       return mapper(await awaitable)
+                      ^^^^^^^^^^^^^^^
+E       playwright._impl._errors.Error: BrowserType.launch: Failed to launch the browser process.
+E       Browser logs:
+E       
+E       &lt;launching&gt; /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-SgUDec -juggler-pipe -silent
+E       &lt;launched&gt; pid=35525
+E       [pid=35525][err] *** You are running in headless mode.
+E       [pid=35525][err] Could not find profile folder.
+E       [pid=35525] &lt;process did exit: exitCode=1, signal=null&gt;
+E       [pid=35525] starting temporary directories cleanup
+E       Call log:
+E         - &lt;launching&gt; /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-SgUDec -juggler-pipe -silent
+E         - &lt;launched&gt; pid=35525
+E         - [pid=35525][err] *** You are running in headless mode.
+E         - [pid=35525][err] Could not find profile folder.
+E         - [pid=35525] &lt;process did exit: exitCode=1, signal=null&gt;
+E         - [pid=35525] starting temporary directories cleanup
+E         - [pid=35525] &lt;gracefully close start&gt;
+E         - [pid=35525] &lt;kill&gt;
+E         - [pid=35525] &lt;skipped force kill spawnedProcess.killed=false processClosed=true&gt;
+E         - [pid=35525] finished temporary directories cleanup
+E         - [pid=35525] &lt;gracefully close end&gt;
+
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:398: Error</error></testcase><testcase classname="tests.e2e.test_v8_workbench_browser" name="test_workbench_proposal_routing_and_evidence[firefox-1440]" time="0.000"><error message="failed on setup with &quot;playwright._impl._errors.Error: BrowserType.launch: Failed to launch the browser process.&#10;Browser logs:&#10;&#10;&lt;launching&gt; /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-SgUDec -juggler-pipe -silent&#10;&lt;launched&gt; pid=35525&#10;[pid=35525][err] *** You are running in headless mode.&#10;[+15 more lines; full report in element text]">launch_browser = &lt;function launch_browser.&lt;locals&gt;.launch at 0x10a436e80&gt;
+
+    @pytest.fixture(scope="session")
+    def browser(launch_browser: Callable[[], Browser]) -&gt; Generator[Browser, None, None]:
+&gt;       browser = launch_browser()
+                  ^^^^^^^^^^^^^^^^
+
+.venv/lib/python3.13/site-packages/pytest_playwright/pytest_playwright.py:534: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.13/site-packages/pytest_playwright/pytest_playwright.py:526: in launch
+    browser = browser_type.launch(**launch_options)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py:4113: in launch
+    self._sync(
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:387: in finish
+    raise e from None
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/_impl/utils/zones.py:58: in run_async
+    return await func()
+           ^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/_impl/browser_type.py:176: in launch
+    await self._channel.launch(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+awaitable = &lt;Future finished exception=Error('Failed to launch the browser process.\nBrowser logs:\n\n&lt;launching&gt; /Users/erdalkili...rocessClosed=true&gt;\n  - [pid=35525] finished temporary directories cleanup\n  - [pid=35525] &lt;gracefully close end&gt;\n')&gt;
+mapper = &lt;function BrowserTypeChannel.launch.&lt;locals&gt;.&lt;lambda&gt; at 0x10a4377e0&gt;
+
+    async def _mapped(awaitable: Awaitable[Any], mapper: Callable[[Any], Any]) -&gt; Any:
+        # Python: the result of a channel call, mapped by the generated channel method.
+&gt;       return mapper(await awaitable)
+                      ^^^^^^^^^^^^^^^
+E       playwright._impl._errors.Error: BrowserType.launch: Failed to launch the browser process.
+E       Browser logs:
+E       
+E       &lt;launching&gt; /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-SgUDec -juggler-pipe -silent
+E       &lt;launched&gt; pid=35525
+E       [pid=35525][err] *** You are running in headless mode.
+E       [pid=35525][err] Could not find profile folder.
+E       [pid=35525] &lt;process did exit: exitCode=1, signal=null&gt;
+E       [pid=35525] starting temporary directories cleanup
+E       Call log:
+E         - &lt;launching&gt; /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-SgUDec -juggler-pipe -silent
+E         - &lt;launched&gt; pid=35525
+E         - [pid=35525][err] *** You are running in headless mode.
+E         - [pid=35525][err] Could not find profile folder.
+E         - [pid=35525] &lt;process did exit: exitCode=1, signal=null&gt;
+E         - [pid=35525] starting temporary directories cleanup
+E         - [pid=35525] &lt;gracefully close start&gt;
+E         - [pid=35525] &lt;kill&gt;
+E         - [pid=35525] &lt;skipped force kill spawnedProcess.killed=false processClosed=true&gt;
+E         - [pid=35525] finished temporary directories cleanup
+E         - [pid=35525] &lt;gracefully close end&gt;
+
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:398: Error</error></testcase><testcase classname="tests.e2e.test_v8_workbench_browser" name="test_workbench_initialization_blocks_writes_and_calculator_control_never_calls_model[firefox]" time="0.000"><error message="failed on setup with &quot;playwright._impl._errors.Error: BrowserType.launch: Failed to launch the browser process.&#10;Browser logs:&#10;&#10;&lt;launching&gt; /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-SgUDec -juggler-pipe -silent&#10;&lt;launched&gt; pid=35525&#10;[pid=35525][err] *** You are running in headless mode.&#10;[+15 more lines; full report in element text]">launch_browser = &lt;function launch_browser.&lt;locals&gt;.launch at 0x10a436e80&gt;
+
+    @pytest.fixture(scope="session")
+    def browser(launch_browser: Callable[[], Browser]) -&gt; Generator[Browser, None, None]:
+&gt;       browser = launch_browser()
+                  ^^^^^^^^^^^^^^^^
+
+.venv/lib/python3.13/site-packages/pytest_playwright/pytest_playwright.py:534: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.13/site-packages/pytest_playwright/pytest_playwright.py:526: in launch
+    browser = browser_type.launch(**launch_options)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py:4113: in launch
+    self._sync(
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:387: in finish
+    raise e from None
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/_impl/utils/zones.py:58: in run_async
+    return await func()
+           ^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/playwright/_impl/browser_type.py:176: in launch
+    await self._channel.launch(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+awaitable = &lt;Future finished exception=Error('Failed to launch the browser process.\nBrowser logs:\n\n&lt;launching&gt; /Users/erdalkili...rocessClosed=true&gt;\n  - [pid=35525] finished temporary directories cleanup\n  - [pid=35525] &lt;gracefully close end&gt;\n')&gt;
+mapper = &lt;function BrowserTypeChannel.launch.&lt;locals&gt;.&lt;lambda&gt; at 0x10a4377e0&gt;
+
+    async def _mapped(awaitable: Awaitable[Any], mapper: Callable[[Any], Any]) -&gt; Any:
+        # Python: the result of a channel call, mapped by the generated channel method.
+&gt;       return mapper(await awaitable)
+                      ^^^^^^^^^^^^^^^
+E       playwright._impl._errors.Error: BrowserType.launch: Failed to launch the browser process.
+E       Browser logs:
+E       
+E       &lt;launching&gt; /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-SgUDec -juggler-pipe -silent
+E       &lt;launched&gt; pid=35525
+E       [pid=35525][err] *** You are running in headless mode.
+E       [pid=35525][err] Could not find profile folder.
+E       [pid=35525] &lt;process did exit: exitCode=1, signal=null&gt;
+E       [pid=35525] starting temporary directories cleanup
+E       Call log:
+E         - &lt;launching&gt; /Users/erdalkilic/Documents/Healthcare Quality Lab/.browsers/firefox-1572/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/playwright_firefoxdev_profile-SgUDec -juggler-pipe -silent
+E         - &lt;launched&gt; pid=35525
+E         - [pid=35525][err] *** You are running in headless mode.
+E         - [pid=35525][err] Could not find profile folder.
+E         - [pid=35525] &lt;process did exit: exitCode=1, signal=null&gt;
+E         - [pid=35525] starting temporary directories cleanup
+E         - [pid=35525] &lt;gracefully close start&gt;
+E         - [pid=35525] &lt;kill&gt;
+E         - [pid=35525] &lt;skipped force kill spawnedProcess.killed=false processClosed=true&gt;
+E         - [pid=35525] finished temporary directories cleanup
+E         - [pid=35525] &lt;gracefully close end&gt;
+
+.venv/lib/python3.13/site-packages/playwright/_impl/channel_owner.py:398: Error</error></testcase><testcase classname="tests.e2e.test_v8_workbench_browser" name="test_workbench_proposal_routing_and_evidence[webkit-390]" time="2.118" /><testcase classname="tests.e2e.test_v8_workbench_browser" name="test_workbench_proposal_routing_and_evidence[webkit-1440]" time="1.367" /><testcase classname="tests.e2e.test_v8_workbench_browser" name="test_workbench_initialization_blocks_writes_and_calculator_control_never_calls_model[webkit]" time="1.484" /></testsuite></testsuites>

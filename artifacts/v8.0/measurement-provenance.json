@@ -1,0 +1,21 @@
+{
+  "measurement_source": "ab3bb5d20a1a93bd7ada9469708702ecf0b24d9a57f686ff14dcbe44ba1a090d",
+  "final_source": "d021f6f7e02b4a78a31f7df3ede9c7e978ea8b4cd85a5785f80317955cb11eae",
+  "changed_source_paths": [
+    "healthcare_quality/workbench_api.py",
+    "healthcare_quality/assistant_v8.py",
+    "healthcare_quality/system_adapters.py",
+    "healthcare_quality/team_workflow.py",
+    "healthcare_quality/static/style.css",
+    "healthcare_quality/static/workbench.js",
+    "healthcare_quality/templates/index.html",
+    "tests/unit/test_v8_foundations.py",
+    "tests/unit/test_v8_team_and_evidence.py",
+    "tests/api/test_v8_workbench.py",
+    "tests/e2e/test_v8_workbench_browser.py",
+    "tools/evidence_bundle.py",
+    "tools/record_workbench.py"
+  ],
+  "domain_calculators_unchanged": true,
+  "scope": "Raw comparison retains its original development fingerprint. Later fixes concern workbench safety, layout, recording and controls, not the financial calculators or frozen cohort. Do not relabel original measurements as newly inferred final-source answers."
+}

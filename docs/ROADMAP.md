@@ -61,3 +61,7 @@ V6.3 extends bounded AI cases into advanced benefits with a separate lifecycle o
 - V7.0: fresh guided showcase, six reports, separate editable interview presentation, captioned actual browser capture and verified combined release. [Guide](V7.0_DEMO.md), [report](V7.0_REPORT.md).
 
 These are six implementation milestones delivered in one combined V7.0 release. We do not invent six independently deployed runtimes or claim that the observed prompt experiment improved raw model accuracy.
+
+## V7.1–V8.0 implementation track
+
+Ten milestones extend the same standalone application: V7.1 installation diagnostics; V7.2 input-design quality; V7.3 family-separated frozen evaluation; V7.4 eight synthetic coverage packs; V7.5 seven complete lifecycle journeys; V7.6 two installed HTTP observation adapters; V7.7 authorization, dependency and resilience evidence; V7.8 bounded evidence assistant and explicit local AI planning; V7.9 ownership routing and portable evidence bundles; V8.0 integrated workbench, learning guide and reproducible delivery. Each has its own detailed report. Current measured outcomes and limitations are recorded in docs/V7.1_TO_V8.0_DELIVERY_REPORT.md; no milestone is a claim of healthcare compliance or production readiness.

@@ -1,0 +1,58 @@
+{
+  "ready": true,
+  "checks": [
+    {
+      "name": "python",
+      "passed": true,
+      "detail": "3.13.18"
+    },
+    {
+      "name": "Flask",
+      "passed": true,
+      "detail": "3.1.3",
+      "required": "3.1.3"
+    },
+    {
+      "name": "jsonschema",
+      "passed": true,
+      "detail": "4.25.1",
+      "required": "4.25.1"
+    },
+    {
+      "name": "waitress",
+      "passed": true,
+      "detail": "3.0.2",
+      "required": "3.0.2"
+    },
+    {
+      "name": "source_data",
+      "passed": true,
+      "detail": "Required synthetic fixtures"
+    }
+  ],
+  "scope": "Read-only runtime diagnostics; browser binaries and optional Ollama are separate capabilities.",
+  "optional_ollama": {
+    "available": true,
+    "models": [
+      {
+        "name": "qwen3.5:27b",
+        "digest": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+      },
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "allowed_models": [
+      "qwen2.5-coder:3b",
+      "qwen2.5:3b",
+      "qwen3.5:27b"
+    ],
+    "endpoint": "http://127.0.0.1:11434",
+    "mode": "local Ollama only"
+  }
+}

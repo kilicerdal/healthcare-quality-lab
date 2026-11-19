@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "duration_seconds": 4.06,
+  "commands": [
+    {
+      "command": [
+        "/Users/erdalkilic/Documents/Healthcare Quality Lab/.venv/bin/python",
+        "-m",
+        "tools.bootstrap",
+        "--runtime-only"
+      ],
+      "returncode": 0,
+      "output": "Collecting Flask==3.1.3 (from -r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 1))\n  Using cached flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)\nCollecting jsonschema==4.25.1 (from -r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 2))\n  Using cached jsonschema-4.25.1-py3-none-any.whl.metadata (7.6 kB)\nCollecting waitress==3.0.2 (from -r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 3))\n  Using cached waitress-3.0.2-py3-none-any.whl.metadata (5.8 kB)\nCollecting blinker>=1.9.0 (from Flask==3.1.3->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 1))\n  Using cached blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)\nCollecting click>=8.1.3 (from Flask==3.1.3->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 1))\n  Using cached click-8.5.1-py3-none-any.whl.metadata (2.6 kB)\nCollecting itsdangerous>=2.2.0 (from Flask==3.1.3->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 1))\n  Using cached itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)\nCollecting jinja2>=3.1.2 (from Flask==3.1.3->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 1))\n  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)\nCollecting markupsafe>=2.1.1 (from Flask==3.1.3->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 1))\n  Using cached markupsafe-3.0.4-cp313-cp313-macosx_11_0_arm64.whl.metadata (2.7 kB)\nCollecting werkzeug>=3.1.0 (from Flask==3.1.3->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 1))\n  Using cached werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)\nCollecting attrs>=22.2.0 (from jsonschema==4.25.1->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 2))\n  Using cached attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)\nCollecting jsonschema-specifications>=2023.03.6 (from jsonschema==4.25.1->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 2))\n  Using cached jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)\nCollecting referencing>=0.28.4 (from jsonschema==4.25.1->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 2))\n  Using cached referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)\nCollecting rpds-py>=0.7.1 (from jsonschema==4.25.1->-r /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt (line 2))\n  Using cached rpds_py-2026.9.1-cp313-cp313-macosx_11_0_arm64.whl.metadata (4.1 kB)\nUsing cached flask-3.1.3-py3-none-any.whl (103 kB)\nUsing cached jsonschema-4.25.1-py3-none-any.whl (90 kB)\nUsing cached waitress-3.0.2-py3-none-any.whl (56 kB)\nUsing cached attrs-26.1.0-py3-none-any.whl (67 kB)\nUsing cached blinker-1.9.0-py3-none-any.whl (8.5 kB)\nUsing cached click-8.5.1-py3-none-any.whl (126 kB)\nUsing cached itsdangerous-2.2.0-py3-none-any.whl (16 kB)\nUsing cached jinja2-3.1.6-py3-none-any.whl (134 kB)\nUsing cached jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)\nUsing cached markupsafe-3.0.4-cp313-cp313-macosx_11_0_arm64.whl (12 kB)\nUsing cached referencing-0.37.0-py3-none-any.whl (26 kB)\nUsing cached rpds_py-2026.9.1-cp313-cp313-macosx_11_0_arm64.whl (340 kB)\nUsing cached werkzeug-3.1.9-py3-none-any.whl (228 kB)\nInstalling collected packages: waitress, rpds-py, markupsafe, itsdangerous, click, blinker, attrs, werkzeug, referencing, jinja2, jsonschema-specifications, Flask, jsonschema\n\nSuccessfully installed Flask-3.1.3 attrs-26.1.0 blinker-1.9.0 click-8.5.1 itsdangerous-2.2.0 jinja2-3.1.6 jsonschema-4.25.1 jsonschema-specifications-2025.9.1 markupsafe-3.0.4 referencing-0.37.0 rpds-py-2026.9.1 waitress-3.0.2 werkzeug-3.1.9\n\n[notice] A new release of pip is available: 26.2.2 -> 26.3\n[notice] To update, run: /Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/.venv/bin/python -m pip install --upgrade pip\n{\n  \"environment\": \"/Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/.venv\",\n  \"commands\": [\n    [\n      \"/Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/.venv/bin/python\",\n      \"-m\",\n      \"pip\",\n      \"install\",\n      \"-r\",\n      \"/Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/requirements.txt\"\n    ]\n  ],\n  \"browser_path\": \"/Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/.browsers\",\n  \"scope\": \"Only this project; no Ollama download or global package installation\"\n}\n"
+    },
+    {
+      "command": [
+        "/Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/.venv/bin/python",
+        "-m",
+        "tools.doctor"
+      ],
+      "returncode": 0,
+      "output": "{\n  \"ready\": true,\n  \"checks\": [\n    {\n      \"name\": \"python\",\n      \"passed\": true,\n      \"detail\": \"3.13.18\"\n    },\n    {\n      \"name\": \"Flask\",\n      \"passed\": true,\n      \"detail\": \"3.1.3\",\n      \"required\": \"3.1.3\"\n    },\n    {\n      \"name\": \"jsonschema\",\n      \"passed\": true,\n      \"detail\": \"4.25.1\",\n      \"required\": \"4.25.1\"\n    },\n    {\n      \"name\": \"waitress\",\n      \"passed\": true,\n      \"detail\": \"3.0.2\",\n      \"required\": \"3.0.2\"\n    },\n    {\n      \"name\": \"source_data\",\n      \"passed\": true,\n      \"detail\": \"Required synthetic fixtures\"\n    }\n  ],\n  \"scope\": \"Read-only runtime diagnostics; browser binaries and optional Ollama are separate capabilities.\"\n}\n"
+    },
+    {
+      "command": [
+        "/Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/.venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "returncode": 0,
+      "output": "No broken requirements found.\n"
+    },
+    {
+      "command": [
+        "/Users/erdalkilic/Documents/Healthcare Quality Lab/.local/v8-clean-install-final/.venv/bin/python",
+        "-c",
+        "from tempfile import TemporaryDirectory; from pathlib import Path; from healthcare_quality.app import create_app; t=TemporaryDirectory(); a=create_app({'TESTING':True,'DATABASE':str(Path(t.name)/'claims.sqlite')}); c=a.test_client(); assert c.get('/api/ready').status_code==200; assert len(c.get('/api/advanced/workbench').json['packs'])==8; assert c.get('/').status_code==200; print('Fresh runtime application, readiness, eight packs and HTML passed')"
+      ],
+      "returncode": 0,
+      "output": "[2026-11-18 22:40:02,087] INFO in app: {\"duration_ms\": 2.43, \"event\": \"http_request\", \"method\": \"GET\", \"request_id\": \"839db37650684551807ab12ab554752f\", \"route\": \"/api/ready\", \"status\": 200}\n[2026-11-18 22:40:02,183] INFO in app: {\"duration_ms\": 94.93, \"event\": \"http_request\", \"method\": \"GET\", \"request_id\": \"96b51b908c2b4157afb16b69c8d2f1d7\", \"route\": \"/api/advanced/workbench\", \"status\": 200}\n[2026-11-18 22:40:02,188] INFO in app: {\"duration_ms\": 5.0, \"event\": \"http_request\", \"method\": \"GET\", \"request_id\": \"f1eb6f72804e4ad3b1d6f8e7b595d108\", \"route\": \"/\", \"status\": 200}\nFresh runtime application, readiness, eight packs and HTML passed\n"
+    }
+  ],
+  "scope": "Fresh source-only snapshot, new project-local venv and actual dependency installation from pinned runtime requirements. Not a new Git clone or a Windows execution. No existing environment reset and no model downloads.",
+  "source_hash": "d021f6f7e02b4a78a31f7df3ede9c7e978ea8b4cd85a5785f80317955cb11eae",
+  "source_files_compared": 139,
+  "different_source_files": []
+}

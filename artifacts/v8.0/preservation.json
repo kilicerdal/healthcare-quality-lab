@@ -1,0 +1,78 @@
+{
+  "original_stores_preserved": 14,
+  "stores": [
+    {
+      "store": "advanced-v63.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "claims-v2.sqlite",
+      "tables": 3,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "integrations-v67.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "ai-v3.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "v58-reserved.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "benefits-v60.sqlite",
+      "tables": 4,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "advanced-evaluations-v64.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "coverage-v55.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "evaluation-v4.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "research-v59.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "advanced-reviewed-v67.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "v63-development.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "review-audit.sqlite",
+      "tables": 1,
+      "original_rows_preserved": true
+    },
+    {
+      "store": "reliability-v58.sqlite",
+      "tables": 2,
+      "original_rows_preserved": true
+    }
+  ],
+  "unrelated_v4_sha256": "26f7f5bf44d5ee30843e821ce7cdb07e22f273f7bc1d73ac9c43d34a5eaa7801",
+  "vscode_opened": false,
+  "scope": "Original recorded row multiplicities remain in all 14 baseline stores. New V8 experiments, demo, tests and recordings use separate named/disposable state. The unrelated V4 working draft remains unchanged."
+}

@@ -1,0 +1,1060 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="8" failures="5" skipped="0" tests="33" time="3.119" timestamp="2026-11-18T22:11:03.693138-05:00" hostname="MacBookPro"><testcase classname="tests.unit.test_v8_foundations" name="test_runtime_diagnostics_are_read_only_and_model_optional" time="0.003" /><testcase classname="tests.unit.test_v8_foundations" name="test_scenario_quality_blocks_missing_readback_and_duplicates" time="0.015" /><testcase classname="tests.unit.test_v8_foundations" name="test_scenario_quality_rejects_model_expected_values_and_invalid_input" time="0.006" /><testcase classname="tests.unit.test_v8_foundations" name="test_each_pack_has_independently_checked_boundaries[medicare_a]" time="0.039" /><testcase classname="tests.unit.test_v8_foundations" name="test_each_pack_has_independently_checked_boundaries[medicare_b]" time="0.029" /><testcase classname="tests.unit.test_v8_foundations" name="test_each_pack_has_independently_checked_boundaries[medicare_advantage]" time="0.058" /><testcase classname="tests.unit.test_v8_foundations" name="test_each_pack_has_independently_checked_boundaries[medicare_d]" time="0.047" /><testcase classname="tests.unit.test_v8_foundations" name="test_each_pack_has_independently_checked_boundaries[commercial_ppo]" time="0.048" /><testcase classname="tests.unit.test_v8_foundations" name="test_each_pack_has_independently_checked_boundaries[commercial_hmo]" time="0.057" /><testcase classname="tests.unit.test_v8_foundations" name="test_each_pack_has_independently_checked_boundaries[dental]" time="0.039" /><testcase classname="tests.unit.test_v8_foundations" name="test_each_pack_has_independently_checked_boundaries[vision]" time="0.037" /><testcase classname="tests.unit.test_v8_foundations" name="test_lifecycle_journeys_have_complete_matching_observations[Synthetic multi_line]" time="0.010" /><testcase classname="tests.unit.test_v8_foundations" name="test_lifecycle_journeys_have_complete_matching_observations[Synthetic adjust_reverse]" time="0.023" /><testcase classname="tests.unit.test_v8_foundations" name="test_lifecycle_journeys_have_complete_matching_observations[Synthetic appeal_resolve]" time="0.024" /><testcase classname="tests.unit.test_v8_foundations" name="test_lifecycle_journeys_have_complete_matching_observations[Synthetic year_transition]" time="0.018" /><testcase classname="tests.unit.test_v8_foundations" name="test_lifecycle_journeys_have_complete_matching_observations[Synthetic coordination]" time="0.011" /><testcase classname="tests.unit.test_v8_foundations" name="test_lifecycle_journeys_have_complete_matching_observations[Synthetic partial_payment]" time="0.010" /><testcase classname="tests.unit.test_v8_foundations" name="test_lifecycle_journeys_have_complete_matching_observations[Synthetic replay]" time="0.014" /><testcase classname="tests.unit.test_v8_foundations" name="test_evaluation_cohort_has_disjoint_families_and_fixed_budget" time="0.215" /><testcase classname="tests.unit.test_v8_adapters" name="test_reference_peer_contract_and_replay" time="0.525"><failure message="urllib.error.HTTPError: HTTP Error 400: BAD REQUEST">def test_reference_peer_contract_and_replay():
+     p=plan_for('commercial_ppo');p['case']['steps'].extend([p['case']['steps'][1],p['case']['steps'][2]])
+&gt;    c=compile_plan(p);r=execute([c],'reference_peer');assert r['passed']==1 and not r['failed']
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/unit/test_v8_adapters.py:10: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/system_adapters.py:43: in execute
+    with urllib.request.urlopen(req,timeout=5) as response:observed=json.loads(response.read(262144))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py:189: in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py:495: in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py:604: in http_response
+    response = self.parent.error(
+/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py:533: in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py:466: in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;urllib.request.HTTPDefaultErrorHandler object at 0x109cc27b0&gt;
+req = &lt;urllib.request.Request object at 0x109cc2270&gt;
+fp = &lt;http.client.HTTPResponse object at 0x10968b3d0&gt;, code = 400
+msg = 'BAD REQUEST', hdrs = &lt;http.client.HTTPMessage object at 0x109bcab10&gt;
+
+    def http_error_default(self, req, fp, code, msg, hdrs):
+&gt;       raise HTTPError(req.full_url, code, msg, hdrs, fp)
+E       urllib.error.HTTPError: HTTP Error 400: BAD REQUEST
+
+/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py:613: HTTPError</failure></testcase><testcase classname="tests.unit.test_v8_adapters" name="test_reference_peer_rejects_untrusted_step" time="0.506" /><testcase classname="tests.api.test_v8_workbench" name="test_workbench_packs_queue_assistant_and_routing_never_approve" time="0.095"><error message="failed on setup with &quot;AssertionError: View function mapping is overwriting an existing endpoint function: propose&quot;">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_workbench_packs_queue_ass0')
+
+    @pytest.fixture
+    def app(tmp_path):
+&gt;       return create_app({"TESTING":True,"DATABASE":str(tmp_path/"api.sqlite")})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x10f256660&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</error></testcase><testcase classname="tests.api.test_v8_workbench" name="test_invalid_pack_requests_are_client_errors[body0]" time="0.058"><error message="failed on setup with &quot;AssertionError: View function mapping is overwriting an existing endpoint function: propose&quot;">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_invalid_pack_requests_are0')
+
+    @pytest.fixture
+    def app(tmp_path):
+&gt;       return create_app({"TESTING":True,"DATABASE":str(tmp_path/"api.sqlite")})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x10f11c360&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</error></testcase><testcase classname="tests.api.test_v8_workbench" name="test_invalid_pack_requests_are_client_errors[body1]" time="0.060"><error message="failed on setup with &quot;AssertionError: View function mapping is overwriting an existing endpoint function: propose&quot;">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_invalid_pack_requests_are1')
+
+    @pytest.fixture
+    def app(tmp_path):
+&gt;       return create_app({"TESTING":True,"DATABASE":str(tmp_path/"api.sqlite")})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x10f11cb80&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</error></testcase><testcase classname="tests.api.test_v8_workbench" name="test_invalid_pack_requests_are_client_errors[body2]" time="0.058"><error message="failed on setup with &quot;AssertionError: View function mapping is overwriting an existing endpoint function: propose&quot;">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_invalid_pack_requests_are2')
+
+    @pytest.fixture
+    def app(tmp_path):
+&gt;       return create_app({"TESTING":True,"DATABASE":str(tmp_path/"api.sqlite")})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x109f19e40&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</error></testcase><testcase classname="tests.api.test_v8_workbench" name="test_invalid_pack_requests_are_client_errors[body3]" time="0.056"><error message="failed on setup with &quot;AssertionError: View function mapping is overwriting an existing endpoint function: propose&quot;">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_invalid_pack_requests_are3')
+
+    @pytest.fixture
+    def app(tmp_path):
+&gt;       return create_app({"TESTING":True,"DATABASE":str(tmp_path/"api.sqlite")})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x109f19d00&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</error></testcase><testcase classname="tests.api.test_v8_workbench" name="test_invalid_pack_requests_are_client_errors[body4]" time="0.059"><error message="failed on setup with &quot;AssertionError: View function mapping is overwriting an existing endpoint function: propose&quot;">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_invalid_pack_requests_are4')
+
+    @pytest.fixture
+    def app(tmp_path):
+&gt;       return create_app({"TESTING":True,"DATABASE":str(tmp_path/"api.sqlite")})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x109eaf9c0&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</error></testcase><testcase classname="tests.api.test_v8_workbench" name="test_invalid_plan_and_routing_decision_are_explicit" time="0.059"><error message="failed on setup with &quot;AssertionError: View function mapping is overwriting an existing endpoint function: propose&quot;">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_invalid_plan_and_routing_0')
+
+    @pytest.fixture
+    def app(tmp_path):
+&gt;       return create_app({"TESTING":True,"DATABASE":str(tmp_path/"api.sqlite")})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x10f256de0&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</error></testcase><testcase classname="tests.api.test_v8_workbench" name="test_shared_role_boundaries[auditor]" time="0.132"><failure message="AssertionError: View function mapping is overwriting an existing endpoint function: propose">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_shared_role_boundaries_au0')
+role = 'auditor'
+
+    @pytest.mark.parametrize('role',['auditor','customer','analyst','reviewer'])
+    def test_shared_role_boundaries(tmp_path,role):
+&gt;    app=create_app({'TESTING':True,'DATABASE':str(tmp_path/'claims.sqlite'),'AUTH_MODE':'shared','SECRET_KEY':'x'*40,'IDENTITIES':{'user':{'password_hash':generate_password_hash('password'),'roles':[role],'actor_id':'auditor-demo' if role=='auditor' else 'customer-m100'}}});c=app.test_client()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/api/test_v8_workbench.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x109e802c0&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</failure></testcase><testcase classname="tests.api.test_v8_workbench" name="test_shared_role_boundaries[customer]" time="0.133"><failure message="AssertionError: View function mapping is overwriting an existing endpoint function: propose">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_shared_role_boundaries_cu0')
+role = 'customer'
+
+    @pytest.mark.parametrize('role',['auditor','customer','analyst','reviewer'])
+    def test_shared_role_boundaries(tmp_path,role):
+&gt;    app=create_app({'TESTING':True,'DATABASE':str(tmp_path/'claims.sqlite'),'AUTH_MODE':'shared','SECRET_KEY':'x'*40,'IDENTITIES':{'user':{'password_hash':generate_password_hash('password'),'roles':[role],'actor_id':'auditor-demo' if role=='auditor' else 'customer-m100'}}});c=app.test_client()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/api/test_v8_workbench.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x109e0e520&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</failure></testcase><testcase classname="tests.api.test_v8_workbench" name="test_shared_role_boundaries[analyst]" time="0.133"><failure message="AssertionError: View function mapping is overwriting an existing endpoint function: propose">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_shared_role_boundaries_an0')
+role = 'analyst'
+
+    @pytest.mark.parametrize('role',['auditor','customer','analyst','reviewer'])
+    def test_shared_role_boundaries(tmp_path,role):
+&gt;    app=create_app({'TESTING':True,'DATABASE':str(tmp_path/'claims.sqlite'),'AUTH_MODE':'shared','SECRET_KEY':'x'*40,'IDENTITIES':{'user':{'password_hash':generate_password_hash('password'),'roles':[role],'actor_id':'auditor-demo' if role=='auditor' else 'customer-m100'}}});c=app.test_client()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/api/test_v8_workbench.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x10f069a80&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</failure></testcase><testcase classname="tests.api.test_v8_workbench" name="test_shared_role_boundaries[reviewer]" time="0.149"><failure message="AssertionError: View function mapping is overwriting an existing endpoint function: propose">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_shared_role_boundaries_re0')
+role = 'reviewer'
+
+    @pytest.mark.parametrize('role',['auditor','customer','analyst','reviewer'])
+    def test_shared_role_boundaries(tmp_path,role):
+&gt;    app=create_app({'TESTING':True,'DATABASE':str(tmp_path/'claims.sqlite'),'AUTH_MODE':'shared','SECRET_KEY':'x'*40,'IDENTITIES':{'user':{'password_hash':generate_password_hash('password'),'roles':[role],'actor_id':'auditor-demo' if role=='auditor' else 'customer-m100'}}});c=app.test_client()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/api/test_v8_workbench.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x10f247b00&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</failure></testcase><testcase classname="tests.api.test_v8_workbench" name="test_new_stores_are_readiness_checked" time="0.057"><error message="failed on setup with &quot;AssertionError: View function mapping is overwriting an existing endpoint function: propose&quot;">tmp_path = PosixPath('/private/var/folders/5v/qrnkx0td7h378qbh_k7jmgxc0000gn/T/pytest-of-erdalkilic/pytest-158/test_new_stores_are_readiness_0')
+
+    @pytest.fixture
+    def app(tmp_path):
+&gt;       return create_app({"TESTING":True,"DATABASE":str(tmp_path/"api.sqlite")})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+healthcare_quality/app.py:293: in create_app
+    register_workbench(app,body)
+healthcare_quality/workbench_api.py:25: in register
+    @app.post('/api/advanced/workbench/propose')
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:362: in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+.venv/lib/python3.13/site-packages/flask/sansio/scaffold.py:47: in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'healthcare_quality.app'&gt;
+rule = '/api/advanced/workbench/propose', endpoint = 'propose'
+view_func = &lt;function register.&lt;locals&gt;.propose at 0x10f1e4c20&gt;
+provide_automatic_options = True, options = {'endpoint': 'propose'}
+
+    @setupmethod
+    def add_url_rule(
+        self,
+        rule: str,
+        endpoint: str | None = None,
+        view_func: ft.RouteCallable | None = None,
+        provide_automatic_options: bool | None = None,
+        **options: t.Any,
+    ) -&gt; None:
+        if endpoint is None:
+            endpoint = _endpoint_from_view_func(view_func)  # type: ignore
+        options["endpoint"] = endpoint
+        methods = options.pop("methods", None)
+    
+        # if the methods are not given and the view_func object knows its
+        # methods we can use that instead.  If neither exists, we go with
+        # a tuple of only ``GET`` as default.
+        if methods is None:
+            methods = getattr(view_func, "methods", None) or ("GET",)
+        if isinstance(methods, str):
+            raise TypeError(
+                "Allowed methods must be a list of strings, for"
+                ' example: @app.route(..., methods=["POST"])'
+            )
+        methods = {item.upper() for item in methods}
+    
+        # Methods that should always be added
+        required_methods: set[str] = set(getattr(view_func, "required_methods", ()))
+    
+        # starting with Flask 0.8 the view_func object can disable and
+        # force-enable the automatic options handling.
+        if provide_automatic_options is None:
+            provide_automatic_options = getattr(
+                view_func, "provide_automatic_options", None
+            )
+    
+        if provide_automatic_options is None:
+            if "OPTIONS" not in methods and self.config["PROVIDE_AUTOMATIC_OPTIONS"]:
+                provide_automatic_options = True
+                required_methods.add("OPTIONS")
+            else:
+                provide_automatic_options = False
+    
+        # Add the required methods now.
+        methods |= required_methods
+    
+        rule_obj = self.url_rule_class(rule, methods=methods, **options)
+        rule_obj.provide_automatic_options = provide_automatic_options  # type: ignore[attr-defined]
+    
+        self.url_map.add(rule_obj)
+        if view_func is not None:
+            old_func = self.view_functions.get(endpoint)
+            if old_func is not None and old_func != view_func:
+&gt;               raise AssertionError(
+                    "View function mapping is overwriting an existing"
+                    f" endpoint function: {endpoint}"
+                )
+E               AssertionError: View function mapping is overwriting an existing endpoint function: propose
+
+.venv/lib/python3.13/site-packages/flask/sansio/app.py:657: AssertionError</error></testcase></testsuite></testsuites>

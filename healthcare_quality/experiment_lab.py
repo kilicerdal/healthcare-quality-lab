@@ -15,9 +15,9 @@ COHORT=Path(__file__).with_name('data')/'experiment_cohort_v612.json'
 MODES=('ai_expectations','calculator_control')
 
 def cohort():return json.loads(COHORT.read_text())
-def config(body):
+def config(body,cohort_data=None):
     if not isinstance(body,dict) or set(body)!={'models','prompts','tasks','repeats','modes'}:raise StudioError('INVALID_REQUEST','Provide models, prompts, tasks, repeats and modes')
-    choices={'models':MODELS,'prompts':PROMPTS,'tasks':[t['id'] for t in cohort()['tasks']],'modes':MODES}
+    choices={'models':MODELS,'prompts':PROMPTS,'tasks':[t['id'] for t in (cohort_data or cohort())['tasks']],'modes':MODES}
     for key,allowed in choices.items():
         values=body[key]
         if not isinstance(values,list) or not values or any(type(v) is not str or v not in allowed for v in values) or len(set(values))!=len(values):raise StudioError('INVALID_REQUEST','Choose unique known '+key)
@@ -39,7 +39,7 @@ def summarize(rows):
     return result
 
 class ExperimentLab:
-    def __init__(self,path,provider,lock):self.store=ExperimentStore(path);self.provider=provider;self.lock=lock;self.recover()
+    def __init__(self,path,provider,lock,cohort_data=None):self.store=ExperimentStore(path);self.provider=provider;self.lock=lock;self.cohort_data=deepcopy(cohort_data or cohort());self.recover()
     def recover(self):
         with self.store.transaction() as db:
             for row in db.execute('SELECT record_json FROM ai_experiments'):
@@ -56,7 +56,7 @@ class ExperimentLab:
         self.recover()
         with self.store.transaction() as db:return [json.loads(x[0]) for x in db.execute('SELECT record_json FROM ai_experiments ORDER BY created_at DESC LIMIT 30')]
     def start(self,body,background=False):
-        selection=config(body);data=cohort();protocol=dict(selection=selection,cohort_hash=digest(data),source_hash=source_hash(),contract_hash=contract_hash(),provider_settings=deepcopy(getattr(self.provider,'settings',None)),installed_models=self.provider.status()['models'],prompts={t['id']:{v:digest(expectation_prompt(t['plan'],v)) for v in selection['prompts']} for t in data['tasks'] if t['id'] in selection['tasks']},scope='Fixed authored input plans. AI mode fills expectations once; calculator control makes zero model calls and is not AI reasoning. Repeats are correlated. No correction, approval or application execution.')
+        selection=config(body,self.cohort_data);data=self.cohort_data;protocol=dict(selection=selection,cohort_hash=digest(data),source_hash=source_hash(),contract_hash=contract_hash(),provider_settings=deepcopy(getattr(self.provider,'settings',None)),installed_models=self.provider.status()['models'],prompts={t['id']:{v:digest(expectation_prompt(t['plan'],v)) for v in selection['prompts']} for t in data['tasks'] if t['id'] in selection['tasks']},scope='Fixed authored input plans. AI mode fills expectations once; calculator control makes zero model calls and is not AI reasoning. Repeats are correlated. No correction, approval or application execution.')
         r=dict(id=uuid4().hex,created_at=now(),kind='frozen_prompt_model_experiment',state='running',protocol=protocol,rows=[],summary=[],approval=None)
         with self.store.transaction() as db:
             if db.execute('SELECT 1 FROM studio_operations WHERE expires_at>?',(time.time(),)).fetchone():raise StudioError('EXPERIMENT_BUSY','An active experiment owns this ledger',409)
@@ -84,9 +84,9 @@ class ExperimentLab:
         try:
             with operations.keepalive(self.store.path,token,30,5):
                 if not self.lock.acquire(False):raise StudioError('MODEL_BUSY','Another local inference is active',429)
-                acquired=True;s=r['protocol']['selection'];tasks={t['id']:t for t in cohort()['tasks']}
+                acquired=True;s=r['protocol']['selection'];tasks={t['id']:t for t in self.cohort_data['tasks']}
                 for model,prompt,task,mode,repeat in product(s['models'],s['prompts'],s['tasks'],s['modes'],range(1,s['repeats']+1)):
-                    if source_hash()!=r['protocol']['source_hash'] or digest(cohort())!=r['protocol']['cohort_hash'] or contract_hash()!=r['protocol']['contract_hash']:raise ValueError('Source/cohort/contract changed during experiment')
+                    if source_hash()!=r['protocol']['source_hash'] or digest(self.cohort_data)!=r['protocol']['cohort_hash'] or contract_hash()!=r['protocol']['contract_hash']:raise ValueError('Source/cohort/contract changed during experiment')
                     row=dict(model=model,prompt_version=prompt,task_id=task,mode=mode,repeat=repeat,phase='request_running');r['rows'].append(row);self._save(r,token)
                     if mode=='calculator_control':
                         c=compile_plan(tasks[task]['plan']);row.update(phase='completed',assessment=dict(valid=True,eligible=True,cases=[c]),expectation_author='independent calculator; authored frozen plan; no AI call');self._save(r,token);continue

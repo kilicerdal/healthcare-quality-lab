@@ -1,0 +1,4649 @@
+{
+  "source_hash": "ab3bb5d20a1a93bd7ada9469708702ecf0b24d9a57f686ff14dcbe44ba1a090d",
+  "cohort_hash": "4c83d21f705dd2347e4d697a53b6a4d157dd2fde8f7cb6ea2417f3788f513bd3",
+  "records": [
+    {
+      "id": "acbccb3f511043fabf54568538677bde",
+      "created_at": "2026-11-19T03:29:05.077108+00:00",
+      "kind": "frozen_prompt_model_experiment",
+      "state": "completed",
+      "protocol": {
+        "selection": {
+          "models": [
+            "qwen2.5-coder:3b"
+          ],
+          "prompts": [
+            "focused-v68"
+          ],
+          "tasks": [
+            "EV8-01",
+            "EV8-02",
+            "EV8-03",
+            "EV8-04",
+            "EV8-05",
+            "EV8-06",
+            "EV8-07",
+            "EV8-08",
+            "EV8-09",
+            "EV8-10",
+            "EV8-11",
+            "EV8-12",
+            "EV8-13",
+            "EV8-14",
+            "EV8-15",
+            "EV8-16",
+            "EV8-17",
+            "EV8-18",
+            "EV8-19",
+            "EV8-20",
+            "EV8-21",
+            "EV8-22",
+            "EV8-23",
+            "EV8-24"
+          ],
+          "repeats": 1,
+          "modes": [
+            "calculator_control"
+          ]
+        },
+        "cohort_hash": "4ee88c10370c96edb9de47048b1ba8941e98425ae9e1fd61e86b003f9d112bca",
+        "source_hash": "ab3bb5d20a1a93bd7ada9469708702ecf0b24d9a57f686ff14dcbe44ba1a090d",
+        "contract_hash": "22ca3d505a32df5774fee05e7301aa68f92f8b2c74e70080ba0f0e91ccc6a42e",
+        "provider_settings": {
+          "control": "no_inference"
+        },
+        "installed_models": [
+          {
+            "name": "qwen3.5:27b",
+            "digest": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+          },
+          {
+            "name": "qwen2.5:3b",
+            "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+          },
+          {
+            "name": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+          }
+        ],
+        "prompts": {
+          "EV8-01": {
+            "focused-v68": "671a5e7dbe2224879b8a364df43d2a7df420c573cd347de7b49e7e2caa93a7c0"
+          },
+          "EV8-02": {
+            "focused-v68": "f5ccdf670f87c243c0715337a166b5406fa2413236f1f964129c10699a411f00"
+          },
+          "EV8-03": {
+            "focused-v68": "2700a939dff56827a3d875c519a84fb0a26b4f90370a3a2534a9df2af7dd6a82"
+          },
+          "EV8-04": {
+            "focused-v68": "270964ad07f343e2c70dbdf8e48d1db0d4dbf10b18a8c7ca4e826a9838981dc6"
+          },
+          "EV8-05": {
+            "focused-v68": "7aba60206310af2c72dfa4181abf7f524712f7837ab7702d7055cdd3a74a716f"
+          },
+          "EV8-06": {
+            "focused-v68": "9864b24c8a5f48433a8c26031b4f5b8f03e760ea6d3053da390d4c7a4ca63335"
+          },
+          "EV8-07": {
+            "focused-v68": "5aaa37d922971d01918fc68ec3ba17d3379f147f05d0b59dfc924992b0cf78f2"
+          },
+          "EV8-08": {
+            "focused-v68": "ab01a6a371b2b7371bf08d014d146624cc6ef724f7efa80d639b1460a06f0172"
+          },
+          "EV8-09": {
+            "focused-v68": "10c685214d18d5249ac7ef8403ee661cebb987aab5163556d3ab5a6c8aa551b2"
+          },
+          "EV8-10": {
+            "focused-v68": "c3e0e4fc24f7ac36f75b3755009269ccf443e181a94b4072c1ae3c3720cbae1a"
+          },
+          "EV8-11": {
+            "focused-v68": "05ec49ecf1aae1630a86a2b523dc881351658e20dddbc69a0f0466014f09c736"
+          },
+          "EV8-12": {
+            "focused-v68": "f5a48f22f11bc376ecbd22e29f50eb843bcd28e2d0e10ccff546fcd0e39464b9"
+          },
+          "EV8-13": {
+            "focused-v68": "88e83d8f14d0e6a34c19b965c1ee2460307c23917c2cf7f7459e554b6bcff918"
+          },
+          "EV8-14": {
+            "focused-v68": "f37878d612a3c4e4602fb40f641be9d253c085fcab7f521b4f546a66d064668b"
+          },
+          "EV8-15": {
+            "focused-v68": "c80cc6feefa5afcc7dcf861760c7eb2861518f369066df28afb83eeb2106dd3b"
+          },
+          "EV8-16": {
+            "focused-v68": "228baae26d9466926dd6377494e21c2c41efe147737382a5ec74a96fe94db6cb"
+          },
+          "EV8-17": {
+            "focused-v68": "d1e85dcf2f897bfc44a7a49102268991b16ea4812fd284c0f0ee6c2929d2177f"
+          },
+          "EV8-18": {
+            "focused-v68": "1b8c95f236fd36242869a8c754a137ff81db90901fd7c11420172d4e233d64eb"
+          },
+          "EV8-19": {
+            "focused-v68": "80c1fb5db8e73b23a4ea4c4befb6ef7109f8382763edefffaad380995018520e"
+          },
+          "EV8-20": {
+            "focused-v68": "34a6737450145e90e26777014f2f6761b663707e9cdb0d057342a01176ffbb0d"
+          },
+          "EV8-21": {
+            "focused-v68": "e4427c29e004afe138998886e0d33b7dda72518d2f2d98edbd6b5441b5b88791"
+          },
+          "EV8-22": {
+            "focused-v68": "d376f2d78b6283ff16ef7cd48c84a32a636b0423b63caf36d98b66a77e107d19"
+          },
+          "EV8-23": {
+            "focused-v68": "e11ec208c04ef7ef9bc0101a2f6988dab25bd1004c4a79c2669edf298861e9e5"
+          },
+          "EV8-24": {
+            "focused-v68": "5fde8e388a9e77b1118013a5ba1996e7132ae93ea299131f58c4ae363030c5a2"
+          }
+        },
+        "scope": "Fixed authored input plans. AI mode fills expectations once; calculator control makes zero model calls and is not AI reasoning. Repeats are correlated. No correction, approval or application execution."
+      },
+      "rows": [
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-01",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-80-covered",
+                "title": "Commercial PPO covered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-80-covered",
+                      "operation_key": "submit-PACK-80-covered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-80-covered",
+                      "operation_key": "payment-PACK-80-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-80-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-02",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-81-noncovered",
+                "title": "Commercial PPO noncovered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-81-noncovered",
+                      "operation_key": "submit-PACK-81-noncovered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "vision",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-81-noncovered",
+                      "operation_key": "payment-PACK-81-noncovered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-81-noncovered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-03",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-82-deductible",
+                "title": "Commercial PPO deductible",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-82-deductible",
+                      "operation_key": "submit-PACK-82-deductible",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 5003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-82-deductible",
+                      "operation_key": "payment-PACK-82-deductible",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-82-deductible"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-04",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-83-covered",
+                "title": "Medicare Part B covered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-83-covered",
+                      "operation_key": "submit-PACK-83-covered",
+                      "member_id": "M100",
+                      "plan_id": "medicare_b",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "medical",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-83-covered",
+                      "operation_key": "payment-PACK-83-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-83-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-05",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-84-noncovered",
+                "title": "Medicare Part B noncovered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-84-noncovered",
+                      "operation_key": "submit-PACK-84-noncovered",
+                      "member_id": "M100",
+                      "plan_id": "medicare_b",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "vision",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-84-noncovered",
+                      "operation_key": "payment-PACK-84-noncovered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-84-noncovered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-06",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-85-deductible",
+                "title": "Medicare Part B deductible",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-85-deductible",
+                      "operation_key": "submit-PACK-85-deductible",
+                      "member_id": "M100",
+                      "plan_id": "medicare_b",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "medical",
+                          "allowed_cents": 5003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-85-deductible",
+                      "operation_key": "payment-PACK-85-deductible",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-85-deductible"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-07",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-86-covered",
+                "title": "Standalone dental covered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-86-covered",
+                      "operation_key": "submit-PACK-86-covered",
+                      "member_id": "M100",
+                      "plan_id": "dental",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "dental",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-86-covered",
+                      "operation_key": "payment-PACK-86-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-86-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-08",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-87-noncovered",
+                "title": "Standalone dental noncovered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-87-noncovered",
+                      "operation_key": "submit-PACK-87-noncovered",
+                      "member_id": "M100",
+                      "plan_id": "dental",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "vision",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-87-noncovered",
+                      "operation_key": "payment-PACK-87-noncovered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-87-noncovered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-09",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-88-deductible",
+                "title": "Standalone dental deductible",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-88-deductible",
+                      "operation_key": "submit-PACK-88-deductible",
+                      "member_id": "M100",
+                      "plan_id": "dental",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "dental",
+                          "allowed_cents": 5003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-88-deductible",
+                      "operation_key": "payment-PACK-88-deductible",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-88-deductible"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-10",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-89-covered",
+                "title": "Standalone vision covered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-89-covered",
+                      "operation_key": "submit-PACK-89-covered",
+                      "member_id": "M100",
+                      "plan_id": "vision",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "vision",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-89-covered",
+                      "operation_key": "payment-PACK-89-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-89-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-11",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-90-noncovered",
+                "title": "Standalone vision noncovered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-90-noncovered",
+                      "operation_key": "submit-PACK-90-noncovered",
+                      "member_id": "M100",
+                      "plan_id": "vision",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "skilled_nursing",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-90-noncovered",
+                      "operation_key": "payment-PACK-90-noncovered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-90-noncovered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-12",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-91-deductible",
+                "title": "Standalone vision deductible",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-91-deductible",
+                      "operation_key": "submit-PACK-91-deductible",
+                      "member_id": "M100",
+                      "plan_id": "vision",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "vision",
+                          "allowed_cents": 5003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-91-deductible",
+                      "operation_key": "payment-PACK-91-deductible",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-91-deductible"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-13",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-92-covered",
+                "title": "Medicare Part A covered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-92-covered",
+                      "operation_key": "submit-PACK-92-covered",
+                      "member_id": "M100",
+                      "plan_id": "medicare_a",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-92-covered",
+                      "operation_key": "payment-PACK-92-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-92-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-14",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-93-noncovered",
+                "title": "Medicare Part A noncovered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-93-noncovered",
+                      "operation_key": "submit-PACK-93-noncovered",
+                      "member_id": "M100",
+                      "plan_id": "medicare_a",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "vision",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-93-noncovered",
+                      "operation_key": "payment-PACK-93-noncovered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-93-noncovered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-15",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-94-deductible",
+                "title": "Medicare Part A deductible",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-94-deductible",
+                      "operation_key": "submit-PACK-94-deductible",
+                      "member_id": "M100",
+                      "plan_id": "medicare_a",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 5003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-94-deductible",
+                      "operation_key": "payment-PACK-94-deductible",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-94-deductible"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-16",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-95-covered",
+                "title": "Medicare Advantage / Part C covered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-95-covered",
+                      "operation_key": "submit-PACK-95-covered",
+                      "member_id": "M100",
+                      "plan_id": "medicare_advantage",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-95-covered",
+                      "operation_key": "payment-PACK-95-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-95-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-17",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-96-noncovered",
+                "title": "Medicare Advantage / Part C noncovered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-96-noncovered",
+                      "operation_key": "submit-PACK-96-noncovered",
+                      "member_id": "M100",
+                      "plan_id": "medicare_advantage",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "skilled_nursing",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-96-noncovered",
+                      "operation_key": "payment-PACK-96-noncovered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-96-noncovered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-18",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-97-deductible",
+                "title": "Medicare Advantage / Part C deductible",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-97-deductible",
+                      "operation_key": "submit-PACK-97-deductible",
+                      "member_id": "M100",
+                      "plan_id": "medicare_advantage",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 5003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-97-deductible",
+                      "operation_key": "payment-PACK-97-deductible",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-97-deductible"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-19",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-98-covered",
+                "title": "Medicare Part D covered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-98-covered",
+                      "operation_key": "submit-PACK-98-covered",
+                      "member_id": "M100",
+                      "plan_id": "medicare_d",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "prescription",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-98-covered",
+                      "operation_key": "payment-PACK-98-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-98-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-20",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-99-noncovered",
+                "title": "Medicare Part D noncovered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-99-noncovered",
+                      "operation_key": "submit-PACK-99-noncovered",
+                      "member_id": "M100",
+                      "plan_id": "medicare_d",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "vision",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-99-noncovered",
+                      "operation_key": "payment-PACK-99-noncovered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-99-noncovered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-21",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-100-deductible",
+                "title": "Medicare Part D deductible",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-100-deductible",
+                      "operation_key": "submit-PACK-100-deductible",
+                      "member_id": "M100",
+                      "plan_id": "medicare_d",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "prescription",
+                          "allowed_cents": 5003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-100-deductible",
+                      "operation_key": "payment-PACK-100-deductible",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-100-deductible"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-22",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-101-covered",
+                "title": "Commercial HMO covered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-101-covered",
+                      "operation_key": "submit-PACK-101-covered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_hmo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-101-covered",
+                      "operation_key": "payment-PACK-101-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-101-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-23",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-102-noncovered",
+                "title": "Commercial HMO noncovered",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-102-noncovered",
+                      "operation_key": "submit-PACK-102-noncovered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_hmo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "vision",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-102-noncovered",
+                      "operation_key": "payment-PACK-102-noncovered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-102-noncovered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-24",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-PACK-103-deductible",
+                "title": "Commercial HMO deductible",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-103-deductible",
+                      "operation_key": "submit-PACK-103-deductible",
+                      "member_id": "M100",
+                      "plan_id": "commercial_hmo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 5003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-103-deductible",
+                      "operation_key": "payment-PACK-103-deductible",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-103-deductible"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 5003,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 1,
+                      "individual_deductible": 5003,
+                      "individual_oop": 5003,
+                      "individual_benefit": 0,
+                      "family_deductible": 5003,
+                      "family_oop": 5003,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        }
+      ],
+      "summary": [
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "mode": "calculator_control",
+          "attempted": 24,
+          "completed": 24,
+          "unknown_outcomes": 0,
+          "provider_errors": 0,
+          "schema_valid": 24,
+          "eligible": 24,
+          "wrong_or_incomplete": 0,
+          "latency_median_ms": null,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "stable_repeated_tasks": 0,
+          "repeated_tasks": 0,
+          "reference_assisted_corrections": 0,
+          "ai_reasoning_metric": false
+        }
+      ],
+      "approval": null,
+      "previously_exposed_tasks": [],
+      "first_recorded_in_this_ledger": true
+    },
+    {
+      "id": "991abc6db14047c690821cf94df8bfa5",
+      "created_at": "2026-11-19T03:29:05.652052+00:00",
+      "kind": "frozen_prompt_model_experiment",
+      "state": "completed",
+      "protocol": {
+        "selection": {
+          "models": [
+            "qwen2.5-coder:3b"
+          ],
+          "prompts": [
+            "focused-v68"
+          ],
+          "tasks": [
+            "EV8-J1",
+            "EV8-J2",
+            "EV8-J3",
+            "EV8-J4",
+            "EV8-J5",
+            "EV8-J6",
+            "EV8-J7"
+          ],
+          "repeats": 1,
+          "modes": [
+            "calculator_control"
+          ]
+        },
+        "cohort_hash": "4ee88c10370c96edb9de47048b1ba8941e98425ae9e1fd61e86b003f9d112bca",
+        "source_hash": "ab3bb5d20a1a93bd7ada9469708702ecf0b24d9a57f686ff14dcbe44ba1a090d",
+        "contract_hash": "22ca3d505a32df5774fee05e7301aa68f92f8b2c74e70080ba0f0e91ccc6a42e",
+        "provider_settings": {
+          "control": "no_inference"
+        },
+        "installed_models": [
+          {
+            "name": "qwen3.5:27b",
+            "digest": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+          },
+          {
+            "name": "qwen2.5:3b",
+            "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+          },
+          {
+            "name": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+          }
+        ],
+        "prompts": {
+          "EV8-J1": {
+            "focused-v68": "23bc07b294c4ca88e1ef36f49622e7bd976974194a384d71433e7042c3d63244"
+          },
+          "EV8-J2": {
+            "focused-v68": "2f7a24f2dc74047c501350f32b60ae5a717aaf769e666152306c30b5606100ee"
+          },
+          "EV8-J3": {
+            "focused-v68": "863d79915f841e72193aff967125f784afc6486ad91f070f86202d77243a9878"
+          },
+          "EV8-J4": {
+            "focused-v68": "d2e8c55217882c0e97b5ea1fa76abc9d6759e0ed3ed4939bd29304d827052e9f"
+          },
+          "EV8-J5": {
+            "focused-v68": "926985564f867fe1f0622be4a648888709f17932965c73ad7f9ff6b4fdd1dab7"
+          },
+          "EV8-J6": {
+            "focused-v68": "8b92ac4017fb1302b7e3038196a3e04bf43e90905dbb090bffe4376846db7657"
+          },
+          "EV8-J7": {
+            "focused-v68": "6ab1330dc17992f9dbac82515987d7dce02263e2302554935871a42514935988"
+          }
+        },
+        "scope": "Fixed authored input plans. AI mode fills expectations once; calculator control makes zero model calls and is not AI reasoning. Repeats are correlated. No correction, approval or application execution."
+      },
+      "rows": [
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-J1",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-JOURNEY-1",
+                "title": "Synthetic multi_line",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-21-covered",
+                      "operation_key": "submit-PACK-21-covered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        },
+                        {
+                          "id": "LINE-TWO",
+                          "service": "outpatient",
+                          "allowed_cents": 34567
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 101570,
+                      "member_cents": 30000,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 30000,
+                      "individual_benefit": 101570,
+                      "family_deductible": 10000,
+                      "family_oop": 30000,
+                      "family_benefit": 101570,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-21-covered",
+                      "operation_key": "payment-PACK-21-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 101570,
+                      "member_cents": 30000,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 101570,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 30000,
+                      "individual_benefit": 101570,
+                      "family_deductible": 10000,
+                      "family_oop": 30000,
+                      "family_benefit": 101570,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-21-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 101570,
+                      "member_cents": 30000,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 101570,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 30000,
+                      "individual_benefit": 101570,
+                      "family_deductible": 10000,
+                      "family_oop": 30000,
+                      "family_benefit": 101570,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-J2",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-JOURNEY-2",
+                "title": "Synthetic adjust_reverse",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-22-covered",
+                      "operation_key": "submit-PACK-22-covered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-22-covered",
+                      "operation_key": "payment-PACK-22-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-22-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "adjust",
+                    "actor": "adjuster-demo",
+                    "data": {
+                      "claim_id": "PACK-22-covered",
+                      "operation_key": "adjust_reverse-adjust-key",
+                      "expected_revision": 2,
+                      "note": "Synthetic correction",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "medical",
+                          "allowed_cents": 56789
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 3,
+                      "event_count": 3,
+                      "payout_cents": 36631,
+                      "member_cents": 20158,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 36631,
+                      "ledger_count": 3,
+                      "individual_deductible": 10000,
+                      "individual_oop": 20158,
+                      "individual_benefit": 36631,
+                      "family_deductible": 10000,
+                      "family_oop": 20158,
+                      "family_benefit": 36631,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-22-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 3,
+                      "event_count": 3,
+                      "payout_cents": 36631,
+                      "member_cents": 20158,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 36631,
+                      "ledger_count": 3,
+                      "individual_deductible": 10000,
+                      "individual_oop": 20158,
+                      "individual_benefit": 36631,
+                      "family_deductible": 10000,
+                      "family_oop": 20158,
+                      "family_benefit": 36631,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "reverse",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-22-covered",
+                      "operation_key": "adjust_reverse-reverse-key",
+                      "expected_revision": 3,
+                      "note": "Synthetic reversal"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "reversed",
+                      "revision": 4,
+                      "event_count": 4,
+                      "payout_cents": 36631,
+                      "member_cents": 20158,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 4,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-22-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "reversed",
+                      "revision": 4,
+                      "event_count": 4,
+                      "payout_cents": 36631,
+                      "member_cents": 20158,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 4,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-J3",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-JOURNEY-3",
+                "title": "Synthetic appeal_resolve",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-23-covered",
+                      "operation_key": "submit-PACK-23-covered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": false,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "appeal",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-23-covered",
+                      "operation_key": "appeal_resolve-appeal-key",
+                      "expected_revision": 1,
+                      "note": "Synthetic appeal"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "appealed",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-23-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "appealed",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 0,
+                      "member_cents": 0,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 97003,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 0,
+                      "individual_oop": 0,
+                      "individual_benefit": 0,
+                      "family_deductible": 0,
+                      "family_oop": 0,
+                      "family_benefit": 0,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "resolve",
+                    "actor": "adjuster-demo",
+                    "data": {
+                      "claim_id": "PACK-23-covered",
+                      "operation_key": "appeal_resolve-resolve-key",
+                      "expected_revision": 2,
+                      "note": "Synthetic resolution",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "authorized": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "adjudicated",
+                      "revision": 3,
+                      "event_count": 3,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-23-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "adjudicated",
+                      "revision": 3,
+                      "event_count": 3,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-23-covered",
+                      "operation_key": "appeal_resolve-pay-key",
+                      "expected_revision": 3
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 4,
+                      "event_count": 4,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-23-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 4,
+                      "event_count": 4,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-J4",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-JOURNEY-4",
+                "title": "Synthetic year_transition",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-24-covered",
+                      "operation_key": "submit-PACK-24-covered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-12-31",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68402,
+                      "member_cents": 28601,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28601,
+                      "individual_benefit": 68402,
+                      "family_deductible": 10000,
+                      "family_oop": 28601,
+                      "family_benefit": 68402,
+                      "policy_id": "SYN-2026-H2",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-24-covered",
+                      "operation_key": "payment-PACK-24-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68402,
+                      "member_cents": 28601,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68402,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28601,
+                      "individual_benefit": 68402,
+                      "family_deductible": 10000,
+                      "family_oop": 28601,
+                      "family_benefit": 68402,
+                      "policy_id": "SYN-2026-H2",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-24-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68402,
+                      "member_cents": 28601,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68402,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28601,
+                      "individual_benefit": 68402,
+                      "family_deductible": 10000,
+                      "family_oop": 28601,
+                      "family_benefit": 68402,
+                      "policy_id": "SYN-2026-H2",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-24-covered-NEW",
+                      "operation_key": "year-new-submission",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2027-01-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 65003,
+                      "member_cents": 32000,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 12000,
+                      "individual_oop": 32000,
+                      "individual_benefit": 65003,
+                      "family_deductible": 12000,
+                      "family_oop": 32000,
+                      "family_benefit": 65003,
+                      "policy_id": "SYN-2027",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-24-covered-NEW"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 65003,
+                      "member_cents": 32000,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 12000,
+                      "individual_oop": 32000,
+                      "individual_benefit": 65003,
+                      "family_deductible": 12000,
+                      "family_oop": 32000,
+                      "family_benefit": 65003,
+                      "policy_id": "SYN-2027",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-24-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68402,
+                      "member_cents": 28601,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68402,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28601,
+                      "individual_benefit": 68402,
+                      "family_deductible": 10000,
+                      "family_oop": 28601,
+                      "family_benefit": 68402,
+                      "policy_id": "SYN-2026-H2",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-J5",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-JOURNEY-5",
+                "title": "Synthetic coordination",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-25-covered",
+                      "operation_key": "submit-PACK-25-covered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true,
+                          "other_payer_cents": 23671
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 49865,
+                      "member_cents": 23467,
+                      "other_payer_cents": 23671,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 23467,
+                      "individual_benefit": 49865,
+                      "family_deductible": 10000,
+                      "family_oop": 23467,
+                      "family_benefit": 49865,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-25-covered",
+                      "operation_key": "payment-PACK-25-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 49865,
+                      "member_cents": 23467,
+                      "other_payer_cents": 23671,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 49865,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 23467,
+                      "individual_benefit": 49865,
+                      "family_deductible": 10000,
+                      "family_oop": 23467,
+                      "family_benefit": 49865,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-25-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 49865,
+                      "member_cents": 23467,
+                      "other_payer_cents": 23671,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 49865,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 23467,
+                      "individual_benefit": 49865,
+                      "family_deductible": 10000,
+                      "family_oop": 23467,
+                      "family_benefit": 49865,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-J6",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-JOURNEY-6",
+                "title": "Synthetic partial_payment",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-26-covered",
+                      "operation_key": "submit-PACK-26-covered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        },
+                        {
+                          "id": "LINE-TWO",
+                          "service": "vision",
+                          "allowed_cents": 34567
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 34567,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": true
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-26-covered",
+                      "operation_key": "payment-PACK-26-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 34567,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": true
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-26-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 34567,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        },
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "task_id": "EV8-J7",
+          "mode": "calculator_control",
+          "repeat": 1,
+          "phase": "completed",
+          "assessment": {
+            "valid": true,
+            "eligible": true,
+            "cases": [
+              {
+                "id": "AB-JOURNEY-7",
+                "title": "Synthetic replay",
+                "rule_ids": [
+                  "BN-001",
+                  "BN-002",
+                  "BN-003",
+                  "BN-004",
+                  "BN-005",
+                  "BN-006"
+                ],
+                "rationale": "Authored teaching coverage boundary with independent calculator expectations; not an actual insurance policy.",
+                "assumptions": [],
+                "steps": [
+                  {
+                    "action": "submit",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-27-covered",
+                      "operation_key": "submit-PACK-27-covered",
+                      "member_id": "M100",
+                      "plan_id": "commercial_ppo",
+                      "service_date": "2026-03-01",
+                      "lines": [
+                        {
+                          "id": "LINE-ONE",
+                          "service": "hospital",
+                          "allowed_cents": 97003,
+                          "in_network": true,
+                          "authorized": true,
+                          "formulary": true
+                        }
+                      ]
+                    },
+                    "expect": {
+                      "status": 201,
+                      "state": "adjudicated",
+                      "revision": 1,
+                      "event_count": 1,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 0,
+                      "ledger_count": 0,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-27-covered",
+                      "operation_key": "payment-PACK-27-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-27-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "pay",
+                    "actor": "finance-demo",
+                    "data": {
+                      "claim_id": "PACK-27-covered",
+                      "operation_key": "payment-PACK-27-covered",
+                      "expected_revision": 1
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  },
+                  {
+                    "action": "read",
+                    "actor": "customer-m100",
+                    "data": {
+                      "claim_id": "PACK-27-covered"
+                    },
+                    "expect": {
+                      "status": 200,
+                      "state": "paid",
+                      "revision": 2,
+                      "event_count": 2,
+                      "payout_cents": 68802,
+                      "member_cents": 28201,
+                      "other_payer_cents": 0,
+                      "noncovered_cents": 0,
+                      "ledger_cents": 68802,
+                      "ledger_count": 1,
+                      "individual_deductible": 10000,
+                      "individual_oop": 28201,
+                      "individual_benefit": 68802,
+                      "family_deductible": 10000,
+                      "family_oop": 28201,
+                      "family_benefit": 68802,
+                      "policy_id": "SYN-2026-H1",
+                      "partial": false
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "expectation_author": "independent calculator; authored frozen plan; no AI call"
+        }
+      ],
+      "summary": [
+        {
+          "model": "qwen2.5-coder:3b",
+          "prompt_version": "focused-v68",
+          "mode": "calculator_control",
+          "attempted": 7,
+          "completed": 7,
+          "unknown_outcomes": 0,
+          "provider_errors": 0,
+          "schema_valid": 7,
+          "eligible": 7,
+          "wrong_or_incomplete": 0,
+          "latency_median_ms": null,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "stable_repeated_tasks": 0,
+          "repeated_tasks": 0,
+          "reference_assisted_corrections": 0,
+          "ai_reasoning_metric": false
+        }
+      ],
+      "approval": null,
+      "previously_exposed_tasks": [],
+      "first_recorded_in_this_ledger": true
+    }
+  ],
+  "eligible": 31,
+  "total": 31,
+  "model_generate_calls": 0,
+  "scope": "31 authored fixed plans compiled by the independent calculator; zero model calls and no evidence of model reasoning. Exposure is ledger-relative only."
+}

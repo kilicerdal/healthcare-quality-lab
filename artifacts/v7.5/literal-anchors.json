@@ -1,0 +1,87 @@
+{
+  "source_hash": "ab3bb5d20a1a93bd7ada9469708702ecf0b24d9a57f686ff14dcbe44ba1a090d",
+  "passed": true,
+  "rows": [
+    {
+      "scenario": "Medicare Part B covered",
+      "expected": {
+        "payout_cents": 68802,
+        "member_cents": 28201,
+        "ledger_cents": 68802,
+        "ledger_count": 1,
+        "event_count": 2,
+        "revision": 2
+      },
+      "observed": {
+        "payout_cents": 68802,
+        "member_cents": 28201,
+        "ledger_cents": 68802,
+        "ledger_count": 1,
+        "event_count": 2,
+        "revision": 2
+      },
+      "passed": true
+    },
+    {
+      "scenario": "Synthetic multi_line",
+      "expected": {
+        "payout_cents": 101570,
+        "member_cents": 30000,
+        "ledger_cents": 101570
+      },
+      "observed": {
+        "payout_cents": 101570,
+        "member_cents": 30000,
+        "ledger_cents": 101570
+      },
+      "passed": true
+    },
+    {
+      "scenario": "Synthetic adjust_reverse",
+      "expected": {
+        "ledger_cents": 0,
+        "ledger_count": 4,
+        "event_count": 4,
+        "individual_deductible": 0,
+        "individual_oop": 0
+      },
+      "observed": {
+        "ledger_cents": 0,
+        "ledger_count": 4,
+        "event_count": 4,
+        "individual_deductible": 0,
+        "individual_oop": 0
+      },
+      "passed": true
+    },
+    {
+      "scenario": "Synthetic appeal_resolve",
+      "expected": {
+        "payout_cents": 68802,
+        "ledger_count": 1,
+        "event_count": 4
+      },
+      "observed": {
+        "payout_cents": 68802,
+        "ledger_count": 1,
+        "event_count": 4
+      },
+      "passed": true
+    },
+    {
+      "scenario": "Synthetic coordination",
+      "expected": {
+        "payout_cents": 49865,
+        "member_cents": 23467,
+        "other_payer_cents": 23671
+      },
+      "observed": {
+        "payout_cents": 49865,
+        "member_cents": 23467,
+        "other_payer_cents": 23671
+      },
+      "passed": true
+    }
+  ],
+  "scope": "Five hand-calculated literal financial/lifecycle anchors checked through actual HTTP. Independent from recording production outputs as expected values."
+}

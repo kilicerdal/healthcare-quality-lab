@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "source_hash": "d021f6f7e02b4a78a31f7df3ede9c7e978ea8b4cd85a5785f80317955cb11eae",
+  "tests_total": 1112,
+  "tests_passed": 1112,
+  "failed": 0,
+  "skipped": 0,
+  "browsers": {
+    "chromium": 72,
+    "firefox": 72,
+    "webkit": 72
+  },
+  "categories": {
+    "unit": 744,
+    "api": 152,
+    "e2e": 216
+  },
+  "environment": "Isolated cached Linux Python 3.13 and Playwright 1.65.2",
+  "upstream_warning": "Session-scoped pytest-playwright base_url fixture deprecation; no skips or failures",
+  "scope": "Complete unit/API and three-browser E2E sweep. Overlaps the 968-check standard run; do not add totals."
+}

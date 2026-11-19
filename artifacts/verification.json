@@ -1,21 +1,21 @@
 {
   "status": "passed",
-  "version": "7.0.2",
-  "recorded_at": "2026-11-18T13:11:57.359043-05:00",
+  "version": "8.0.0",
+  "recorded_at": "2026-11-18T22:41:33.649955-05:00",
   "recorded_date": "2026-11-18",
-  "source_hash": "4f0d6252c37f0584caee758fce4696043e6071b595887069bfc09401a08a3e99",
+  "source_hash": "d021f6f7e02b4a78a31f7df3ede9c7e978ea8b4cd85a5785f80317955cb11eae",
   "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
   "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
-  "tests_total": 908,
-  "tests_passed": 908,
+  "tests_total": 968,
+  "tests_passed": 968,
   "tests_failed": 0,
   "tests_skipped": 0,
   "categories": {
-    "unit": 712,
-    "api": 127,
-    "e2e": 69
+    "unit": 744,
+    "api": 152,
+    "e2e": 72
   },
-  "e2e_tests": 69,
+  "e2e_tests": 72,
   "seeded_defects_detected": 7,
   "seeded_defects_total": 7,
   "workflow_seeded_defects_detected": 5,
@@ -23,10 +23,10 @@
   "ai_case_language": "declarative DSL 1.0",
   "live_model_in_core_tests": false,
   "reference_examples": 28,
-  "duration_seconds": 120.37,
+  "duration_seconds": 142.68,
   "environment": {
     "python": "3.13.18",
-    "platform": "Linux-6.8.0-117-generic-aarch64-with-glibc2.36",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
     "pytest": "9.2.0",
     "playwright": "1.65.2",
     "flask": "3.1.3",
@@ -36,5 +36,5 @@
   "command": "python -m tools.verify",
   "subprocess_returncode": 0,
   "ci_executed": false,
-  "scope": "Local V7.0 regression: plan-first expectation authorship, durable frozen model/prompt experiments without correction, sealed investigation and rejected explanations, requirement/assertion/execution traceability, production mutation/property scoring and guided portfolio boundaries; advanced AI DSL and independent lifecycle oracle, frozen raw/corrected evaluation, identity-bound review and actual external peer/outbox/inbox recovery; reserved-model job contracts, grounded triage, advanced line benefits and independent Fraction properties, concurrent ledger/recovery, shared identity/CSRF/audit, reproducible demos, actual HTTP adapter, layout contracts, release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live provider demonstrations are recorded separately; ordinary CI makes no paid API calls. Upstream proof scenarios, reference invariants and spending controls are preserved. Not production or Medicare compliance certification."
+  "scope": "Local V8.0 regression: plan-first expectation authorship, durable frozen model/prompt experiments without correction, sealed investigation and rejected explanations, requirement/assertion/execution traceability, production mutation/property scoring and guided portfolio boundaries; advanced AI DSL and independent lifecycle oracle, frozen raw/corrected evaluation, identity-bound review and actual external peer/outbox/inbox recovery; reserved-model job contracts, grounded triage, advanced line benefits and independent Fraction properties, concurrent ledger/recovery, shared identity/CSRF/audit, reproducible demos, actual HTTP adapter, layout contracts, release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live provider demonstrations are recorded separately; ordinary CI makes no paid API calls. Upstream proof scenarios, reference invariants and spending controls are preserved. Not production or Medicare compliance certification."
 }

@@ -1,0 +1,31 @@
+name: V8 portable workbench and adapter contracts
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  portable:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m tools.doctor
+      - run: python -m pip check
+      - run: python -m pytest tests/unit tests/api -q --junitxml artifacts/v8.0/portable.xml
+      - run: python -m tools.v8_rehearsal --output artifacts/v8.0/adapter-rehearsal.json
+      - run: python -m tools.evidence_bundle build --output artifacts/v8.0/ci-evidence.zip artifacts/v8.0/adapter-rehearsal.json artifacts/v8.0/portable.xml
+      - run: python -m tools.evidence_bundle verify artifacts/v8.0/ci-evidence.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v8-python-${{ matrix.python }}
+          path: artifacts/v8.0/

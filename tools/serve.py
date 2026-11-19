@@ -13,6 +13,6 @@ def main():
     if os.environ.get("HQL_IDENTITIES_FILE"):
         config.update(AUTH_MODE="shared",SECRET_KEY=os.environ.get("HQL_SESSION_SECRET"),IDENTITIES=json.loads(Path(os.environ["HQL_IDENTITIES_FILE"]).read_text()))
     app=create_app(config)
-    print(f"Healthcare Quality Lab: http://127.0.0.1:{args.port}/#journey",flush=True)
+    print(f"Healthcare Quality Lab: http://127.0.0.1:{args.port}/#workbench",flush=True)
     serve(app,host="127.0.0.1",port=args.port,threads=8)
 if __name__=="__main__":main()
