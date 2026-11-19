@@ -1,0 +1,229 @@
+{
+  "source_hash": "56d17fd1e28b65d6be8956e9946f120fb233edcc8daba635144582113fccdad4",
+  "expectation_origin": "actual local model, unchanged; no calculator assistance",
+  "cases": [
+    {
+      "id": "AB-H82-01",
+      "title": "Frozen H82-01",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored input-only scenario; all expected values are model-authored.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "C-H82-01-1",
+            "operation_key": "submit-H82-01-1",
+            "member_id": "M100",
+            "plan_id": "medicare_a",
+            "service_date": "2026-04-19",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "hospital",
+                "allowed_cents": 113947
+              }
+            ]
+          },
+          "expect": {
+            "payout_cents": 83947,
+            "member_cents": 30000,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 83947,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 83947,
+            "policy_id": "SYN-2026-H1",
+            "partial": false,
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "ledger_cents": 0,
+            "ledger_count": 0
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "C-H82-01-1",
+            "operation_key": "pay-H82-01-1",
+            "expected_revision": 1
+          },
+          "expect": {
+            "payout_cents": 83947,
+            "member_cents": 30000,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 83947,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 83947,
+            "policy_id": "SYN-2026-H1",
+            "partial": false,
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "ledger_cents": 83947,
+            "ledger_count": 1
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "C-H82-01-1"
+          },
+          "expect": {
+            "payout_cents": 83947,
+            "member_cents": 30000,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 30000,
+            "individual_benefit": 83947,
+            "family_deductible": 10000,
+            "family_oop": 30000,
+            "family_benefit": 83947,
+            "policy_id": "SYN-2026-H1",
+            "partial": false,
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "ledger_cents": 83947,
+            "ledger_count": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "AB-H82-03",
+      "title": "Frozen H82-03",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored input-only scenario; all expected values are model-authored.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "C-H82-03-1",
+            "operation_key": "submit-H82-03-1",
+            "member_id": "M100",
+            "plan_id": "medicare_advantage",
+            "service_date": "2026-04-19",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "hospital",
+                "allowed_cents": 51347,
+                "authorized": false
+              }
+            ]
+          },
+          "expect": {
+            "payout_cents": 0,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 51347,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 0,
+            "family_deductible": 0,
+            "family_oop": 0,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false,
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "ledger_cents": 0,
+            "ledger_count": 0
+          }
+        },
+        {
+          "action": "pay",
+          "actor": "finance-demo",
+          "data": {
+            "claim_id": "C-H82-03-1",
+            "operation_key": "pay-H82-03-1",
+            "expected_revision": 1
+          },
+          "expect": {
+            "payout_cents": 0,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 51347,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 0,
+            "family_deductible": 0,
+            "family_oop": 0,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false,
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "ledger_cents": 0,
+            "ledger_count": 1
+          }
+        },
+        {
+          "action": "read",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "C-H82-03-1"
+          },
+          "expect": {
+            "payout_cents": 0,
+            "member_cents": 0,
+            "other_payer_cents": 0,
+            "noncovered_cents": 51347,
+            "individual_deductible": 0,
+            "individual_oop": 0,
+            "individual_benefit": 0,
+            "family_deductible": 0,
+            "family_oop": 0,
+            "family_benefit": 0,
+            "policy_id": "SYN-2026-H1",
+            "partial": false,
+            "status": 200,
+            "state": "paid",
+            "revision": 2,
+            "event_count": 2,
+            "ledger_cents": 0,
+            "ledger_count": 1
+          }
+        }
+      ]
+    }
+  ]
+}

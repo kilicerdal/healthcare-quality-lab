@@ -1,0 +1,12 @@
+{
+  "url": "http://127.0.0.1:8902/#workbench",
+  "qualification": "INCOMPLETE",
+  "record": "b105c8f2b6be45279c818117036c0556",
+  "source_hash": "56d17fd1e28b65d6be8956e9946f120fb233edcc8daba635144582113fccdad4",
+  "new_inference_calls": 0,
+  "approvals_copied": false,
+  "screenshots": [
+    "docs/images/v82-reliability-desktop.png",
+    "docs/images/v82-reliability-mobile.png"
+  ]
+}

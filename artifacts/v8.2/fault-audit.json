@@ -1,0 +1,1696 @@
+{
+  "kind": "v82_surviving_fault_investigation",
+  "source_hash": "56d17fd1e28b65d6be8956e9946f120fb233edcc8daba635144582113fccdad4",
+  "origin": "Authored by engineering; reference-calculated expectations; not AI-generated tests",
+  "previous_ai_detection": {
+    "detected": 21,
+    "total": 27
+  },
+  "investigated": 6,
+  "closed": 6,
+  "faults": [
+    {
+      "id": "AST-294",
+      "before": "ind[k] - start[k]",
+      "after": "ind[k] + start[k]",
+      "detected": true,
+      "witness_cases": [
+        "AB-W82-ALLOCATION"
+      ],
+      "minimal_prefix": {
+        "original_hash": "f0295a62ede16ecb013feecb65a0bc670f520fcc72c7a4182eb9358140229ae5",
+        "reduced_hash": "bf0b0d20c7b5b72c92c6c8429a3a7f33399174179da0ae4260ce88c3dfe8d1d3",
+        "original_steps": 5,
+        "reduced_steps": 4,
+        "attempts": 4,
+        "mutant": "AST-294",
+        "case": {
+          "id": "AB-W82-ALLOCATION",
+          "title": "Frozen W82-ALLOCATION",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored input-only scenario; all expected values are model-authored.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-ALLOCATION-1",
+                "operation_key": "submit-W82-ALLOCATION-1",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "medical",
+                    "allowed_cents": 5011
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 0,
+                "member_cents": 5011,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 5011,
+                "individual_oop": 5011,
+                "individual_benefit": 0,
+                "family_deductible": 5011,
+                "family_oop": 5011,
+                "family_benefit": 0,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-ALLOCATION-2",
+                "operation_key": "submit-W82-ALLOCATION-2",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-2",
+                    "service": "medical",
+                    "allowed_cents": 61007
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 44014,
+                "member_cents": 16993,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 10000,
+                "individual_oop": 22004,
+                "individual_benefit": 44014,
+                "family_deductible": 10000,
+                "family_oop": 22004,
+                "family_benefit": 44014,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "pay",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "C-W82-ALLOCATION-2",
+                "operation_key": "pay-W82-ALLOCATION-2",
+                "expected_revision": 1
+              },
+              "expect": {
+                "status": 200,
+                "state": "paid",
+                "revision": 2,
+                "event_count": 2,
+                "payout_cents": 44014,
+                "member_cents": 16993,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 44014,
+                "ledger_count": 1,
+                "individual_deductible": 10000,
+                "individual_oop": 22004,
+                "individual_benefit": 44014,
+                "family_deductible": 10000,
+                "family_oop": 22004,
+                "family_benefit": 44014,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "reverse",
+              "actor": "finance-demo",
+              "data": {
+                "claim_id": "C-W82-ALLOCATION-2",
+                "operation_key": "reverse-W82-ALLOCATION-2",
+                "expected_revision": 2,
+                "note": "Reverse only this claim allocation"
+              },
+              "expect": {
+                "status": 200,
+                "state": "reversed",
+                "revision": 3,
+                "event_count": 3,
+                "payout_cents": 44014,
+                "member_cents": 16993,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 2,
+                "individual_deductible": 5011,
+                "individual_oop": 5011,
+                "individual_benefit": 0,
+                "family_deductible": 5011,
+                "family_oop": 5011,
+                "family_benefit": 0,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            }
+          ]
+        },
+        "scope": "Prefix-only reduction against a named trusted mutant. Original case and all retained inputs/expectations stay unchanged; not general delta debugging or monetary minimization."
+      }
+    },
+    {
+      "id": "AST-321",
+      "before": "policy['individual_deductible'] - ind['deductible']",
+      "after": "policy['individual_deductible'] + ind['deductible']",
+      "detected": true,
+      "witness_cases": [
+        "AB-W82-IND-DED",
+        "AB-W82-IND-OOP",
+        "AB-W82-ALLOCATION"
+      ],
+      "minimal_prefix": {
+        "original_hash": "24883ea6dc03fbc3027030dd203c5df424a1bcba348c027147386b38cfb6ce48",
+        "reduced_hash": "24883ea6dc03fbc3027030dd203c5df424a1bcba348c027147386b38cfb6ce48",
+        "original_steps": 2,
+        "reduced_steps": 2,
+        "attempts": 2,
+        "mutant": "AST-321",
+        "case": {
+          "id": "AB-W82-IND-DED",
+          "title": "Frozen W82-IND-DED",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored input-only scenario; all expected values are model-authored.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-IND-DED-1",
+                "operation_key": "submit-W82-IND-DED-1",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "medical",
+                    "allowed_cents": 5007
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 0,
+                "member_cents": 5007,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 5007,
+                "individual_oop": 5007,
+                "individual_benefit": 0,
+                "family_deductible": 5007,
+                "family_oop": 5007,
+                "family_benefit": 0,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-IND-DED-2",
+                "operation_key": "submit-W82-IND-DED-2",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-2",
+                    "service": "medical",
+                    "allowed_cents": 60019
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 43220,
+                "member_cents": 16799,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 10000,
+                "individual_oop": 21806,
+                "individual_benefit": 43220,
+                "family_deductible": 10000,
+                "family_oop": 21806,
+                "family_benefit": 43220,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            }
+          ]
+        },
+        "scope": "Prefix-only reduction against a named trusted mutant. Original case and all retained inputs/expectations stay unchanged; not general delta debugging or monetary minimization."
+      }
+    },
+    {
+      "id": "AST-324",
+      "before": "policy['family_deductible'] - fam['deductible']",
+      "after": "policy['family_deductible'] + fam['deductible']",
+      "detected": true,
+      "witness_cases": [
+        "AB-W82-FAM-DED",
+        "AB-W82-FAM-OOP"
+      ],
+      "minimal_prefix": {
+        "original_hash": "9a6e295b3731e93c069c980915f9abdc61fb9b57625121353ef24390134f0860",
+        "reduced_hash": "9a6e295b3731e93c069c980915f9abdc61fb9b57625121353ef24390134f0860",
+        "original_steps": 3,
+        "reduced_steps": 3,
+        "attempts": 3,
+        "mutant": "AST-324",
+        "case": {
+          "id": "AB-W82-FAM-DED",
+          "title": "Frozen W82-FAM-DED",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored input-only scenario; all expected values are model-authored.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-FAM-DED-1",
+                "operation_key": "submit-W82-FAM-DED-1",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "medical",
+                    "allowed_cents": 7503
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 0,
+                "member_cents": 7503,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 7503,
+                "individual_oop": 7503,
+                "individual_benefit": 0,
+                "family_deductible": 7503,
+                "family_oop": 7503,
+                "family_benefit": 0,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "C-W82-FAM-DED-2",
+                "operation_key": "submit-W82-FAM-DED-2",
+                "member_id": "M200",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-2",
+                    "service": "medical",
+                    "allowed_cents": 7601
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 0,
+                "member_cents": 7601,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 7601,
+                "individual_oop": 7601,
+                "individual_benefit": 0,
+                "family_deductible": 15104,
+                "family_oop": 15104,
+                "family_benefit": 0,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m300",
+              "data": {
+                "claim_id": "C-W82-FAM-DED-3",
+                "operation_key": "submit-W82-FAM-DED-3",
+                "member_id": "M300",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-3",
+                    "service": "medical",
+                    "allowed_cents": 14003
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 6485,
+                "member_cents": 7518,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 4896,
+                "individual_oop": 7518,
+                "individual_benefit": 6485,
+                "family_deductible": 20000,
+                "family_oop": 22622,
+                "family_benefit": 6485,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            }
+          ]
+        },
+        "scope": "Prefix-only reduction against a named trusted mutant. Original case and all retained inputs/expectations stay unchanged; not general delta debugging or monetary minimization."
+      }
+    },
+    {
+      "id": "AST-345",
+      "before": "policy['individual_oop'] - ind['oop']",
+      "after": "policy['individual_oop'] + ind['oop']",
+      "detected": true,
+      "witness_cases": [
+        "AB-W82-IND-OOP",
+        "AB-W82-BENEFIT"
+      ],
+      "minimal_prefix": {
+        "original_hash": "26b69bb963c69f465a98c45baed48728f3fe1e639a813d2f0dc4f825e06367ab",
+        "reduced_hash": "26b69bb963c69f465a98c45baed48728f3fe1e639a813d2f0dc4f825e06367ab",
+        "original_steps": 2,
+        "reduced_steps": 2,
+        "attempts": 2,
+        "mutant": "AST-345",
+        "case": {
+          "id": "AB-W82-IND-OOP",
+          "title": "Frozen W82-IND-OOP",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored input-only scenario; all expected values are model-authored.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-IND-OOP-1",
+                "operation_key": "submit-W82-IND-OOP-1",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "medical",
+                    "allowed_cents": 97003
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 68802,
+                "member_cents": 28201,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 10000,
+                "individual_oop": 28201,
+                "individual_benefit": 68802,
+                "family_deductible": 10000,
+                "family_oop": 28201,
+                "family_benefit": 68802,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-IND-OOP-2",
+                "operation_key": "submit-W82-IND-OOP-2",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-2",
+                    "service": "medical",
+                    "allowed_cents": 83009
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 81210,
+                "member_cents": 1799,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 10000,
+                "individual_oop": 30000,
+                "individual_benefit": 150012,
+                "family_deductible": 10000,
+                "family_oop": 30000,
+                "family_benefit": 150012,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            }
+          ]
+        },
+        "scope": "Prefix-only reduction against a named trusted mutant. Original case and all retained inputs/expectations stay unchanged; not general delta debugging or monetary minimization."
+      }
+    },
+    {
+      "id": "AST-348",
+      "before": "policy['family_oop'] - fam['oop']",
+      "after": "policy['family_oop'] + fam['oop']",
+      "detected": true,
+      "witness_cases": [
+        "AB-W82-FAM-OOP"
+      ],
+      "minimal_prefix": {
+        "original_hash": "dccf352458029d736f154bc24871c65d1aa8d04c527ebce610e469c17772705b",
+        "reduced_hash": "dccf352458029d736f154bc24871c65d1aa8d04c527ebce610e469c17772705b",
+        "original_steps": 3,
+        "reduced_steps": 3,
+        "attempts": 3,
+        "mutant": "AST-348",
+        "case": {
+          "id": "AB-W82-FAM-OOP",
+          "title": "Frozen W82-FAM-OOP",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored input-only scenario; all expected values are model-authored.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-FAM-OOP-1",
+                "operation_key": "submit-W82-FAM-OOP-1",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "medical",
+                    "allowed_cents": 100003
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 71202,
+                "member_cents": 28801,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 10000,
+                "individual_oop": 28801,
+                "individual_benefit": 71202,
+                "family_deductible": 10000,
+                "family_oop": 28801,
+                "family_benefit": 71202,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m200",
+              "data": {
+                "claim_id": "C-W82-FAM-OOP-2",
+                "operation_key": "submit-W82-FAM-OOP-2",
+                "member_id": "M200",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-2",
+                    "service": "medical",
+                    "allowed_cents": 100019
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 71215,
+                "member_cents": 28804,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 10000,
+                "individual_oop": 28804,
+                "individual_benefit": 71215,
+                "family_deductible": 20000,
+                "family_oop": 57605,
+                "family_benefit": 142417,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m300",
+              "data": {
+                "claim_id": "C-W82-FAM-OOP-3",
+                "operation_key": "submit-W82-FAM-OOP-3",
+                "member_id": "M300",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-3",
+                    "service": "medical",
+                    "allowed_cents": 100043
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 97648,
+                "member_cents": 2395,
+                "other_payer_cents": 0,
+                "noncovered_cents": 0,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 0,
+                "individual_oop": 2395,
+                "individual_benefit": 97648,
+                "family_deductible": 20000,
+                "family_oop": 60000,
+                "family_benefit": 240065,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            }
+          ]
+        },
+        "scope": "Prefix-only reduction against a named trusted mutant. Original case and all retained inputs/expectations stay unchanged; not general delta debugging or monetary minimization."
+      }
+    },
+    {
+      "id": "AST-355",
+      "before": "policy['annual_benefit'] - ind['benefit']",
+      "after": "policy['annual_benefit'] + ind['benefit']",
+      "detected": true,
+      "witness_cases": [
+        "AB-W82-BENEFIT"
+      ],
+      "minimal_prefix": {
+        "original_hash": "0e4649ad5b8468d5050a9bfd01baed72e7a0a457dbddf30e266d9feaef1f4f70",
+        "reduced_hash": "0e4649ad5b8468d5050a9bfd01baed72e7a0a457dbddf30e266d9feaef1f4f70",
+        "original_steps": 2,
+        "reduced_steps": 2,
+        "attempts": 2,
+        "mutant": "AST-355",
+        "case": {
+          "id": "AB-W82-BENEFIT",
+          "title": "Frozen W82-BENEFIT",
+          "rule_ids": [
+            "BN-001",
+            "BN-002",
+            "BN-003",
+            "BN-004",
+            "BN-005",
+            "BN-006",
+            "BN-007"
+          ],
+          "rationale": "Authored input-only scenario; all expected values are model-authored.",
+          "assumptions": [],
+          "steps": [
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-BENEFIT-1",
+                "operation_key": "submit-W82-BENEFIT-1",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-1",
+                    "service": "medical",
+                    "allowed_cents": 260003
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 200000,
+                "member_cents": 30000,
+                "other_payer_cents": 0,
+                "noncovered_cents": 30003,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 10000,
+                "individual_oop": 30000,
+                "individual_benefit": 200000,
+                "family_deductible": 10000,
+                "family_oop": 30000,
+                "family_benefit": 200000,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            },
+            {
+              "action": "submit",
+              "actor": "customer-m100",
+              "data": {
+                "claim_id": "C-W82-BENEFIT-2",
+                "operation_key": "submit-W82-BENEFIT-2",
+                "member_id": "M100",
+                "plan_id": "commercial_ppo",
+                "service_date": "2026-04-19",
+                "lines": [
+                  {
+                    "id": "LINE-2",
+                    "service": "medical",
+                    "allowed_cents": 17011
+                  }
+                ]
+              },
+              "expect": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 0,
+                "member_cents": 0,
+                "other_payer_cents": 0,
+                "noncovered_cents": 17011,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 10000,
+                "individual_oop": 30000,
+                "individual_benefit": 200000,
+                "family_deductible": 10000,
+                "family_oop": 30000,
+                "family_benefit": 200000,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              }
+            }
+          ]
+        },
+        "scope": "Prefix-only reduction against a named trusted mutant. Original case and all retained inputs/expectations stay unchanged; not general delta debugging or monetary minimization."
+      }
+    }
+  ],
+  "authored_effectiveness": {
+    "combined_authored_detection": {
+      "detected": 27,
+      "total": 27,
+      "scope": "Union of disclosed authored suites; not AI-only coverage"
+    },
+    "kind": "test_effectiveness",
+    "source_hash": "56d17fd1e28b65d6be8956e9946f120fb233edcc8daba635144582113fccdad4",
+    "seed": 611,
+    "examples": 80,
+    "mutants": [
+      {
+        "id": "AST-67",
+        "before": "allowed - other",
+        "after": "allowed + other"
+      },
+      {
+        "id": "AST-149",
+        "before": "min(eligible, max(0, policy['individual_deductible'] - ind['deductible']), max(0, policy['family_deductible'] - fam['deductible']))",
+        "after": "max(eligible, max(0, policy['individual_deductible'] - ind['deductible']), max(0, policy['family_deductible'] - fam['deductible']))"
+      },
+      {
+        "id": "AST-151",
+        "before": "min(eligible - ded, policy['copay'])",
+        "after": "max(eligible - ded, policy['copay'])"
+      },
+      {
+        "id": "AST-153",
+        "before": "eligible - ded - copay",
+        "after": "eligible - ded + copay"
+      },
+      {
+        "id": "AST-155",
+        "before": "remaining * policy['payer_bps'] // 10000",
+        "after": "remaining * policy['payer_bps'] * 10000"
+      },
+      {
+        "id": "AST-157",
+        "before": "min(eligible - preliminary, max(0, policy['individual_oop'] - ind['oop']), max(0, policy['family_oop'] - fam['oop']))",
+        "after": "max(eligible - preliminary, max(0, policy['individual_oop'] - ind['oop']), max(0, policy['family_oop'] - fam['oop']))"
+      },
+      {
+        "id": "AST-159",
+        "before": "min(eligible - member, max(0, policy['annual_benefit'] - ind['benefit']))",
+        "after": "max(eligible - member, max(0, policy['annual_benefit'] - ind['benefit']))"
+      },
+      {
+        "id": "AST-161",
+        "before": "eligible - member - payout",
+        "after": "eligible - member + payout"
+      },
+      {
+        "id": "AST-163",
+        "before": "min(ded, member)",
+        "after": "max(ded, member)"
+      },
+      {
+        "id": "AST-177",
+        "before": "[dict(rule_id='BN-002', line_id=x['id'], outcome=x['reason']) for x in rows] + [dict(rule_id='BN-004', outcome='Integer cost sharing and caps calculated'), dict(rule_id='BN-005', outcome='Annual allocation reserved')]",
+        "after": "[dict(rule_id='BN-002', line_id=x['id'], outcome=x['reason']) for x in rows] - [dict(rule_id='BN-004', outcome='Integer cost sharing and caps calculated'), dict(rule_id='BN-005', outcome='Annual allocation reserved')]"
+      },
+      {
+        "id": "AST-214",
+        "before": "max(0, policy['individual_deductible'] - ind['deductible'])",
+        "after": "min(0, policy['individual_deductible'] - ind['deductible'])"
+      },
+      {
+        "id": "AST-215",
+        "before": "max(0, policy['family_deductible'] - fam['deductible'])",
+        "after": "min(0, policy['family_deductible'] - fam['deductible'])"
+      },
+      {
+        "id": "AST-218",
+        "before": "eligible - ded",
+        "after": "eligible + ded"
+      },
+      {
+        "id": "AST-221",
+        "before": "eligible - ded",
+        "after": "eligible + ded"
+      },
+      {
+        "id": "AST-225",
+        "before": "remaining * policy['payer_bps']",
+        "after": "remaining + policy['payer_bps']"
+      },
+      {
+        "id": "AST-230",
+        "before": "eligible - preliminary",
+        "after": "eligible + preliminary"
+      },
+      {
+        "id": "AST-231",
+        "before": "max(0, policy['individual_oop'] - ind['oop'])",
+        "after": "min(0, policy['individual_oop'] - ind['oop'])"
+      },
+      {
+        "id": "AST-232",
+        "before": "max(0, policy['family_oop'] - fam['oop'])",
+        "after": "min(0, policy['family_oop'] - fam['oop'])"
+      },
+      {
+        "id": "AST-235",
+        "before": "eligible - member",
+        "after": "eligible + member"
+      },
+      {
+        "id": "AST-236",
+        "before": "max(0, policy['annual_benefit'] - ind['benefit'])",
+        "after": "min(0, policy['annual_benefit'] - ind['benefit'])"
+      },
+      {
+        "id": "AST-238",
+        "before": "eligible - member",
+        "after": "eligible + member"
+      },
+      {
+        "id": "AST-294",
+        "before": "ind[k] - start[k]",
+        "after": "ind[k] + start[k]"
+      },
+      {
+        "id": "AST-321",
+        "before": "policy['individual_deductible'] - ind['deductible']",
+        "after": "policy['individual_deductible'] + ind['deductible']"
+      },
+      {
+        "id": "AST-324",
+        "before": "policy['family_deductible'] - fam['deductible']",
+        "after": "policy['family_deductible'] + fam['deductible']"
+      },
+      {
+        "id": "AST-345",
+        "before": "policy['individual_oop'] - ind['oop']",
+        "after": "policy['individual_oop'] + ind['oop']"
+      },
+      {
+        "id": "AST-348",
+        "before": "policy['family_oop'] - fam['oop']",
+        "after": "policy['family_oop'] + fam['oop']"
+      },
+      {
+        "id": "AST-355",
+        "before": "policy['annual_benefit'] - ind['benefit']",
+        "after": "policy['annual_benefit'] + ind['benefit']"
+      }
+    ],
+    "suites": [
+      {
+        "name": "authored_v82_multi_claim",
+        "case_count": 7,
+        "distinct_scenarios": 7,
+        "baseline": {
+          "passed": true,
+          "witness": null
+        },
+        "reference_matching": true,
+        "scored": true,
+        "trials": [
+          {
+            "mutant": "AST-67",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-OTHERPAYER",
+              "kind": "assertion_mismatch",
+              "step": 1,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_oop",
+                "individual_benefit",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-149",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_deductible",
+                "individual_oop",
+                "individual_benefit",
+                "family_deductible",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-151",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "valid_input_exception",
+              "exception": "RuntimeError"
+            }
+          },
+          {
+            "mutant": "AST-153",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_oop",
+                "individual_benefit",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-155",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "valid_input_exception",
+              "exception": "RuntimeError"
+            }
+          },
+          {
+            "mutant": "AST-157",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "valid_input_exception",
+              "exception": "RuntimeError"
+            }
+          },
+          {
+            "mutant": "AST-159",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 1,
+              "fields": [
+                "payout_cents",
+                "noncovered_cents",
+                "individual_benefit",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-161",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "noncovered_cents"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-163",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "individual_deductible",
+                "family_deductible"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-177",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "valid_input_exception",
+              "exception": "TypeError"
+            }
+          },
+          {
+            "mutant": "AST-214",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 1,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_deductible",
+                "individual_oop",
+                "individual_benefit",
+                "family_deductible",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-215",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 1,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_deductible",
+                "individual_oop",
+                "individual_benefit",
+                "family_deductible",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-218",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "valid_input_exception",
+              "exception": "RuntimeError"
+            }
+          },
+          {
+            "mutant": "AST-221",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "valid_input_exception",
+              "exception": "RuntimeError"
+            }
+          },
+          {
+            "mutant": "AST-225",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_oop",
+                "individual_benefit",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-230",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_oop",
+                "individual_benefit",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-231",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 1,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_deductible",
+                "individual_oop",
+                "individual_benefit",
+                "family_deductible",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-232",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 1,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_deductible",
+                "individual_oop",
+                "individual_benefit",
+                "family_deductible",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-235",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 1,
+              "fields": [
+                "payout_cents",
+                "noncovered_cents",
+                "individual_benefit",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-236",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "payout_cents",
+                "noncovered_cents",
+                "individual_benefit",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-238",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 1,
+              "fields": [
+                "noncovered_cents"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-294",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-ALLOCATION",
+              "kind": "valid_input_exception",
+              "exception": "RuntimeError"
+            }
+          },
+          {
+            "mutant": "AST-321",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-DED",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_deductible",
+                "individual_oop",
+                "individual_benefit",
+                "family_deductible",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-324",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-FAM-DED",
+              "kind": "assertion_mismatch",
+              "step": 3,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_deductible",
+                "individual_oop",
+                "individual_benefit",
+                "family_deductible",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-345",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-IND-OOP",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_oop",
+                "individual_benefit",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-348",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-FAM-OOP",
+              "kind": "assertion_mismatch",
+              "step": 3,
+              "fields": [
+                "payout_cents",
+                "member_cents",
+                "individual_oop",
+                "individual_benefit",
+                "family_oop",
+                "family_benefit"
+              ]
+            }
+          },
+          {
+            "mutant": "AST-355",
+            "detected": true,
+            "witness": {
+              "case_id": "AB-W82-BENEFIT",
+              "kind": "assertion_mismatch",
+              "step": 2,
+              "fields": [
+                "payout_cents",
+                "noncovered_cents",
+                "individual_benefit",
+                "family_benefit"
+              ]
+            }
+          }
+        ],
+        "detected": 27,
+        "total": 27,
+        "survived": []
+      }
+    ],
+    "properties": {
+      "baseline": {
+        "passed": true,
+        "seed": 611,
+        "examples_attempted": 80,
+        "checks_passed": 400,
+        "witness": null,
+        "scope": "Five seeded generative/metamorphic relations per example; bounded examples, not exhaustive property proof or a Hypothesis run"
+      },
+      "detected": 14,
+      "total": 27,
+      "trials": [
+        {
+          "mutant": "AST-67",
+          "detected": true,
+          "witness": {
+            "example": 1,
+            "plan": "medicare_a",
+            "line": {
+              "id": "LINE-1",
+              "service": "skilled_nursing",
+              "allowed_cents": 5003,
+              "other_payer_cents": 3783
+            },
+            "policy_id": "SYN-2027",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-149",
+          "detected": true,
+          "witness": {
+            "example": 8,
+            "plan": "medicare_d",
+            "line": {
+              "id": "LINE-1",
+              "service": "prescription",
+              "allowed_cents": 865748,
+              "other_payer_cents": 762898
+            },
+            "policy_id": "SYN-2026-H2",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-151",
+          "detected": true,
+          "witness": {
+            "example": 0,
+            "plan": "commercial_hmo",
+            "line": {
+              "id": "LINE-1",
+              "service": "mental_health",
+              "allowed_cents": 1,
+              "other_payer_cents": 0
+            },
+            "policy_id": "SYN-2027",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-153",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-155",
+          "detected": true,
+          "witness": {
+            "example": 8,
+            "plan": "medicare_d",
+            "line": {
+              "id": "LINE-1",
+              "service": "prescription",
+              "allowed_cents": 865748,
+              "other_payer_cents": 762898
+            },
+            "policy_id": "SYN-2026-H2",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-157",
+          "detected": true,
+          "witness": {
+            "example": 0,
+            "plan": "commercial_hmo",
+            "line": {
+              "id": "LINE-1",
+              "service": "mental_health",
+              "allowed_cents": 1,
+              "other_payer_cents": 0
+            },
+            "policy_id": "SYN-2027",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-159",
+          "detected": true,
+          "witness": {
+            "example": 0,
+            "plan": "commercial_hmo",
+            "line": {
+              "id": "LINE-1",
+              "service": "mental_health",
+              "allowed_cents": 1,
+              "other_payer_cents": 0
+            },
+            "policy_id": "SYN-2027",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-161",
+          "detected": true,
+          "witness": {
+            "example": 8,
+            "plan": "medicare_d",
+            "line": {
+              "id": "LINE-1",
+              "service": "prescription",
+              "allowed_cents": 865748,
+              "other_payer_cents": 762898
+            },
+            "policy_id": "SYN-2026-H2",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-163",
+          "detected": true,
+          "witness": {
+            "example": 8,
+            "plan": "medicare_d",
+            "line": {
+              "id": "LINE-1",
+              "service": "prescription",
+              "allowed_cents": 865748,
+              "other_payer_cents": 762898
+            },
+            "policy_id": "SYN-2026-H2",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-177",
+          "detected": true,
+          "witness": {
+            "example": 0,
+            "plan": "commercial_hmo",
+            "line": {
+              "id": "LINE-1",
+              "service": "mental_health",
+              "allowed_cents": 1,
+              "other_payer_cents": 0
+            },
+            "policy_id": "SYN-2027",
+            "exception": "TypeError"
+          }
+        },
+        {
+          "mutant": "AST-214",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-215",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-218",
+          "detected": true,
+          "witness": {
+            "example": 0,
+            "plan": "commercial_hmo",
+            "line": {
+              "id": "LINE-1",
+              "service": "mental_health",
+              "allowed_cents": 1,
+              "other_payer_cents": 0
+            },
+            "policy_id": "SYN-2027",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-221",
+          "detected": true,
+          "witness": {
+            "example": 1,
+            "plan": "medicare_a",
+            "line": {
+              "id": "LINE-1",
+              "service": "skilled_nursing",
+              "allowed_cents": 5003,
+              "other_payer_cents": 3783
+            },
+            "policy_id": "SYN-2027",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-225",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-230",
+          "detected": true,
+          "witness": {
+            "example": 10,
+            "plan": "medicare_advantage",
+            "line": {
+              "id": "LINE-1",
+              "service": "medical",
+              "allowed_cents": 28131,
+              "other_payer_cents": 7835
+            },
+            "policy_id": "SYN-2027",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-231",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-232",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-235",
+          "detected": true,
+          "witness": {
+            "example": 0,
+            "plan": "commercial_hmo",
+            "line": {
+              "id": "LINE-1",
+              "service": "mental_health",
+              "allowed_cents": 1,
+              "other_payer_cents": 0
+            },
+            "policy_id": "SYN-2027",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-236",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-238",
+          "detected": true,
+          "witness": {
+            "example": 0,
+            "plan": "commercial_hmo",
+            "line": {
+              "id": "LINE-1",
+              "service": "mental_health",
+              "allowed_cents": 1,
+              "other_payer_cents": 0
+            },
+            "policy_id": "SYN-2027",
+            "exception": "AssertionError"
+          }
+        },
+        {
+          "mutant": "AST-294",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-321",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-324",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-345",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-348",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-355",
+          "detected": false,
+          "witness": null
+        }
+      ]
+    },
+    "lifecycle": {
+      "passed": true,
+      "relations": [
+        "identical payment replay preserves original response",
+        "replay creates no ledger/history/revision change",
+        "reversal balances ledger and credits original accounts",
+        "old payment replay after reversal cannot resurrect settlement"
+      ],
+      "scope": "Actual disposable SQLite lifecycle, no interactive claims or model calls"
+    },
+    "duration_seconds": 0.5,
+    "live_model_calls": 0,
+    "scope": "Actual trusted arithmetic/min/max production-pricing mutations in disposable stores. Different suite sizes are disclosed, not an equal-budget AI superiority comparison. Surviving variants may be equivalent or expose gaps. Declarative historical AI cases are rechecked but never app-approved by this offline benchmark."
+  },
+  "scope": "Actual trusted production AST mutations; authored witnesses use independent reference expectations. Never count these as AI-generated tests. Prior live AI cases lacked accumulated balances needed by these faults."
+}

@@ -1,0 +1,70 @@
+{
+  "kind": "pre_exposure_v82_protocol_lock",
+  "created_unix": 1795071361.7638478,
+  "source_hash": "56d17fd1e28b65d6be8956e9946f120fb233edcc8daba635144582113fccdad4",
+  "commit": "c5cf0183a0f641b938d8edb5c3788c5d8a78fe58",
+  "protocol_version": "compact-expectations-v82-4",
+  "selection": {
+    "models": [
+      "qwen3.5:27b"
+    ],
+    "tasks": [
+      "H82-01",
+      "H82-02",
+      "H82-03",
+      "H82-04",
+      "H82-05",
+      "H82-06",
+      "H82-07",
+      "H82-08",
+      "H82-09",
+      "H82-10"
+    ],
+    "repeats": 2,
+    "strategy": "whole_case",
+    "self_review": false,
+    "request_budget": 20
+  },
+  "settings": {
+    "temperature": 0,
+    "seed": 7,
+    "num_predict": 2600,
+    "num_ctx": 12288
+  },
+  "request_timeout_seconds": 240,
+  "profile": "compact-expectations-v82-direct",
+  "model_status": {
+    "available": true,
+    "models": [
+      {
+        "name": "qwen3.5:27b",
+        "digest": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+      },
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "allowed_models": [
+      "qwen2.5-coder:3b",
+      "qwen2.5:3b",
+      "qwen3.5:27b"
+    ],
+    "endpoint": "http://127.0.0.1:11434",
+    "mode": "local Ollama only"
+  },
+  "rubric": "Strict complete expected observations, per-pricing-action line and cap worksheets, and per-step stored-ledger worksheet. No V8.1 revision/event worksheet. Historical strict scores differ. Independent checking only after raw predictions freeze; no calculator assistance, repairs or retries.",
+  "target_percent": 80,
+  "minimum_unique_inputs": 10,
+  "unique_inputs": 10,
+  "repeat_count": 2,
+  "denominator": 20,
+  "repeats_scope": "Same requested seed and settings; numeric consistency on correlated repeated inputs, not20unique cases or stochastic robustness.",
+  "model_selection": "27B selected prospectively after final development3/3; 3B failed cap in all4development candidates and was not qualified. No fresh3B accuracy is claimed.",
+  "strategy_selection": "Whole-case compact selected for fewer requests. Exposed development stepwise pilots used more total time and did not fix their cap/replay failures. No route chosen using reserved feedback.",
+  "hardware_scope": "Dedicated browser VM stopped and local standard acceptance complete before model qualification. The duplicate local Linux sweep was superseded by the exact-source hosted full-browser workflow, which runs remotely in parallel. No model downloads/cloud/paid calls. No claim about globally unseen training data."
+}

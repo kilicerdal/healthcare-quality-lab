@@ -1,4 +1,18 @@
-# Healthcare Quality Lab — V8.1
+# Healthcare Quality Lab — V8.2
+
+[Detailed V8.2 report](docs/V8.2_REPORT.md) · [Operator guide](docs/V8.2_GUIDE.md) · [Architecture](docs/V8.2_ARCHITECTURE.md)
+
+**Engineering acceptance: 1070/1070 local checks and 246/246 hosted full-browser checks passed. Totals overlap.** [Hosted acceptance](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/44474895811).
+
+V8.2 adds compact model-authored quote reuse, explicit cap and stored-ledger worksheets, independent gates, readable failure categories and authored witnesses for all six prior surviving pricing faults. Those authored tests detect 27/27 trusted pricing mutations; they are not AI-generated coverage.
+
+**AI qualification is INCOMPLETE.** The planned 20-trial run was stopped for timely delivery: 7 assessed, 4 eligible, 3 incorrect, 13 unfinished/unrun. No completed accuracy claim. Two unique unchanged eligible model cases passed actual HTTP through explicit manual engineering replay and detected 16/27 pricing mutations. The interrupted experiment remains export-blocked.
+
+The final development 27B pilot passed 3/3 selected exposed cases. Vision and mixed-coverage failures remain. Calculators check frozen predictions; they never repair model values in this path.
+
+Open the V8.2 showcase at `http://127.0.0.1:8902/#workbench`. All benefits, identities and payments are synthetic. VS Code was not opened; existing user stores and the unrelated V4 draft were preserved.
+
+# Archived V8.1 overview
 
 [Detailed V8.1 report](docs/V8.1_REPORT.md) · [Operator and AI learning guide](docs/V8.1_GUIDE.md) · [Architecture](docs/V8.1_ARCHITECTURE.md) · [Frozen actual model scorecard](artifacts/v8.1/heldout-scorecard.json)
 

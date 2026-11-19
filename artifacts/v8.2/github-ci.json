@@ -1,0 +1,23 @@
+{
+  "source_hash": "56d17fd1e28b65d6be8956e9946f120fb233edcc8daba635144582113fccdad4",
+  "required_runs": [
+    {
+      "conclusion": "success",
+      "databaseId": 44474895811,
+      "headSha": "c5cf0183a0f641b938d8edb5c3788c5d8a78fe58",
+      "name": "V8.2 quality and release checks",
+      "status": "completed",
+      "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/44474895811"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44474770011,
+      "headSha": "c5cf0183a0f641b938d8edb5c3788c5d8a78fe58",
+      "name": "V8 portable workbench and adapter contracts",
+      "status": "completed",
+      "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/44474770011"
+    }
+  ],
+  "all_required_passed": true,
+  "scope": "Frozen implementation workflows passed, including full246E2E and Python3.11/12/13 portable matrix. Later docs/evidence-only changes share the same implementation fingerprint; no code tests are skipped."
+}

@@ -1,0 +1,140 @@
+{
+  "source_hash": "56d17fd1e28b65d6be8956e9946f120fb233edcc8daba635144582113fccdad4",
+  "tasks": [
+    {
+      "task": "H82-01",
+      "correct_by_repeat": [
+        true,
+        true
+      ],
+      "observation_correct_by_repeat": [
+        true,
+        true
+      ],
+      "both_schema_valid": true,
+      "identical_observations": true
+    },
+    {
+      "task": "H82-02",
+      "correct_by_repeat": [
+        false,
+        false
+      ],
+      "observation_correct_by_repeat": [
+        true,
+        true
+      ],
+      "both_schema_valid": true,
+      "identical_observations": true
+    },
+    {
+      "task": "H82-03",
+      "correct_by_repeat": [
+        true,
+        true
+      ],
+      "observation_correct_by_repeat": [
+        true,
+        true
+      ],
+      "both_schema_valid": true,
+      "identical_observations": true
+    },
+    {
+      "task": "H82-04",
+      "correct_by_repeat": [
+        false,
+        false
+      ],
+      "observation_correct_by_repeat": [
+        true,
+        false
+      ],
+      "both_schema_valid": false,
+      "identical_observations": false
+    },
+    {
+      "task": "H82-05",
+      "correct_by_repeat": [
+        false,
+        false
+      ],
+      "observation_correct_by_repeat": [
+        false,
+        false
+      ],
+      "both_schema_valid": false,
+      "identical_observations": false
+    },
+    {
+      "task": "H82-06",
+      "correct_by_repeat": [
+        false,
+        false
+      ],
+      "observation_correct_by_repeat": [
+        false,
+        false
+      ],
+      "both_schema_valid": false,
+      "identical_observations": false
+    },
+    {
+      "task": "H82-07",
+      "correct_by_repeat": [
+        false,
+        false
+      ],
+      "observation_correct_by_repeat": [
+        false,
+        false
+      ],
+      "both_schema_valid": false,
+      "identical_observations": false
+    },
+    {
+      "task": "H82-08",
+      "correct_by_repeat": [
+        false,
+        false
+      ],
+      "observation_correct_by_repeat": [
+        false,
+        false
+      ],
+      "both_schema_valid": false,
+      "identical_observations": false
+    },
+    {
+      "task": "H82-09",
+      "correct_by_repeat": [
+        false,
+        false
+      ],
+      "observation_correct_by_repeat": [
+        false,
+        false
+      ],
+      "both_schema_valid": false,
+      "identical_observations": false
+    },
+    {
+      "task": "H82-10",
+      "correct_by_repeat": [
+        false,
+        false
+      ],
+      "observation_correct_by_repeat": [
+        false,
+        false
+      ],
+      "both_schema_valid": false,
+      "identical_observations": false
+    }
+  ],
+  "identical_valid_observation_pairs": 3,
+  "both_correct_tasks": 2,
+  "unavailable_or_invalid_pairs": 7,
+  "trials_with_observation_mismatch_field": {},
+  "scope": "Ten unique tasks, correlated repeated requested seed/settings. Consistency can mean consistently wrong; correctness reported separately. No inference or feedback in this analysis."
+}

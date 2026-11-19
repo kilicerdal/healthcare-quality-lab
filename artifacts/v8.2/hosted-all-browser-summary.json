@@ -1,0 +1,15 @@
+{
+  "source_hash": "56d17fd1e28b65d6be8956e9946f120fb233edcc8daba635144582113fccdad4",
+  "commit": "c5cf0183a0f641b938d8edb5c3788c5d8a78fe58",
+  "run_id": 44474895811,
+  "status": "passed",
+  "passed": 246,
+  "failed": 0,
+  "skipped": 0,
+  "browsers": {
+    "chromium": 82,
+    "firefox": 82,
+    "webkit": 82
+  },
+  "scope": "Actual complete hosted E2E XML. Local1070 includes82Chromium checks, so totals overlap. Superseded partial local Linux sweeps are not counted passing."
+}
