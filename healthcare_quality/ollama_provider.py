@@ -39,7 +39,7 @@ class OllamaProvider:
         mode="prompt-json-validated" if model=="qwen3.5:27b" else "schema-constrained"
         body={"model":model,"prompt":prompt,"stream":False,"options":self.settings}
         if mode=="prompt-json-validated":
-            body.update(think=False,prompt=prompt+"\nOUTPUT JSON SCHEMA (return exactly one matching JSON object, no markdown): "+json.dumps(schema))
+            body.update(think=getattr(self,'reasoning_enabled',False),prompt=prompt+"\nOUTPUT JSON SCHEMA (return exactly one matching JSON object, no markdown): "+json.dumps(schema))
         else:body["format"]=schema
         request=urllib.request.Request(ENDPOINT+"/api/generate",data=json.dumps(body).encode(),headers={"Content-Type":"application/json"})
         started=time.monotonic()
@@ -48,6 +48,10 @@ class OllamaProvider:
                 raw=response.read(MAX_RESPONSE_BYTES+1)
             if len(raw)>MAX_RESPONSE_BYTES:raise ProviderError("Model envelope exceeds 256 KiB")
             envelope=json_loads(raw)
+        except urllib.error.HTTPError as error:
+            data=error.read(MAX_RESPONSE_BYTES+1)
+            raw=dict(http_status=error.code,body=data[:MAX_RESPONSE_BYTES].decode(errors='replace'),truncated=len(data)>MAX_RESPONSE_BYTES)
+            raise ProviderError('Local model HTTP request failed: '+str(error.code),raw) from error
         except ProviderError:raise
         except Exception as error:raise ProviderError(f"Local model request failed: {type(error).__name__}") from error
         if not isinstance(envelope,dict) or not envelope.get("done") or envelope.get("done_reason")=="length":
@@ -57,3 +61,31 @@ class OllamaProvider:
         return {"text":text,"output_mode":mode,"raw_envelope":envelope,"model":envelope.get("model",model),
                 "latency_ms":round((time.monotonic()-started)*1000,2),"input_tokens":envelope.get("prompt_eval_count"),
                 "output_tokens":envelope.get("eval_count"),"settings":dict(self.settings),"profile":self.profile,"endpoint":ENDPOINT+"/api/generate"}
+
+
+class ExpectationOllamaProvider(OllamaProvider):
+    """Dedicated V8.1 profile; native model reasoning, no calculator/tools.
+    Final JSON and worksheets are retained; internal deliberation is omitted.
+    Existing legacy/advanced profiles retain their original behavior.
+    """
+    def __init__(self,reasoning=False):
+        super().__init__('advanced')
+        self.settings=dict(temperature=0,seed=7,num_predict=10000 if reasoning else 6000,num_ctx=24576 if reasoning else 16384)
+        self.timeout=420 if reasoning else 240
+        self.reasoning_enabled=reasoning
+        self.profile='expectations-v81-reasoning' if reasoning else 'expectations-v81-direct'
+    @staticmethod
+    def final_envelope(envelope):
+        if not isinstance(envelope,dict):return envelope
+        data=dict(envelope)
+        if 'thinking' in data:data['internal_deliberation_characters']=len(data.pop('thinking') or '')
+        return data
+    def generate(self,model,prompt,schema):
+        try:result=super().generate(model,prompt,schema)
+        except ProviderError as error:
+            error.raw_response=self.final_envelope(error.raw_response)
+            raise
+        result['raw_envelope']=self.final_envelope(result['raw_envelope'])
+        result['reasoning_requested']=model=='qwen3.5:27b' and self.reasoning_enabled
+        result['internal_deliberation_retained']=False
+        return result

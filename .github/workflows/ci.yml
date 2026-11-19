@@ -1,4 +1,4 @@
-name: V8.0 quality and release checks
+name: V8.1 quality and release checks
 on:
   push:
   pull_request:
@@ -68,15 +68,15 @@ jobs:
       - name: Build, inspect and rehearse release
         run: |
           python -m tools.release build --output releases/ci
-          python -m tools.release inspect releases/ci/v8.0.0-source.zip
-          python -m tools.rehearse releases/ci/v8.0.0-source.zip --output artifacts/v7.0/ci-runtime-rehearsal.json
+          python -m tools.release inspect releases/ci/v8.1.0-source.zip
+          python -m tools.rehearse releases/ci/v8.1.0-source.zip --output artifacts/v7.0/ci-runtime-rehearsal.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: healthcare-quality-lab-v7.0-evidence
           path: |
-            releases/ci/v8.0.0-source.zip
-            releases/ci/v8.0.0-manifest.json
+            releases/ci/v8.1.0-source.zip
+            releases/ci/v8.1.0-manifest.json
             artifacts/
   browsers:
     if: github.event_name != 'pull_request'
@@ -105,7 +105,7 @@ jobs:
           apt-config dump Acquire::Retries Acquire::http::Timeout Acquire::https::Timeout
       - run: python -m playwright install --with-deps ${{ matrix.browser }}
       - name: Cross-browser core and advanced journeys
-        run: python -m pytest tests/e2e/test_browser.py tests/e2e/test_workflow_browser.py tests/e2e/test_research_browser.py tests/e2e/test_advanced_browser.py tests/e2e/test_design_browser.py tests/e2e/test_investigation_browser.py tests/e2e/test_traceability_browser.py tests/e2e/test_effectiveness_browser.py tests/e2e/test_experiments_browser.py tests/e2e/test_portfolio_browser.py tests/e2e/test_v8_workbench_browser.py --browser ${{ matrix.browser }} -q --junitxml artifacts/v7.0/${{ matrix.browser }}-results.xml
+        run: python -m pytest tests/e2e/test_browser.py tests/e2e/test_workflow_browser.py tests/e2e/test_research_browser.py tests/e2e/test_advanced_browser.py tests/e2e/test_design_browser.py tests/e2e/test_investigation_browser.py tests/e2e/test_traceability_browser.py tests/e2e/test_effectiveness_browser.py tests/e2e/test_experiments_browser.py tests/e2e/test_portfolio_browser.py tests/e2e/test_v8_workbench_browser.py tests/e2e/test_expectations_browser.py --browser ${{ matrix.browser }} -q --junitxml artifacts/v7.0/${{ matrix.browser }}-results.xml
       - uses: actions/upload-artifact@v4
         if: always()
         with:
