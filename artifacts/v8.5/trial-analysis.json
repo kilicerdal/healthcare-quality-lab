@@ -1,0 +1,599 @@
+[
+  {
+    "task": "D83-01",
+    "outcome": "first_pass",
+    "source_hash": "7d19ff37c11f468c44b5cba2e56181bb33babdef7ae4dc041c4a2e6b76678aa3",
+    "observations_correct": true,
+    "calculations_correct": true,
+    "normalization": {
+      "kind": "unused_exact_aliases_only",
+      "discarded_quote_ids": [],
+      "expected_fields_changed": 0
+    },
+    "stage_timings": [
+      {
+        "phase": "pricing",
+        "latency_ms": 47074.65,
+        "input_tokens": 2379,
+        "output_tokens": 386
+      },
+      {
+        "phase": "lifecycle",
+        "latency_ms": 34793.31,
+        "input_tokens": 1168,
+        "output_tokens": 386
+      }
+    ],
+    "worksheet_differences": [],
+    "observation_differences": []
+  },
+  {
+    "task": "H85-01",
+    "outcome": "first_pass",
+    "source_hash": "7d19ff37c11f468c44b5cba2e56181bb33babdef7ae4dc041c4a2e6b76678aa3",
+    "observations_correct": true,
+    "calculations_correct": true,
+    "normalization": {
+      "kind": "unused_exact_aliases_only",
+      "discarded_quote_ids": [],
+      "expected_fields_changed": 0
+    },
+    "stage_timings": [
+      {
+        "phase": "pricing",
+        "latency_ms": 46191.09,
+        "input_tokens": 2373,
+        "output_tokens": 386
+      },
+      {
+        "phase": "lifecycle",
+        "latency_ms": 35423.14,
+        "input_tokens": 1162,
+        "output_tokens": 386
+      }
+    ],
+    "worksheet_differences": [],
+    "observation_differences": []
+  },
+  {
+    "task": "H85-02",
+    "outcome": "incorrect_values",
+    "source_hash": "7d19ff37c11f468c44b5cba2e56181bb33babdef7ae4dc041c4a2e6b76678aa3",
+    "observations_correct": false,
+    "calculations_correct": false,
+    "normalization": {
+      "kind": "unused_exact_aliases_only",
+      "discarded_quote_ids": [],
+      "expected_fields_changed": 0
+    },
+    "stage_timings": [
+      {
+        "phase": "pricing",
+        "latency_ms": 49372.8,
+        "input_tokens": 2398,
+        "output_tokens": 434
+      },
+      {
+        "phase": "lifecycle",
+        "latency_ms": 34155.24,
+        "input_tokens": 1212,
+        "output_tokens": 410
+      }
+    ],
+    "worksheet_differences": [
+      {
+        "step": 1,
+        "kind": "pricing",
+        "differences": [
+          {
+            "field": "[0].capped_member_cents",
+            "model": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "[0].coinsurance_base_cents",
+            "model": 0,
+            "reference": 65391
+          },
+          {
+            "field": "[0].copay_cents",
+            "model": 0,
+            "reference": 1000
+          },
+          {
+            "field": "[0].member_before_oop_cents",
+            "model": 76391,
+            "reference": 24079
+          },
+          {
+            "field": "[0].member_cents",
+            "model": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "[0].nominal_deductible_cents",
+            "model": 76391,
+            "reference": 10000
+          },
+          {
+            "field": "[0].payer_after_oop_cents",
+            "model": 46391,
+            "reference": 52312
+          },
+          {
+            "field": "[0].payer_before_caps_cents",
+            "model": 0,
+            "reference": 52312
+          },
+          {
+            "field": "[0].payout_cents",
+            "model": 46391,
+            "reference": 52312
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 46391,
+            "reference": 52312
+          },
+          {
+            "field": ".ledger_delta_cents",
+            "model": 46391,
+            "reference": 52312
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 46391,
+            "reference": 52312
+          },
+          {
+            "field": ".ledger_before_cents",
+            "model": 46391,
+            "reference": 52312
+          }
+        ]
+      }
+    ],
+    "observation_differences": [
+      {
+        "step": 1,
+        "mismatches": [
+          {
+            "field": "family_benefit",
+            "proposed": 46391,
+            "reference": 52312
+          },
+          {
+            "field": "family_deductible",
+            "proposed": 76391,
+            "reference": 10000
+          },
+          {
+            "field": "family_oop",
+            "proposed": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "individual_benefit",
+            "proposed": 46391,
+            "reference": 52312
+          },
+          {
+            "field": "individual_deductible",
+            "proposed": 76391,
+            "reference": 10000
+          },
+          {
+            "field": "individual_oop",
+            "proposed": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "member_cents",
+            "proposed": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "payout_cents",
+            "proposed": 46391,
+            "reference": 52312
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "mismatches": [
+          {
+            "field": "family_benefit",
+            "proposed": 46391,
+            "reference": 52312
+          },
+          {
+            "field": "family_deductible",
+            "proposed": 76391,
+            "reference": 10000
+          },
+          {
+            "field": "family_oop",
+            "proposed": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "individual_benefit",
+            "proposed": 46391,
+            "reference": 52312
+          },
+          {
+            "field": "individual_deductible",
+            "proposed": 76391,
+            "reference": 10000
+          },
+          {
+            "field": "individual_oop",
+            "proposed": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "ledger_cents",
+            "proposed": 46391,
+            "reference": 52312
+          },
+          {
+            "field": "member_cents",
+            "proposed": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "payout_cents",
+            "proposed": 46391,
+            "reference": 52312
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "mismatches": [
+          {
+            "field": "family_benefit",
+            "proposed": 46391,
+            "reference": 52312
+          },
+          {
+            "field": "family_deductible",
+            "proposed": 76391,
+            "reference": 10000
+          },
+          {
+            "field": "family_oop",
+            "proposed": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "individual_benefit",
+            "proposed": 46391,
+            "reference": 52312
+          },
+          {
+            "field": "individual_deductible",
+            "proposed": 76391,
+            "reference": 10000
+          },
+          {
+            "field": "individual_oop",
+            "proposed": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "ledger_cents",
+            "proposed": 46391,
+            "reference": 52312
+          },
+          {
+            "field": "member_cents",
+            "proposed": 30000,
+            "reference": 24079
+          },
+          {
+            "field": "payout_cents",
+            "proposed": 46391,
+            "reference": 52312
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "task": "H85-03",
+    "outcome": "incorrect_values",
+    "source_hash": "7d19ff37c11f468c44b5cba2e56181bb33babdef7ae4dc041c4a2e6b76678aa3",
+    "observations_correct": false,
+    "calculations_correct": false,
+    "normalization": {
+      "kind": "unused_exact_aliases_only",
+      "discarded_quote_ids": [],
+      "expected_fields_changed": 0
+    },
+    "stage_timings": [
+      {
+        "phase": "pricing",
+        "latency_ms": 55414.77,
+        "input_tokens": 2420,
+        "output_tokens": 644
+      },
+      {
+        "phase": "lifecycle",
+        "latency_ms": 35633.54,
+        "input_tokens": 1357,
+        "output_tokens": 410
+      }
+    ],
+    "worksheet_differences": [
+      {
+        "step": 1,
+        "kind": "pricing",
+        "differences": [
+          {
+            "field": "[0].capped_member_cents",
+            "model": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "[0].coinsurance_base_cents",
+            "model": 0,
+            "reference": 43731
+          },
+          {
+            "field": "[0].copay_cents",
+            "model": 0,
+            "reference": 1000
+          },
+          {
+            "field": "[0].member_before_oop_cents",
+            "model": 54731,
+            "reference": 19747
+          },
+          {
+            "field": "[0].member_cents",
+            "model": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "[0].nominal_deductible_cents",
+            "model": 54731,
+            "reference": 10000
+          },
+          {
+            "field": "[0].payer_after_oop_cents",
+            "model": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "[0].payer_before_caps_cents",
+            "model": 0,
+            "reference": 34984
+          },
+          {
+            "field": "[0].payout_cents",
+            "model": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "[1].annual_benefit_remaining_cents",
+            "model": 175269,
+            "reference": 165016
+          },
+          {
+            "field": "[1].family_oop_remaining_cents",
+            "model": 30000,
+            "reference": 40253
+          },
+          {
+            "field": "[1].individual_oop_remaining_cents",
+            "model": 0,
+            "reference": 10253
+          },
+          {
+            "field": "[1].member_before_oop_cents",
+            "model": 6193,
+            "reference": 0
+          },
+          {
+            "field": "[1].payer_after_oop_cents",
+            "model": 6193,
+            "reference": 0
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 24731,
+            "reference": 34984
+          },
+          {
+            "field": ".ledger_delta_cents",
+            "model": 24731,
+            "reference": 34984
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 24731,
+            "reference": 34984
+          },
+          {
+            "field": ".ledger_before_cents",
+            "model": 24731,
+            "reference": 34984
+          }
+        ]
+      }
+    ],
+    "observation_differences": [
+      {
+        "step": 1,
+        "mismatches": [
+          {
+            "field": "family_benefit",
+            "proposed": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "family_deductible",
+            "proposed": 54731,
+            "reference": 10000
+          },
+          {
+            "field": "family_oop",
+            "proposed": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "individual_benefit",
+            "proposed": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "individual_deductible",
+            "proposed": 54731,
+            "reference": 10000
+          },
+          {
+            "field": "individual_oop",
+            "proposed": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "member_cents",
+            "proposed": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "payout_cents",
+            "proposed": 24731,
+            "reference": 34984
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "mismatches": [
+          {
+            "field": "family_benefit",
+            "proposed": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "family_deductible",
+            "proposed": 54731,
+            "reference": 10000
+          },
+          {
+            "field": "family_oop",
+            "proposed": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "individual_benefit",
+            "proposed": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "individual_deductible",
+            "proposed": 54731,
+            "reference": 10000
+          },
+          {
+            "field": "individual_oop",
+            "proposed": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "ledger_cents",
+            "proposed": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "member_cents",
+            "proposed": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "payout_cents",
+            "proposed": 24731,
+            "reference": 34984
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "mismatches": [
+          {
+            "field": "family_benefit",
+            "proposed": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "family_deductible",
+            "proposed": 54731,
+            "reference": 10000
+          },
+          {
+            "field": "family_oop",
+            "proposed": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "individual_benefit",
+            "proposed": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "individual_deductible",
+            "proposed": 54731,
+            "reference": 10000
+          },
+          {
+            "field": "individual_oop",
+            "proposed": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "ledger_cents",
+            "proposed": 24731,
+            "reference": 34984
+          },
+          {
+            "field": "member_cents",
+            "proposed": 30000,
+            "reference": 19747
+          },
+          {
+            "field": "payout_cents",
+            "proposed": 24731,
+            "reference": 34984
+          }
+        ]
+      }
+    ]
+  }
+]

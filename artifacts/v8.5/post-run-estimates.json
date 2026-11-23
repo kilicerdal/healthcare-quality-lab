@@ -1,0 +1,94 @@
+{
+  "scope": "Post-run calibration using all four completed response histories, not estimates issued before these trials. Wrong answers are included for timing only.",
+  "source_hash": "7d19ff37c11f468c44b5cba2e56181bb33babdef7ae4dc041c4a2e6b76678aa3",
+  "estimates": {
+    "D83-01": {
+      "request_budget": 2,
+      "estimated_seconds": 81.9,
+      "stage_totals": {
+        "pricing": 47.1,
+        "lifecycle": 34.8
+      },
+      "max_seconds": 180,
+      "estimate_fits_budget": true,
+      "details": [
+        {
+          "model": "qwen3.5:27b",
+          "task": "D83-01",
+          "step": null,
+          "phase": "pricing",
+          "shape": {
+            "quote_limit": 1,
+            "line_limit": 1,
+            "observations": 3
+          },
+          "seconds": 47.1,
+          "samples": 3,
+          "timeouts": 0,
+          "basis": "same-version stage/shape completed-response median"
+        },
+        {
+          "model": "qwen3.5:27b",
+          "task": "D83-01",
+          "step": null,
+          "phase": "lifecycle",
+          "shape": {
+            "quote_limit": 1,
+            "line_limit": 1,
+            "observations": 3
+          },
+          "seconds": 34.8,
+          "samples": 3,
+          "timeouts": 0,
+          "basis": "same-version stage/shape completed-response median"
+        }
+      ],
+      "estimate_basis": "Stage and input-shape timing. Timeout observations are censored lower bounds, not successful fast responses. Samples may use different recorded model digests/hardware; not a completion guarantee.",
+      "budget_scope": "Operator-selected admission-time wall clock; preflight separate, backend cancellation best effort."
+    },
+    "H85-03": {
+      "request_budget": 2,
+      "estimated_seconds": 91.0,
+      "stage_totals": {
+        "pricing": 55.4,
+        "lifecycle": 35.6
+      },
+      "max_seconds": 180,
+      "estimate_fits_budget": true,
+      "details": [
+        {
+          "model": "qwen3.5:27b",
+          "task": "H85-03",
+          "step": null,
+          "phase": "pricing",
+          "shape": {
+            "quote_limit": 1,
+            "line_limit": 2,
+            "observations": 3
+          },
+          "seconds": 55.4,
+          "samples": 1,
+          "timeouts": 0,
+          "basis": "same-version stage/shape completed-response median"
+        },
+        {
+          "model": "qwen3.5:27b",
+          "task": "H85-03",
+          "step": null,
+          "phase": "lifecycle",
+          "shape": {
+            "quote_limit": 1,
+            "line_limit": 2,
+            "observations": 3
+          },
+          "seconds": 35.6,
+          "samples": 1,
+          "timeouts": 0,
+          "basis": "same-version stage/shape completed-response median"
+        }
+      ],
+      "estimate_basis": "Stage and input-shape timing. Timeout observations are censored lower bounds, not successful fast responses. Samples may use different recorded model digests/hardware; not a completion guarantee.",
+      "budget_scope": "Operator-selected admission-time wall clock; preflight separate, backend cancellation best effort."
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "source_hash": "7d19ff37c11f468c44b5cba2e56181bb33babdef7ae4dc041c4a2e6b76678aa3",
+  "raw_trial_hashes": {
+    "D83-01": "1caeab54f17a4278f3d43495c78a4810a8417b539e74b400543f9c84869599e7",
+    "H85-01": "a6db261e44704ebe380dc372614d94ddbdfd0e2c113454bd95c2e7db306ba391",
+    "H85-02": "3333da6ddb0d9097a38cad51c942d360ba5bc28cf398934c60cf095259754adf",
+    "H85-03": "fc8be65e64714794936ee00dd21e51557910d62a44055d1e7268dcfc469d1f2a"
+  },
+  "unchanged_through_export_review_http_and_dashboard_import": true,
+  "model_calls": 8,
+  "expected_values_changed": 0,
+  "resumes": 0,
+  "retries": 0
+}

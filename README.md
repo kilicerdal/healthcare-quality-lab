@@ -1,4 +1,28 @@
-# Healthcare Quality Lab — V8.4
+# Healthcare Quality Lab — V8.5
+
+[Detailed report](docs/V8.5_REPORT.md) · [Printable report](docs/V8.5_REPORT.html) · [Operating guide](docs/V8.5_GUIDE.md) · [Frozen actual evaluation](artifacts/v8.5/assessment/evaluation-results.json)
+
+V8.5 bounds redundant quotes, restricts lifecycle references to actual model quote IDs, separates stage facts/instructions, estimates each stage and requires an explicit budget. The scorecard distinguishes original passes from wrong values, timeouts, resumes and historical evidence.
+
+**Actual first-attempt results:** the exposed original pilot and **1/3 fresh numeric variants** passed. All four cases completed using eight calls, with no timeout, retry, resume or numeric repair. Both passes were rejected-coverage/zero-payout cases; the nonzero pricing cases failed and stayed export-blocked. Two unchanged eligible cases passed actual HTTP after scripted engineering review. General model correctness remains experimental.
+
+**Engineering acceptance:** 1,167/1,167 local and hosted standard checks, plus 264/264 full-browser checks without retry. Counts overlap. [GitHub Actions](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/45101000199).
+
+```sh
+.venv/bin/python -m tools.showcase_server start
+.venv/bin/python -m tools.showcase_server status
+.venv/bin/python -m tools.showcase_server stop
+```
+
+Open `http://127.0.0.1:8902/#workbench`. Replay makes no model call. All four actual trials are retained, including failures. Live V8.5 inference requires an explicit 1–300 second budget; calculators only check frozen predictions. All policies, identities and payments are synthetic.
+
+The screenshot below selects the **exposed pilot only**; the complete fresh result is 1/3, not 100%.
+
+![Exposed pilot first-attempt result](docs/images/v85-pilot-desktop.png)
+
+![Failed fresh trial retained in the dashboard](docs/images/v85-failed-fresh.png)
+
+# Archived V8.4 overview
 
 [Detailed report](docs/V8.4_REPORT.md) · [Printable report](docs/V8.4_REPORT.html) · [Operating guide](docs/V8.4_GUIDE.md)
 

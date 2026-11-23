@@ -1,0 +1,22 @@
+{
+  "source_hash": "7d19ff37c11f468c44b5cba2e56181bb33babdef7ae4dc041c4a2e6b76678aa3",
+  "case": "D83-01",
+  "scope": "Logical prompt characters using the same current one-quote model output for both versions; schemas are appended by transport. Not a controlled token/latency benchmark.",
+  "pricing_characters": {
+    "v84": 6622,
+    "v85": 4142
+  },
+  "lifecycle_characters": {
+    "v84": 3563,
+    "v85": 2498
+  },
+  "v85_pricing_quote_maximum": 1,
+  "v85_lifecycle_quote_ids": [
+    "Q01"
+  ],
+  "observed_pricing_output_tokens": {
+    "v84": 1134,
+    "v85": 386
+  },
+  "same_model_digest_as_v84": true
+}

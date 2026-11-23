@@ -1,0 +1,207 @@
+{
+  "version": "lean-expectations-v85-1",
+  "source_hash": "7d19ff37c11f468c44b5cba2e56181bb33babdef7ae4dc041c4a2e6b76678aa3",
+  "cohort_hash": "d624a63fdcc3725620ec31fe566fa5d54a8e9d3a48ce93cfc92f3b49f7601e5c",
+  "model": "qwen3.5:27b",
+  "case_max_seconds": 180,
+  "admission_window_seconds": 600,
+  "max_calls": 8,
+  "retries": 0,
+  "resumes": 0,
+  "self_review": false,
+  "trials": [
+    {
+      "task": "D83-01",
+      "split": "development",
+      "inputs": {
+        "case_id": "AB-D83-01",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-H82-02-1",
+              "operation_key": "submit-H82-02-1",
+              "member_id": "M100",
+              "plan_id": "vision",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "vision",
+                  "allowed_cents": 37819,
+                  "in_network": false
+                }
+              ]
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "C-H82-02-1",
+              "operation_key": "pay-H82-02-1",
+              "expected_revision": 1
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-H82-02-1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "H85-01",
+      "split": "reserved_until_exposed",
+      "inputs": {
+        "case_id": "AB-H85-01",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-01",
+              "operation_key": "submit-H85-01-0",
+              "member_id": "M100",
+              "plan_id": "vision",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "vision",
+                  "allowed_cents": 28613,
+                  "in_network": false
+                }
+              ]
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-H85-01",
+              "operation_key": "pay-H85-01-1",
+              "expected_revision": 1
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-01"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "H85-02",
+      "split": "reserved_until_exposed",
+      "inputs": {
+        "case_id": "AB-H85-02",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-02",
+              "operation_key": "submit-H85-02-0",
+              "member_id": "M100",
+              "plan_id": "medicare_a",
+              "service_date": "2026-03-17",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "hospital",
+                  "allowed_cents": 76391,
+                  "other_payer_cents": 0
+                }
+              ]
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-H85-02",
+              "operation_key": "pay-H85-02-1",
+              "expected_revision": 1
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-02"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "H85-03",
+      "split": "reserved_until_exposed",
+      "inputs": {
+        "case_id": "AB-H85-03",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-03",
+              "operation_key": "submit-H85-03-0",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 54731
+                },
+                {
+                  "id": "UNCOVERED-LINE",
+                  "service": "dental",
+                  "allowed_cents": 6193
+                }
+              ]
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-H85-03",
+              "operation_key": "pay-H85-03-1",
+              "expected_revision": 1
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-03"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "One exposed development pilot and three fresh numeric variants. Fixed budget per case; no prompt/model/budget change after results. Not ten-input qualification."
+}

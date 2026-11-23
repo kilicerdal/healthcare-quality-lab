@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "source_hash": "7d19ff37c11f468c44b5cba2e56181bb33babdef7ae4dc041c4a2e6b76678aa3",
+  "run_id": 45101000199,
+  "attempt": 1,
+  "tests_total": 264,
+  "tests_passed": 264,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "per_browser": {
+    "chromium": 88,
+    "firefox": 88,
+    "webkit": 88
+  },
+  "junit_sha256": "59a844f3685d9c976318bdb57a5b7723e289ff7a47fbfd7985773d1f0b3d2430",
+  "scope": "Complete final-source E2E matrix, no retry; totals overlap standard and dedicated browser jobs."
+}
