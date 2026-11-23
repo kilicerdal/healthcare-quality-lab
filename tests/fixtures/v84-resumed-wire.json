@@ -1,0 +1,159 @@
+{
+  "quotes": [
+    {
+      "quote_id": "Q01",
+      "calculation": [
+        {
+          "line_id": "LINE-1",
+          "eligible_cents": 37819,
+          "nominal_deductible_cents": 0,
+          "copay_cents": 0,
+          "coinsurance_base_cents": 0,
+          "payer_before_caps_cents": 0,
+          "member_before_oop_cents": 0,
+          "individual_oop_remaining_cents": 30000,
+          "family_oop_remaining_cents": 60000,
+          "capped_member_cents": 0,
+          "annual_benefit_remaining_cents": 200000,
+          "payer_after_oop_cents": 0,
+          "member_cents": 0,
+          "payout_cents": 0,
+          "noncovered_cents": 37819
+        }
+      ],
+      "values": {
+        "payout_cents": 0,
+        "member_cents": 0,
+        "other_payer_cents": 0,
+        "noncovered_cents": 37819,
+        "individual_deductible": 0,
+        "individual_oop": 0,
+        "individual_benefit": 0,
+        "family_deductible": 0,
+        "family_oop": 0,
+        "family_benefit": 0,
+        "policy_id": "SYN-2026-H1",
+        "partial": false
+      }
+    },
+    {
+      "quote_id": "Q02",
+      "calculation": [
+        {
+          "line_id": "LINE-1",
+          "eligible_cents": 37819,
+          "nominal_deductible_cents": 0,
+          "copay_cents": 0,
+          "coinsurance_base_cents": 0,
+          "payer_before_caps_cents": 0,
+          "member_before_oop_cents": 0,
+          "individual_oop_remaining_cents": 30000,
+          "family_oop_remaining_cents": 60000,
+          "capped_member_cents": 0,
+          "annual_benefit_remaining_cents": 200000,
+          "payer_after_oop_cents": 0,
+          "member_cents": 0,
+          "payout_cents": 0,
+          "noncovered_cents": 37819
+        }
+      ],
+      "values": {
+        "payout_cents": 0,
+        "member_cents": 0,
+        "other_payer_cents": 0,
+        "noncovered_cents": 37819,
+        "individual_deductible": 0,
+        "individual_oop": 0,
+        "individual_benefit": 0,
+        "family_deductible": 0,
+        "family_oop": 0,
+        "family_benefit": 0,
+        "policy_id": "SYN-2026-H1",
+        "partial": false
+      }
+    },
+    {
+      "quote_id": "Q03",
+      "calculation": [
+        {
+          "line_id": "LINE-1",
+          "eligible_cents": 37819,
+          "nominal_deductible_cents": 0,
+          "copay_cents": 0,
+          "coinsurance_base_cents": 0,
+          "payer_before_caps_cents": 0,
+          "member_before_oop_cents": 0,
+          "individual_oop_remaining_cents": 30000,
+          "family_oop_remaining_cents": 60000,
+          "capped_member_cents": 0,
+          "annual_benefit_remaining_cents": 200000,
+          "payer_after_oop_cents": 0,
+          "member_cents": 0,
+          "payout_cents": 0,
+          "noncovered_cents": 37819
+        }
+      ],
+      "values": {
+        "payout_cents": 0,
+        "member_cents": 0,
+        "other_payer_cents": 0,
+        "noncovered_cents": 37819,
+        "individual_deductible": 0,
+        "individual_oop": 0,
+        "individual_benefit": 0,
+        "family_deductible": 0,
+        "family_oop": 0,
+        "family_benefit": 0,
+        "policy_id": "SYN-2026-H1",
+        "partial": false
+      }
+    }
+  ],
+  "observations": [
+    {
+      "step_id": "S01",
+      "quote_id": "Q01",
+      "ledger_calculation": {
+        "ledger_before_cents": 0,
+        "ledger_delta_cents": 0,
+        "ledger_after_cents": 0
+      },
+      "status": 201,
+      "state": "adjudicated",
+      "revision": 1,
+      "event_count": 1,
+      "ledger_cents": 0,
+      "ledger_count": 0
+    },
+    {
+      "step_id": "S02",
+      "quote_id": "Q01",
+      "ledger_calculation": {
+        "ledger_before_cents": 0,
+        "ledger_delta_cents": 0,
+        "ledger_after_cents": 0
+      },
+      "status": 200,
+      "state": "paid",
+      "revision": 2,
+      "event_count": 2,
+      "ledger_cents": 0,
+      "ledger_count": 1
+    },
+    {
+      "step_id": "S03",
+      "quote_id": "Q01",
+      "ledger_calculation": {
+        "ledger_before_cents": 0,
+        "ledger_delta_cents": 0,
+        "ledger_after_cents": 0
+      },
+      "status": 200,
+      "state": "paid",
+      "revision": 2,
+      "event_count": 2,
+      "ledger_cents": 0,
+      "ledger_count": 1
+    }
+  ]
+}

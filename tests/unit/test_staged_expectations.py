@@ -71,3 +71,21 @@ def test_full_wire_cannot_bypass_invalid_stage_contract(tmp_path,bad_phase):
 
 def test_rejected_branch_names_survive_stage_separation():
  assert 'member_before_oop_cents' in p.PRICING_RULES and 'capped_member_cents' in p.PRICING_RULES and 'ALL ZERO' in p.PRICING_RULES
+
+def test_unused_exact_aliases_are_representation_only():
+ w=wire(p.cohort()['tasks'][0]['plan']);original=p.parse(json.dumps(w));q=deepcopy(w['quotes'][0]);q['quote_id']='Q99';w['quotes'].append(q);before=deepcopy(w)
+ canonical,audit=p.normalize(w);assert audit['discarded_quote_ids']==['Q99'] and audit['expected_fields_changed']==0
+ assert p.parse(json.dumps(w))==original and w==before
+
+@pytest.mark.parametrize('change',['money','worksheet','missing_id','duplicate_id'])
+def test_alias_normalization_cannot_hide_wrong_or_missing_values(change):
+ w=wire(p.cohort()['tasks'][0]['plan']);q=deepcopy(w['quotes'][0]);q['quote_id']='Q99';w['quotes'].append(q)
+ if change=='money':q['values']['payout_cents']+=1
+ if change=='worksheet':q['calculation'][0]['eligible_cents']+=1
+ if change=='missing_id':w['observations'][0]['quote_id']='Q98'
+ if change=='duplicate_id':q['quote_id']=w['quotes'][0]['quote_id']
+ with pytest.raises(ValueError):p.parse(json.dumps(w))
+
+def test_frozen_resumed_prediction_passes_without_changing_any_expected_value():
+ path=Path(__file__).resolve().parents[1]/'fixtures/v84-resumed-wire.json'
+ raw=json.loads(path.read_text());before=deepcopy(raw);answer=p.parse(json.dumps(raw));plan=next(t['plan'] for t in p.cohort()['tasks'] if t['id']=='D83-01');assert evaluate(plan,answer)['eligible'] and raw==before

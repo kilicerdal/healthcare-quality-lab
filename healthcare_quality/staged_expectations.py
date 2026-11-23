@@ -2,12 +2,12 @@
 from copy import deepcopy
 import json
 from jsonschema import Draft202012Validator
-from healthcare_quality.compact_expectations import ANSWER,parse,assemble,inputs,context,answer_schema
+from healthcare_quality.compact_expectations import ANSWER,parse as strict_parse,assemble,inputs,context,answer_schema
 from healthcare_quality.compact_expectations_v83 import cohort as previous_cohort,CHECKLIST
 from healthcare_quality.expectation_protocol import RULES_TEXT
 from healthcare_quality.advanced_schema import obj,parse_model_json
 from healthcare_quality.expectation_lab import ExpectationLab
-VERSION='staged-expectations-v84-1'
+VERSION='staged-expectations-v84-2'
 KIND='model_expectations_v84'
 PRICING=obj(dict(quotes=deepcopy(ANSWER['properties']['quotes'])))
 LIFECYCLE=obj(dict(observations=deepcopy(ANSWER['properties']['observations'])))
@@ -33,6 +33,26 @@ def prompt(plan,stage='first',original=None,step=None,previous=None):
  return json.dumps(dict(facts=facts,inputs=inputs(plan),step=step,previous=previous or [],stage=stage,original=original),separators=(',',':'))
 
 PRICING_RULES += "\n"+CHECKLIST
+
+def normalize(raw):
+ """Remove only unused exact aliases; never edit a value or resolve a missing ID."""
+ Draft202012Validator(ANSWER).validate(raw)
+ quotes={q['quote_id']:q for q in raw['quotes']}
+ if len(quotes)!=len(raw['quotes']):raise ValueError('Duplicate quote IDs')
+ used={o['quote_id'] for o in raw['observations']}
+ if not used<=set(quotes):raise ValueError('Missing quote reference')
+ def content(q):return {k:v for k,v in q.items() if k!='quote_id'}
+ discarded=[]
+ for id,q in quotes.items():
+  if id not in used:
+   if not any(json.dumps(content(q),sort_keys=True)==json.dumps(content(quotes[u]),sort_keys=True) for u in used):raise ValueError('Unused nonidentical quote')
+   discarded.append(id)
+ result=deepcopy(raw);result['quotes']=[q for q in result['quotes'] if q['quote_id'] in used]
+ return result,dict(kind='unused_exact_aliases_only',discarded_quote_ids=discarded,expected_fields_changed=0)
+
+def parse(text):
+ raw=parse_model_json(text);canonical,audit=normalize(raw)
+ return strict_parse(json.dumps(canonical))
 
 class StagedLab(ExpectationLab):
  def _call(self,r,row,stage,text,token,schema):
