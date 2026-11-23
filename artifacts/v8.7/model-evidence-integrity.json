@@ -1,0 +1,18 @@
+{
+  "raw_files_and_results_unchanged_after_postprocessing": true,
+  "source_compatibility": {
+    "mode": "postprocessing_only",
+    "frozen_commit": "babb5df5f89129c2fe4813abe0f2487ee17b8847",
+    "model_source": "4be57e5f176ec1f435c0b33a5991025156fbaaee5d6e967fdca4cf6bee1c978d",
+    "evaluation_source": "7b1635a43f6e1f5c3d10d560e0ca5f6f81c7fd56b30f54faed698d899a76434b",
+    "changed_paths": [
+      "healthcare_quality/reliability_evidence.py",
+      "healthcare_quality/static/reliability.js",
+      "tests/unit/test_reliability_study.py"
+    ],
+    "generation_and_evaluator_files_unchanged": true,
+    "scope": "Frozen model source retained; only evidence processing, authored engineering journeys, compatibility display and their tests changed. Original answers rechecked unchanged."
+  },
+  "expected_values_changed": 0,
+  "model_calls": 25
+}

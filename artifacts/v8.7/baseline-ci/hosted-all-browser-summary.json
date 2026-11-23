@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "source_hash": "4be57e5f176ec1f435c0b33a5991025156fbaaee5d6e967fdca4cf6bee1c978d",
+  "run_id": 45110063077,
+  "attempt": 2,
+  "tests_total": 270,
+  "tests_passed": 270,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "per_browser": {
+    "chromium": 90,
+    "firefox": 90,
+    "webkit": 90
+  },
+  "junit_sha256": "3d2e9763b04eea48015c234f3ec69cfcf72c159476ea28fd51e98fc283bc6673",
+  "scope": "Complete generation-source E2E matrix on second job attempt; first failure retained separately. Counts overlap standard suites."
+}

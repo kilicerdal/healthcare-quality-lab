@@ -1,0 +1,14 @@
+{
+  "actual_server": true,
+  "desktop_width": 1440,
+  "mobile_width": 390,
+  "horizontal_overflow": false,
+  "post_requests": [],
+  "page_errors": [],
+  "displayed_fresh_passes": "8/12",
+  "ai_mutations": "21/27",
+  "authored_mutations": "23/27",
+  "postprocessing_compatibility_visible": true,
+  "blocked_failure_inspectable": true,
+  "live_model_calls": 0
+}

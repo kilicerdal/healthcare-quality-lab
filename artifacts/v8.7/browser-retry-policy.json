@@ -1,0 +1,14 @@
+{
+  "source_unchanged": true,
+  "first_attempt_total": 270,
+  "first_attempt_failed": 1,
+  "failures": [
+    {
+      "name": "test_rule_retrieval_and_empty_evidence[firefox]",
+      "message": "AssertionError: Locator expected to contain text 'WF-004'\nActual value:  \nCall log:\n  - Expect \"to_contain_text\" locator(\"#retrieval-results\") with timeout 5000ms\n  - waiting for locator(\"#retrieval-results\")\n    14 \u00d7 locator resolved to <div id=\"retrieval-results\"></div>\n       - unexpected value \"\"\n\nAria snapshot:\n- complementary:\n  - link \"Healthcare Quality Lab home\":\n    - /url: /\n    - text: h + Healthcare QUALITY LAB\n  - text: STANDALONE WORKSPACE\n  - navigation \"Main navigation\":\n[+69 more lines; full report in element text]"
+    }
+  ],
+  "allowed_job_reruns": 1,
+  "reason": "One existing Firefox retrieval-result assertion failed in the full matrix; diagnose repeat behavior without tuning the AI study.",
+  "ai_retries": 0
+}

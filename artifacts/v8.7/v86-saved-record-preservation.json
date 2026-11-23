@@ -1,0 +1,22 @@
+[
+  {
+    "file": "artifacts/v8.6/candidate-1/H86-01.json",
+    "record_id": "6eba69f5a6ab4f90bb331e9809366630",
+    "all_original_fields_preserved": true
+  },
+  {
+    "file": "artifacts/v8.6/candidate-1/H86-02.json",
+    "record_id": "74f8de5d660c4cf393fc694f67c4ad24",
+    "all_original_fields_preserved": true
+  },
+  {
+    "file": "artifacts/v8.6/candidate-1/H85-02.json",
+    "record_id": "b2f3152b82d24290980a829f09d1a46a",
+    "all_original_fields_preserved": true
+  },
+  {
+    "file": "artifacts/v8.6/candidate-1/H85-03.json",
+    "record_id": "7d30ee8b386f46d3bffe405b6463abb9",
+    "all_original_fields_preserved": true
+  }
+]

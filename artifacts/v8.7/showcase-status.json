@@ -1,0 +1,10 @@
+{
+  "running": true,
+  "owned": true,
+  "ready": true,
+  "pid": 13624,
+  "version": "8.7.0",
+  "port": 8902,
+  "url": "http://127.0.0.1:8902/reliability",
+  "live_model_calls": 0
+}

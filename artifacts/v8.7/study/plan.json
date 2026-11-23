@@ -1,0 +1,686 @@
+{
+  "version": "reliability-study-v87-1",
+  "code_commit": "babb5df5f89129c2fe4813abe0f2487ee17b8847",
+  "source_hash": "4be57e5f176ec1f435c0b33a5991025156fbaaee5d6e967fdca4cf6bee1c978d",
+  "cohort_hash": "53aa3321e03cea328f53842cad8c65d1b6b22665caffe150f335d399c4e0a6de",
+  "model": "qwen3.5:27b",
+  "case_max_seconds": 180,
+  "admission_window_seconds": 2100,
+  "max_calls": 28,
+  "retries": 0,
+  "resumes": 0,
+  "corrections": 0,
+  "trials": [
+    {
+      "task": "R87-01",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-01",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-01",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 9997
+                }
+              ],
+              "operation_key": "CLAIM-R87-01-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-01",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-01-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-01"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-02",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-02",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-02",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 10007
+                }
+              ],
+              "operation_key": "CLAIM-R87-02-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-02",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-02-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-02"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-03",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-03",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-03",
+              "member_id": "M100",
+              "plan_id": "medicare_advantage",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "hospital",
+                  "allowed_cents": 71937,
+                  "authorized": true
+                }
+              ],
+              "operation_key": "CLAIM-R87-03-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-03",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-03-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-03"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-04",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-04",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-04",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 194213
+                }
+              ],
+              "operation_key": "CLAIM-R87-04-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-04",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-04-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-04"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-05",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-05",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-05",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 287651
+                }
+              ],
+              "operation_key": "CLAIM-R87-05-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-05",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-05-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-05"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-06",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-06",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-06",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 61739,
+                  "other_payer_cents": 8137
+                }
+              ],
+              "operation_key": "CLAIM-R87-06-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-06",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-06-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-06"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-07",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-07",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-07",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-07-01",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 63271
+                }
+              ],
+              "operation_key": "CLAIM-R87-07-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-07",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-07-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-07"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-08",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-08",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-08",
+              "member_id": "M100",
+              "plan_id": "medicare_d",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "prescription",
+                  "allowed_cents": 15113,
+                  "formulary": false
+                }
+              ],
+              "operation_key": "CLAIM-R87-08-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-08",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-08-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-08"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-09",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-09",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-09",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 62417
+                },
+                {
+                  "id": "LINE-TWO",
+                  "service": "dental",
+                  "allowed_cents": 8513
+                }
+              ],
+              "operation_key": "CLAIM-R87-09-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-09",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-09-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-09"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-03",
+      "repeat": 2,
+      "role": "repeat_exposed"
+    },
+    {
+      "task": "R87-09",
+      "repeat": 2,
+      "role": "repeat_exposed"
+    },
+    {
+      "task": "R87-10",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-10",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-10-0",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 10003
+                }
+              ],
+              "operation_key": "CLAIM-R87-10-0-submit-0"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "submit",
+            "actor": "customer-m200",
+            "data": {
+              "claim_id": "CLAIM-R87-10-1",
+              "member_id": "M200",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 10009
+                }
+              ],
+              "operation_key": "CLAIM-R87-10-1-submit-1"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "submit",
+            "actor": "customer-m300",
+            "data": {
+              "claim_id": "CLAIM-R87-10-2",
+              "member_id": "M300",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 47123
+                }
+              ],
+              "operation_key": "CLAIM-R87-10-2-submit-2"
+            }
+          },
+          {
+            "step_id": "S04",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-10-0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-11",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-11",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-11",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 77431
+                }
+              ],
+              "operation_key": "CLAIM-R87-11-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-11",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-11-pay-2"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "adjust",
+            "actor": "adjuster-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-11",
+              "expected_revision": 2,
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 53213
+                }
+              ],
+              "operation_key": "CLAIM-R87-11-adjust-3",
+              "note": "Synthetic stateful reliability study"
+            }
+          },
+          {
+            "step_id": "S04",
+            "action": "reverse",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-11",
+              "expected_revision": 3,
+              "operation_key": "CLAIM-R87-11-reverse-4",
+              "note": "Synthetic stateful reliability study"
+            }
+          },
+          {
+            "step_id": "S05",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-11"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "R87-12",
+      "repeat": 1,
+      "role": "fresh",
+      "inputs": {
+        "case_id": "AB-R87-12",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-12",
+              "member_id": "M100",
+              "plan_id": "commercial_hmo",
+              "service_date": "2026-03-19",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 51113,
+                  "in_network": false
+                }
+              ],
+              "operation_key": "CLAIM-R87-12-submit-1"
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "appeal",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-12",
+              "expected_revision": 1,
+              "operation_key": "CLAIM-R87-12-appeal-2",
+              "note": "Synthetic stateful reliability study"
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "resolve",
+            "actor": "adjuster-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-12",
+              "expected_revision": 2,
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "medical",
+                  "allowed_cents": 51113,
+                  "in_network": true
+                }
+              ],
+              "operation_key": "CLAIM-R87-12-resolve-3",
+              "note": "Synthetic stateful reliability study"
+            }
+          },
+          {
+            "step_id": "S04",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-R87-12",
+              "expected_revision": 3,
+              "operation_key": "CLAIM-R87-12-pay-4"
+            }
+          },
+          {
+            "step_id": "S05",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-R87-12"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "12 new scenarios once; two preselected repeats follow first nine simple cases before the final stateful cases; repeats excluded from fresh accuracy. Single frozen protocol. Stop after provider uncertainty or insufficient budget; retain all planned trials."
+}

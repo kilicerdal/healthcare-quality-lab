@@ -1,0 +1,8 @@
+{
+  "all_raw_hashes_match": true,
+  "actual_calls": 25,
+  "entries": 14,
+  "model_source_hash": "4be57e5f176ec1f435c0b33a5991025156fbaaee5d6e967fdca4cf6bee1c978d",
+  "results_sha256": "8ac9426735384fb9b1ebcb3386e580a1680413644c043f4d8ebdd40ed1aea7cf",
+  "phase": "Before postprocessing repair; answers remain unchanged."
+}

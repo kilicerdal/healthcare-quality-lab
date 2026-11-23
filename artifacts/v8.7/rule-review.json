@@ -1,0 +1,335 @@
+{
+  "kind": "authored_rule_review",
+  "passed": true,
+  "vectors": [
+    {
+      "id": "deductible-before-copay",
+      "rules": [
+        "BN-004"
+      ],
+      "reasoning": "10000 deductible + 1000 copay; floor(1*0.8)=0 payer.",
+      "expected": [
+        0,
+        11001,
+        0,
+        10000,
+        11001,
+        0
+      ],
+      "reference": [
+        0,
+        11001,
+        0,
+        10000,
+        11001,
+        0
+      ],
+      "application": [
+        0,
+        11001,
+        0,
+        10000,
+        11001,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "id": "floor-coinsurance",
+      "rules": [
+        "BN-004"
+      ],
+      "reasoning": "After 10000 deductible and 1000 copay: floor(2*0.8)=1.",
+      "expected": [
+        1,
+        11001,
+        0,
+        10000,
+        11001,
+        1
+      ],
+      "reference": [
+        1,
+        11001,
+        0,
+        10000,
+        11001,
+        1
+      ],
+      "application": [
+        1,
+        11001,
+        0,
+        10000,
+        11001,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "id": "oop-binding",
+      "rules": [
+        "BN-004"
+      ],
+      "reasoning": "Nominal member 48800 is clipped to 30000 OOP; payer receives remainder.",
+      "expected": [
+        170000,
+        30000,
+        0,
+        10000,
+        30000,
+        170000
+      ],
+      "reference": [
+        170000,
+        30000,
+        0,
+        10000,
+        30000,
+        170000
+      ],
+      "application": [
+        170000,
+        30000,
+        0,
+        10000,
+        30000,
+        170000
+      ],
+      "passed": true
+    },
+    {
+      "id": "benefit-not-oop",
+      "rules": [
+        "BN-004"
+      ],
+      "reasoning": "OOP clips member at 30000; annual payer cap 200000 leaves 70000 noncovered.",
+      "expected": [
+        200000,
+        30000,
+        70000,
+        10000,
+        30000,
+        200000
+      ],
+      "reference": [
+        200000,
+        30000,
+        70000,
+        10000,
+        30000,
+        200000
+      ],
+      "application": [
+        200000,
+        30000,
+        70000,
+        10000,
+        30000,
+        200000
+      ],
+      "passed": true
+    },
+    {
+      "id": "other-payer-first",
+      "rules": [
+        "BN-003",
+        "BN-004"
+      ],
+      "reasoning": "Other payer reduces eligible from 21002 to 11002 before cost sharing.",
+      "expected": [
+        1,
+        11001,
+        0,
+        10000,
+        11001,
+        1
+      ],
+      "reference": [
+        1,
+        11001,
+        0,
+        10000,
+        11001,
+        1
+      ],
+      "application": [
+        1,
+        11001,
+        0,
+        10000,
+        11001,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "id": "rejected-service",
+      "rules": [
+        "BN-002",
+        "BN-005"
+      ],
+      "reasoning": "PPO excludes dental; no deductible, OOP or benefit allocation.",
+      "expected": [
+        0,
+        0,
+        21002,
+        0,
+        0,
+        0
+      ],
+      "reference": [
+        0,
+        0,
+        21002,
+        0,
+        0,
+        0
+      ],
+      "application": [
+        0,
+        0,
+        21002,
+        0,
+        0,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "id": "family-deductible-binding",
+      "rules": [
+        "BN-004",
+        "BN-005"
+      ],
+      "reasoning": "Family remaining500 caps deductible; copay1000 leaves500 at80%=400.",
+      "expected": [
+        400,
+        1600,
+        0,
+        500,
+        1600,
+        400
+      ],
+      "reference": [
+        400,
+        1600,
+        0,
+        500,
+        1600,
+        400
+      ],
+      "application": [
+        400,
+        1600,
+        0,
+        500,
+        1600,
+        400
+      ],
+      "passed": true
+    },
+    {
+      "id": "family-oop-binding",
+      "rules": [
+        "BN-004",
+        "BN-005"
+      ],
+      "reasoning": "Family OOP has100 remaining; final member100, payer19900; deductible already used10000.",
+      "expected": [
+        19900,
+        100,
+        0,
+        10000,
+        100,
+        19900
+      ],
+      "reference": [
+        19900,
+        100,
+        0,
+        10000,
+        100,
+        19900
+      ],
+      "application": [
+        19900,
+        100,
+        0,
+        10000,
+        100,
+        19900
+      ],
+      "passed": true
+    },
+    {
+      "id": "july-boundary",
+      "rules": [
+        "BN-001",
+        "BN-004"
+      ],
+      "reasoning": "July copay1500: floor((12002-10000-1500)*0.8)=401.",
+      "expected": [
+        401,
+        11601,
+        0,
+        10000,
+        11601,
+        401
+      ],
+      "reference": [
+        401,
+        11601,
+        0,
+        10000,
+        11601,
+        401
+      ],
+      "application": [
+        401,
+        11601,
+        0,
+        10000,
+        11601,
+        401
+      ],
+      "passed": true
+    },
+    {
+      "id": "next-year-policy",
+      "rules": [
+        "BN-001",
+        "BN-004"
+      ],
+      "reasoning": "2027 deductible12000 copay1500: floor(502*0.75)=376.",
+      "expected": [
+        376,
+        13626,
+        0,
+        12000,
+        13626,
+        376
+      ],
+      "reference": [
+        376,
+        13626,
+        0,
+        12000,
+        13626,
+        376
+      ],
+      "application": [
+        376,
+        13626,
+        0,
+        12000,
+        13626,
+        376
+      ],
+      "passed": true
+    }
+  ],
+  "vectors_hash": "efc0ef870adeaa611e848736f4a3581bdba44e0d7cae7e2bb7319e2057cb6641",
+  "independent_human_review": false,
+  "scope": "Fixed manually reasoned engineering vectors check both calculators; not external review or real insurance policy certification."
+}

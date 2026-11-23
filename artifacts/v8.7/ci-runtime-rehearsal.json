@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-11-23T04:44:55.804863+00:00",
+  "archive": "/home/runner/work/healthcare-quality-lab/healthcare-quality-lab/releases/ci/v8.7.0-source.zip",
+  "active_release": "v8.7.0-68b8fd0807ca",
+  "rollback_verified": false,
+  "phases": [
+    {
+      "phase": "new_release",
+      "version": "8.7.0",
+      "claim_id": "REL-2584f842ab48",
+      "payout_cents": 90000,
+      "payment_cents": 90000,
+      "events": 3,
+      "revision": 3,
+      "checks": [
+        "health",
+        "payout",
+        "submit",
+        "duplicate_rejected",
+        "ownership_rejected",
+        "skip_approval_rejected",
+        "approve",
+        "pay",
+        "ledger_and_history",
+        "invalid_generation_rejected_without_inference"
+      ]
+    }
+  ],
+  "live_model_calls": 0,
+  "scope": "Actual staged archives and loopback Waitress HTTP, with separate per-release synthetic state. Pointer changes take effect on next server start; no hot swap or database migration."
+}

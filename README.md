@@ -1,4 +1,23 @@
-# Healthcare Quality Lab — V8.6
+# Healthcare Quality Lab — V8.7
+
+[Detailed report](docs/V8.7_REPORT.md) · [Printable report](docs/V8.7_REPORT.html) · [Operating guide](docs/V8.7_GUIDE.md) · [Learning walkthrough](docs/V8.7_LEARNING_WALKTHROUGH.md)
+
+V8.7 adds sealed reliability studies, preselected repeat trials, fixed rule-review vectors, stateful HTTP journeys, separate AI/authored defect scoring, traceable raw model evidence and a responsive failure-investigation dashboard.
+
+**Actual AI study:** 8 first-exposure passes, 2 wrong-value failures, 1 timeout and 1 unrun case out of 12 planned. Both exposed repeat pairs passed. 25 actual Ollama calls, no retry/resume or numerical repair. The assessment is incomplete; no completed accuracy percentage or model qualification is claimed.
+
+**Engineering acceptance:** 1234/1234 local and hosted standard checks, 270/270 final browser checks on the first attempt. Counts overlap. [Final GitHub Actions](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/45112951203). An earlier-source Firefox timeout and successful job rerun are retained in the report.
+
+**Testing value:** eight eligible original AI cases caught 21/27 pricing mutations. Fifteen reference-authored journeys caught 23/27 and all 15 passed actual HTTP. Counts and authorship remain separate. Fixed rule vectors passed 10/10 against both calculators; independent human review is pending.
+
+```sh
+.venv/bin/python -m tools.reliability_showcase
+```
+
+Open http://127.0.0.1:8902/reliability. Saved replay makes zero model calls. Failed/unfinished AI answers stay blocked. All policies, identities and payments are synthetic. Frozen generation source and later evidence-processing source are explicitly recorded; no model answer was rewritten.
+
+# Archived V8.6 overview
+
 
 [Detailed report](docs/V8.6_REPORT.md) · [Printable report](docs/V8.6_REPORT.html) · [Operating guide](docs/V8.6_GUIDE.md) · [Frozen AI results](artifacts/v8.6/candidate-1/evaluation-results.json)
 

@@ -1,0 +1,194 @@
+{
+  "kind": "sealed_reliability_study",
+  "source_hash": "4be57e5f176ec1f435c0b33a5991025156fbaaee5d6e967fdca4cf6bee1c978d",
+  "plan_hash": "4f1bdb0a76c0b056ba6c4ecf10f72da300ab69c5f77950836d20980706d85654",
+  "entries": [
+    {
+      "task": "R87-01",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-01-r1.json",
+      "sha256": "905e133f8494f96072592b49e08db5902f2b8d7fe8708849f13e8cbd8937be51",
+      "answer_hash": "8bfb2433aefcd44a91594f6cf32f0440de888a0fc7f65891fa2c2e27dacc73b7",
+      "provider_seconds": 95.75926999999999,
+      "record_id": "a095142b8e914079b4df0aa3c48ceab6"
+    },
+    {
+      "task": "R87-02",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "incorrect_values",
+      "calls": 2,
+      "file": "R87-02-r1.json",
+      "sha256": "ce594fee4493d92156a28651c1cbd2af0382edab9dd14f611f49a942bf8fcaf1",
+      "answer_hash": "136c3369d958ed15113a8a7265c79a04320af70006e757badf986653180debba",
+      "provider_seconds": 92.034,
+      "record_id": "7731cce8476d49c98c0cf4af4877d526"
+    },
+    {
+      "task": "R87-03",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-03-r1.json",
+      "sha256": "d3ef6daea39ef697a6e49306f4c79e1069c0ae745d0df818ac4d6959e5579cc0",
+      "answer_hash": "6eb9c6495f61faf32b43871b908b4ea61d492015e124b1f62509e689488bf1b0",
+      "provider_seconds": 93.92156,
+      "record_id": "6eebb650213a4ab8a6af41ad3010a66c"
+    },
+    {
+      "task": "R87-04",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-04-r1.json",
+      "sha256": "b092557c65d11ff591ab32b04d29cd5da760d00f8119a032b5446405885d5dba",
+      "answer_hash": "ac934d55be202e83b5dd929b9ee65a639e2bb570071bc51cadd9f50d8d4f76fc",
+      "provider_seconds": 82.11108999999999,
+      "record_id": "390b935b61fb441f8784640e9bc8ba1f"
+    },
+    {
+      "task": "R87-05",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-05-r1.json",
+      "sha256": "c0df39fae6d1eae5f08bede170e0956384994ff16cc9281bcafb02da8666361e",
+      "answer_hash": "06a1e80c0c1728605adc4559c39e46376442d6641e87bb6ae9e5e7b5dc913443",
+      "provider_seconds": 83.52188000000001,
+      "record_id": "7b37f31e6e5e490d8dd8ccc82488bb1f"
+    },
+    {
+      "task": "R87-06",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-06-r1.json",
+      "sha256": "c9c4831918d5d261758c1aaf61e2785cd8bf15887436c44bc8810cc66ea68532",
+      "answer_hash": "e43369b2a125a3ce0ce840a02c2a7f69c14b2e5945e4fdd18db3a00f8c3ad860",
+      "provider_seconds": 81.84699,
+      "record_id": "aad89245a0c944508b004d954b6c3f4a"
+    },
+    {
+      "task": "R87-07",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-07-r1.json",
+      "sha256": "7fe4c62193f03458621dad6eb7ea0c99e757006d7e50afbd124425a23a961f73",
+      "answer_hash": "ca4f41f2643a51fc0d702cd1fa382df1f98b4861905bb82365784d36998e4621",
+      "provider_seconds": 92.69721000000001,
+      "record_id": "14e8379182e94420bae4b34f3df5aaf8"
+    },
+    {
+      "task": "R87-08",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-08-r1.json",
+      "sha256": "13adfea72ac79b1c55fc0ef7a3eae83fc8eb7df9ab41bbdb490489302d53eb8c",
+      "answer_hash": "15ab3ac1dd378f9ae2c6e214f939516463c6d5cc776419a66955022b822861ab",
+      "provider_seconds": 76.32227,
+      "record_id": "12220cfbce9948ae9e7af5cb7df68048"
+    },
+    {
+      "task": "R87-09",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-09-r1.json",
+      "sha256": "cbb8a71e190f0a45924c1af4bacc23c222ac87e87523254151c5fd6c6518c701",
+      "answer_hash": "26eceb78b31c5c00eb64e084f6c8ed10d9a0be8e65fc7c19b32b62fe2977138d",
+      "provider_seconds": 98.16873999999999,
+      "record_id": "92cc0646f9b5473fb521aaad51ef8ecf"
+    },
+    {
+      "task": "R87-03",
+      "repeat": 2,
+      "role": "repeat_exposed",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-03-r2.json",
+      "sha256": "915decdf7117f533641bdc15735641b07403d6c0a910dd8a370df212c8daf7bd",
+      "answer_hash": "6eb9c6495f61faf32b43871b908b4ea61d492015e124b1f62509e689488bf1b0",
+      "provider_seconds": 55.89111,
+      "record_id": "f0bba95473514a8b968364e7db56192d"
+    },
+    {
+      "task": "R87-09",
+      "repeat": 2,
+      "role": "repeat_exposed",
+      "outcome": "first_pass",
+      "calls": 2,
+      "file": "R87-09-r2.json",
+      "sha256": "64af3a46080d95398de01e26c57cd72b07e5494c79b260b795ea3649d49edf73",
+      "answer_hash": "26eceb78b31c5c00eb64e084f6c8ed10d9a0be8e65fc7c19b32b62fe2977138d",
+      "provider_seconds": 70.98801999999999,
+      "record_id": "ef5ea69bd8d044b3ac2907d5d9f94bac"
+    },
+    {
+      "task": "R87-10",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "incorrect_values",
+      "calls": 2,
+      "file": "R87-10-r1.json",
+      "sha256": "9922c7428955518008d71f9b553e07acc831eb47a37d3f12d3c05a3b038fed4b",
+      "answer_hash": "f0dca1c8a2a101158c4ff7ef8e938ecd5a8decab7499e7c93d0fd2a3fd7ba44f",
+      "provider_seconds": 169.312,
+      "record_id": "8a4ce1c140f94ec1adc7b3b34c09e083"
+    },
+    {
+      "task": "R87-11",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "timeout",
+      "calls": 1,
+      "file": "R87-11-r1.json",
+      "sha256": "9e70e383ddc47aaf057faf855e018fa455829713dd2cf285fb55589ed86b5c0b",
+      "answer_hash": null,
+      "provider_seconds": null,
+      "record_id": "c6e6d2a4bdf84ce291ffb13dd90533ea"
+    },
+    {
+      "task": "R87-12",
+      "repeat": 1,
+      "role": "fresh",
+      "outcome": "not_run",
+      "reason": "Provider uncertainty/interruption; no further requests"
+    }
+  ],
+  "fresh_planned": 12,
+  "fresh_assessed": 10,
+  "fresh_passed": 8,
+  "fresh_complete": false,
+  "fresh_percent": null,
+  "repeat_pairs": [
+    {
+      "task": "R87-03",
+      "both_passed": true,
+      "same_answer_hash": true
+    },
+    {
+      "task": "R87-09",
+      "both_passed": true,
+      "same_answer_hash": true
+    }
+  ],
+  "actual_calls": 25,
+  "provider_seconds_median": 87.77794,
+  "provider_seconds_max": 169.312,
+  "elapsed_seconds": 1274.84,
+  "reference_assisted_corrections": 0,
+  "qualification": false,
+  "scope": "Repeat consistency is distinct from unseen accuracy. Small synthetic cohort; no universal reliability claim. Missing, interrupted and invalid trials stay visible."
+}

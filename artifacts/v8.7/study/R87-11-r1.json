@@ -1,0 +1,442 @@
+{
+  "id": "c6e6d2a4bdf84ce291ffb13dd90533ea",
+  "created_at": "2026-11-23T04:31:11.356015+00:00",
+  "kind": "model_expectations_v87",
+  "state": "interrupted",
+  "protocol": {
+    "version": "reliability-study-v87-1",
+    "selection": {
+      "models": [
+        "qwen3.5:27b"
+      ],
+      "tasks": [
+        "R87-11"
+      ],
+      "strategy": "whole_case",
+      "repeats": 1,
+      "self_review": false,
+      "request_budget": 2
+    },
+    "source_hash": "4be57e5f176ec1f435c0b33a5991025156fbaaee5d6e967fdca4cf6bee1c978d",
+    "contract_hash": "22ca3d505a32df5774fee05e7301aa68f92f8b2c74e70080ba0f0e91ccc6a42e",
+    "cohort_hash": "53aa3321e03cea328f53842cad8c65d1b6b22665caffe150f335d399c4e0a6de",
+    "installed_models": [
+      {
+        "name": "qwen3.5:27b",
+        "digest": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+      },
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "model_digests": {
+      "qwen3.5:27b": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+    },
+    "provider_settings": {
+      "temperature": 0,
+      "seed": 7,
+      "num_predict": 2600,
+      "num_ctx": 12288
+    },
+    "request_timeout_seconds": 240,
+    "provider_profile": "compact-expectations-v82-direct",
+    "native_reasoning": false,
+    "target": {
+      "first_attempt_percent": 80,
+      "minimum_unique_fresh": 10
+    },
+    "prompt_hashes": {
+      "R87-11": "35763d0a94f6adabae2e490c6667ba691d26604ae841c4bc52c4cc215ef97b76"
+    },
+    "answer_schema_hash": "5d0fee6a60242dda64ee02e6a2b3e57e1526002fa0d16ae2db97eb1007053e0a",
+    "evaluation_timing": "Only after original and optional blind self-review responses are frozen",
+    "scope": "No expected values, reference feedback, SUT responses or arithmetic tools supplied. First and self review scored separately; immutable input assembly does not measure model input-following skill."
+  },
+  "rows": [
+    {
+      "model": "qwen3.5:27b",
+      "task_id": "R87-11",
+      "split": "reserved_until_exposed",
+      "repeat": 1,
+      "calls": [
+        {
+          "timeout_seconds": 179.98060584068298,
+          "started_at": "2026-11-23T04:31:11.381365+00:00",
+          "stage": "first",
+          "prompt": "Return only quotes, each with quote_id, calculation and values. Author every number yourself from the supplied synthetic facts. No calculator, reference answer, SUT response or correction tool is supplied. All money is integer cents.\nINPUT POLICY *_limit_cents fields are LIMITS, never account usage. OUTPUT values individual_deductible, family_deductible, individual_oop, family_oop, individual_benefit and family_benefit are cumulative USED amounts after the snapshot. Accounts initially have zero used balances per member/family/service year; preserve prior claims in that year. Select the half-open policy interval by service_date.\nFor EACH line in order, FIRST emit coverage_decision, individual_deductible_remaining_cents, family_deductible_remaining_cents, then eligible and cost sharing. Remaining values describe accounts immediately BEFORE this particular line, including rejected lines:\nindividual_deductible_remaining_cents = max(0, policy.individual_deductible_limit_cents - individual_deductible_used).\nfamily_deductible_remaining_cents = max(0, policy.family_deductible_limit_cents - family_deductible_used).\nother = other_payer_cents or zero; eligible_cents = allowed_cents - other.\ncoverage_decision is covered ONLY if service belongs to selected plan services, required network and authorization conditions pass, and prescription formulary passes. Missing in_network, authorized and formulary default TRUE.\nREJECTED BRANCH: nominal_deductible_cents=0, copay_cents=0, coinsurance_base_cents=0, payer_before_caps_cents=0, member_before_oop_cents=0, capped_member_cents=0, payer_after_oop_cents=0, member_cents=0, payout_cents=0; noncovered_cents=eligible_cents. Do NOT apply the covered formulas to rejected lines. Keep all used accounts unchanged. Still emit actual remaining deductible/OOP/benefit BEFORE that line; do not reset them to limits.\nCOVERED BRANCH, in this exact order:\nnominal_deductible_cents = min(eligible_cents, individual_deductible_remaining_cents, family_deductible_remaining_cents). The entire eligible amount is deductible ONLY if BOTH remaining deductible balances cover it. Never let nominal deductible exceed either emitted remaining deductible.\ncopay_cents = min(eligible_cents - nominal_deductible_cents, policy.copay_cents).\ncoinsurance_base_cents = eligible_cents - nominal_deductible_cents - copay_cents.\npayer_before_caps_cents = (coinsurance_base_cents * policy.payer_bps) // 10000, FLOOR.\nmember_before_oop_cents = eligible_cents - payer_before_caps_cents.\nindividual_oop_remaining_cents = max(0, policy.individual_oop_limit_cents - individual_oop_used); family_oop_remaining_cents = max(0, policy.family_oop_limit_cents - family_oop_used).\ncapped_member_cents = min(member_before_oop_cents, individual_oop_remaining_cents, family_oop_remaining_cents).\npayer_after_oop_cents = eligible_cents - capped_member_cents.\nannual_benefit_remaining_cents = max(0, policy.annual_benefit_limit_cents - individual_benefit_used).\npayout_cents = min(payer_after_oop_cents, annual_benefit_remaining_cents); member_cents=capped_member_cents; noncovered_cents=eligible_cents-member_cents-payout_cents.\nOnly covered lines update accounts: increase BOTH individual and family USED deductible by min(nominal_deductible_cents,member_cents), USED OOP by member_cents and USED benefit by payout_cents. Process the next line with these UPDATED balances. Nominal deductible is before OOP clipping.\nSum line money, including other payer, into final values. partial is true only when both covered and rejected-coverage lines exist; benefit cap excess alone is not partial. Submit reserves accounts; pay/read/appeal do not change a financial snapshot. Reuse one quote for unchanged values. No state/revision/event/ledger fields in this stage. No prose or private deliberation.\nReversal credits only this claim original allocation, not earlier claims. Keep original quote payout/member but return current used balances.\nAdjustment undoes original allocation then prices replacement lines, preserving other claims and current family/year balances.\nMaximum 5 quote(s), no duplicate unchanged snapshots. Only the requested step needs a quote in stepwise mode.\nINPUTS: {\"facts\":{\"scope\":\"Invented rules for every plan, not actual Medicare or commercial policy. Quotes reserve allocated accumulators at adjudication. Reversal/adjustment credits only the original allocation; later claims are never repriced. Other-payer money is applied before deductible/copay. Benefit-cap excess is noncovered and does not increase OOP. Coinsurance uses floor integer cents. Policy dates are half-open intervals; accumulators reset by service calendar year.\",\"policies\":[{\"id\":\"SYN-2026-H1\",\"start\":\"2026-01-01\",\"end\":\"2026-07-01\",\"individual_deductible_limit_cents\":10000,\"family_deductible_limit_cents\":20000,\"copay_cents\":1000,\"payer_bps\":8000,\"individual_oop_limit_cents\":30000,\"family_oop_limit_cents\":60000,\"annual_benefit_limit_cents\":200000}],\"plans\":[{\"id\":\"commercial_ppo\",\"services\":[\"hospital\",\"medical\",\"outpatient\",\"prescription\",\"preventive\",\"mental_health\",\"maternity\",\"rehabilitation\",\"emergency\",\"lab\"],\"network_required\":false,\"authorization_services\":[\"hospital\"]}],\"families\":{\"M100\":\"F100\",\"M200\":\"F100\",\"M300\":\"F100\",\"M400\":\"F400\"}},\"inputs\":{\"case_id\":\"AB-R87-11\",\"steps\":[{\"step_id\":\"S01\",\"action\":\"submit\",\"actor\":\"customer-m100\",\"data\":{\"claim_id\":\"CLAIM-R87-11\",\"member_id\":\"M100\",\"plan_id\":\"commercial_ppo\",\"service_date\":\"2026-03-19\",\"lines\":[{\"id\":\"LINE-ONE\",\"service\":\"medical\",\"allowed_cents\":77431}],\"operation_key\":\"CLAIM-R87-11-submit-1\"}},{\"step_id\":\"S02\",\"action\":\"pay\",\"actor\":\"finance-demo\",\"data\":{\"claim_id\":\"CLAIM-R87-11\",\"expected_revision\":1,\"operation_key\":\"CLAIM-R87-11-pay-2\"}},{\"step_id\":\"S03\",\"action\":\"adjust\",\"actor\":\"adjuster-demo\",\"data\":{\"claim_id\":\"CLAIM-R87-11\",\"expected_revision\":2,\"lines\":[{\"id\":\"LINE-ONE\",\"service\":\"medical\",\"allowed_cents\":53213}],\"operation_key\":\"CLAIM-R87-11-adjust-3\",\"note\":\"Synthetic stateful reliability study\"}},{\"step_id\":\"S04\",\"action\":\"reverse\",\"actor\":\"finance-demo\",\"data\":{\"claim_id\":\"CLAIM-R87-11\",\"expected_revision\":3,\"operation_key\":\"CLAIM-R87-11-reverse-4\",\"note\":\"Synthetic stateful reliability study\"}},{\"step_id\":\"S05\",\"action\":\"read\",\"actor\":\"customer-m100\",\"data\":{\"claim_id\":\"CLAIM-R87-11\"}}]},\"requested_step\":null,\"own_previous_predictions\":[]}",
+          "prompt_hash": "0a7eaac06bf0c01a006a18aecef9189739a39828011a57e2abcf0e11fe392050",
+          "generation_schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "quotes": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 5,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "quote_id": {
+                      "enum": [
+                        "Q01",
+                        "Q02",
+                        "Q03",
+                        "Q04",
+                        "Q05"
+                      ]
+                    },
+                    "calculation": {
+                      "type": "array",
+                      "maxItems": 5,
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "line_id": {
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 48
+                          },
+                          "coverage_decision": {
+                            "enum": [
+                              "covered",
+                              "rejected"
+                            ],
+                            "description": "Decide from service/network/authorization/formulary facts BEFORE cost sharing."
+                          },
+                          "individual_deductible_remaining_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000,
+                            "description": "Policy deductible LIMIT minus cumulative USED before this line, floored at zero. Model computes this value."
+                          },
+                          "family_deductible_remaining_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000,
+                            "description": "Policy deductible LIMIT minus cumulative USED before this line, floored at zero. Model computes this value."
+                          },
+                          "eligible_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "nominal_deductible_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "copay_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "coinsurance_base_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "payer_before_caps_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "member_before_oop_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "individual_oop_remaining_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "family_oop_remaining_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "capped_member_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "annual_benefit_remaining_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "payer_after_oop_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "member_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "payout_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          },
+                          "noncovered_cents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 500000000
+                          }
+                        },
+                        "required": [
+                          "line_id",
+                          "coverage_decision",
+                          "individual_deductible_remaining_cents",
+                          "family_deductible_remaining_cents",
+                          "eligible_cents",
+                          "nominal_deductible_cents",
+                          "copay_cents",
+                          "coinsurance_base_cents",
+                          "payer_before_caps_cents",
+                          "member_before_oop_cents",
+                          "individual_oop_remaining_cents",
+                          "family_oop_remaining_cents",
+                          "capped_member_cents",
+                          "annual_benefit_remaining_cents",
+                          "payer_after_oop_cents",
+                          "member_cents",
+                          "payout_cents",
+                          "noncovered_cents"
+                        ]
+                      }
+                    },
+                    "values": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "payout_cents": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000
+                        },
+                        "member_cents": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000
+                        },
+                        "other_payer_cents": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000
+                        },
+                        "noncovered_cents": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000
+                        },
+                        "individual_deductible": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000,
+                          "description": "Cumulative USED account after this snapshot, not a policy limit or remaining balance."
+                        },
+                        "individual_oop": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000,
+                          "description": "Cumulative USED account after this snapshot, not a policy limit or remaining balance."
+                        },
+                        "individual_benefit": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000,
+                          "description": "Cumulative USED account after this snapshot, not a policy limit or remaining balance."
+                        },
+                        "family_deductible": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000,
+                          "description": "Cumulative USED account after this snapshot, not a policy limit or remaining balance."
+                        },
+                        "family_oop": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000,
+                          "description": "Cumulative USED account after this snapshot, not a policy limit or remaining balance."
+                        },
+                        "family_benefit": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 500000000,
+                          "description": "Cumulative USED account after this snapshot, not a policy limit or remaining balance."
+                        },
+                        "policy_id": {
+                          "type": "string",
+                          "enum": [
+                            "SYN-2026-H1",
+                            "SYN-2026-H2",
+                            "SYN-2027"
+                          ]
+                        },
+                        "partial": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "payout_cents",
+                        "member_cents",
+                        "other_payer_cents",
+                        "noncovered_cents",
+                        "individual_deductible",
+                        "individual_oop",
+                        "individual_benefit",
+                        "family_deductible",
+                        "family_oop",
+                        "family_benefit",
+                        "policy_id",
+                        "partial"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "quote_id",
+                    "calculation",
+                    "values"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "quotes"
+            ]
+          },
+          "schema_hash": "7fc9a34239977425b2c0b997129d37a8c45be21b148d34aaa8f589a0d11b61d9",
+          "phase": "interrupted",
+          "generation": {
+            "phase": "pricing",
+            "shape": {
+              "quote_limit": 5,
+              "line_limit": 1,
+              "observations": 5
+            }
+          }
+        }
+      ],
+      "self_review_requested": false,
+      "phase": "predicting"
+    }
+  ],
+  "summary": [
+    {
+      "model": "qwen3.5:27b",
+      "stage": "first",
+      "trials": 1,
+      "unique_tasks": 1,
+      "unique_heldout_tasks": 1,
+      "assessed": 0,
+      "not_assessed": 1,
+      "eligible": 0,
+      "strict_percent": null,
+      "schema_valid": 0,
+      "observations_correct": 0,
+      "calculations_correct": 0,
+      "input_preservation": "immutable server assembly; model cannot supply inputs",
+      "provider_errors": 0,
+      "unknown_requests": 1,
+      "model_calls": 1,
+      "latency_median_ms": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "stable_repeated_tasks": 0,
+      "repeated_tasks": 0,
+      "target_percent": 80,
+      "target_met": false,
+      "mode": "experimental",
+      "reference_assisted_corrections": 0,
+      "worksheet_mismatch_trials": 0,
+      "timeout_requests": 0,
+      "schema_failure_trials": 0,
+      "incorrect_observation_trials": 0,
+      "elapsed_median_ms": null,
+      "elapsed_max_ms": null,
+      "planned_progress_percent": 0.0
+    },
+    {
+      "model": "qwen3.5:27b",
+      "stage": "self_review",
+      "trials": 0,
+      "unique_tasks": 0,
+      "unique_heldout_tasks": 0,
+      "assessed": 0,
+      "not_assessed": 0,
+      "eligible": 0,
+      "strict_percent": null,
+      "schema_valid": 0,
+      "observations_correct": 0,
+      "calculations_correct": 0,
+      "input_preservation": "immutable server assembly; model cannot supply inputs",
+      "provider_errors": 0,
+      "unknown_requests": 0,
+      "model_calls": 0,
+      "latency_median_ms": null,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "stable_repeated_tasks": 0,
+      "repeated_tasks": 0,
+      "target_percent": 80,
+      "target_met": false,
+      "mode": "experimental",
+      "reference_assisted_corrections": 0,
+      "worksheet_mismatch_trials": 0,
+      "timeout_requests": 0,
+      "schema_failure_trials": 0,
+      "incorrect_observation_trials": 0,
+      "elapsed_median_ms": null,
+      "elapsed_max_ms": null,
+      "planned_progress_percent": null
+    }
+  ],
+  "approval": null,
+  "previously_exposed_tasks": [],
+  "budget": {
+    "max_seconds": 180,
+    "admitted_epoch": 1795408271.361954,
+    "deadline_epoch": 1795408451.361954,
+    "scope": "Admitted job wall clock; preflight/model status is separate. Backend cancellation is best effort; late output is fenced.",
+    "expired": true,
+    "ended_epoch": 1795408451.371776
+  },
+  "operation": {
+    "token": "2e57d730fb034dc8ba65d3ffda072c3a",
+    "kind": "expectations-only",
+    "started_at": "2026-11-23T04:31:11.362305+00:00",
+    "lease_seconds": 30
+  },
+  "stop_reason": "time_budget",
+  "error": "TOTAL_TIME_BUDGET_EXCEEDED: remaining work was not run; late output is fenced",
+  "first_attempt_scorecard": {
+    "policy": "Two planned stages each once per requested scope; no retry/resume/reused response/reference repair. Self-review scores never replace original answers.",
+    "counts": {
+      "timeout": 1
+    },
+    "planned": 1,
+    "complete": false,
+    "first_attempt_percent": null,
+    "qualification": false,
+    "outcomes": [
+      {
+        "model": "qwen3.5:27b",
+        "task": "R87-11",
+        "split": "reserved_until_exposed",
+        "outcome": "timeout"
+      }
+    ],
+    "scope": "Selected trials only; no general reliability/qualification claim. Historical and resumed outcomes remain separate.",
+    "protocol_kind": "model_expectations_v87"
+  }
+}

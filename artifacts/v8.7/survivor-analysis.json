@@ -1,0 +1,60 @@
+{
+  "source_hash": "7b1635a43f6e1f5c3d10d560e0ca5f6f81c7fd56b30f54faed698d899a76434b",
+  "mutations": [
+    {
+      "id": "AST-294",
+      "before": "ind[k] - start[k]",
+      "after": "ind[k] + start[k]",
+      "ai_detected": false,
+      "new_authored_journeys_detected": false,
+      "next_probe": "Use same-member prior claim allocations, then deductible/OOP/annual cap and credit readback.",
+      "status": "Survivor of named suite, not a proven equivalent mutation."
+    },
+    {
+      "id": "AST-321",
+      "before": "policy['individual_deductible'] - ind['deductible']",
+      "after": "policy['individual_deductible'] + ind['deductible']",
+      "ai_detected": false,
+      "new_authored_journeys_detected": false,
+      "next_probe": "Use same-member prior claim allocations, then deductible/OOP/annual cap and credit readback.",
+      "status": "Survivor of named suite, not a proven equivalent mutation."
+    },
+    {
+      "id": "AST-324",
+      "before": "policy['family_deductible'] - fam['deductible']",
+      "after": "policy['family_deductible'] + fam['deductible']",
+      "ai_detected": false,
+      "new_authored_journeys_detected": true,
+      "next_probe": "Model must correctly predict shared family prior usage; authored family journeys already detect this variant.",
+      "status": "Survivor of named suite, not a proven equivalent mutation."
+    },
+    {
+      "id": "AST-345",
+      "before": "policy['individual_oop'] - ind['oop']",
+      "after": "policy['individual_oop'] + ind['oop']",
+      "ai_detected": false,
+      "new_authored_journeys_detected": false,
+      "next_probe": "Use same-member prior claim allocations, then deductible/OOP/annual cap and credit readback.",
+      "status": "Survivor of named suite, not a proven equivalent mutation."
+    },
+    {
+      "id": "AST-348",
+      "before": "policy['family_oop'] - fam['oop']",
+      "after": "policy['family_oop'] + fam['oop']",
+      "ai_detected": false,
+      "new_authored_journeys_detected": true,
+      "next_probe": "Model must correctly predict shared family prior usage; authored family journeys already detect this variant.",
+      "status": "Survivor of named suite, not a proven equivalent mutation."
+    },
+    {
+      "id": "AST-355",
+      "before": "policy['annual_benefit'] - ind['benefit']",
+      "after": "policy['annual_benefit'] + ind['benefit']",
+      "ai_detected": false,
+      "new_authored_journeys_detected": false,
+      "next_probe": "Use same-member prior claim allocations, then deductible/OOP/annual cap and credit readback.",
+      "status": "Survivor of named suite, not a proven equivalent mutation."
+    }
+  ],
+  "scope": "Post-study engineering analysis; no added model calls or changes to original scores."
+}

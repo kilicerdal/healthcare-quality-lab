@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "source_hash": "7b1635a43f6e1f5c3d10d560e0ca5f6f81c7fd56b30f54faed698d899a76434b",
+  "run_id": 45112951203,
+  "attempt": 1,
+  "tests_total": 270,
+  "tests_passed": 270,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "per_browser": {
+    "chromium": 90,
+    "firefox": 90,
+    "webkit": 90
+  },
+  "junit_sha256": "1fbdfd1d4563b98bb0907827c703e7b21d96ddc2711deae6bc234a63a507a6d3",
+  "scope": "Complete final evaluation-source E2E matrix, first attempt; counts overlap standard suites."
+}
