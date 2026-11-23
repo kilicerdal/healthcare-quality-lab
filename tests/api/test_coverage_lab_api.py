@@ -41,3 +41,12 @@ def test_focused_api_config_and_generation(app):
 @pytest.mark.parametrize('id',['invented','invalid-zero','payment-replay'])
 def test_gap_generation_rejects_unknown_model(client,id):
     assert client.post('/api/coverage/gaps/'+id+'/generate',json={'model':'cloud'}).status_code==400
+
+def test_coverage_download_is_authenticated_attachment_and_exact_saved_json(app):
+    studio=app.extensions['studio'];studio.provider=FixtureProvider();c=app.test_client()
+    record=studio.generate(generation_request());reviewed=studio.review(record['id'],review_request(record));score=c.post('/api/coverage/score',json={'experiments':[{'id':record['id'],'expected_revision':reviewed['revision']}]}).json
+    response=c.get('/api/coverage/records/'+score['id']+'/download')
+    assert response.status_code==200 and response.mimetype=='application/json'
+    assert 'attachment;' in response.headers['Content-Disposition'] and 'no-store' in response.headers['Cache-Control']
+    assert response.json==c.get('/api/coverage/records/'+score['id']).json
+    assert c.get('/api/coverage/records/missing/download').status_code==404

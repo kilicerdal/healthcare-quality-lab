@@ -20,8 +20,12 @@ def test_dashboard_scores_reviewed_cases_and_exports_evidence(page,coverage_url)
     expect(page.locator('#coverage-rules')).to_contain_text('WF-006')
     page.locator('#coverage-selections input').first.check();page.get_by_role('button',name='Measure defect detection').click()
     expect(page.locator('#coverage-score-result')).to_contain_text('scored · 1/7')
-    with page.expect_download() as info:page.get_by_role('button',name='Export coverage evidence JSON').click()
-    r=json.loads(Path(info.value.path()).read_text());assert r['coverage_kind']=='defect_score' and r['baselines'][0]['result']['failed']==0
+    page.evaluate("() => { URL.createObjectURL=()=>{throw Error('Blob downloads must not be used')}; }")
+    for _ in range(3):
+        with page.expect_download() as info:page.get_by_role('button',name='Export coverage evidence JSON').click()
+        assert info.value.suggested_filename.startswith('coverage-') and info.value.suggested_filename.endswith('.json')
+        r=json.loads(Path(info.value.path()).read_text());assert r['coverage_kind']=='defect_score' and r['baselines'][0]['result']['failed']==0
+        assert r==page.request.get(url+'/api/coverage/records/'+r['id']).json()
     assert not provider.calls
     page.screenshot(path=str(Path(__file__).resolve().parents[2]/'artifacts/v7.0/coverage-dashboard.png'),full_page=True)
 

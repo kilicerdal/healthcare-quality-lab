@@ -22,7 +22,10 @@ class Provider:
  def __init__(self,answers=None):self.answers=answers or [];self.prompts=[]
  def status(self):return {'models':[{'name':'qwen2.5-coder:3b','digest':'offline'}]}
  def generate(self,model,prompt,schema):
-  self.prompts.append(prompt);answer=self.answers.pop(0) if self.answers else wire(protocol.cohort()['tasks'][0]['plan']);return dict(text=json.dumps(answer),latency_ms=1,input_tokens=1,output_tokens=1)
+  self.prompts.append(prompt);answer=self.answers.pop(0) if self.answers else wire(protocol.cohort()['tasks'][0]['plan'])
+  if set(schema.get('properties',{}))=={'quotes'}:answer={'quotes':answer['quotes']}
+  if set(schema.get('properties',{}))=={'observations'} and 'quotes' in answer:answer={'observations':answer['observations']}
+  return dict(text=json.dumps(answer),latency_ms=1,input_tokens=1,output_tokens=1)
 def lab(path,provider=None,evaluator=evaluate):return ExpectationLab(path,provider or Provider(),threading.Lock(),protocol=protocol,evaluator=evaluator)
 @pytest.mark.parametrize('task',protocol.cohort()['tasks'],ids=lambda t:t['id'])
 def test_all_inputs_roundtrip_without_modifying_model_observations(task):

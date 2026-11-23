@@ -18,7 +18,7 @@ def selection(body,data=None):
   values=body[key]
   if not isinstance(values,list) or not values or any(type(v) is not str or v not in allowed for v in values) or len(set(values))!=len(values):raise StudioError('INVALID_REQUEST','Select unique known '+key)
  if type(body['repeats']) is not int or not 1<=body['repeats']<=2 or body['strategy'] not in ('whole_case','stepwise') or type(body['self_review']) is not bool:raise StudioError('INVALID_REQUEST','Choose 1–2 trials, whole_case/stepwise and explicit self_review boolean')
- requests=len(body['models'])*body['repeats']*sum((len(tasks[id]['plan']['case']['steps']) if body['strategy']=='stepwise' else 1)+int(body['self_review']) for id in body['tasks'])
+ requests=(data or cohort()).get("request_multiplier",1)*len(body['models'])*body['repeats']*sum((len(tasks[id]['plan']['case']['steps']) if body['strategy']=='stepwise' else 1)+int(body['self_review']) for id in body['tasks'])
  if requests>24:raise StudioError('BUDGET_EXCEEDED','At most 24 model requests, including every step and self review')
  return dict(**deepcopy(body),request_budget=requests)
 

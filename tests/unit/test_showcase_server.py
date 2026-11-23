@@ -9,7 +9,7 @@ def free_port():
 def test_owned_server_start_status_stop_and_preserved_replay(tmp_path):
  state=tmp_path/'demo';port=free_port()
  try:
-  first=server.start(state,port);assert first['running'] and first['owned'] and first['ready'];assert server.start(state,port)['pid']==first['pid'];marker=state/'showcase-server.json';original=marker.read_text();bad=json.loads(original);bad['token']='wrong';marker.write_text(json.dumps(bad));assert not server.stop(state,port).get('owned');marker.write_text(original);assert server.status(state,port)['running'];out=server.stop(state,port);assert out['stopped'] and out['state_preserved'];assert (state/'expectations-v83.sqlite').exists();assert not server.status(state,port)['running']
+  first=server.start(state,port);assert first['running'] and first['owned'] and first['ready'];assert server.start(state,port)['pid']==first['pid'];marker=state/'showcase-server.json';original=marker.read_text();bad=json.loads(original);bad['token']='wrong';marker.write_text(json.dumps(bad));assert not server.stop(state,port).get('owned');marker.write_text(original);assert server.status(state,port)['running'];out=server.stop(state,port);assert out['stopped'] and out['state_preserved'];assert (state/'expectations-v84.sqlite').exists();assert not server.status(state,port)['running']
  finally:server.stop(state,port)
 
 @pytest.mark.parametrize('port',[True,0,1023,65536,'8902'])
