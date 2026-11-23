@@ -1,0 +1,229 @@
+{
+  "kind": "post-freeze resumed-model revalidation under exact-alias normalization",
+  "first_attempt": false,
+  "source_generation": "03d41abadd7d54f61030981d3ec94295456062d3bf07d5e1928c20f58a57729c",
+  "source_validation": "dc33a0b9918a774bc1661fbb3d8862a109efb9e6d2187b10f643ed291459e9d4",
+  "validation_protocol": "staged-expectations-v84-2",
+  "raw_artifact_sha256": "1a5d95dcb1fe69a8475ee5c12cb11a2635d524d4f2348483e42c8962cbb7737b",
+  "normalization": {
+    "kind": "unused_exact_aliases_only",
+    "discarded_quote_ids": [
+      "Q02",
+      "Q03"
+    ],
+    "expected_fields_changed": 0
+  },
+  "model_values_unchanged": true,
+  "reference_assisted_corrections": 0,
+  "assessment": {
+    "schema_valid": true,
+    "input_preserved": true,
+    "observations_correct": true,
+    "calculations_correct": true,
+    "worksheet_mismatches": [],
+    "eligible": true,
+    "assessment": {
+      "valid": true,
+      "matched": true,
+      "duplicates": [],
+      "review_ready": true,
+      "reference": [
+        {
+          "case_id": "AB-D83-01",
+          "matched": true,
+          "steps": [
+            {
+              "step": 1,
+              "expected": {
+                "status": 201,
+                "state": "adjudicated",
+                "revision": 1,
+                "event_count": 1,
+                "payout_cents": 0,
+                "member_cents": 0,
+                "other_payer_cents": 0,
+                "noncovered_cents": 37819,
+                "ledger_cents": 0,
+                "ledger_count": 0,
+                "individual_deductible": 0,
+                "individual_oop": 0,
+                "individual_benefit": 0,
+                "family_deductible": 0,
+                "family_oop": 0,
+                "family_benefit": 0,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              },
+              "mismatches": []
+            },
+            {
+              "step": 2,
+              "expected": {
+                "status": 200,
+                "state": "paid",
+                "revision": 2,
+                "event_count": 2,
+                "payout_cents": 0,
+                "member_cents": 0,
+                "other_payer_cents": 0,
+                "noncovered_cents": 37819,
+                "ledger_cents": 0,
+                "ledger_count": 1,
+                "individual_deductible": 0,
+                "individual_oop": 0,
+                "individual_benefit": 0,
+                "family_deductible": 0,
+                "family_oop": 0,
+                "family_benefit": 0,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              },
+              "mismatches": []
+            },
+            {
+              "step": 3,
+              "expected": {
+                "status": 200,
+                "state": "paid",
+                "revision": 2,
+                "event_count": 2,
+                "payout_cents": 0,
+                "member_cents": 0,
+                "other_payer_cents": 0,
+                "noncovered_cents": 37819,
+                "ledger_cents": 0,
+                "ledger_count": 1,
+                "individual_deductible": 0,
+                "individual_oop": 0,
+                "individual_benefit": 0,
+                "family_deductible": 0,
+                "family_oop": 0,
+                "family_benefit": 0,
+                "policy_id": "SYN-2026-H1",
+                "partial": false
+              },
+              "mismatches": []
+            }
+          ]
+        }
+      ]
+    },
+    "cases": [
+      {
+        "id": "AB-D83-01",
+        "title": "V8.3 exposed worksheet development 1",
+        "rule_ids": [
+          "BN-001",
+          "BN-002",
+          "BN-003",
+          "BN-004",
+          "BN-005",
+          "BN-006",
+          "BN-007"
+        ],
+        "rationale": "Authored input-only scenario; all expected values are model-authored.",
+        "assumptions": [],
+        "steps": [
+          {
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-H82-02-1",
+              "operation_key": "submit-H82-02-1",
+              "member_id": "M100",
+              "plan_id": "vision",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "vision",
+                  "allowed_cents": 37819,
+                  "in_network": false
+                }
+              ]
+            },
+            "expect": {
+              "payout_cents": 0,
+              "member_cents": 0,
+              "other_payer_cents": 0,
+              "noncovered_cents": 37819,
+              "individual_deductible": 0,
+              "individual_oop": 0,
+              "individual_benefit": 0,
+              "family_deductible": 0,
+              "family_oop": 0,
+              "family_benefit": 0,
+              "policy_id": "SYN-2026-H1",
+              "partial": false,
+              "status": 201,
+              "state": "adjudicated",
+              "revision": 1,
+              "event_count": 1,
+              "ledger_cents": 0,
+              "ledger_count": 0
+            }
+          },
+          {
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "C-H82-02-1",
+              "operation_key": "pay-H82-02-1",
+              "expected_revision": 1
+            },
+            "expect": {
+              "payout_cents": 0,
+              "member_cents": 0,
+              "other_payer_cents": 0,
+              "noncovered_cents": 37819,
+              "individual_deductible": 0,
+              "individual_oop": 0,
+              "individual_benefit": 0,
+              "family_deductible": 0,
+              "family_oop": 0,
+              "family_benefit": 0,
+              "policy_id": "SYN-2026-H1",
+              "partial": false,
+              "status": 200,
+              "state": "paid",
+              "revision": 2,
+              "event_count": 2,
+              "ledger_cents": 0,
+              "ledger_count": 1
+            }
+          },
+          {
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "C-H82-02-1"
+            },
+            "expect": {
+              "payout_cents": 0,
+              "member_cents": 0,
+              "other_payer_cents": 0,
+              "noncovered_cents": 37819,
+              "individual_deductible": 0,
+              "individual_oop": 0,
+              "individual_benefit": 0,
+              "family_deductible": 0,
+              "family_oop": 0,
+              "family_benefit": 0,
+              "policy_id": "SYN-2026-H1",
+              "partial": false,
+              "status": 200,
+              "state": "paid",
+              "revision": 2,
+              "event_count": 2,
+              "ledger_cents": 0,
+              "ledger_count": 1
+            }
+          }
+        ]
+      }
+    ],
+    "answer_hash": "91b24a33476de60a38cf8fe5cf1aa6ead0b9a588662961c94588a13ef22a187b",
+    "reference_assisted_corrections": 0,
+    "scoring_contract": "complete_observations_pricing_and_ledger_worksheets_v82; no revision/event worksheet claim"
+  }
+}

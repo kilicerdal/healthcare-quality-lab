@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "source_hash": "dc33a0b9918a774bc1661fbb3d8862a109efb9e6d2187b10f643ed291459e9d4",
+  "run_id": 45097315068,
+  "attempt": 1,
+  "tests_total": 261,
+  "tests_passed": 261,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "per_browser": {
+    "chromium": 87,
+    "firefox": 87,
+    "webkit": 87
+  },
+  "repeated_attachment_downloads_per_browser": 3,
+  "blob_creation_disabled_during_download_test": true,
+  "junit_sha256": "376efeceb820a7b7475cb9f51ad1777262586f09b74416f864d195ca2d0cf965",
+  "scope": "Complete final-source three-browser matrix; no retry. Counts overlap local and dedicated jobs."
+}

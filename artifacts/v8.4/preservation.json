@@ -1,0 +1,192 @@
+{
+  "source_hash": "dc33a0b9918a774bc1661fbb3d8862a109efb9e6d2187b10f643ed291459e9d4",
+  "all_original_rows_preserved": true,
+  "original_store_rows": [
+    {
+      "database": "advanced-v63.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 1,
+      "preserved": true
+    },
+    {
+      "database": "advanced-v63.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "claims-v2.sqlite",
+      "table": "claims",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "claims-v2.sqlite",
+      "table": "events",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "claims-v2.sqlite",
+      "table": "payments",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "integrations-v67.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "integrations-v67.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "ai-v3.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 52,
+      "preserved": true
+    },
+    {
+      "database": "ai-v3.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "v58-reserved.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 2,
+      "preserved": true
+    },
+    {
+      "database": "v58-reserved.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "benefits-v60.sqlite",
+      "table": "benefit_claims",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "benefits-v60.sqlite",
+      "table": "accumulators",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "benefits-v60.sqlite",
+      "table": "benefit_ledger",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "benefits-v60.sqlite",
+      "table": "benefit_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "advanced-evaluations-v64.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 4,
+      "preserved": true
+    },
+    {
+      "database": "advanced-evaluations-v64.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "coverage-v55.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 19,
+      "preserved": true
+    },
+    {
+      "database": "coverage-v55.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "evaluation-v4.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 3,
+      "preserved": true
+    },
+    {
+      "database": "evaluation-v4.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "research-v59.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 1,
+      "preserved": true
+    },
+    {
+      "database": "research-v59.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "advanced-reviewed-v67.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 2,
+      "preserved": true
+    },
+    {
+      "database": "advanced-reviewed-v67.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "v63-development.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 1,
+      "preserved": true
+    },
+    {
+      "database": "v63-development.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    },
+    {
+      "database": "review-audit.sqlite",
+      "table": "review_audit",
+      "original_rows": 4,
+      "preserved": true
+    },
+    {
+      "database": "reliability-v58.sqlite",
+      "table": "ai_experiments",
+      "original_rows": 2,
+      "preserved": true
+    },
+    {
+      "database": "reliability-v58.sqlite",
+      "table": "studio_operations",
+      "original_rows": 0,
+      "preserved": true
+    }
+  ],
+  "original_evidence_unchanged": {
+    "artifacts/v8.2/heldout.json": true,
+    "artifacts/v8.3/live-pilot.json": true
+  },
+  "v4_unchanged": true,
+  "v4_sha256": "26f7f5bf44d5ee30843e821ce7cdb07e22f273f7bc1d73ac9c43d34a5eaa7801"
+}

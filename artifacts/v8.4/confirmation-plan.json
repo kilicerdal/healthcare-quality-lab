@@ -1,0 +1,18 @@
+{
+  "source_hash": "03d41abadd7d54f61030981d3ec94295456062d3bf07d5e1928c20f58a57729c",
+  "model": "qwen3.5:27b",
+  "tasks": [
+    "D83-01"
+  ],
+  "max_seconds": 180,
+  "maximum_calls": 2,
+  "kind": "post-fix exposed development confirmation",
+  "reason": "Restore omitted generic rejected-line branch rules and enforce isolated stage schemas. No numeric reference answers supplied.",
+  "not_pooled_with_frozen_comparison": true,
+  "retries": 0,
+  "prior_actual_calls": 9,
+  "total_actual_call_ceiling_including_confirmation": 11,
+  "original_comparison_max_admitted_seconds": 270,
+  "additional_confirmation_max_admitted_seconds": 180,
+  "scope": "Known pilot only; no fresh-case improvement or qualification claim. Original plan/results remain unchanged."
+}

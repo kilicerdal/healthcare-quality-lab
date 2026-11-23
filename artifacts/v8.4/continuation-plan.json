@@ -1,0 +1,16 @@
+{
+  "kind": "explicit lifecycle continuation; NOT first-attempt accuracy",
+  "source_hash": "03d41abadd7d54f61030981d3ec94295456062d3bf07d5e1928c20f58a57729c",
+  "parent_id": "80b4b14cc92c411498e3f11fd712368a",
+  "parent_pricing_prompt_hash": "19b583ff05dc1b2b7af30935c8c58251aa688f1eb450ea9f8f0b64f7e83ae962",
+  "parent_pricing_response_hash": "ae86b7c9cf69106531122a8bcbe22b343123bb86126aadf7a72122c7a93007ef",
+  "model": "qwen3.5:27b",
+  "maximum_new_calls": 1,
+  "max_seconds": 120,
+  "total_actual_call_ceiling": 12,
+  "same_lifecycle_prompt_hash": "772d597db3d0e47af730588da77246f8d4e127dd98e9dfd21d530c7396725851",
+  "same_lifecycle_schema_hash": "91467e7c3ffa8cf020040a600214129ec1b4800135184bd5f0771425bae5e3c5",
+  "reference_feedback_supplied": false,
+  "pricing_values_modified": false,
+  "reason": "Reuse the interrupted job frozen pricing exactly and retry only the unfinished lifecycle stage. Prior interruption remains unchanged."
+}

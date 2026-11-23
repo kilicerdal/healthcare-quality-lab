@@ -1,0 +1,22 @@
+{
+  "version": "8.4.0",
+  "accepted_code_commit": "47d6561e1cb707cccbb94af853d35e3d128d4918",
+  "source_hash": "dc33a0b9918a774bc1661fbb3d8862a109efb9e6d2187b10f643ed291459e9d4",
+  "branch": "codex/v84-staged-ai-and-downloads",
+  "quality_workflow": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/45097315068",
+  "quality_attempt": 1,
+  "quality_conclusion": "success",
+  "portable_workflow": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/45097315597",
+  "local_standard_passed": 1124,
+  "hosted_standard_passed": 1124,
+  "full_browser_matrix_passed": 261,
+  "matrix_retry": false,
+  "model_calls": 12,
+  "resumed_known_model_case_http_passed": 1,
+  "first_attempt_qualification": false,
+  "reference_assisted_numeric_corrections": 0,
+  "normalization": "Unused exact quote aliases only; expected fields unchanged",
+  "review": "Scripted engineering inspection, not independent human review",
+  "documentation_and_evidence_source_equivalent": true,
+  "main_tag_or_release_promotion": false
+}

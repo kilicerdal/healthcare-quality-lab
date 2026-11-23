@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "version": "8.4.0",
+  "recorded_at": "2026-11-22T20:47:40.739499-05:00",
+  "recorded_date": "2026-11-22",
+  "source_hash": "03d41abadd7d54f61030981d3ec94295456062d3bf07d5e1928c20f58a57729c",
+  "evaluation_contract_hash": "f3a43a87280b012175cc9306e8cf3c51689e72e0551014a6f6520cf365042dfd",
+  "workflow_contract_hash": "c0084cefa0b7b9b7045cd72d1054fa2dbcda48002b405c0ea92629f506c56ef3",
+  "tests_total": 1118,
+  "tests_passed": 1118,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "categories": {
+    "unit": 854,
+    "api": 177,
+    "e2e": 87
+  },
+  "e2e_tests": 87,
+  "seeded_defects_detected": 7,
+  "seeded_defects_total": 7,
+  "workflow_seeded_defects_detected": 5,
+  "workflow_seeded_defects_total": 5,
+  "ai_case_language": "declarative DSL 1.0",
+  "live_model_in_core_tests": false,
+  "reference_examples": 28,
+  "duration_seconds": 221.23,
+  "environment": {
+    "python": "3.13.18",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "pytest": "9.2.0",
+    "playwright": "1.65.2",
+    "flask": "3.1.3",
+    "waitress": "3.0.2",
+    "browser": "Chromium only"
+  },
+  "command": "python -m tools.verify",
+  "subprocess_returncode": 0,
+  "ci_executed": false,
+  "scope": "Local V8.4 regression: plan-first expectation authorship, durable frozen model/prompt experiments without correction, sealed investigation and rejected explanations, requirement/assertion/execution traceability, production mutation/property scoring and guided portfolio boundaries; advanced AI DSL and independent lifecycle oracle, frozen raw/corrected evaluation, identity-bound review and actual external peer/outbox/inbox recovery; reserved-model job contracts, grounded triage, advanced line benefits and independent Fraction properties, concurrent ledger/recovery, shared identity/CSRF/audit, reproducible demos, actual HTTP adapter, layout contracts, release integrity/activation/rollback, bootstrap, readiness/request tracing and evaluator/workflow tests, AI generation/review/runner controls, reference scoring/retrieval/comparison/investigation with offline provider doubles, real Chromium flows and retained fault experiments. Live provider demonstrations are recorded separately; ordinary CI makes no paid API calls. Upstream proof scenarios, reference invariants and spending controls are preserved. Not production or Medicare compliance certification."
+}

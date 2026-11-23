@@ -1,0 +1,389 @@
+[
+  {
+    "source": "V8.3 original",
+    "task": "D83-01",
+    "eligible": false,
+    "worksheet_differences": [
+      {
+        "step": 1,
+        "kind": "pricing",
+        "differences": [
+          {
+            "field": "[0].coinsurance_base_cents",
+            "model": 26819,
+            "reference": 0
+          },
+          {
+            "field": "[0].copay_cents",
+            "model": 1000,
+            "reference": 0
+          },
+          {
+            "field": "[0].nominal_deductible_cents",
+            "model": 10000,
+            "reference": 0
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 37819,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_before_cents",
+            "model": 37819,
+            "reference": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "V8.4 small",
+    "task": "D83-01",
+    "eligible": false,
+    "worksheet_differences": [
+      {
+        "step": 1,
+        "kind": "pricing",
+        "differences": [
+          {
+            "field": "[0].annual_benefit_remaining_cents",
+            "model": 199000,
+            "reference": 200000
+          },
+          {
+            "field": "[0].capped_member_cents",
+            "model": 16819,
+            "reference": 0
+          },
+          {
+            "field": "[0].coinsurance_base_cents",
+            "model": 26819,
+            "reference": 0
+          },
+          {
+            "field": "[0].copay_cents",
+            "model": 1000,
+            "reference": 0
+          },
+          {
+            "field": "[0].member_before_oop_cents",
+            "model": 16819,
+            "reference": 0
+          },
+          {
+            "field": "[0].member_cents",
+            "model": 16819,
+            "reference": 0
+          },
+          {
+            "field": "[0].nominal_deductible_cents",
+            "model": 10000,
+            "reference": 0
+          },
+          {
+            "field": "[0].noncovered_cents",
+            "model": 0,
+            "reference": 37819
+          },
+          {
+            "field": "[0].payer_after_oop_cents",
+            "model": 16819,
+            "reference": 0
+          },
+          {
+            "field": "[0].payer_before_caps_cents",
+            "model": 20000,
+            "reference": 0
+          },
+          {
+            "field": "[0].payout_cents",
+            "model": 16819,
+            "reference": 0
+          }
+        ]
+      },
+      {
+        "step": 1,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 16819,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_delta_cents",
+            "model": 16819,
+            "reference": 0
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 33638,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_before_cents",
+            "model": 16819,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_delta_cents",
+            "model": 16819,
+            "reference": 0
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 33638,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_before_cents",
+            "model": 33638,
+            "reference": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "V8.4 small",
+    "task": "H84-01",
+    "eligible": false,
+    "worksheet_differences": [
+      {
+        "step": 1,
+        "kind": "pricing",
+        "differences": [
+          {
+            "field": "[0].annual_benefit_remaining_cents",
+            "model": 199000,
+            "reference": 200000
+          },
+          {
+            "field": "[0].capped_member_cents",
+            "model": 15647,
+            "reference": 0
+          },
+          {
+            "field": "[0].coinsurance_base_cents",
+            "model": 26137,
+            "reference": 0
+          },
+          {
+            "field": "[0].copay_cents",
+            "model": 1000,
+            "reference": 0
+          },
+          {
+            "field": "[0].member_before_oop_cents",
+            "model": 15647,
+            "reference": 0
+          },
+          {
+            "field": "[0].member_cents",
+            "model": 15647,
+            "reference": 0
+          },
+          {
+            "field": "[0].nominal_deductible_cents",
+            "model": 10000,
+            "reference": 0
+          },
+          {
+            "field": "[0].noncovered_cents",
+            "model": 0,
+            "reference": 27137
+          },
+          {
+            "field": "[0].payer_after_oop_cents",
+            "model": 15647,
+            "reference": 0
+          },
+          {
+            "field": "[0].payer_before_caps_cents",
+            "model": 20490,
+            "reference": 0
+          },
+          {
+            "field": "[0].payout_cents",
+            "model": 15647,
+            "reference": 0
+          }
+        ]
+      },
+      {
+        "step": 1,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 15647,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_delta_cents",
+            "model": 15647,
+            "reference": 0
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 31294,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_before_cents",
+            "model": 15647,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_delta_cents",
+            "model": 15647,
+            "reference": 0
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 31294,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_before_cents",
+            "model": 31294,
+            "reference": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "V8.4 small",
+    "task": "H84-02",
+    "eligible": false,
+    "worksheet_differences": [
+      {
+        "step": 1,
+        "kind": "pricing",
+        "differences": [
+          {
+            "field": "[0].annual_benefit_remaining_cents",
+            "model": 199000,
+            "reference": 200000
+          },
+          {
+            "field": "[0].capped_member_cents",
+            "model": 60379,
+            "reference": 23076
+          },
+          {
+            "field": "[0].member_before_oop_cents",
+            "model": 60379,
+            "reference": 23076
+          },
+          {
+            "field": "[0].member_cents",
+            "model": 60379,
+            "reference": 23076
+          },
+          {
+            "field": "[0].payer_after_oop_cents",
+            "model": 60379,
+            "reference": 48303
+          },
+          {
+            "field": "[0].payer_before_caps_cents",
+            "model": 48269,
+            "reference": 48303
+          },
+          {
+            "field": "[0].payout_cents",
+            "model": 60379,
+            "reference": 48303
+          }
+        ]
+      },
+      {
+        "step": 1,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 60379,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_delta_cents",
+            "model": 60379,
+            "reference": 0
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 120758,
+            "reference": 48303
+          },
+          {
+            "field": ".ledger_before_cents",
+            "model": 60379,
+            "reference": 0
+          },
+          {
+            "field": ".ledger_delta_cents",
+            "model": 60379,
+            "reference": 48303
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "kind": "stored_ledger",
+        "differences": [
+          {
+            "field": ".ledger_after_cents",
+            "model": 120758,
+            "reference": 48303
+          },
+          {
+            "field": ".ledger_before_cents",
+            "model": 120758,
+            "reference": 48303
+          }
+        ]
+      }
+    ]
+  }
+]

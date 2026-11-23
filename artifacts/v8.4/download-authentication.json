@@ -1,0 +1,9 @@
+{
+  "statuses": {
+    "unauthenticated": 401,
+    "customer": 403,
+    "auditor": 200,
+    "analyst": 200
+  },
+  "scope": "Synthetic shared-auth read-only download exercise; no real credentials or model calls."
+}

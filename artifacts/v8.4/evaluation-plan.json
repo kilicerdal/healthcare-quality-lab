@@ -1,0 +1,24 @@
+{
+  "source_hash": "00269a7c75413bab9753c746394c70ecb6b73fb9fdde0cc2becd34f12b873137",
+  "tasks": [
+    "D83-01",
+    "H84-01",
+    "H84-02"
+  ],
+  "original_case": "D83-01; unchanged inputs from V8.3",
+  "fresh_cases": [
+    "H84-01",
+    "H84-02"
+  ],
+  "small_model": "qwen2.5-coder:3b",
+  "small_max_seconds": 90,
+  "comparison_model": "qwen3.5:27b",
+  "comparison_max_seconds": 180,
+  "comparison_condition": "Only if the small-model job completes and fewer than three cases are eligible; skip if interrupted to avoid overlapping backend work.",
+  "maximum_calls": 12,
+  "maximum_admitted_seconds": 270,
+  "retries": 0,
+  "self_review": false,
+  "calculator_assistance": false,
+  "scope": "Development + two fresh numeric variants, not ten-input qualification. No tuning after results; failed/unknown/pending attempts retained."
+}

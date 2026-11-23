@@ -1,0 +1,1691 @@
+{
+  "combined_authored_detection": {
+    "detected": 27,
+    "total": 27,
+    "scope": "Union of disclosed authored suites; not AI-only coverage"
+  },
+  "kind": "test_effectiveness",
+  "source_hash": "03d41abadd7d54f61030981d3ec94295456062d3bf07d5e1928c20f58a57729c",
+  "seed": 611,
+  "examples": 80,
+  "mutants": [
+    {
+      "id": "AST-67",
+      "before": "allowed - other",
+      "after": "allowed + other"
+    },
+    {
+      "id": "AST-149",
+      "before": "min(eligible, max(0, policy['individual_deductible'] - ind['deductible']), max(0, policy['family_deductible'] - fam['deductible']))",
+      "after": "max(eligible, max(0, policy['individual_deductible'] - ind['deductible']), max(0, policy['family_deductible'] - fam['deductible']))"
+    },
+    {
+      "id": "AST-151",
+      "before": "min(eligible - ded, policy['copay'])",
+      "after": "max(eligible - ded, policy['copay'])"
+    },
+    {
+      "id": "AST-153",
+      "before": "eligible - ded - copay",
+      "after": "eligible - ded + copay"
+    },
+    {
+      "id": "AST-155",
+      "before": "remaining * policy['payer_bps'] // 10000",
+      "after": "remaining * policy['payer_bps'] * 10000"
+    },
+    {
+      "id": "AST-157",
+      "before": "min(eligible - preliminary, max(0, policy['individual_oop'] - ind['oop']), max(0, policy['family_oop'] - fam['oop']))",
+      "after": "max(eligible - preliminary, max(0, policy['individual_oop'] - ind['oop']), max(0, policy['family_oop'] - fam['oop']))"
+    },
+    {
+      "id": "AST-159",
+      "before": "min(eligible - member, max(0, policy['annual_benefit'] - ind['benefit']))",
+      "after": "max(eligible - member, max(0, policy['annual_benefit'] - ind['benefit']))"
+    },
+    {
+      "id": "AST-161",
+      "before": "eligible - member - payout",
+      "after": "eligible - member + payout"
+    },
+    {
+      "id": "AST-163",
+      "before": "min(ded, member)",
+      "after": "max(ded, member)"
+    },
+    {
+      "id": "AST-177",
+      "before": "[dict(rule_id='BN-002', line_id=x['id'], outcome=x['reason']) for x in rows] + [dict(rule_id='BN-004', outcome='Integer cost sharing and caps calculated'), dict(rule_id='BN-005', outcome='Annual allocation reserved')]",
+      "after": "[dict(rule_id='BN-002', line_id=x['id'], outcome=x['reason']) for x in rows] - [dict(rule_id='BN-004', outcome='Integer cost sharing and caps calculated'), dict(rule_id='BN-005', outcome='Annual allocation reserved')]"
+    },
+    {
+      "id": "AST-214",
+      "before": "max(0, policy['individual_deductible'] - ind['deductible'])",
+      "after": "min(0, policy['individual_deductible'] - ind['deductible'])"
+    },
+    {
+      "id": "AST-215",
+      "before": "max(0, policy['family_deductible'] - fam['deductible'])",
+      "after": "min(0, policy['family_deductible'] - fam['deductible'])"
+    },
+    {
+      "id": "AST-218",
+      "before": "eligible - ded",
+      "after": "eligible + ded"
+    },
+    {
+      "id": "AST-221",
+      "before": "eligible - ded",
+      "after": "eligible + ded"
+    },
+    {
+      "id": "AST-225",
+      "before": "remaining * policy['payer_bps']",
+      "after": "remaining + policy['payer_bps']"
+    },
+    {
+      "id": "AST-230",
+      "before": "eligible - preliminary",
+      "after": "eligible + preliminary"
+    },
+    {
+      "id": "AST-231",
+      "before": "max(0, policy['individual_oop'] - ind['oop'])",
+      "after": "min(0, policy['individual_oop'] - ind['oop'])"
+    },
+    {
+      "id": "AST-232",
+      "before": "max(0, policy['family_oop'] - fam['oop'])",
+      "after": "min(0, policy['family_oop'] - fam['oop'])"
+    },
+    {
+      "id": "AST-235",
+      "before": "eligible - member",
+      "after": "eligible + member"
+    },
+    {
+      "id": "AST-236",
+      "before": "max(0, policy['annual_benefit'] - ind['benefit'])",
+      "after": "min(0, policy['annual_benefit'] - ind['benefit'])"
+    },
+    {
+      "id": "AST-238",
+      "before": "eligible - member",
+      "after": "eligible + member"
+    },
+    {
+      "id": "AST-294",
+      "before": "ind[k] - start[k]",
+      "after": "ind[k] + start[k]"
+    },
+    {
+      "id": "AST-321",
+      "before": "policy['individual_deductible'] - ind['deductible']",
+      "after": "policy['individual_deductible'] + ind['deductible']"
+    },
+    {
+      "id": "AST-324",
+      "before": "policy['family_deductible'] - fam['deductible']",
+      "after": "policy['family_deductible'] + fam['deductible']"
+    },
+    {
+      "id": "AST-345",
+      "before": "policy['individual_oop'] - ind['oop']",
+      "after": "policy['individual_oop'] + ind['oop']"
+    },
+    {
+      "id": "AST-348",
+      "before": "policy['family_oop'] - fam['oop']",
+      "after": "policy['family_oop'] + fam['oop']"
+    },
+    {
+      "id": "AST-355",
+      "before": "policy['annual_benefit'] - ind['benefit']",
+      "after": "policy['annual_benefit'] + ind['benefit']"
+    }
+  ],
+  "suites": [
+    {
+      "name": "authored_controls",
+      "case_count": 16,
+      "distinct_scenarios": 16,
+      "baseline": {
+        "passed": true,
+        "witness": null
+      },
+      "reference_matching": true,
+      "scored": true,
+      "trials": [
+        {
+          "mutant": "AST-67",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-COORD",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-149",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-151",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-153",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-155",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "valid_input_exception",
+            "exception": "RuntimeError"
+          }
+        },
+        {
+          "mutant": "AST-157",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-159",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-161",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "noncovered_cents"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-163",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "individual_deductible",
+              "family_deductible"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-177",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "valid_input_exception",
+            "exception": "TypeError"
+          }
+        },
+        {
+          "mutant": "AST-214",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-215",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-218",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-221",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-225",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-230",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-231",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-232",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-235",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-236",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-238",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-ADJUST",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "noncovered_cents"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-294",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-CAP",
+            "kind": "valid_input_exception",
+            "exception": "RuntimeError"
+          }
+        },
+        {
+          "mutant": "AST-321",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-DATES",
+            "kind": "assertion_mismatch",
+            "step": 2,
+            "fields": [
+              "individual_deductible",
+              "family_deductible"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-324",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-345",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-DATES",
+            "kind": "assertion_mismatch",
+            "step": 2,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-348",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-FAMILY",
+            "kind": "assertion_mismatch",
+            "step": 3,
+            "fields": [
+              "member_cents",
+              "noncovered_cents",
+              "individual_oop",
+              "family_oop"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-355",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-CAP",
+            "kind": "assertion_mismatch",
+            "step": 2,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        }
+      ],
+      "detected": 25,
+      "total": 27,
+      "survived": [
+        "AST-218",
+        "AST-324"
+      ]
+    },
+    {
+      "name": "authored_gap_controls",
+      "case_count": 2,
+      "distinct_scenarios": 2,
+      "baseline": {
+        "passed": true,
+        "witness": null
+      },
+      "reference_matching": true,
+      "scored": true,
+      "trials": [
+        {
+          "mutant": "AST-67",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-149",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-FAMILY",
+            "kind": "assertion_mismatch",
+            "step": 3,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-151",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "valid_input_exception",
+            "exception": "RuntimeError"
+          }
+        },
+        {
+          "mutant": "AST-153",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-FAMILY",
+            "kind": "assertion_mismatch",
+            "step": 3,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-155",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-FAMILY",
+            "kind": "valid_input_exception",
+            "exception": "RuntimeError"
+          }
+        },
+        {
+          "mutant": "AST-157",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "valid_input_exception",
+            "exception": "RuntimeError"
+          }
+        },
+        {
+          "mutant": "AST-159",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-161",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-FAMILY",
+            "kind": "assertion_mismatch",
+            "step": 3,
+            "fields": [
+              "noncovered_cents"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-163",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-FAMILY",
+            "kind": "assertion_mismatch",
+            "step": 3,
+            "fields": [
+              "individual_deductible",
+              "family_deductible"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-177",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "valid_input_exception",
+            "exception": "TypeError"
+          }
+        },
+        {
+          "mutant": "AST-214",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-215",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-218",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "valid_input_exception",
+            "exception": "RuntimeError"
+          }
+        },
+        {
+          "mutant": "AST-221",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "valid_input_exception",
+            "exception": "RuntimeError"
+          }
+        },
+        {
+          "mutant": "AST-225",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-FAMILY",
+            "kind": "assertion_mismatch",
+            "step": 3,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-230",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-FAMILY",
+            "kind": "assertion_mismatch",
+            "step": 3,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-231",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-232",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-235",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-236",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-FAMILY",
+            "kind": "assertion_mismatch",
+            "step": 3,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-238",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-LOW",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "noncovered_cents"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-294",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-321",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-324",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-GAP-FAMILY",
+            "kind": "assertion_mismatch",
+            "step": 3,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-345",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-348",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-355",
+          "detected": false,
+          "witness": null
+        }
+      ],
+      "detected": 21,
+      "total": 27,
+      "survived": [
+        "AST-67",
+        "AST-294",
+        "AST-321",
+        "AST-345",
+        "AST-348",
+        "AST-355"
+      ]
+    },
+    {
+      "name": "historical_ai_raw",
+      "case_count": 1,
+      "distinct_scenarios": 1,
+      "baseline": {
+        "passed": false,
+        "witness": {
+          "case_id": "AB-001",
+          "kind": "assertion_mismatch",
+          "step": 1,
+          "fields": [
+            "status",
+            "payout_cents",
+            "member_cents",
+            "individual_oop",
+            "individual_benefit",
+            "family_deductible",
+            "family_oop",
+            "family_benefit"
+          ]
+        }
+      },
+      "reference_matching": false,
+      "scored": false,
+      "trials": [],
+      "reason": "Failing or reference-mismatching baseline is not credited as defect detection"
+    },
+    {
+      "name": "historical_ai_scenario_calculator_values",
+      "case_count": 1,
+      "distinct_scenarios": 1,
+      "baseline": {
+        "passed": true,
+        "witness": null
+      },
+      "reference_matching": true,
+      "scored": true,
+      "trials": [
+        {
+          "mutant": "AST-67",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-149",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-151",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-153",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-155",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "valid_input_exception",
+            "exception": "RuntimeError"
+          }
+        },
+        {
+          "mutant": "AST-157",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-159",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-161",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "noncovered_cents"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-163",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "individual_deductible",
+              "family_deductible"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-177",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "valid_input_exception",
+            "exception": "TypeError"
+          }
+        },
+        {
+          "mutant": "AST-214",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-215",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-218",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-221",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-225",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-230",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_oop",
+              "individual_benefit",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-231",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-232",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "member_cents",
+              "individual_deductible",
+              "individual_oop",
+              "individual_benefit",
+              "family_deductible",
+              "family_oop",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-235",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-236",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "payout_cents",
+              "noncovered_cents",
+              "individual_benefit",
+              "family_benefit"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-238",
+          "detected": true,
+          "witness": {
+            "case_id": "AB-001",
+            "kind": "assertion_mismatch",
+            "step": 1,
+            "fields": [
+              "noncovered_cents"
+            ]
+          }
+        },
+        {
+          "mutant": "AST-294",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-321",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-324",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-345",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-348",
+          "detected": false,
+          "witness": null
+        },
+        {
+          "mutant": "AST-355",
+          "detected": false,
+          "witness": null
+        }
+      ],
+      "detected": 19,
+      "total": 27,
+      "survived": [
+        "AST-67",
+        "AST-218",
+        "AST-294",
+        "AST-321",
+        "AST-324",
+        "AST-345",
+        "AST-348",
+        "AST-355"
+      ]
+    }
+  ],
+  "properties": {
+    "baseline": {
+      "passed": true,
+      "seed": 611,
+      "examples_attempted": 80,
+      "checks_passed": 400,
+      "witness": null,
+      "scope": "Five seeded generative/metamorphic relations per example; bounded examples, not exhaustive property proof or a Hypothesis run"
+    },
+    "detected": 14,
+    "total": 27,
+    "trials": [
+      {
+        "mutant": "AST-67",
+        "detected": true,
+        "witness": {
+          "example": 1,
+          "plan": "medicare_a",
+          "line": {
+            "id": "LINE-1",
+            "service": "skilled_nursing",
+            "allowed_cents": 5003,
+            "other_payer_cents": 3783
+          },
+          "policy_id": "SYN-2027",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-149",
+        "detected": true,
+        "witness": {
+          "example": 8,
+          "plan": "medicare_d",
+          "line": {
+            "id": "LINE-1",
+            "service": "prescription",
+            "allowed_cents": 865748,
+            "other_payer_cents": 762898
+          },
+          "policy_id": "SYN-2026-H2",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-151",
+        "detected": true,
+        "witness": {
+          "example": 0,
+          "plan": "commercial_hmo",
+          "line": {
+            "id": "LINE-1",
+            "service": "mental_health",
+            "allowed_cents": 1,
+            "other_payer_cents": 0
+          },
+          "policy_id": "SYN-2027",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-153",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-155",
+        "detected": true,
+        "witness": {
+          "example": 8,
+          "plan": "medicare_d",
+          "line": {
+            "id": "LINE-1",
+            "service": "prescription",
+            "allowed_cents": 865748,
+            "other_payer_cents": 762898
+          },
+          "policy_id": "SYN-2026-H2",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-157",
+        "detected": true,
+        "witness": {
+          "example": 0,
+          "plan": "commercial_hmo",
+          "line": {
+            "id": "LINE-1",
+            "service": "mental_health",
+            "allowed_cents": 1,
+            "other_payer_cents": 0
+          },
+          "policy_id": "SYN-2027",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-159",
+        "detected": true,
+        "witness": {
+          "example": 0,
+          "plan": "commercial_hmo",
+          "line": {
+            "id": "LINE-1",
+            "service": "mental_health",
+            "allowed_cents": 1,
+            "other_payer_cents": 0
+          },
+          "policy_id": "SYN-2027",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-161",
+        "detected": true,
+        "witness": {
+          "example": 8,
+          "plan": "medicare_d",
+          "line": {
+            "id": "LINE-1",
+            "service": "prescription",
+            "allowed_cents": 865748,
+            "other_payer_cents": 762898
+          },
+          "policy_id": "SYN-2026-H2",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-163",
+        "detected": true,
+        "witness": {
+          "example": 8,
+          "plan": "medicare_d",
+          "line": {
+            "id": "LINE-1",
+            "service": "prescription",
+            "allowed_cents": 865748,
+            "other_payer_cents": 762898
+          },
+          "policy_id": "SYN-2026-H2",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-177",
+        "detected": true,
+        "witness": {
+          "example": 0,
+          "plan": "commercial_hmo",
+          "line": {
+            "id": "LINE-1",
+            "service": "mental_health",
+            "allowed_cents": 1,
+            "other_payer_cents": 0
+          },
+          "policy_id": "SYN-2027",
+          "exception": "TypeError"
+        }
+      },
+      {
+        "mutant": "AST-214",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-215",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-218",
+        "detected": true,
+        "witness": {
+          "example": 0,
+          "plan": "commercial_hmo",
+          "line": {
+            "id": "LINE-1",
+            "service": "mental_health",
+            "allowed_cents": 1,
+            "other_payer_cents": 0
+          },
+          "policy_id": "SYN-2027",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-221",
+        "detected": true,
+        "witness": {
+          "example": 1,
+          "plan": "medicare_a",
+          "line": {
+            "id": "LINE-1",
+            "service": "skilled_nursing",
+            "allowed_cents": 5003,
+            "other_payer_cents": 3783
+          },
+          "policy_id": "SYN-2027",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-225",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-230",
+        "detected": true,
+        "witness": {
+          "example": 10,
+          "plan": "medicare_advantage",
+          "line": {
+            "id": "LINE-1",
+            "service": "medical",
+            "allowed_cents": 28131,
+            "other_payer_cents": 7835
+          },
+          "policy_id": "SYN-2027",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-231",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-232",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-235",
+        "detected": true,
+        "witness": {
+          "example": 0,
+          "plan": "commercial_hmo",
+          "line": {
+            "id": "LINE-1",
+            "service": "mental_health",
+            "allowed_cents": 1,
+            "other_payer_cents": 0
+          },
+          "policy_id": "SYN-2027",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-236",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-238",
+        "detected": true,
+        "witness": {
+          "example": 0,
+          "plan": "commercial_hmo",
+          "line": {
+            "id": "LINE-1",
+            "service": "mental_health",
+            "allowed_cents": 1,
+            "other_payer_cents": 0
+          },
+          "policy_id": "SYN-2027",
+          "exception": "AssertionError"
+        }
+      },
+      {
+        "mutant": "AST-294",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-321",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-324",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-345",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-348",
+        "detected": false,
+        "witness": null
+      },
+      {
+        "mutant": "AST-355",
+        "detected": false,
+        "witness": null
+      }
+    ]
+  },
+  "lifecycle": {
+    "passed": true,
+    "relations": [
+      "identical payment replay preserves original response",
+      "replay creates no ledger/history/revision change",
+      "reversal balances ledger and credits original accounts",
+      "old payment replay after reversal cannot resurrect settlement"
+    ],
+    "scope": "Actual disposable SQLite lifecycle, no interactive claims or model calls"
+  },
+  "duration_seconds": 1.86,
+  "live_model_calls": 0,
+  "scope": "Actual trusted arithmetic/min/max production-pricing mutations in disposable stores. Different suite sizes are disclosed, not an equal-budget AI superiority comparison. Surviving variants may be equivalent or expose gaps. Declarative historical AI cases are rechecked but never app-approved by this offline benchmark.",
+  "reduction": {
+    "original_hash": "6591a13491725893307fbf6a38de1ae24d19c2fc713d1ddd33e422de4aade21c",
+    "reduced_hash": "d76df50ca6b7a0cffa411e2b1881368a341aaa03b959fa1d2fef1eadc93e6260",
+    "original_steps": 2,
+    "reduced_steps": 1,
+    "attempts": 1,
+    "mutant": "AST-67",
+    "case": {
+      "id": "AB-COORD",
+      "title": "Other payer first and partial denial",
+      "rule_ids": [
+        "BN-001",
+        "BN-002",
+        "BN-003",
+        "BN-004",
+        "BN-005",
+        "BN-006",
+        "BN-007"
+      ],
+      "rationale": "Authored frozen synthetic controls; expectations computed by separate reference and checked against literal examples.",
+      "assumptions": [],
+      "steps": [
+        {
+          "action": "submit",
+          "actor": "customer-m100",
+          "data": {
+            "claim_id": "CLM-100",
+            "operation_key": "submit-CLM-100",
+            "member_id": "M100",
+            "plan_id": "commercial_ppo",
+            "service_date": "2026-03-01",
+            "lines": [
+              {
+                "id": "LINE-1",
+                "service": "medical",
+                "allowed_cents": 100000,
+                "other_payer_cents": 20000
+              },
+              {
+                "id": "LINE-2",
+                "service": "vision",
+                "allowed_cents": 5000
+              }
+            ]
+          },
+          "expect": {
+            "status": 201,
+            "state": "adjudicated",
+            "revision": 1,
+            "event_count": 1,
+            "payout_cents": 55200,
+            "member_cents": 24800,
+            "other_payer_cents": 20000,
+            "noncovered_cents": 5000,
+            "ledger_cents": 0,
+            "ledger_count": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 24800,
+            "individual_benefit": 55200,
+            "family_deductible": 10000,
+            "family_oop": 24800,
+            "family_benefit": 55200,
+            "policy_id": "SYN-2026-H1",
+            "partial": true
+          }
+        }
+      ]
+    },
+    "scope": "Prefix-only reduction against a named trusted mutant. Original case and all retained inputs/expectations stay unchanged; not general delta debugging or monetary minimization."
+  }
+}

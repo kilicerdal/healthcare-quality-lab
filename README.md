@@ -1,4 +1,24 @@
-# Healthcare Quality Lab — V8.3
+# Healthcare Quality Lab — V8.4
+
+[Detailed report](docs/V8.4_REPORT.md) · [Printable report](docs/V8.4_REPORT.html) · [Operating guide](docs/V8.4_GUIDE.md)
+
+**Validation:** 1,124/1,124 local and hosted standard checks; 261/261 complete browser checks without retry. Totals overlap. [GitHub acceptance](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/45097315068).
+
+V8.4 separates model pricing from lifecycle prediction, restores explicit rejected-line rules, records both stages, and replaces coverage Blob downloads with authenticated server-streamed JSON attachments. Unused quote aliases are normalized only when their complete values and worksheets exactly match a referenced quote; no expected number is changed.
+
+**One resumed known AI pilot passed independent validation and actual HTTP with unchanged model values.** It required an explicit lifecycle continuation and exact-alias normalization. This is not first-attempt accuracy or model qualification: the small model passed 0/3, the initial larger comparison was incomplete, and all failures/timeouts remain recorded. Twelve actual model calls were made; no calculator supplied or repaired the model's numbers.
+
+```sh
+.venv/bin/python -m tools.showcase_server start
+.venv/bin/python -m tools.showcase_server status
+.venv/bin/python -m tools.showcase_server stop
+```
+
+Open `http://127.0.0.1:8902/#workbench`. Replay makes no model call. The existing state directory is preserved. Optional live jobs require an estimate and explicit budget. All policies, identities and payments are synthetic.
+
+![V8.4 recorded replay](docs/images/v84-replay-desktop.png)
+
+# Archived V8.3 overview
 
 [Detailed V8.3 report](docs/V8.3_REPORT.md) · [Printable report](docs/V8.3_REPORT.html) · [Operating guide](docs/V8.3_GUIDE.md) · [Local verification](artifacts/v8.3/local-verification.json)
 
