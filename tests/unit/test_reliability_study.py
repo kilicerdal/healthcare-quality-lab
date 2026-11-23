@@ -100,3 +100,52 @@ def test_showcase_refreshes_only_owned_previous_version(monkeypatch):
  calls=[];versions=iter([dict(version='8.6.0',owned=True),dict(version='8.7.0',owned=True)])
  monkeypatch.setattr(s,'start',lambda *a:next(versions));monkeypatch.setattr(s,'stop',lambda *a:calls.append('owned-stop'))
  monkeypatch.setattr('sys.argv',['showcase']);assert s.main()==0 and calls==['owned-stop']
+
+
+def test_builder_batches_all_journeys_and_keeps_ai_credit_separate(tmp_path,monkeypatch):
+ from healthcare_quality import reliability_evidence as evidence
+ plan=prepare();result=summarize(plan,[],0);out=tmp_path/'study';out.mkdir()
+ (out/'plan.json').write_text(json.dumps(plan));(out/'results.json').write_text(json.dumps(result))
+ monkeypatch.setattr(evidence,'collect',lambda path:(result,[],[],[]))
+ def bounded(cases,transport):
+  assert 1<=len(cases)<=3 and transport=='http'
+  return dict(results=[],passed=len(cases),failed=0,actions=sum(len(c['steps']) for c in cases))
+ monkeypatch.setattr(evidence,'run',bounded)
+ from healthcare_quality import effectiveness
+ monkeypatch.setattr(effectiveness,'variants',lambda:[])
+ payload=evidence.build(out)
+ assert payload['journeys']['passed']==15 and payload['journeys']['execution']['batches']==5
+ assert payload['defect_detection'][0]['scored'] is False
+
+def test_postprocessing_compatibility_rejects_unrelated_or_generation_changes(monkeypatch):
+ from healthcare_quality import reliability_evidence as evidence
+ with pytest.raises(ValueError,match='Git commit'):evidence.source_compatibility('stale',{})
+ with pytest.raises(ValueError,match='does not match'):evidence.source_compatibility('stale',dict(code_commit=prepare()['code_commit']))
+
+
+def test_compatibility_allows_builder_only_but_fences_generation_changes(tmp_path,monkeypatch):
+ import io,tarfile,hashlib
+ from healthcare_quality import reliability_evidence as evidence
+ files={'healthcare_quality/deductible_expectations.py':b'original','requirements.txt':b'','requirements-dev.txt':b'','pytest.ini':b''}
+ blob=io.BytesIO()
+ with tarfile.open(fileobj=blob,mode='w') as archive:
+  for name,value in files.items():
+   info=tarfile.TarInfo(name);info.size=len(value);archive.addfile(info,io.BytesIO(value))
+ digest=hashlib.sha256()
+ for name in sorted(files):digest.update(name.encode()+b'\0'+files[name]+b'\0')
+ for name,value in files.items():
+  file=tmp_path/name;file.parent.mkdir(parents=True,exist_ok=True);file.write_bytes(value)
+ builder=tmp_path/'healthcare_quality/reliability_evidence.py';builder.write_text('postprocessing change')
+ monkeypatch.setattr(evidence,'__file__',str(builder));monkeypatch.setattr(evidence,'source_hash',lambda:'new-source');monkeypatch.setattr(evidence.subprocess,'check_output',lambda *a,**kw:blob.getvalue())
+ plan=dict(code_commit='0'*40);old=digest.hexdigest()
+ assert evidence.source_compatibility(old,plan)['generation_and_evaluator_files_unchanged']
+ (tmp_path/'healthcare_quality/deductible_expectations.py').write_text('changed generation')
+ with pytest.raises(ValueError,match='Generation'):evidence.source_compatibility(old,plan)
+
+
+def test_family_oop_journey_preserves_other_members_when_zero_allocation_reversed():
+ from healthcare_quality.advanced_runner import run as execute
+ case=next(c for c in authored_cases() if c['id']=='AB-J87-family-oop')
+ assert case['steps'][2]['expect']['member_cents']==0 and case['steps'][2]['expect']['payout_cents']==190013
+ assert case['steps'][-1]['expect']['family_oop']==60000
+ assert execute([case])['failed']==0

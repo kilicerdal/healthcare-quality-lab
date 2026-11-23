@@ -1,7 +1,7 @@
 """Read-only reliability evidence, grounded failure packets and AI-only fault credit."""
 from pathlib import Path
 from copy import deepcopy
-import hashlib,json
+import hashlib,json,subprocess,tarfile,io,re
 from healthcare_quality.ai_schema import digest
 from healthcare_quality.advanced_reference import Oracle
 from healthcare_quality.advanced_schema import duplicate_groups,semantic_key
@@ -28,7 +28,10 @@ def authored_cases():
  prior=reset['steps'][0];prior['data']['lines'][0]['allowed_cents']=194217
  later=deepcopy(prior);later['data'].update(claim_id='CLAIM-J87-2027',operation_key='year-reset-J87',service_date='2027-01-01');later['data']['lines'][0]['allowed_cents']=17003
  reset['steps']=[prior,later,protocol.step('read',prior['data']['claim_id'],3)]
- for case in (base,reset):
+ cap=deepcopy(protocol.cohort()['tasks'][9]['plan']['case']);cap['id']='AB-J87-family-oop';cap['title']='Family OOP exhaustion across three members'
+ for step in cap['steps'][:3]:step['data']['lines'][0]['allowed_cents']=190013
+ cap['steps']=cap['steps'][:3]+[protocol.step('pay',cap['steps'][2]['data']['claim_id'],4,member='M300',expected_revision=1),protocol.step('reverse',cap['steps'][2]['data']['claim_id'],5,member='M300',expected_revision=2),protocol.step('read',cap['steps'][1]['data']['claim_id'],6,member='M200')]
+ for case in (cap,base,reset):
   oracle=Oracle()
   for step in case['steps']:step['expect']=oracle.step(step)
   result.append(case)
@@ -49,10 +52,35 @@ def investigation(task,record):
  if not answer or not assessment.get('schema_valid',False):facts.append(dict(id='F1',kind='incomplete_model_output',detail=row.get('first',{}).get('error',record.get('error','No complete answer'))))
  return dict(task=task,source_hash=source_hash(),rules=plan['case']['rule_ids'],account_history=history,facts=facts,eligible=assessment.get('eligible',False),raw_model_calls=row['calls'],ai_explanation=None,label='Deterministic evidence packet; AI explanations remain optional hypotheses, never automatic fixes. Reference observations are post-freeze investigation only.')
 
+def source_compatibility(study_source,plan):
+ """A post-study builder repair cannot silently relabel the frozen model source."""
+ current=source_hash()
+ if study_source==current:return dict(mode='exact_source',model_source=study_source,evaluation_source=current)
+ commit=plan.get('code_commit','')
+ if not re.fullmatch('[0-9a-f]{40}',commit):raise ValueError('Missing frozen Git commit')
+ root=Path(__file__).resolve().parents[1]
+ archive=subprocess.check_output(['git','archive',commit,'healthcare_quality','tests','tools','requirements.txt','requirements-dev.txt','pytest.ini','.github/workflows','.github/runner'],cwd=root)
+ frozen={}
+ def included(name):
+  path=Path(name)
+  return '__pycache__' not in path.parts and ((path.parts[0] in ('healthcare_quality','tests','tools') and path.suffix in ('.py','.json','.html','.css','.js')) or name in ('requirements.txt','requirements-dev.txt','pytest.ini') or name.startswith('.github/workflows/') and path.suffix in ('.yml','.yaml') or name.startswith('.github/runner/'))
+ with tarfile.open(fileobj=io.BytesIO(archive)) as tar:
+  for member in tar.getmembers():
+   if member.isfile() and included(member.name):frozen[member.name]=tar.extractfile(member).read()
+ hashed=hashlib.sha256()
+ for name in sorted(frozen):hashed.update(name.encode()+b'\0'+frozen[name]+b'\0')
+ if hashed.hexdigest()!=study_source:raise ValueError('Frozen commit does not match model study source')
+ current_files={str(f.relative_to(root)):f.read_bytes() for folder in ('healthcare_quality','tests','tools','.github/workflows','.github/runner') for f in (root/folder).rglob('*') if f.is_file() and included(str(f.relative_to(root)))}
+ for name in ('requirements.txt','requirements-dev.txt','pytest.ini'):current_files[name]=(root/name).read_bytes()
+ changed=sorted(name for name in set(frozen)|set(current_files) if frozen.get(name)!=current_files.get(name))
+ allowed={'healthcare_quality/reliability_evidence.py','healthcare_quality/static/reliability.js','tests/unit/test_reliability_study.py'}
+ if not changed or set(changed)-allowed:raise ValueError('Generation, evaluator or unrelated source changed; historical study cannot receive current credit')
+ return dict(mode='postprocessing_only',frozen_commit=commit,model_source=study_source,evaluation_source=current,changed_paths=changed,generation_and_evaluator_files_unchanged=True,scope='Frozen model source retained; only evidence processing, authored engineering journeys, compatibility display and their tests changed. Original answers rechecked unchanged.')
+
 def collect(study):
  study=Path(study);results=json.loads((study/'results.json').read_text());plan=json.loads((study/'plan.json').read_text())
  if results['plan_hash']!=digest(plan):raise ValueError('Plan integrity mismatch')
- if results['source_hash']!=source_hash():raise ValueError('Study source is stale; do not rescore as current')
+ source_compatibility(results['source_hash'],plan)
  ai=[];packets=[];provenance=[]
  for entry in results['entries']:
   if not entry.get('file'):continue
@@ -90,9 +118,10 @@ def build(study):
    row.update(scored=True,detected=sum(t['detected'] for t in row['trials']),survived=[t['mutant'] for t in row['trials'] if not t['detected']])
   else:row['reason']='No eligible frozen AI cases; no AI mutation score claimed'
   rows.append(row)
- actual=run(authored,'http')
+ executions=[run(authored[start:start+3],'http') for start in range(0,len(authored),3)]
+ actual=dict(results=[case for execution in executions for case in execution['results']],passed=sum(x['passed'] for x in executions),failed=sum(x['failed'] for x in executions),actions=sum(x['actions'] for x in executions),transport='http',batches=len(executions))
  assert actual['failed']==0
- return dict(kind='reliability_dashboard',source_hash=source_hash(),study=results,rule_review=review(),journeys=dict(transport='actual HTTP',case_count=len(authored),passed=actual['passed'],failed=actual['failed'],execution=actual,authorship='reference-authored engineering; no AI credit'),defect_detection=rows,provenance=provenance,investigations=packets,duplicates=duplicate_groups(ai),ai_cases=ai,coverage=[dict(task=t['id'],scenario=t['plan']['case']['title'],actions=[s['action'] for s in t['plan']['case']['steps']],outcomes=[e['outcome'] for e in results['entries'] if e['task']==t['id']]) for t in protocol.cohort()['tasks']],release_decision='Engineering validation and independent human review must be considered separately; model failures stay blocked.',scope='AI-only defect credit excludes reference-authored and repaired cases; semantic duplicates removed. Scores from unequal suite sizes are not an AI superiority comparison.')
+ return dict(kind='reliability_dashboard',source_hash=source_hash(),study=results,source_compatibility=source_compatibility(results['source_hash'],json.loads((Path(study)/'plan.json').read_text())),rule_review=review(),journeys=dict(transport='actual HTTP',case_count=len(authored),passed=actual['passed'],failed=actual['failed'],execution=actual,authorship='reference-authored engineering; no AI credit'),defect_detection=rows,provenance=provenance,investigations=packets,duplicates=duplicate_groups(ai),ai_cases=ai,coverage=[dict(task=t['id'],scenario=t['plan']['case']['title'],actions=[s['action'] for s in t['plan']['case']['steps']],outcomes=[e['outcome'] for e in results['entries'] if e['task']==t['id']]) for t in protocol.cohort()['tasks']],release_decision='Engineering validation and independent human review must be considered separately; model failures stay blocked.',scope='AI-only defect credit excludes reference-authored and repaired cases; semantic duplicates removed. Scores from unequal suite sizes are not an AI superiority comparison.')
 
 def seal(payload):return dict(payload=payload,content_hash=digest(payload))
 def read(path):
