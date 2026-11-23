@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "run_id": 45092599846,
+  "attempt": 2,
+  "code_commit": "32254e1038bcacd842b2c6ccfffe4dcb67676bc3",
+  "source_hash": "5687b084f0c95be5e8a9a181e59a8a62b467e45c4b7accae2149ea7afda049c8",
+  "tests_total": 261,
+  "tests_passed": 261,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "per_browser": {
+    "chromium": 87,
+    "firefox": 87,
+    "webkit": 87
+  },
+  "artifact_id": 14782492787,
+  "artifact_created_at": "2026-11-23T01:28:50Z",
+  "junit_sha256": "fe75d860bd6ef043129e256abfbe93cc23fe385ca1159ef9a0b179fda7e7156b",
+  "url": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/45092599846",
+  "initial_attempt": "260/261; one legacy WebKit JSON download timeout retained separately. Exact local recheck and one unchanged-source full matrix rerun passed. Root cause unproven."
+}

@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "source_hash": "5687b084f0c95be5e8a9a181e59a8a62b467e45c4b7accae2149ea7afda049c8",
+  "operations": 40,
+  "latency_median_ms": 0.9585324999648037,
+  "latency_p95_ms": 1.1516870000605195,
+  "duration_seconds": 0.063,
+  "concurrent_attempts": 16,
+  "successful_payments": 1,
+  "ledger_entries": 1,
+  "restart_preserved": true,
+  "rollback_preserved": true,
+  "scope": "Bounded local synthetic rehearsal; timings describe this machine, not capacity, SLA or production load certification."
+}

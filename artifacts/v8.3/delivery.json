@@ -1,0 +1,20 @@
+{
+  "version": "8.3.0",
+  "accepted_code_commit": "32254e1038bcacd842b2c6ccfffe4dcb67676bc3",
+  "source_hash": "5687b084f0c95be5e8a9a181e59a8a62b467e45c4b7accae2149ea7afda049c8",
+  "initial_pilot_source": "b9ea5cb40807f310dc4cfaba12488f4d398d4ea2c43f0750dcf70be018ec133b",
+  "pilot_requests": 1,
+  "pilot_eligible": 0,
+  "reference_assisted_corrections": 0,
+  "delivery_branch": "codex/v83-reliability-fixes",
+  "main_or_release_promotion": false,
+  "documentation_and_evidence_outside_source_fingerprint": true,
+  "scope": "Final docs and evidence retain the accepted implementation unchanged; private state and unrelated V4 draft excluded.",
+  "final_quality_workflow": "https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/45092599846",
+  "quality_attempt": 2,
+  "quality_conclusion": "success",
+  "full_browser_checks": 261,
+  "initial_matrix_checks_passed": 260,
+  "initial_matrix_checks_total": 261,
+  "known_limitation": "Intermittent legacy WebKit JSON-download timeout; local exact recheck and one unchanged-source matrix rerun passed. Root cause not proven."
+}

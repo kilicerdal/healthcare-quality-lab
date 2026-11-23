@@ -1,4 +1,24 @@
-# Healthcare Quality Lab — V8.2
+# Healthcare Quality Lab — V8.3
+
+[Detailed V8.3 report](docs/V8.3_REPORT.md) · [Printable report](docs/V8.3_REPORT.html) · [Operating guide](docs/V8.3_GUIDE.md) · [Local verification](artifacts/v8.3/local-verification.json)
+
+**Validation:** 1,104/1,104 local and hosted standard checks passed; the full browser matrix passed 261/261 on one unchanged-source rerun (87 per browser). The initial matrix had one legacy WebKit JSON-download timeout; the report retains it as an intermittent issue. Totals overlap. [GitHub acceptance](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/45092599846).
+
+V8.3 adds replay-first evidence, explicit job time budgets and duration estimates, precise rejected-line/account-timing guidance, correct optional-review analysis and a state-preserving showcase launcher. The final browser-readiness fix prevents estimates before configuration loads and ignores stale estimate responses.
+
+**AI expected values remain experimental.** The one new exposed small-model pilot took about twelve seconds and failed independent validation: **0/1 eligible**, blocked from export, no correction and no retry. This is not a qualification or an improved-accuracy claim. The original V8.2 partial run now clearly shows seven assessed of twenty planned, seven correct API observations, four fully valid predictions, three worksheet mismatches and thirteen not assessed—with no final accuracy percentage.
+
+```sh
+.venv/bin/python -m tools.showcase_server start
+.venv/bin/python -m tools.showcase_server status
+.venv/bin/python -m tools.showcase_server stop
+```
+
+Open `http://127.0.0.1:8902/#workbench`. Startup resumes saved state and requests no model inference. Optional live inference requires an estimate and a 1–300 second admitted-job budget (default 180). Backend cancellation is best effort; late answers cannot overwrite stopped jobs. All policies, identities and payments are synthetic.
+
+![V8.3 recorded replay](docs/images/v83-replay-desktop.png)
+
+# Archived V8.2 overview
 
 [Detailed V8.2 report](docs/V8.2_REPORT.md) · [Operator guide](docs/V8.2_GUIDE.md) · [Architecture](docs/V8.2_ARCHITECTURE.md)
 

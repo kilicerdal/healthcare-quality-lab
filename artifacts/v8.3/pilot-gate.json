@@ -1,0 +1,8 @@
+{
+  "status": 409,
+  "error": "EXPECTATIONS_BLOCKED",
+  "model_values_unchanged": true,
+  "new_model_calls": 0,
+  "source_hash": "b9ea5cb40807f310dc4cfaba12488f4d398d4ea2c43f0750dcf70be018ec133b",
+  "scope": "The one completed live pilot is blocked for wrong observations/worksheets; no correction or approval supplied."
+}

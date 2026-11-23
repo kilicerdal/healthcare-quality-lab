@@ -1,0 +1,13 @@
+{
+  "attempt": 1,
+  "commit": "32254e1038bcacd842b2c6ccfffe4dcb67676bc3",
+  "tests_total": 261,
+  "tests_passed": 260,
+  "failures": [
+    {
+      "name": "test_dashboard_scores_reviewed_cases_and_exports_evidence[webkit]",
+      "message": "playwright._impl._errors.TimeoutError: Page.expect_download: Timeout 30000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================"
+    }
+  ],
+  "scope": "Original complete matrix retained. One legacy WebKit coverage JSON download timed out; no model calls or test code changes."
+}

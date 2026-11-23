@@ -1,0 +1,32 @@
+{
+  "source_hash": "b9ea5cb40807f310dc4cfaba12488f4d398d4ea2c43f0750dcf70be018ec133b",
+  "model": "qwen2.5-coder:3b",
+  "task": "D83-01",
+  "scope": "One exposed development case, not qualification. No retry or correction.",
+  "maximum_job_seconds": 30,
+  "maximum_requests": 1,
+  "status": {
+    "available": true,
+    "models": [
+      {
+        "name": "qwen3.5:27b",
+        "digest": "2d2e4b8fc7c0479b70f8cba9fc8bdb49a3c9a43a8a6da3873b724c9fca4672ef"
+      },
+      {
+        "name": "qwen2.5:3b",
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+      },
+      {
+        "name": "qwen2.5-coder:3b",
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225"
+      }
+    ],
+    "allowed_models": [
+      "qwen2.5-coder:3b",
+      "qwen2.5:3b",
+      "qwen3.5:27b"
+    ],
+    "endpoint": "http://127.0.0.1:11434",
+    "mode": "local Ollama only"
+  }
+}
