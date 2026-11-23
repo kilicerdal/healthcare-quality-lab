@@ -1,0 +1,48 @@
+{
+  "source_hash": "32a9bec288e068a768f9383e7dab0cf73a7289a49ca6166e3ff5bd562479e63a",
+  "model": "qwen3.5:27b",
+  "protocol_stable": true,
+  "entries": [
+    {
+      "task": "H85-02",
+      "split": "historical_exposed",
+      "record": "b2f3152b82d24290980a829f09d1a46a",
+      "state": "completed",
+      "calls": 2,
+      "outcome": "first_pass"
+    },
+    {
+      "task": "H85-03",
+      "split": "historical_exposed",
+      "record": "7d30ee8b386f46d3bffe405b6463abb9",
+      "state": "completed",
+      "calls": 2,
+      "outcome": "first_pass"
+    },
+    {
+      "task": "H86-01",
+      "split": "reserved_until_exposed",
+      "record": "6eba69f5a6ab4f90bb331e9809366630",
+      "state": "completed",
+      "calls": 2,
+      "outcome": "first_pass"
+    },
+    {
+      "task": "H86-02",
+      "split": "reserved_until_exposed",
+      "record": "74f8de5d660c4cf393fc694f67c4ad24",
+      "state": "completed",
+      "calls": 2,
+      "outcome": "first_pass"
+    }
+  ],
+  "actual_calls": 8,
+  "elapsed_seconds": 394.41,
+  "fresh_planned": 2,
+  "fresh_first_passes": 2,
+  "fresh_complete": true,
+  "fresh_first_attempt_percent": 100.0,
+  "qualification": false,
+  "reference_assisted_corrections": 0,
+  "scope": "All planned fresh cases retained, including unattempted cases. No resume/retry. Known development case is separate. Timings are this run, not a controlled latency benchmark."
+}

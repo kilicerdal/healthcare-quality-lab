@@ -1,0 +1,11 @@
+{
+  "branch": "codex/v86-deductible-first-attempts",
+  "tested_implementation_commit": "bff3aec65b40b092cd028fba0a86c5dc7ab2f1cf",
+  "source_hash": "32a9bec288e068a768f9383e7dab0cf73a7289a49ca6166e3ff5bd562479e63a",
+  "documentation_evidence_only_final_commit": true,
+  "source_equivalent_to_local_and_hosted_acceptance": true,
+  "report_browser_verified": true,
+  "main_promoted": false,
+  "tag_created": false,
+  "release_created": false
+}

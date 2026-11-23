@@ -1,4 +1,17 @@
-# Healthcare Quality Lab — V8.5
+# Healthcare Quality Lab — V8.6
+
+[Detailed report](docs/V8.6_REPORT.md) · [Printable report](docs/V8.6_REPORT.html) · [Operating guide](docs/V8.6_GUIDE.md) · [Frozen AI results](artifacts/v8.6/candidate-1/evaluation-results.json)
+
+**Both hospital and mixed-coverage failures now pass on the first attempt, plus 2/2 fresh numeric variants.** Four cases, eight actual model calls, no retry/resume or calculator-supplied corrections. The model explicitly authors coverage decisions and remaining deductible balances; independent checking occurs after generation. All four unchanged cases passed actual HTTP execution after scripted engineering review.
+
+**Engineering acceptance:** 1204/1204 local and hosted standard checks; 264/264 full-browser checks without retry. Counts overlap. [GitHub Actions](https://github.com/kilicerdal/healthcare-quality-lab/actions/runs/45105779780). The two fresh variants are a small sample, not broad model qualification. All policies, claims and payments are synthetic.
+
+Start saved replay with `.venv/bin/python -m tools.showcase_server start`, then open http://127.0.0.1:8902/#workbench. Replay makes no model call. The screenshot shows the selected hospital case; the complete study result is 4/4.
+
+![Hospital first-attempt result](docs/images/v86-hospital-desktop.png)
+
+# Archived V8.5 overview
+
 
 [Detailed report](docs/V8.5_REPORT.md) · [Printable report](docs/V8.5_REPORT.html) · [Operating guide](docs/V8.5_GUIDE.md) · [Frozen actual evaluation](artifacts/v8.5/assessment/evaluation-results.json)
 

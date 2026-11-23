@@ -1,0 +1,211 @@
+{
+  "version": "deductible-expectations-v86-1",
+  "source_hash": "32a9bec288e068a768f9383e7dab0cf73a7289a49ca6166e3ff5bd562479e63a",
+  "cohort_hash": "6a44f017adab97f4d4720672d297ce20f0d751a28b6cd631cc113cd9029a80bb",
+  "model": "qwen3.5:27b",
+  "case_max_seconds": 180,
+  "admission_window_seconds": 600,
+  "max_calls": 8,
+  "retries": 0,
+  "resumes": 0,
+  "self_review": false,
+  "trials": [
+    {
+      "task": "H85-02",
+      "split": "historical_exposed",
+      "inputs": {
+        "case_id": "AB-H85-02",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-02",
+              "operation_key": "submit-H85-02-0",
+              "member_id": "M100",
+              "plan_id": "medicare_a",
+              "service_date": "2026-03-17",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "hospital",
+                  "allowed_cents": 76391,
+                  "other_payer_cents": 0
+                }
+              ]
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-H85-02",
+              "operation_key": "pay-H85-02-1",
+              "expected_revision": 1
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-02"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "H85-03",
+      "split": "historical_exposed",
+      "inputs": {
+        "case_id": "AB-H85-03",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-03",
+              "operation_key": "submit-H85-03-0",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 54731
+                },
+                {
+                  "id": "UNCOVERED-LINE",
+                  "service": "dental",
+                  "allowed_cents": 6193
+                }
+              ]
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-H85-03",
+              "operation_key": "pay-H85-03-1",
+              "expected_revision": 1
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H85-03"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "H86-01",
+      "split": "reserved_until_exposed",
+      "inputs": {
+        "case_id": "AB-H86-01",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H86-01",
+              "operation_key": "submit-H86-01-0",
+              "member_id": "M100",
+              "plan_id": "medicare_a",
+              "service_date": "2026-03-17",
+              "lines": [
+                {
+                  "id": "LINE-ONE",
+                  "service": "hospital",
+                  "allowed_cents": 68423,
+                  "other_payer_cents": 0
+                }
+              ]
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-H86-01",
+              "operation_key": "pay-H86-01-1",
+              "expected_revision": 1
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H86-01"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task": "H86-02",
+      "split": "reserved_until_exposed",
+      "inputs": {
+        "case_id": "AB-H86-02",
+        "steps": [
+          {
+            "step_id": "S01",
+            "action": "submit",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H86-02",
+              "operation_key": "submit-H86-02-0",
+              "member_id": "M100",
+              "plan_id": "commercial_ppo",
+              "service_date": "2026-04-19",
+              "lines": [
+                {
+                  "id": "LINE-1",
+                  "service": "medical",
+                  "allowed_cents": 58317
+                },
+                {
+                  "id": "UNCOVERED-LINE",
+                  "service": "dental",
+                  "allowed_cents": 7921
+                }
+              ]
+            }
+          },
+          {
+            "step_id": "S02",
+            "action": "pay",
+            "actor": "finance-demo",
+            "data": {
+              "claim_id": "CLAIM-H86-02",
+              "operation_key": "pay-H86-02-1",
+              "expected_revision": 1
+            }
+          },
+          {
+            "step_id": "S03",
+            "action": "read",
+            "actor": "customer-m100",
+            "data": {
+              "claim_id": "CLAIM-H86-02"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "Two exposed failed cases gate two fresh numeric variants. Fixed budget per case; no prompt/model/budget change after results. Not ten-input qualification."
+}

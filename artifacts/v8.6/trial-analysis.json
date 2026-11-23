@@ -1,0 +1,510 @@
+[
+  {
+    "task": "H85-02",
+    "split": "historical_exposed",
+    "first_attempt": true,
+    "eligible": true,
+    "normalization": {
+      "kind": "unused_exact_aliases_only_including_v86_fields",
+      "discarded_quote_ids": [],
+      "expected_fields_changed": 0
+    },
+    "stage_timings": [
+      {
+        "phase": "pricing",
+        "latency_ms": 60457.57,
+        "input_tokens": 2935,
+        "output_tokens": 490
+      },
+      {
+        "phase": "lifecycle",
+        "latency_ms": 37206.4,
+        "input_tokens": 1256,
+        "output_tokens": 410
+      }
+    ],
+    "model_pricing": {
+      "quotes": [
+        {
+          "quote_id": "Q01",
+          "calculation": [
+            {
+              "line_id": "LINE-ONE",
+              "coverage_decision": "covered",
+              "individual_deductible_remaining_cents": 10000,
+              "family_deductible_remaining_cents": 20000,
+              "eligible_cents": 76391,
+              "nominal_deductible_cents": 10000,
+              "copay_cents": 1000,
+              "coinsurance_base_cents": 65391,
+              "payer_before_caps_cents": 52312,
+              "member_before_oop_cents": 24079,
+              "individual_oop_remaining_cents": 30000,
+              "family_oop_remaining_cents": 60000,
+              "capped_member_cents": 24079,
+              "annual_benefit_remaining_cents": 200000,
+              "payer_after_oop_cents": 52312,
+              "member_cents": 24079,
+              "payout_cents": 52312,
+              "noncovered_cents": 0
+            }
+          ],
+          "values": {
+            "payout_cents": 52312,
+            "member_cents": 24079,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 24079,
+            "individual_benefit": 52312,
+            "family_deductible": 10000,
+            "family_oop": 24079,
+            "family_benefit": 52312,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    "model_observations": {
+      "observations": [
+        {
+          "step_id": "S01",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 0,
+            "ledger_delta_cents": 0,
+            "ledger_after_cents": 0
+          },
+          "status": 201,
+          "state": "adjudicated",
+          "revision": 1,
+          "event_count": 1,
+          "ledger_cents": 0,
+          "ledger_count": 0
+        },
+        {
+          "step_id": "S02",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 0,
+            "ledger_delta_cents": 52312,
+            "ledger_after_cents": 52312
+          },
+          "status": 200,
+          "state": "paid",
+          "revision": 2,
+          "event_count": 2,
+          "ledger_cents": 52312,
+          "ledger_count": 1
+        },
+        {
+          "step_id": "S03",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 52312,
+            "ledger_delta_cents": 0,
+            "ledger_after_cents": 52312
+          },
+          "status": 200,
+          "state": "paid",
+          "revision": 2,
+          "event_count": 2,
+          "ledger_cents": 52312,
+          "ledger_count": 1
+        }
+      ]
+    }
+  },
+  {
+    "task": "H85-03",
+    "split": "historical_exposed",
+    "first_attempt": true,
+    "eligible": true,
+    "normalization": {
+      "kind": "unused_exact_aliases_only_including_v86_fields",
+      "discarded_quote_ids": [],
+      "expected_fields_changed": 0
+    },
+    "stage_timings": [
+      {
+        "phase": "pricing",
+        "latency_ms": 73684.86,
+        "input_tokens": 2957,
+        "output_tokens": 739
+      },
+      {
+        "phase": "lifecycle",
+        "latency_ms": 38803.26,
+        "input_tokens": 1428,
+        "output_tokens": 410
+      }
+    ],
+    "model_pricing": {
+      "quotes": [
+        {
+          "quote_id": "Q01",
+          "calculation": [
+            {
+              "line_id": "LINE-1",
+              "coverage_decision": "covered",
+              "individual_deductible_remaining_cents": 10000,
+              "family_deductible_remaining_cents": 20000,
+              "eligible_cents": 54731,
+              "nominal_deductible_cents": 10000,
+              "copay_cents": 1000,
+              "coinsurance_base_cents": 43731,
+              "payer_before_caps_cents": 34984,
+              "member_before_oop_cents": 19747,
+              "individual_oop_remaining_cents": 30000,
+              "family_oop_remaining_cents": 60000,
+              "capped_member_cents": 19747,
+              "annual_benefit_remaining_cents": 200000,
+              "payer_after_oop_cents": 34984,
+              "member_cents": 19747,
+              "payout_cents": 34984,
+              "noncovered_cents": 0
+            },
+            {
+              "line_id": "UNCOVERED-LINE",
+              "coverage_decision": "rejected",
+              "individual_deductible_remaining_cents": 0,
+              "family_deductible_remaining_cents": 10000,
+              "eligible_cents": 6193,
+              "nominal_deductible_cents": 0,
+              "copay_cents": 0,
+              "coinsurance_base_cents": 0,
+              "payer_before_caps_cents": 0,
+              "member_before_oop_cents": 0,
+              "individual_oop_remaining_cents": 10253,
+              "family_oop_remaining_cents": 40253,
+              "capped_member_cents": 0,
+              "annual_benefit_remaining_cents": 165016,
+              "payer_after_oop_cents": 0,
+              "member_cents": 0,
+              "payout_cents": 0,
+              "noncovered_cents": 6193
+            }
+          ],
+          "values": {
+            "payout_cents": 34984,
+            "member_cents": 19747,
+            "other_payer_cents": 0,
+            "noncovered_cents": 6193,
+            "individual_deductible": 10000,
+            "individual_oop": 19747,
+            "individual_benefit": 34984,
+            "family_deductible": 10000,
+            "family_oop": 19747,
+            "family_benefit": 34984,
+            "policy_id": "SYN-2026-H1",
+            "partial": true
+          }
+        }
+      ]
+    },
+    "model_observations": {
+      "observations": [
+        {
+          "step_id": "S01",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 0,
+            "ledger_delta_cents": 0,
+            "ledger_after_cents": 0
+          },
+          "status": 201,
+          "state": "adjudicated",
+          "revision": 1,
+          "event_count": 1,
+          "ledger_cents": 0,
+          "ledger_count": 0
+        },
+        {
+          "step_id": "S02",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 0,
+            "ledger_delta_cents": 34984,
+            "ledger_after_cents": 34984
+          },
+          "status": 200,
+          "state": "paid",
+          "revision": 2,
+          "event_count": 2,
+          "ledger_cents": 34984,
+          "ledger_count": 1
+        },
+        {
+          "step_id": "S03",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 34984,
+            "ledger_delta_cents": 0,
+            "ledger_after_cents": 34984
+          },
+          "status": 200,
+          "state": "paid",
+          "revision": 2,
+          "event_count": 2,
+          "ledger_cents": 34984,
+          "ledger_count": 1
+        }
+      ]
+    }
+  },
+  {
+    "task": "H86-01",
+    "split": "reserved_until_exposed",
+    "first_attempt": true,
+    "eligible": true,
+    "normalization": {
+      "kind": "unused_exact_aliases_only_including_v86_fields",
+      "discarded_quote_ids": [],
+      "expected_fields_changed": 0
+    },
+    "stage_timings": [
+      {
+        "phase": "pricing",
+        "latency_ms": 47256.96,
+        "input_tokens": 2935,
+        "output_tokens": 490
+      },
+      {
+        "phase": "lifecycle",
+        "latency_ms": 37130.64,
+        "input_tokens": 1256,
+        "output_tokens": 410
+      }
+    ],
+    "model_pricing": {
+      "quotes": [
+        {
+          "quote_id": "Q01",
+          "calculation": [
+            {
+              "line_id": "LINE-ONE",
+              "coverage_decision": "covered",
+              "individual_deductible_remaining_cents": 10000,
+              "family_deductible_remaining_cents": 20000,
+              "eligible_cents": 68423,
+              "nominal_deductible_cents": 10000,
+              "copay_cents": 1000,
+              "coinsurance_base_cents": 57423,
+              "payer_before_caps_cents": 45938,
+              "member_before_oop_cents": 22485,
+              "individual_oop_remaining_cents": 30000,
+              "family_oop_remaining_cents": 60000,
+              "capped_member_cents": 22485,
+              "annual_benefit_remaining_cents": 200000,
+              "payer_after_oop_cents": 45938,
+              "member_cents": 22485,
+              "payout_cents": 45938,
+              "noncovered_cents": 0
+            }
+          ],
+          "values": {
+            "payout_cents": 45938,
+            "member_cents": 22485,
+            "other_payer_cents": 0,
+            "noncovered_cents": 0,
+            "individual_deductible": 10000,
+            "individual_oop": 22485,
+            "individual_benefit": 45938,
+            "family_deductible": 10000,
+            "family_oop": 22485,
+            "family_benefit": 45938,
+            "policy_id": "SYN-2026-H1",
+            "partial": false
+          }
+        }
+      ]
+    },
+    "model_observations": {
+      "observations": [
+        {
+          "step_id": "S01",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 0,
+            "ledger_delta_cents": 0,
+            "ledger_after_cents": 0
+          },
+          "status": 201,
+          "state": "adjudicated",
+          "revision": 1,
+          "event_count": 1,
+          "ledger_cents": 0,
+          "ledger_count": 0
+        },
+        {
+          "step_id": "S02",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 0,
+            "ledger_delta_cents": 45938,
+            "ledger_after_cents": 45938
+          },
+          "status": 200,
+          "state": "paid",
+          "revision": 2,
+          "event_count": 2,
+          "ledger_cents": 45938,
+          "ledger_count": 1
+        },
+        {
+          "step_id": "S03",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 45938,
+            "ledger_delta_cents": 0,
+            "ledger_after_cents": 45938
+          },
+          "status": 200,
+          "state": "paid",
+          "revision": 2,
+          "event_count": 2,
+          "ledger_cents": 45938,
+          "ledger_count": 1
+        }
+      ]
+    }
+  },
+  {
+    "task": "H86-02",
+    "split": "reserved_until_exposed",
+    "first_attempt": true,
+    "eligible": true,
+    "normalization": {
+      "kind": "unused_exact_aliases_only_including_v86_fields",
+      "discarded_quote_ids": [],
+      "expected_fields_changed": 0
+    },
+    "stage_timings": [
+      {
+        "phase": "pricing",
+        "latency_ms": 63132.53,
+        "input_tokens": 2957,
+        "output_tokens": 738
+      },
+      {
+        "phase": "lifecycle",
+        "latency_ms": 36103.24,
+        "input_tokens": 1427,
+        "output_tokens": 410
+      }
+    ],
+    "model_pricing": {
+      "quotes": [
+        {
+          "quote_id": "Q01",
+          "calculation": [
+            {
+              "line_id": "LINE-1",
+              "coverage_decision": "covered",
+              "individual_deductible_remaining_cents": 10000,
+              "family_deductible_remaining_cents": 20000,
+              "eligible_cents": 58317,
+              "nominal_deductible_cents": 10000,
+              "copay_cents": 1000,
+              "coinsurance_base_cents": 47317,
+              "payer_before_caps_cents": 37853,
+              "member_before_oop_cents": 20464,
+              "individual_oop_remaining_cents": 30000,
+              "family_oop_remaining_cents": 60000,
+              "capped_member_cents": 20464,
+              "annual_benefit_remaining_cents": 200000,
+              "payer_after_oop_cents": 37853,
+              "member_cents": 20464,
+              "payout_cents": 37853,
+              "noncovered_cents": 0
+            },
+            {
+              "line_id": "UNCOVERED-LINE",
+              "coverage_decision": "rejected",
+              "individual_deductible_remaining_cents": 0,
+              "family_deductible_remaining_cents": 10000,
+              "eligible_cents": 7921,
+              "nominal_deductible_cents": 0,
+              "copay_cents": 0,
+              "coinsurance_base_cents": 0,
+              "payer_before_caps_cents": 0,
+              "member_before_oop_cents": 0,
+              "individual_oop_remaining_cents": 9536,
+              "family_oop_remaining_cents": 39536,
+              "capped_member_cents": 0,
+              "annual_benefit_remaining_cents": 162147,
+              "payer_after_oop_cents": 0,
+              "member_cents": 0,
+              "payout_cents": 0,
+              "noncovered_cents": 7921
+            }
+          ],
+          "values": {
+            "payout_cents": 37853,
+            "member_cents": 20464,
+            "other_payer_cents": 0,
+            "noncovered_cents": 7921,
+            "individual_deductible": 10000,
+            "individual_oop": 20464,
+            "individual_benefit": 37853,
+            "family_deductible": 10000,
+            "family_oop": 20464,
+            "family_benefit": 37853,
+            "policy_id": "SYN-2026-H1",
+            "partial": true
+          }
+        }
+      ]
+    },
+    "model_observations": {
+      "observations": [
+        {
+          "step_id": "S01",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 0,
+            "ledger_delta_cents": 0,
+            "ledger_after_cents": 0
+          },
+          "status": 201,
+          "state": "adjudicated",
+          "revision": 1,
+          "event_count": 1,
+          "ledger_cents": 0,
+          "ledger_count": 0
+        },
+        {
+          "step_id": "S02",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 0,
+            "ledger_delta_cents": 37853,
+            "ledger_after_cents": 37853
+          },
+          "status": 200,
+          "state": "paid",
+          "revision": 2,
+          "event_count": 2,
+          "ledger_cents": 37853,
+          "ledger_count": 1
+        },
+        {
+          "step_id": "S03",
+          "quote_id": "Q01",
+          "ledger_calculation": {
+            "ledger_before_cents": 37853,
+            "ledger_delta_cents": 0,
+            "ledger_after_cents": 37853
+          },
+          "status": 200,
+          "state": "paid",
+          "revision": 2,
+          "event_count": 2,
+          "ledger_cents": 37853,
+          "ledger_count": 1
+        }
+      ]
+    }
+  }
+]

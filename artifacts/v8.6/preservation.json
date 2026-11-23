@@ -1,0 +1,134 @@
+{
+  "original_rows": {
+    "advanced-v63.sqlite:ai_experiments": {
+      "original_rows": 1,
+      "all_preserved": true
+    },
+    "advanced-v63.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "claims-v2.sqlite:claims": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "claims-v2.sqlite:events": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "claims-v2.sqlite:payments": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "integrations-v67.sqlite:ai_experiments": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "integrations-v67.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "ai-v3.sqlite:ai_experiments": {
+      "original_rows": 52,
+      "all_preserved": true
+    },
+    "ai-v3.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "v58-reserved.sqlite:ai_experiments": {
+      "original_rows": 2,
+      "all_preserved": true
+    },
+    "v58-reserved.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "benefits-v60.sqlite:benefit_claims": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "benefits-v60.sqlite:accumulators": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "benefits-v60.sqlite:benefit_ledger": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "benefits-v60.sqlite:benefit_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "advanced-evaluations-v64.sqlite:ai_experiments": {
+      "original_rows": 4,
+      "all_preserved": true
+    },
+    "advanced-evaluations-v64.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "coverage-v55.sqlite:ai_experiments": {
+      "original_rows": 19,
+      "all_preserved": true
+    },
+    "coverage-v55.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "evaluation-v4.sqlite:ai_experiments": {
+      "original_rows": 3,
+      "all_preserved": true
+    },
+    "evaluation-v4.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "research-v59.sqlite:ai_experiments": {
+      "original_rows": 1,
+      "all_preserved": true
+    },
+    "research-v59.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "advanced-reviewed-v67.sqlite:ai_experiments": {
+      "original_rows": 2,
+      "all_preserved": true
+    },
+    "advanced-reviewed-v67.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "v63-development.sqlite:ai_experiments": {
+      "original_rows": 1,
+      "all_preserved": true
+    },
+    "v63-development.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    },
+    "review-audit.sqlite:review_audit": {
+      "original_rows": 4,
+      "all_preserved": true
+    },
+    "reliability-v58.sqlite:ai_experiments": {
+      "original_rows": 2,
+      "all_preserved": true
+    },
+    "reliability-v58.sqlite:studio_operations": {
+      "original_rows": 0,
+      "all_preserved": true
+    }
+  },
+  "v4_sha256": "26f7f5bf44d5ee30843e821ce7cdb07e22f273f7bc1d73ac9c43d34a5eaa7801",
+  "historical_raw_files_unchanged": [
+    "artifacts/v8.2/heldout.json",
+    "artifacts/v8.3/live-pilot.json",
+    "artifacts/v8.4/lifecycle-continuation.json",
+    "artifacts/v8.5/assessment/H85-02.json",
+    "artifacts/v8.5/assessment/H85-03.json"
+  ],
+  "other_projects_touched": false,
+  "vs_code_opened": false
+}

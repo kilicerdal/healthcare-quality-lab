@@ -1,0 +1,16 @@
+{
+  "initial_source_hash": "32a9bec288e068a768f9383e7dab0cf73a7289a49ca6166e3ff5bd562479e63a",
+  "known_cases": [
+    "H85-02",
+    "H85-03"
+  ],
+  "fresh_cases": [
+    "H86-01",
+    "H86-02"
+  ],
+  "maximum_candidates": 2,
+  "maximum_actual_model_calls": 12,
+  "case_max_seconds": 180,
+  "admission_window_per_candidate_seconds": 600,
+  "policy": "One generic revision is permitted only after exposed-case failure and before any fresh generation. Fresh cases run only after both exposed cases pass. No numeric answers supplied, no retry/resume within a case, no budget extension, all failed candidate evidence retained."
+}

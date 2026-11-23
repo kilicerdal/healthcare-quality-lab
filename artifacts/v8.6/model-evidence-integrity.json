@@ -1,0 +1,11 @@
+{
+  "all_raw_trial_hashes_match_http_receipts": true,
+  "expected_values_changed": 0,
+  "reference_assisted_corrections": 0,
+  "tasks": [
+    "H85-02",
+    "H85-03",
+    "H86-01",
+    "H86-02"
+  ]
+}
