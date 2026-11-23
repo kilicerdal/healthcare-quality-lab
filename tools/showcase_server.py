@@ -62,7 +62,7 @@ def serve(state,port,token):
  # Seed only the original interrupted experiment, with no approvals or new calls.
  artifact=ROOT/'artifacts/v8.2/heldout.json'
  if artifact.is_file():
-  record=json.loads(artifact.read_text());lab=app.extensions['expectations_v85']
+  record=json.loads(artifact.read_text());lab=app.extensions['expectations_v86']
   try:lab.store.get(record['id'])
   except StudioError as error:
    if error.code!='NOT_FOUND':raise

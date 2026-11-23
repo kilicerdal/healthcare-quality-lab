@@ -46,7 +46,7 @@ def create_app(config=None):
 
     @app.get("/api/ready")
     def ready():
-        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments"),("coverage",coverage.store.path,"ai_experiments"),("reliability",app.extensions["reliability"].store.path,"ai_experiments"),("research",app.extensions["research"].path,"ai_experiments"),("benefits",app.extensions["benefits"].path,"benefit_claims"),("audit",app.extensions["audit"].path,"review_audit"),("advanced",app.extensions["advanced"].store.path,"ai_experiments"),("advanced_evaluations",app.extensions["advanced_evaluations"].path,"ai_experiments"),("integrations",app.extensions["integrations"].path,"ai_experiments"),("designs",app.extensions["designs"].store.path,"ai_experiments"),("advanced_investigations",app.extensions["advanced_investigations"].path,"ai_experiments"),("traceability",app.extensions["traceability"].path,"ai_experiments"),("experiments",app.extensions["experiments"].store.path,"ai_experiments"),("experiments_v8",app.extensions["experiments_v8"].store.path,"ai_experiments"),("team_v8",app.extensions["team_v8"].path,"decisions"),("expectations_v81",app.extensions["expectations_v81"].store.path,"ai_experiments"),("expectations_v82",app.extensions["expectations_v82"].store.path,"ai_experiments"),("expectations_v84",app.extensions["expectations_v84"].store.path,"ai_experiments"),("expectations_v85",app.extensions["expectations_v85"].store.path,"ai_experiments")])
+        result=readiness([("claims",service.store.path,"claims"),("ai",studio.store.path,"ai_experiments"),("quality",lab.store.path,"ai_experiments"),("coverage",coverage.store.path,"ai_experiments"),("reliability",app.extensions["reliability"].store.path,"ai_experiments"),("research",app.extensions["research"].path,"ai_experiments"),("benefits",app.extensions["benefits"].path,"benefit_claims"),("audit",app.extensions["audit"].path,"review_audit"),("advanced",app.extensions["advanced"].store.path,"ai_experiments"),("advanced_evaluations",app.extensions["advanced_evaluations"].path,"ai_experiments"),("integrations",app.extensions["integrations"].path,"ai_experiments"),("designs",app.extensions["designs"].store.path,"ai_experiments"),("advanced_investigations",app.extensions["advanced_investigations"].path,"ai_experiments"),("traceability",app.extensions["traceability"].path,"ai_experiments"),("experiments",app.extensions["experiments"].store.path,"ai_experiments"),("experiments_v8",app.extensions["experiments_v8"].store.path,"ai_experiments"),("team_v8",app.extensions["team_v8"].path,"decisions"),("expectations_v81",app.extensions["expectations_v81"].store.path,"ai_experiments"),("expectations_v82",app.extensions["expectations_v82"].store.path,"ai_experiments"),("expectations_v84",app.extensions["expectations_v84"].store.path,"ai_experiments"),("expectations_v85",app.extensions["expectations_v85"].store.path,"ai_experiments"),("expectations_v86",app.extensions["expectations_v86"].store.path,"ai_experiments")])
         return jsonify(result),200 if result["status"]=="ready" else 503
 
     @app.get("/api/showcase")
@@ -268,7 +268,7 @@ def create_app(config=None):
     @app.get("/reports/<version>")
     def report(version=None):
         version=version or "v"+__version__.rsplit(".",1)[0]
-        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7","v5.8","v5.8_reliability","v5.9","v6.0","v6.1","v6.2","v6.3","v6.4","v6.5","v6.6","v6.7","v6.8","v6.9","v6.10","v6.11","v6.12","v7.0","v7.1","v7.2","v7.3","v7.4","v7.5","v7.6","v7.7","v7.8","v7.9","v8.0","v8.1","v8.2","v8.3","v8.4","v8.5"):return jsonify(error="Report not found"),404
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7","v5.8","v5.8_reliability","v5.9","v6.0","v6.1","v6.2","v6.3","v6.4","v6.5","v6.6","v6.7","v6.8","v6.9","v6.10","v6.11","v6.12","v7.0","v7.1","v7.2","v7.3","v7.4","v7.5","v7.6","v7.7","v7.8","v7.9","v8.0","v8.1","v8.2","v8.3","v8.4","v8.5","v8.6"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)
@@ -309,6 +309,8 @@ def create_app(config=None):
     register_staged(app,body)
     from healthcare_quality.compact_api_v85 import register as register_lean
     register_lean(app,body)
+    from healthcare_quality.compact_api_v86 import register as register_deductible
+    register_deductible(app,body)
     from healthcare_quality.auth import configure
     configure(app)
     return app
