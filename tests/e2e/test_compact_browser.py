@@ -43,3 +43,11 @@ def test_recorded_incomplete_run_is_honest_and_makes_zero_post_requests(page,rec
 
 def test_preflight_estimate_is_visible_and_changes_invalidate_it(page,recorded_url):
  page.goto(recorded_url+'/#workbench');page.locator('#ev83-live summary').click();expect(page.locator('#ev82-start')).to_be_disabled();page.locator('#ev83-estimate').click();expect(page.locator('#ev83-estimate-text')).to_contain_text('Estimated ~');expect(page.locator('#ev83-estimate-text')).to_contain_text('180s');expect(page.locator('#ev82-start')).to_be_enabled();page.locator('#ev83-budget').fill('1');expect(page.locator('#ev82-start')).to_be_disabled()
+
+
+def test_estimation_cannot_race_delayed_configuration(page,compact_url):
+ held=[];page.route('**/api/advanced/expectations-v83',lambda route:held.append(route));page.goto(compact_url+'/#workbench',wait_until='domcontentloaded');page.locator('#ev83-live summary').click();expect(page.locator('#ev83-estimate')).to_be_disabled();expect(page.locator('#ev82-start')).to_be_disabled();assert held;held[0].fulfill(response=held[0].fetch());expect(page.locator('#ev83-estimate')).to_be_enabled();page.locator('#ev82-model').select_option('qwen2.5-coder:3b');page.locator('#ev83-estimate').click();expect(page.locator('#ev82-start')).to_be_enabled()
+
+
+def test_inflight_estimate_cannot_enable_changed_budget(page,recorded_url):
+ page.goto(recorded_url+'/#workbench');page.locator('#ev83-live summary').click();expect(page.locator('#ev83-estimate')).to_be_enabled();held=[];page.route('**/api/advanced/expectations-v83/estimate',lambda route:held.append(route));page.locator('#ev83-estimate').click();assert held;page.locator('#ev83-budget').fill('1');held[0].fulfill(status=200,json={'estimated_seconds':90,'request_budget':1,'max_seconds':180,'estimate_fits_budget':True});expect(page.locator('#ev82-start')).to_be_disabled();expect(page.locator('#ev83-estimate-text')).to_contain_text('Estimate before enabling')
