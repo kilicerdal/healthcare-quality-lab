@@ -258,7 +258,7 @@ def create_app(config=None):
     @app.get("/reports/<version>")
     def report(version=None):
         version=version or "v"+__version__.rsplit(".",1)[0]
-        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7","v5.8","v5.8_reliability","v5.9","v6.0","v6.1","v6.2","v6.3","v6.4","v6.5","v6.6","v6.7","v6.8","v6.9","v6.10","v6.11","v6.12","v7.0","v7.1","v7.2","v7.3","v7.4","v7.5","v7.6","v7.7","v7.8","v7.9","v8.0","v8.1","v8.2"):return jsonify(error="Report not found"),404
+        if version not in ("v1","v2","v3","v4","v5","v5.1","v5.2","v5.3","v5.4","v5.5","v5.6","v5.7","v5.8","v5.8_reliability","v5.9","v6.0","v6.1","v6.2","v6.3","v6.4","v6.5","v6.6","v6.7","v6.8","v6.9","v6.10","v6.11","v6.12","v7.0","v7.1","v7.2","v7.3","v7.4","v7.5","v7.6","v7.7","v7.8","v7.9","v8.0","v8.1","v8.2","v8.3"):return jsonify(error="Report not found"),404
         path=ROOT/f"docs/{version.upper()}_REPORT.html"
         if not path.exists():return jsonify(error="Report is not available yet"),404
         return send_file(path)

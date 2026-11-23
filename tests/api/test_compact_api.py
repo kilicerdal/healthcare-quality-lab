@@ -5,7 +5,7 @@ URL='/api/advanced/expectations-v82'
 def start(app):
  l=app.extensions['expectations_v82'];l.provider=Provider();return l.start(BASE)
 def test_compact_configuration_and_catalog_do_not_infer(client,app):
- p=Provider();app.extensions['expectations_v82'].provider=p;r=client.get(URL);assert r.status_code==200 and len(r.json['tasks'])==14;assert len(client.get(URL+'/faults').json['faults'])==6;assert not p.prompts;assert client.get('/reports/v8.2').status_code==200
+ p=Provider();app.extensions['expectations_v82'].provider=p;r=client.get(URL);assert r.status_code==200 and len(r.json['tasks'])==16;assert len(client.get(URL+'/faults').json['faults'])==6;assert not p.prompts;assert client.get('/reports/v8.2').status_code==200
 
 def test_exact_model_values_export_unapproved_then_pass_http(client,app):
  r=start(app);a=r['rows'][0]['first']['answer'];response=client.post(URL+'/'+r['id']+'/propose',json={'row':0,'stage':'first'});assert response.status_code==201;p=response.json;assert p['approval'] is None;assert [s['expect'] for s in p['cases'][0]['steps']]==[o['expect'] for o in a['observations']];path='/api/advanced/'+p['id'];assert client.post(path+'/execute',json={'transport':'http'}).status_code==409

@@ -10,7 +10,10 @@ def analyze(records):
   for row in record['rows']:
    if row['split']!='reserved_until_exposed':continue
    model=row['model'];p=pairs.setdefault(model,Counter());first=row.get('first',{}).get('assessment',{}).get('eligible',False);review=row.get('self_review',{}).get('assessment',{}).get('eligible',False)
-   p['both_correct' if first and review else 'self_review_recovered' if review else 'self_review_regressed' if first else 'neither_correct']+=1
+   if row.get('self_review_requested'):
+    if row.get('first',{}).get('assessment') is None or row.get('self_review',{}).get('assessment') is None:p['review_unassessed']+=1
+    else:p['both_correct' if first and review else 'self_review_recovered' if review else 'self_review_regressed' if first else 'neither_correct']+=1
+   else:p['review_not_requested']+=1
    for stage in ('first','self_review'):
     a=row.get(stage,{}).get('assessment',{});m={d['field'] for c in a.get('assessment',{}).get('reference',[]) for s in c.get('steps',[]) for d in s.get('mismatches',[])};fields.setdefault(model+':'+stage,Counter()).update(m)
  result['paired_outcomes']={m:dict(v) for m,v in pairs.items()};result['trials_with_field_mismatch']={m:dict(sorted(v.items())) for m,v in fields.items()};return result
