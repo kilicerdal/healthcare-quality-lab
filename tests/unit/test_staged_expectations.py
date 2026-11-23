@@ -58,3 +58,16 @@ def test_budget_between_stages_fences_late_lifecycle(tmp_path):
  deadline=time.monotonic()+2
  while lock.locked() and time.monotonic()<deadline:time.sleep(.01)
  assert not lock.locked() and lab.get(r['id'])['state']=='interrupted'
+
+@pytest.mark.parametrize('bad_phase',['pricing','lifecycle'])
+def test_full_wire_cannot_bypass_invalid_stage_contract(tmp_path,bad_phase):
+ w=wire(p.cohort()['tasks'][0]['plan'])
+ # A complete correct legacy answer is invalid for either isolated stage.
+ answers=[w] if bad_phase=='pricing' else [{'quotes':w['quotes']},w]
+ class Raw(Provider):
+  def generate(self,*args):return dict(text=json.dumps(answers.pop(0)),latency_ms=1)
+ lab=p.StagedLab(tmp_path/'s.sqlite',Raw(),threading.Lock(),protocol=p,evaluator=evaluate);r=lab.start(BASE)
+ assert r['state']=='completed' and r['summary'][0]['eligible']==0 and r['rows'][0]['first']['error']
+
+def test_rejected_branch_names_survive_stage_separation():
+ assert 'member_before_oop_cents' in p.PRICING_RULES and 'capped_member_cents' in p.PRICING_RULES and 'ALL ZERO' in p.PRICING_RULES

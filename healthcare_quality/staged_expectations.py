@@ -3,7 +3,7 @@ from copy import deepcopy
 import json
 from jsonschema import Draft202012Validator
 from healthcare_quality.compact_expectations import ANSWER,parse,assemble,inputs,context,answer_schema
-from healthcare_quality.compact_expectations_v83 import cohort as previous_cohort
+from healthcare_quality.compact_expectations_v83 import cohort as previous_cohort,CHECKLIST
 from healthcare_quality.expectation_protocol import RULES_TEXT
 from healthcare_quality.advanced_schema import obj,parse_model_json
 from healthcare_quality.expectation_lab import ExpectationLab
@@ -32,20 +32,21 @@ def prompt(plan,stage='first',original=None,step=None,previous=None):
  facts=context(plan);facts.pop('actors');facts.pop('rules')
  return json.dumps(dict(facts=facts,inputs=inputs(plan),step=step,previous=previous or [],stage=stage,original=original),separators=(',',':'))
 
+PRICING_RULES += "\n"+CHECKLIST
+
 class StagedLab(ExpectationLab):
  def _call(self,r,row,stage,text,token,schema):
-  spec=json.loads(text)
   common='IMMUTABLE SYNTHETIC FACTS AND INPUTS (no numeric solutions): '+text
   pricing_text=PRICING_RULES+'\n'+common
   first=super()._call(r,row,stage,pricing_text,token,PRICING)
   if first is None:return None
   row['calls'][-1]['generation_phase']='pricing';self._save(r,token)
   try:quotes=parse_model_json(first['text']);Draft202012Validator(PRICING).validate(quotes)
-  except Exception:return first
+  except Exception:return dict(text='{}',composition_error='invalid_pricing_stage')
   lifecycle=deepcopy(LIFECYCLE);target=schema['properties']['observations'];lifecycle['properties']['observations']=deepcopy(target)
   second=super()._call(r,row,stage,LIFECYCLE_RULES+'\n'+common+'\nYOUR OWN UNVERIFIED PRICING: '+json.dumps(quotes,separators=(',',':')),token,lifecycle)
   if second is None:return None
   row['calls'][-1]['generation_phase']='lifecycle';self._save(r,token)
   try:observations=parse_model_json(second['text']);Draft202012Validator(lifecycle).validate(observations)
-  except Exception:return second
+  except Exception:return dict(text='{}',composition_error='invalid_lifecycle_stage')
   return dict(text=json.dumps(dict(**quotes,**observations)),composition='exact model fields only; no arithmetic or evaluator feedback')
