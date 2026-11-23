@@ -113,7 +113,7 @@ class ExpectationLab:
     for call in row['calls']:
      if call['phase']=='request_running':call['phase']='interrupted'
    r['summary']=summary(r['rows']);db.execute('DELETE FROM studio_operations WHERE experiment_id=?',(id,));self.store.save(db,r)
- def _call(self,r,row,stage,text,token,schema):
+ def _call(self,r,row,stage,text,token,schema,generation_metadata=None):
   if r['protocol']['source_hash']!=source_hash() or r['protocol']['cohort_hash']!=digest(self.protocol.cohort()) or r['protocol']['contract_hash']!=contract_hash():raise ValueError('Source/cohort/contract changed during inference')
   if sum(len(x['calls']) for x in r['rows'])>=r['protocol']['selection']['request_budget']:raise ValueError('Request budget exhausted')
   provider=self.provider
@@ -122,7 +122,9 @@ class ExpectationLab:
    if remaining<=0:self._expire(r['id']);raise operations.LeaseLost('Total time budget ended')
    provider=copy(self.provider)
    if hasattr(provider,'timeout'):provider.timeout=min(provider.timeout,remaining)
-  started=time.monotonic();call=dict(timeout_seconds=getattr(provider,'timeout',None),started_at=now(),stage=stage,prompt=text,prompt_hash=digest(text),generation_schema=deepcopy(schema),schema_hash=digest(schema),phase='request_running');row['calls'].append(call);self._save(r,token)
+  started=time.monotonic();call=dict(timeout_seconds=getattr(provider,'timeout',None),started_at=now(),stage=stage,prompt=text,prompt_hash=digest(text),generation_schema=deepcopy(schema),schema_hash=digest(schema),phase='request_running')
+  if generation_metadata is not None:call['generation']=deepcopy(generation_metadata)
+  row['calls'].append(call);self._save(r,token)
   try:response=provider.generate(row['model'],text,schema)
   except Exception as e:
    call.update(elapsed_ms=round((time.monotonic()-started)*1000,2),phase='provider_error',error=(type(e).__name__+': '+str(e))[:900])
